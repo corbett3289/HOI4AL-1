@@ -1,0 +1,46 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_coi_alien_portrait_eir"
+		texturefile = "gfx/leaders/XAC/coi_alien_eir.dds"
+	}
+	spriteType = {
+		name = "GFX_coi_alien_portrait_eir_small"
+		texturefile = "gfx/leaders/XAC/coi_alien_eir_small.dds"
+	}
+
+	spriteType = {
+		name = "GFX_coi_alien_portrait_vael"
+		texturefile = "gfx/leaders/XAC/coi_alien_vael.dds"
+	}
+	spriteType = {
+		name = "GFX_coi_alien_portrait_vael_small"
+		texturefile = "gfx/leaders/XAC/coi_alien_vael_small.dds"
+	}
+
+	spriteType = {
+		name = "GFX_coi_alien_portrait_thren"
+		texturefile = "gfx/leaders/XAC/coi_alien_thren.dds"
+	}
+	spriteType = {
+		name = "GFX_coi_alien_portrait_thren_small"
+		texturefile = "gfx/leaders/XAC/coi_alien_thren_small.dds"
+	}
+
+	spriteType = {
+		name = "GFX_coi_alien_portrait_oru"
+		texturefile = "gfx/leaders/XAC/coi_alien_oru.dds"
+	}
+	spriteType = {
+		name = "GFX_coi_alien_portrait_oru_small"
+		texturefile = "gfx/leaders/XAC/coi_alien_oru_small.dds"
+	}
+
+	spriteType = {
+		name = "GFX_coi_alien_portrait_saal"
+		texturefile = "gfx/leaders/XAC/coi_alien_saal.dds"
+	}
+	spriteType = {
+		name = "GFX_coi_alien_portrait_saal_small"
+		texturefile = "gfx/leaders/XAC/coi_alien_saal_small.dds"
+	}
+}

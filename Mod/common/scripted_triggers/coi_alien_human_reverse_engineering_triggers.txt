@@ -1,0 +1,54 @@
+### COUNTRY-scope availability contracts for the human special projects.
+
+coi_alien_can_start_exotic_materials_project_trigger = {
+	NOT = { tag = XAC }
+
+	custom_trigger_tooltip = {
+		tooltip = coi_alien_sp_requires_special_access_tt
+		has_country_flag = coi_alien_special_access_program
+	}
+	custom_trigger_tooltip = {
+		tooltip = coi_alien_sp_requires_fragments_tt
+		has_country_flag = coi_alien_evidence_fragments
+	}
+	custom_trigger_tooltip = {
+		tooltip = coi_alien_sp_requires_land_facility_tt
+		any_owned_state = { land_facility > 0 }
+	}
+}
+
+coi_alien_can_start_field_propulsion_project_trigger = {
+	NOT = { tag = XAC }
+
+	custom_trigger_tooltip = {
+		tooltip = coi_alien_sp_requires_special_access_tt
+		has_country_flag = coi_alien_special_access_program
+	}
+	custom_trigger_tooltip = {
+		tooltip = coi_alien_sp_requires_damaged_craft_tt
+		has_country_flag = coi_alien_evidence_damaged_craft
+	}
+	custom_trigger_tooltip = {
+		tooltip = coi_alien_sp_requires_exotic_materials_tt
+		AND = {
+			has_country_flag = coi_alien_human_exotic_materials
+			has_tech = coi_alien_human_exotic_materials
+		}
+	}
+	custom_trigger_tooltip = {
+		tooltip = coi_alien_sp_requires_air_facility_tt
+		any_owned_state = { air_facility > 0 }
+	}
+}
+
+coi_alien_has_human_exotic_materials_trigger = {
+	NOT = { tag = XAC }
+	has_country_flag = coi_alien_human_exotic_materials
+	has_tech = coi_alien_human_exotic_materials
+}
+
+coi_alien_has_human_field_dynamics_trigger = {
+	NOT = { tag = XAC }
+	has_country_flag = coi_alien_human_field_dynamics
+	has_tech = coi_alien_human_field_dynamics
+}

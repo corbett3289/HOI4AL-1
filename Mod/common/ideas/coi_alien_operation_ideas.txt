@@ -1,0 +1,15 @@
+ideas = {
+	country = {
+		coi_alien_cascading_faults = {
+			allowed = { always = yes }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = generic_spy_intel
+
+			modifier = {
+				supply_factor = -0.05
+				repair_speed_factor = -0.10
+			}
+		}
+	}
+}

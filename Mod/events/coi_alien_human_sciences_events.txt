@@ -1,0 +1,126 @@
+add_namespace = coi_alien_human_sciences
+
+country_event = {
+	id = coi_alien_human_sciences.1
+	title = coi_alien_human_sciences.1.t
+	desc = coi_alien_human_sciences.1.d
+	picture = GFX_report_event_coi_alien_human_sciences
+	is_triggered_only = yes
+	option = {
+		name = coi_alien_human_sciences.1.a
+		coi_alien_add_human_insights_five_effect = yes
+		set_country_flag = { flag = coi_alien_observation_incident_cooldown days = 120 }
+	}
+	option = {
+		name = coi_alien_human_sciences.1.b
+		add_political_power = -10
+		set_country_flag = { flag = coi_alien_observation_incident_cooldown days = 120 }
+	}
+}
+
+country_event = {
+	id = coi_alien_human_sciences.2
+	title = coi_alien_human_sciences.2.t
+	desc = coi_alien_human_sciences.2.d
+	picture = GFX_report_event_coi_alien_human_sciences
+	is_triggered_only = yes
+	option = {
+		name = coi_alien_human_sciences.2.a
+		coi_alien_add_human_insights_five_effect = yes
+		set_country_flag = { flag = coi_alien_observation_incident_cooldown days = 120 }
+	}
+	option = {
+		name = coi_alien_human_sciences.2.b
+		add_political_power = 10
+		set_country_flag = { flag = coi_alien_observation_incident_cooldown days = 120 }
+	}
+}
+
+country_event = {
+	id = coi_alien_human_sciences.3
+	title = coi_alien_human_sciences.3.t
+	desc = coi_alien_human_sciences.3.d
+	picture = GFX_report_event_coi_alien_human_sciences
+	is_triggered_only = yes
+	option = {
+		name = coi_alien_human_sciences.3.a
+		coi_alien_add_human_insights_eight_effect = yes
+		set_country_flag = { flag = coi_alien_observation_incident_cooldown days = 120 }
+	}
+	option = {
+		name = coi_alien_human_sciences.3.b
+		add_political_power = -15
+		set_country_flag = { flag = coi_alien_observation_incident_cooldown days = 120 }
+	}
+}
+
+country_event = {
+	id = coi_alien_human_sciences.4
+	title = coi_alien_human_sciences.4.t
+	desc = coi_alien_human_sciences.4.d
+	picture = GFX_report_event_coi_alien_viable_adult_clone
+	is_triggered_only = yes
+	option = {
+		name = coi_alien_human_sciences.4.a
+		coi_alien_add_tissue_sample_effect = yes
+		set_country_flag = { flag = coi_alien_observation_incident_cooldown days = 120 }
+	}
+	option = {
+		name = coi_alien_human_sciences.4.b
+		add_stability = 0.01
+		set_country_flag = { flag = coi_alien_observation_incident_cooldown days = 120 }
+	}
+}
+
+country_event = {
+	id = coi_alien_human_sciences.5
+	title = coi_alien_human_sciences.5.t
+	desc = coi_alien_human_sciences.5.d
+	picture = GFX_report_event_coi_alien_human_sciences
+	is_triggered_only = yes
+	option = {
+		name = coi_alien_human_sciences.5.a
+		coi_alien_add_human_insights_ten_effect = yes
+		set_country_flag = { flag = coi_alien_observation_incident_cooldown days = 120 }
+	}
+	option = {
+		name = coi_alien_human_sciences.5.b
+		add_political_power = -20
+		set_country_flag = { flag = coi_alien_observation_incident_cooldown days = 120 }
+	}
+}
+
+country_event = {
+	id = coi_alien_human_sciences.6
+	title = coi_alien_human_sciences.6.t
+	desc = coi_alien_human_sciences.6.d
+	picture = GFX_report_event_coi_alien_viable_adult_clone
+	is_triggered_only = yes
+	option = {
+		name = coi_alien_human_sciences.6.a
+		remove_ideas = coi_alien_clone_reconditioning_cycle
+		add_ideas = coi_alien_clone_personhood_protocol
+		add_political_power = -25
+		set_country_flag = coi_alien_clone_identity_resolved
+		set_country_flag = { flag = coi_alien_clone_identity_event_cooldown days = 365 }
+	}
+	option = {
+		name = coi_alien_human_sciences.6.b
+		remove_ideas = coi_alien_clone_personhood_protocol
+		add_timed_idea = { idea = coi_alien_clone_reconditioning_cycle days = 180 }
+		set_country_flag = coi_alien_clone_identity_resolved
+		set_country_flag = { flag = coi_alien_clone_identity_event_cooldown days = 365 }
+	}
+}
+
+country_event = {
+	id = coi_alien_human_sciences.7
+	title = coi_alien_human_sciences.7.t
+	desc = coi_alien_human_sciences.7.d
+	picture = GFX_report_event_coi_alien_viable_adult_clone
+	is_triggered_only = yes
+	option = {
+		name = coi_alien_human_sciences.7.a
+		set_country_flag = { flag = coi_alien_clone_identity_event_cooldown days = 180 }
+	}
+}

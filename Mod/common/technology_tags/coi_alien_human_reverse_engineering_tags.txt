@@ -1,0 +1,8 @@
+technology_categories = {
+	# Extension points for later human-derived equipment and technologies.
+	coi_alien_human_reverse_engineering
+	coi_alien_human_exotic_materials_technology
+	coi_alien_human_field_propulsion_technology
+	coi_alien_human_sensor_technology
+	coi_alien_human_energy_technology
+}

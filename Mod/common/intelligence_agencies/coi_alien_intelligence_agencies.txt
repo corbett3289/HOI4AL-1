@@ -1,0 +1,9 @@
+# The Quiet Chorus is the expedition's default agency identity. The scripted
+# initializer creates the agency only when La Resistance is active.
+intelligence_agency = {
+	picture = GFX_intelligence_agency_logo_coi_alien_quiet_chorus
+	names = { coi_alien_quiet_chorus_agency_name }
+
+	default = { tag = XAC }
+	available = { original_tag = XAC }
+}

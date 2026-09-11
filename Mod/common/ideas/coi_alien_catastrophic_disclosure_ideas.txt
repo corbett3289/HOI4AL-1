@@ -1,0 +1,118 @@
+ideas = {
+	country = {
+		coi_alien_disclosure_shock_contained = {
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_catastrophic_disclosure
+			modifier = {
+				stability_factor = -0.03
+				political_power_factor = -0.03
+			}
+		}
+
+		coi_alien_disclosure_shock_panic = {
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_catastrophic_disclosure
+			modifier = {
+				stability_factor = -0.10
+				political_power_factor = -0.10
+				consumer_goods_factor = 0.05
+				production_factory_max_efficiency_factor = -0.05
+			}
+		}
+
+		coi_alien_disclosure_shock_fracture = {
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_catastrophic_disclosure
+			modifier = {
+				stability_factor = -0.20
+				political_power_factor = -0.15
+				consumer_goods_factor = 0.10
+				production_factory_max_efficiency_factor = -0.10
+			}
+		}
+
+		coi_alien_disclosure_shock_existential = {
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_catastrophic_disclosure
+			modifier = {
+				stability_factor = -0.30
+				political_power_factor = -0.25
+				consumer_goods_factor = 0.15
+				production_factory_max_efficiency_factor = -0.15
+			}
+		}
+
+		coi_alien_disclosure_crisis_recovery = {
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_catastrophic_disclosure
+			modifier = { stability_factor = 0.05 }
+		}
+
+		coi_alien_disclosure_leadership_collapse = {
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_catastrophic_disclosure
+			modifier = {
+				stability_factor = -0.10
+				political_power_factor = -0.20
+				production_factory_max_efficiency_factor = -0.10
+			}
+		}
+
+		coi_alien_disclosure_emergency_rule = {
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_catastrophic_disclosure
+			modifier = {
+				war_support_factor = 0.10
+				political_power_factor = -0.15
+				consumer_goods_factor = 0.05
+			}
+		}
+
+		coi_alien_emergency_shelter_network = {
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_catastrophic_disclosure
+			modifier = {
+				stability_factor = 0.03
+				consumer_goods_factor = 0.03
+			}
+		}
+
+		coi_alien_emergency_scientific_authority = {
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_catastrophic_disclosure
+			modifier = {
+				research_speed_factor = 0.03
+				special_project_speed_factor = 0.10
+			}
+		}
+
+		coi_alien_military_continuity_protocol = {
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_catastrophic_disclosure
+			modifier = {
+				war_support_factor = 0.05
+				command_power_gain_mult = 0.05
+			}
+		}
+	}
+}

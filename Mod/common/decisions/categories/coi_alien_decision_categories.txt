@@ -1,0 +1,44 @@
+coi_alien_awareness_category = {
+	icon = coi_alien_discovery
+	priority = 90
+	allowed = {
+		NOT = { tag = XAC }
+	}
+	visible = {
+		coi_alien_framework_active_trigger = yes
+		coi_alien_awareness_at_least_anomalies_trigger = yes
+	}
+}
+
+coi_alien_operations_category = {
+	icon = GFX_decision_category_military_operation
+	priority = 95
+	allowed = {
+		tag = XAC
+	}
+	visible = {
+		coi_alien_framework_active_trigger = yes
+		NOT = { coi_alien_landfall_target_locked_trigger = yes }
+	}
+}
+
+coi_alien_landfall_control_category = {
+	icon = generic_crisis
+	priority = 100
+	allowed = {
+		NOT = { tag = XAC }
+	}
+	visible = {
+		is_ai = no
+		coi_alien_can_prepare_landfall_target_trigger = yes
+	}
+}
+
+coi_alien_debug_category = {
+	icon = generic_research
+	priority = 1000
+	visible = {
+		is_debug = yes
+		is_ai = no
+	}
+}

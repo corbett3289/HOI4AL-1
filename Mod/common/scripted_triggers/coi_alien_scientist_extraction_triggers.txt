@@ -1,0 +1,58 @@
+### Scientist-extraction eligibility contracts.
+###
+### `coi_alien_extractable_scientist_character_trigger` is CHARACTER scope.
+### `coi_alien_target_has_extractable_scientist_trigger` is COUNTRY scope.
+### `coi_alien_operation_state_has_extractable_scientist_trigger` is STATE scope
+### inside an operation, where FROM is the target country and FROM.FROM is the
+### selected state. Keep the state trigger operation-scoped: the explicit FROM
+### references prevent a scientist belonging to an ally or occupier from being
+### selected accidentally.
+
+coi_alien_extractable_scientist_character_trigger = {
+	is_active_scientist = yes
+	is_scientist_injured = no
+	is_advisor = no
+	is_country_leader = no
+	is_unit_leader = no
+	is_operative = no
+}
+
+coi_alien_state_has_special_project_facility_trigger = {
+	OR = {
+		land_facility > 0
+		air_facility > 0
+		naval_facility > 0
+		nuclear_facility > 0
+	}
+}
+
+coi_alien_target_has_extractable_scientist_trigger = {
+	exists = yes
+	NOT = { tag = XAC }
+	NOT = { has_country_flag = coi_alien_scientist_extraction_cooldown }
+
+	# Requiring a controlled facility state here prevents the country-level
+	# operation card from opening onto an empty state-selection map.
+	any_controlled_state = {
+		coi_alien_state_has_special_project_facility_trigger = yes
+		controller = {
+			any_active_scientist = {
+				coi_alien_extractable_scientist_character_trigger = yes
+				is_in_state = PREV.PREV
+			}
+		}
+	}
+}
+
+coi_alien_operation_state_has_extractable_scientist_trigger = {
+	coi_alien_state_has_special_project_facility_trigger = yes
+	controller = { tag = FROM }
+
+	FROM = {
+		NOT = { has_country_flag = coi_alien_scientist_extraction_cooldown }
+		any_active_scientist = {
+			coi_alien_extractable_scientist_character_trigger = yes
+			is_in_state = FROM.FROM
+		}
+	}
+}

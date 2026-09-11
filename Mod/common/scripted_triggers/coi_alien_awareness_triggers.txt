@@ -1,0 +1,205 @@
+### Country-scope discovery and global crisis-state triggers.
+### coi_alien_awareness is saved classified government knowledge, clamped 0-4.
+
+coi_alien_framework_active_trigger = {
+	has_global_flag = coi_alien_framework_active
+}
+
+coi_alien_landfall_target_locked_trigger = {
+	has_global_flag = coi_alien_landfall_prepared
+}
+
+coi_alien_awareness_unaware_trigger = {
+	OR = {
+		NOT = { has_variable = coi_alien_awareness }
+		check_variable = { coi_alien_awareness = 0 }
+	}
+}
+
+coi_alien_awareness_anomalies_trigger = {
+	has_variable = coi_alien_awareness
+	check_variable = { coi_alien_awareness = 1 }
+}
+
+coi_alien_awareness_suspicious_trigger = {
+	has_variable = coi_alien_awareness
+	check_variable = { coi_alien_awareness = 2 }
+}
+
+coi_alien_awareness_confirmed_trigger = {
+	has_variable = coi_alien_awareness
+	check_variable = { coi_alien_awareness = 3 }
+}
+
+coi_alien_awareness_mobilized_trigger = {
+	### Legacy alias: awareness stage four is now Material Proof.
+	has_variable = coi_alien_awareness
+	check_variable = { coi_alien_awareness = 4 }
+}
+
+coi_alien_knowledge_unaware_trigger = {
+	coi_alien_awareness_unaware_trigger = yes
+}
+
+coi_alien_knowledge_anomalous_reports_trigger = {
+	coi_alien_awareness_anomalies_trigger = yes
+}
+
+coi_alien_knowledge_correlated_pattern_trigger = {
+	coi_alien_awareness_suspicious_trigger = yes
+}
+
+coi_alien_knowledge_classified_confirmation_trigger = {
+	coi_alien_awareness_confirmed_trigger = yes
+}
+
+coi_alien_knowledge_material_proof_trigger = {
+	coi_alien_awareness_mobilized_trigger = yes
+}
+
+coi_alien_awareness_at_least_anomalies_trigger = {
+	has_variable = coi_alien_awareness
+	check_variable = { coi_alien_awareness > 0 }
+}
+
+coi_alien_awareness_at_least_suspicious_trigger = {
+	has_variable = coi_alien_awareness
+	check_variable = { coi_alien_awareness > 1 }
+}
+
+coi_alien_awareness_at_least_confirmed_trigger = {
+	has_variable = coi_alien_awareness
+	check_variable = { coi_alien_awareness > 2 }
+}
+
+coi_alien_awareness_below_confirmed_trigger = {
+	OR = {
+		NOT = { has_variable = coi_alien_awareness }
+		check_variable = { coi_alien_awareness < 3 }
+	}
+}
+
+coi_alien_public_awareness_unaware_trigger = {
+	OR = {
+		NOT = { has_variable = coi_alien_public_awareness }
+		check_variable = { coi_alien_public_awareness = 0 }
+	}
+}
+
+coi_alien_public_awareness_rumors_trigger = {
+	has_variable = coi_alien_public_awareness
+	check_variable = { coi_alien_public_awareness = 1 }
+}
+
+coi_alien_public_awareness_credible_controversy_trigger = {
+	has_variable = coi_alien_public_awareness
+	check_variable = { coi_alien_public_awareness = 2 }
+}
+
+coi_alien_public_awareness_official_acknowledgment_trigger = {
+	has_variable = coi_alien_public_awareness
+	check_variable = { coi_alien_public_awareness = 3 }
+}
+
+coi_alien_public_awareness_undeniable_contact_trigger = {
+	has_variable = coi_alien_public_awareness
+	check_variable = { coi_alien_public_awareness = 4 }
+}
+
+coi_alien_public_awareness_at_least_credible_trigger = {
+	has_variable = coi_alien_public_awareness
+	check_variable = { coi_alien_public_awareness > 1 }
+}
+
+coi_alien_public_awareness_at_least_official_trigger = {
+	has_variable = coi_alien_public_awareness
+	check_variable = { coi_alien_public_awareness > 2 }
+}
+
+coi_alien_preparedness_unprepared_trigger = {
+	OR = {
+		NOT = { has_variable = coi_alien_preparedness }
+		check_variable = { coi_alien_preparedness = 0 }
+	}
+}
+
+coi_alien_preparedness_quiet_monitoring_trigger = {
+	has_variable = coi_alien_preparedness
+	check_variable = { coi_alien_preparedness = 1 }
+}
+
+coi_alien_preparedness_contingency_planning_trigger = {
+	has_variable = coi_alien_preparedness
+	check_variable = { coi_alien_preparedness = 2 }
+}
+
+coi_alien_preparedness_national_mobilization_trigger = {
+	has_variable = coi_alien_preparedness
+	check_variable = { coi_alien_preparedness = 3 }
+}
+
+coi_alien_preparedness_crisis_war_footing_trigger = {
+	has_variable = coi_alien_preparedness
+	check_variable = { coi_alien_preparedness = 4 }
+}
+
+coi_alien_preparedness_at_least_quiet_monitoring_trigger = {
+	has_variable = coi_alien_preparedness
+	check_variable = { coi_alien_preparedness > 0 }
+}
+
+coi_alien_preparedness_at_least_contingency_trigger = {
+	has_variable = coi_alien_preparedness
+	check_variable = { coi_alien_preparedness > 1 }
+}
+
+coi_alien_preparedness_at_least_national_mobilization_trigger = {
+	has_variable = coi_alien_preparedness
+	check_variable = { coi_alien_preparedness > 2 }
+}
+
+coi_alien_has_disclosure_stance_trigger = {
+	OR = {
+		has_country_flag = coi_alien_disclosure_stance_secrecy
+		has_country_flag = coi_alien_disclosure_stance_managed
+		has_country_flag = coi_alien_disclosure_stance_international
+		has_country_flag = coi_alien_disclosure_stance_open_files
+	}
+}
+
+coi_alien_can_choose_initial_disclosure_stance_trigger = {
+	coi_alien_framework_active_trigger = yes
+	coi_alien_awareness_at_least_confirmed_trigger = yes
+	has_country_flag = coi_alien_special_access_program
+	NOT = { has_country_flag = coi_alien_disclosure_stance_ever_chosen }
+	NOT = { coi_alien_has_disclosure_stance_trigger = yes }
+}
+
+coi_alien_can_pivot_disclosure_stance_trigger = {
+	coi_alien_framework_active_trigger = yes
+	coi_alien_awareness_at_least_confirmed_trigger = yes
+	has_country_flag = coi_alien_special_access_program
+	has_country_flag = coi_alien_disclosure_stance_ever_chosen
+	coi_alien_has_disclosure_stance_trigger = yes
+	NOT = { has_country_flag = coi_alien_disclosure_pivot_cooldown }
+}
+
+coi_alien_can_restore_secrecy_trigger = {
+	coi_alien_can_pivot_disclosure_stance_trigger = yes
+	OR = {
+		NOT = { has_variable = coi_alien_public_awareness }
+		check_variable = { coi_alien_public_awareness < 3 }
+	}
+}
+
+coi_alien_can_prepare_landfall_target_trigger = {
+	exists = yes
+	NOT = { tag = XAC }
+	coi_alien_framework_active_trigger = yes
+	NOT = { coi_alien_landfall_target_locked_trigger = yes }
+	has_global_flag = coi_alien_landfall_selection_unlocked
+	OR = {
+		coi_alien_awareness_at_least_confirmed_trigger = yes
+		has_global_flag = coi_alien_immediate_landfall_pending
+	}
+}

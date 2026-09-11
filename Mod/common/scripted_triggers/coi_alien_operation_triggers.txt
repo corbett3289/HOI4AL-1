@@ -1,0 +1,68 @@
+### Shared target contracts for Quiet Chorus operations.
+
+### Country scope. ROOT remains the initiating country in operation contexts.
+coi_alien_valid_operation_target_trigger = {
+	exists = yes
+	NOT = { tag = XAC }
+	has_capitulated = no
+}
+
+### State scope. FROM is the target country in operation selection contexts.
+coi_alien_operation_state_has_cascading_fault_target_trigger = {
+	controller = { tag = FROM }
+	infrastructure > 0
+	OR = {
+		radar_station > 0
+		air_base > 0
+		naval_base > 0
+		# Prefer a node-bearing state when the target has one, but do not
+		# hard-lock infrastructure sabotage against countries without a node.
+		FROM = {
+			NOT = {
+				any_controlled_state = {
+					infrastructure > 0
+					OR = {
+						radar_station > 0
+						air_base > 0
+						naval_base > 0
+					}
+				}
+			}
+		}
+	}
+}
+
+### Country scope. Used before opening the state selector.
+coi_alien_target_has_cascading_fault_target_trigger = {
+	any_controlled_state = {
+		infrastructure > 0
+	}
+}
+
+### Disrupt Research Complex deliberately does not inherit the extraction
+### cooldown. It still uses the shared scientist/facility eligibility contract,
+### so only an active, uninjured scientist at a controlled facility is valid.
+coi_alien_target_has_disruptable_research_complex_trigger = {
+	exists = yes
+	NOT = { tag = XAC }
+	any_controlled_state = {
+		coi_alien_state_has_special_project_facility_trigger = yes
+		controller = {
+			any_active_scientist = {
+				coi_alien_extractable_scientist_character_trigger = yes
+				is_in_state = PREV.PREV
+			}
+		}
+	}
+}
+
+coi_alien_operation_state_has_disruptable_research_complex_trigger = {
+	coi_alien_state_has_special_project_facility_trigger = yes
+	controller = { tag = FROM }
+	FROM = {
+		any_active_scientist = {
+			coi_alien_extractable_scientist_character_trigger = yes
+			is_in_state = FROM.FROM
+		}
+	}
+}

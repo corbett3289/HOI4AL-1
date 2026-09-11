@@ -1,0 +1,19 @@
+wargoal_types = {
+	coi_alien_landfall_wargoal = {
+		war_name = coi_alien_landfall_war_name
+
+		# This goal can only be granted by the controlled landfall flow.
+		allowed = {
+			always = no
+		}
+
+		available = {
+		}
+
+		# Empty take_states matches the vanilla focus annex goal: any target state.
+		take_states = {
+		}
+
+		threat = 0
+	}
+}

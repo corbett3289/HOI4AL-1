@@ -1,0 +1,32 @@
+coi_alien_crisis_start_mode = {
+	name = "coi_alien_crisis_start_mode"
+	group = "RULE_GROUP_GAME_SETUP"
+	icon = "GFX_wargoals"
+
+	default = {
+		name = coi_alien_rule_inert
+		text = "coi_alien_rule_inert"
+		desc = "coi_alien_rule_inert_desc"
+	}
+
+	option = {
+		name = coi_alien_rule_hidden
+		text = "coi_alien_rule_hidden"
+		desc = "coi_alien_rule_hidden_desc"
+		allow_achievements = no
+	}
+
+	option = {
+		name = coi_alien_rule_immediate_disclosure
+		text = "coi_alien_rule_immediate_disclosure"
+		desc = "coi_alien_rule_immediate_disclosure_desc"
+		allow_achievements = no
+	}
+
+	option = {
+		name = coi_alien_rule_immediate_landfall
+		text = "coi_alien_rule_immediate_landfall"
+		desc = "coi_alien_rule_immediate_landfall_desc"
+		allow_achievements = no
+	}
+}

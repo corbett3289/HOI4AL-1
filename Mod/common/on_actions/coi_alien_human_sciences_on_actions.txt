@@ -1,0 +1,102 @@
+on_actions = {
+	on_startup = {
+		effect = {
+			XAC = { coi_alien_initialize_human_sciences_effect = yes }
+		}
+	}
+
+	on_daily_XAC = {
+		effect = {
+			coi_alien_initialize_human_sciences_effect = yes
+			coi_alien_reconcile_human_insight_bonuses_effect = yes
+			coi_alien_reconcile_postcontact_observation_effect = yes
+		}
+	}
+
+	on_monthly_XAC = {
+		effect = { coi_alien_monthly_observation_pulse_effect = yes }
+	}
+
+	# ROOT is the new controller, FROM the former controller, and FROM.FROM the
+	# affected state. A human-controlled state yields one viable sample the
+	# first time XAC occupies it after completing Tissue Analysis. The state
+	# flag prevents occupation flipping from becoming an infinite sample farm.
+	on_state_control_changed = {
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						original_tag = XAC
+						has_tech = coi_alien_tissue_analysis
+					}
+					FROM = {
+						exists = yes
+						NOT = { original_tag = XAC }
+					}
+					FROM.FROM = {
+						NOT = { has_state_flag = coi_alien_tissue_sample_recovered }
+					}
+				}
+				ROOT = { coi_alien_add_tissue_sample_effect = yes }
+				FROM.FROM = { set_state_flag = coi_alien_tissue_sample_recovered }
+			}
+		}
+	}
+
+	# THIS = completed operation, ROOT = XAC, FROM = the human target.
+	on_operation_completed = {
+		effect = {
+			if = {
+				limit = {
+					ROOT = { original_tag = XAC }
+					is_operation_type = coi_alien_silent_systems_survey
+				}
+				ROOT = { coi_alien_add_human_insights_five_effect = yes }
+				FROM = { coi_alien_add_cultural_dossier_one_effect = yes }
+			}
+			else_if = {
+				limit = {
+					ROOT = { original_tag = XAC }
+					is_operation_type = coi_alien_seed_mimetic_access
+				}
+				ROOT = { coi_alien_add_human_insights_eight_effect = yes }
+				FROM = { coi_alien_add_cultural_dossier_one_effect = yes }
+			}
+			else_if = {
+				limit = {
+					ROOT = { original_tag = XAC }
+					is_operation_type = coi_alien_penetrate_research_networks
+				}
+				ROOT = { coi_alien_add_human_insights_ten_effect = yes }
+				FROM = { coi_alien_add_cultural_dossier_one_effect = yes }
+			}
+			else_if = {
+				limit = {
+					ROOT = { original_tag = XAC }
+					is_operation_type = coi_alien_extract_lead_scientist
+				}
+				ROOT = {
+					coi_alien_add_human_insights_ten_effect = yes
+					coi_alien_add_tissue_sample_effect = yes
+				}
+				FROM = { coi_alien_add_cultural_dossier_one_effect = yes }
+			}
+		}
+	}
+
+	# Operative scope. FROM is the country for which the operative served.
+	on_operative_death = {
+		effect = {
+			if = {
+				limit = {
+					has_trait = coi_alien_conditioned_human_facsimile
+					FROM = { original_tag = XAC }
+				}
+				FROM = {
+					add_to_variable = { coi_alien_active_clone_operatives = -1 }
+					clamp_variable = { var = coi_alien_active_clone_operatives min = 0 max = 2 }
+				}
+			}
+		}
+	}
+}

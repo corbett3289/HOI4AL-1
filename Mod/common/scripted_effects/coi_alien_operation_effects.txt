@@ -1,0 +1,256 @@
+### Quiet Chorus operation completion effects.
+### These entry points expect SCOPE_OPERATION: ROOT = XAC, FROM = target,
+### and FROM.FROM = selected state when the operation uses state selection.
+
+coi_alien_complete_silent_systems_survey_effect = {
+	ROOT = {
+		add_operation_token = {
+			tag = FROM
+			token = coi_alien_token_surface_profile
+		}
+		coi_alien_add_survey_data_one_effect = yes
+	}
+
+	FROM = {
+		random_list = {
+			20 = { coi_alien_raise_awareness_one_effect = yes }
+			80 = { }
+		}
+	}
+}
+
+coi_alien_complete_seed_mimetic_access_effect = {
+	ROOT = {
+		add_operation_token = {
+			tag = FROM
+			token = coi_alien_token_institutional_access
+		}
+	}
+
+	FROM = {
+		random_list = {
+			25 = { coi_alien_raise_awareness_one_effect = yes }
+			75 = { }
+		}
+	}
+}
+
+coi_alien_complete_penetrate_research_networks_effect = {
+	ROOT = {
+		add_operation_token = {
+			tag = FROM
+			token = coi_alien_token_research_access
+		}
+		coi_alien_add_survey_data_one_effect = yes
+	}
+
+	FROM = {
+		random_list = {
+			35 = { coi_alien_raise_awareness_one_effect = yes }
+			65 = { }
+		}
+	}
+}
+
+coi_alien_complete_spoil_the_evidence_effect = {
+	ROOT = {
+		remove_operation_token = {
+			tag = FROM
+			token = coi_alien_token_institutional_access
+		}
+		if = {
+			limit = {
+				has_operation_token = {
+					tag = FROM
+					token = coi_alien_token_research_access
+				}
+			}
+			remove_operation_token = {
+				tag = FROM
+				token = coi_alien_token_research_access
+			}
+		}
+	}
+
+	FROM = {
+		set_country_flag = {
+			flag = coi_alien_investigation_disrupted
+			value = 1
+			days = 180
+		}
+		random_list = {
+			20 = { coi_alien_raise_awareness_one_effect = yes }
+			80 = { }
+		}
+	}
+}
+
+coi_alien_complete_introduce_cascading_faults_effect = {
+	ROOT = {
+		remove_operation_token = {
+			tag = FROM
+			token = coi_alien_token_institutional_access
+		}
+		if = {
+			limit = {
+				has_operation_token = {
+					tag = FROM
+					token = coi_alien_token_research_access
+				}
+			}
+			remove_operation_token = {
+				tag = FROM
+				token = coi_alien_token_research_access
+			}
+		}
+	}
+
+	FROM.FROM = {
+		damage_building = {
+			type = infrastructure
+			damage = 1
+			repair_speed_modifier = -0.25
+		}
+
+		# Priority order makes the result deterministic when several nodes exist.
+		if = {
+			limit = { radar_station > 0 }
+			damage_building = {
+				type = radar_station
+				damage = 1
+				repair_speed_modifier = -0.25
+			}
+		}
+		else_if = {
+			limit = { air_base > 0 }
+			damage_building = {
+				type = air_base
+				damage = 1
+				repair_speed_modifier = -0.25
+			}
+		}
+		else_if = {
+			limit = { naval_base > 0 }
+			damage_building = {
+				type = naval_base
+				damage = 1
+				repair_speed_modifier = -0.25
+			}
+		}
+	}
+
+	FROM = {
+		add_timed_idea = {
+			idea = coi_alien_cascading_faults
+			days = 90
+		}
+		coi_alien_raise_awareness_one_effect = yes
+	}
+}
+
+### Mandatory result shared by both archive outcome branches.
+coi_alien_complete_harvest_project_archives_effect = {
+	ROOT = {
+		remove_operation_token = {
+			tag = FROM
+			token = coi_alien_token_research_access
+		}
+		coi_alien_add_survey_data_two_effect = yes
+		add_tech_bonus = {
+			bonus = 1.0
+			uses = 1
+			category = coi_alien_science
+			name = coi_alien_harvest_project_archives_tech_bonus
+		}
+	}
+
+	FROM = {
+		random_list = {
+			40 = { coi_alien_raise_awareness_one_effect = yes }
+			60 = { }
+		}
+	}
+}
+
+### Bonus archive result. Special-project effects are content-gated explicitly.
+coi_alien_grant_archive_breakthrough_effect = {
+	ROOT = {
+		if = {
+			limit = { has_dlc = "Gotterdammerung" }
+			add_breakthrough_progress = {
+				specialization = coi_alien_specialization_matter_fabrication
+				value = 0.1
+			}
+		}
+	}
+}
+
+### Mandatory result shared by both research-complex outcome branches.
+coi_alien_complete_disrupt_research_complex_effect = {
+	ROOT = {
+		remove_operation_token = {
+			tag = FROM
+			token = coi_alien_token_research_access
+		}
+		if = {
+			limit = {
+				has_operation_token = {
+					tag = FROM
+					token = coi_alien_token_institutional_access
+				}
+			}
+			remove_operation_token = {
+				tag = FROM
+				token = coi_alien_token_institutional_access
+			}
+		}
+	}
+
+	FROM = {
+		coi_alien_raise_awareness_one_effect = yes
+	}
+}
+
+coi_alien_disrupt_research_complex_standard_effect = {
+	coi_alien_complete_disrupt_research_complex_effect = yes
+
+	FROM.FROM = {
+		damage_building = {
+			tags = facility
+			damage = 0.5
+			repair_speed_modifier = -0.50
+		}
+	}
+
+	FROM = {
+		random_scientist = {
+			limit = {
+				coi_alien_extractable_scientist_character_trigger = yes
+				is_in_state = FROM.FROM
+			}
+			injure_scientist_for_days = 45
+		}
+	}
+}
+
+coi_alien_disrupt_research_complex_bonus_effect = {
+	coi_alien_complete_disrupt_research_complex_effect = yes
+
+	FROM.FROM = {
+		damage_building = {
+			tags = facility
+			damage = 0.8
+			repair_speed_modifier = -0.50
+		}
+	}
+
+	FROM = {
+		random_scientist = {
+			limit = {
+				coi_alien_extractable_scientist_character_trigger = yes
+				is_in_state = FROM.FROM
+			}
+			injure_scientist_for_days = 90
+		}
+	}
+}

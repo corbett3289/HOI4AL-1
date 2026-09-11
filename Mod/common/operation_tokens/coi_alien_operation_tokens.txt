@@ -1,0 +1,20 @@
+coi_alien_token_surface_profile = {
+	name = coi_alien_token_surface_profile
+	desc = coi_alien_token_surface_profile_desc
+	icon = GFX_coi_alien_token_surface_profile
+	text_icon = GFX_coi_alien_token_surface_profile_text
+}
+
+coi_alien_token_institutional_access = {
+	name = coi_alien_token_institutional_access
+	desc = coi_alien_token_institutional_access_desc
+	icon = GFX_coi_alien_token_institutional_access
+	text_icon = GFX_coi_alien_token_institutional_access_text
+}
+
+coi_alien_token_research_access = {
+	name = coi_alien_token_research_access
+	desc = coi_alien_token_research_access_desc
+	icon = GFX_coi_alien_token_research_access
+	text_icon = GFX_coi_alien_token_research_access_text
+}

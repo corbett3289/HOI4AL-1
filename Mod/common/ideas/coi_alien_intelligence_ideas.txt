@@ -1,0 +1,20 @@
+ideas = {
+	country = {
+		# An agency supplies one base operative slot. This permanent expeditionary
+		# complement supplies the second slot needed for one Grey and one drone to
+		# begin active service together.
+		coi_alien_expeditionary_intelligence_complement = {
+			allowed = {
+				original_tag = XAC
+			}
+			allowed_civil_war = {
+				always = yes
+			}
+			removal_cost = -1
+			picture = generic_spy_intel
+			modifier = {
+				operative_slot = 1
+			}
+		}
+	}
+}

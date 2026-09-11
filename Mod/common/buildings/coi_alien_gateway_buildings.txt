@@ -1,0 +1,20 @@
+buildings = {
+	# A strategic connection to the off-world Mothership. The building is
+	# deliberately decision-placed so the three-node country cap and XAC-only
+	# ownership rules cannot be bypassed through the normal construction UI.
+	coi_alien_energy_gateway = {
+		show_on_map = 0
+		base_cost = 24000
+		damage_factor = 1
+		repair_speed_factor = 0.50
+		icon_frame = 13
+		value = 10
+		is_buildable = no
+		disabled_in_dmz = yes
+		only_display_if_exists = yes
+		level_cap = {
+			state_max = 3
+			group_by = coi_alien_energy_gateway
+		}
+	}
+}

@@ -1,0 +1,43 @@
+state = {
+	id = 1082
+	name = "STATE_1082"
+	# One resident is an engine sentinel; expeditionary personnel are granted at
+	# country level and the anchorage has no conventional recruitable population.
+	manpower = 1
+	# The anchorage is an artificial arcology, not an undeveloped speck of land.
+	# Fourteen shared slots are occupied: 2 civilian, 4 military, 6 dockyard,
+	# and 2 fuel silos. The arcology category leaves 2 slots for expansion.
+	state_category = coi_alien_arcology
+
+	history = {
+		owner = XAC
+		add_core_of = XAC
+
+		buildings = {
+			infrastructure = 3
+			industrial_complex = 2
+			arms_factory = 4
+			dockyard = 6
+			air_base = 6
+			radar_station = 3
+			anti_air_building = 3
+			fuel_silo = 2
+
+			13414 = {
+				naval_base = 10
+				coi_alien_mothership_anchorage = 1
+				coi_alien_consensus_research_nexus = 1
+			}
+		}
+
+		victory_points = {
+			13414 10
+		}
+	}
+
+	provinces = {
+		13414
+	}
+
+	local_supplies = 5.0
+}

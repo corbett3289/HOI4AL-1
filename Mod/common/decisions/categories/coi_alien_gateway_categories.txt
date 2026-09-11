@@ -1,0 +1,12 @@
+coi_alien_gateway_category = {
+	icon = generic_research
+	priority = 94
+	allowed = { original_tag = XAC }
+	visible = {
+		OR = {
+			has_tech = coi_alien_energy_gateway_synchronization
+			has_tech = coi_alien_additive_airframe_printing
+			has_tech = coi_alien_predictive_intercept_lattice
+		}
+	}
+}

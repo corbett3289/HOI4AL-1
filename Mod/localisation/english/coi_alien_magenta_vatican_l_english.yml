@@ -1,0 +1,34 @@
+﻿l_english:
+ coi_alien_rs33_office: "Cabinet RS/33"
+ coi_alien_rs33_office_desc: "In this timeline, the regime's most closely guarded inheritance is the alleged 1933 recovery near Magenta: a mostly complete but inoperable craft held under military seal in Lombardy. A compartmented Cabinet RS/33 studies its impossible materials while ensuring that neither Italy nor the wider public understands the full truth."
+ coi_alien_rs33_german_dossier: "The Italian Dossier"
+ coi_alien_rs33_german_dossier_desc: "Italian couriers have delivered censored RS/33 records, unusual signal logs, and a small quantity of separated material. They have not delivered the damaged craft itself. A parallel German office now studies what can be learned without access to the primary wreck."
+ coi_alien_captured_magenta_craft: "Custodian of the Magenta Craft"
+ coi_alien_captured_magenta_craft_desc: "Control of the sealed Lombardy vault has placed an almost complete non-human vehicle in our hands. Possession is not comprehension: the craft remains damaged, inert, and extraordinarily dangerous to investigate."
+ coi_alien_vatican_sealed_reliquary: "The Sealed Reliquary"
+ coi_alien_vatican_sealed_reliquary_desc: "The Holy See maintains an archive separate from Cabinet RS/33 and preserves biological remains whose implications its custodians understand only imperfectly. The secrecy exists to protect ecclesiastical authority and control the theological consequences—not as an act of public mercy."
+
+ coi_alien_magenta_vatican.1.t: "The Dossier for Berlin"
+ coi_alien_magenta_vatican.1.desc: "Political alignment with Germany has created a question Cabinet RS/33 was designed to avoid. Berlin's representatives have heard guarded references to the Magenta recovery and now request proof. We can send censored files and limited samples while retaining the primary craft in Lombardy, or deny that the vault exists and accept the strain this secrecy will place upon the partnership."
+ coi_alien_magenta_vatican.1.a: "Send the dossier and limited samples."
+ coi_alien_magenta_vatican.1.b: "The vault is an Italian secret."
+ coi_alien_magenta_share_germany_tt: "Germany gains §YClassified Confirmation§!, a §YSpecial Access Program§!, §YSignal Records§!, and §YExotic Fragments§!. Italy retains the unique §YDamaged Craft§! in Lombardy."
+ coi_alien_magenta_withhold_germany_tt: "We lose §R75 Political Power§! and §R2% Stability§!. Germany's opinion of Italy worsens. The RS/33 archive and primary craft remain exclusively Italian."
+
+ coi_alien_magenta_vatican.2.t: "The Italian Dossier"
+ coi_alien_magenta_vatican.2.desc: "A sealed Italian courier has delivered records from an organization called Cabinet RS/33. The files describe an alleged recovery near Magenta in 1933, an inoperable vehicle of unknown origin, and years of unsuccessful examination. Included samples defeat conventional metallurgy. Italy has retained the craft; Berlin has received enough to begin a parallel black program."
+ coi_alien_magenta_vatican.2.a: "Establish the compartment."
+
+ coi_alien_magenta_vatican.3.t: "The Vatican Reckoning"
+ coi_alien_magenta_vatican.3.desc: "Open contact has made the old silence impossible to defend. Behind the Vatican's sealed doors lies a duplicate archive and biological material preserved independently of Italy's RS/33 program. Its custodians concealed these things to preserve the Church's authority and control their theological implications. The Holy See must now decide whether to maintain denial, reinterpret doctrine around an inhabited cosmos, or admit that the reliquary existed all along."
+ coi_alien_magenta_vatican.3.a: "Maintain the denial."
+ coi_alien_magenta_vatican.3.b: "Creation was always larger than mankind."
+ coi_alien_magenta_vatican.3.c: "Open the reliquary."
+
+ coi_alien_magenta_vatican.4.t: "The Lombardy Vault"
+ coi_alien_magenta_vatican.4.desc: "Our forces have secured a concealed installation in Lombardy. Beneath false foundations and burned RS/33 ledgers rests a damaged vehicle with no recognizable engine, fuel system, or manufacturing marks. The physical craft is now in our custody; whoever held it before retains only whatever records and samples they removed in time."
+ coi_alien_magenta_vatican.4.a: "Seal the perimeter."
+
+ coi_alien_magenta_vatican.5.t: "The Magenta Craft Is Lost"
+ coi_alien_magenta_vatican.5.desc: "Control of the Lombardy vault has passed from our hands. Emergency teams preserved signal records and portable fragments, but the primary wreck could not be moved. Its new custodian now possesses the damaged craft and the terrible advantage—or danger—that comes with it."
+ coi_alien_magenta_vatican.5.a: "The archive survives. The craft does not."

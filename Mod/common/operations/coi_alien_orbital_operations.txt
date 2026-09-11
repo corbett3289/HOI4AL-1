@@ -1,0 +1,69 @@
+coi_alien_atomic_disruption = {
+	icon = GFX_coi_alien_operation_introduce_cascading_faults
+	map_icon = GFX_coi_alien_operation_introduce_cascading_faults_map
+	name = coi_alien_atomic_disruption
+	desc = coi_alien_atomic_disruption_desc
+	priority = 15
+
+	days = 120
+	network_strength = 70
+	operatives = 3
+
+	allowed = {
+		original_tag = XAC
+		has_dlc = "La Resistance"
+	}
+
+	visible = {
+		coi_alien_framework_active_trigger = yes
+		has_tech = coi_alien_atomic_disruption_protocols
+		FROM = {
+			coi_alien_valid_operation_target_trigger = yes
+			coi_alien_target_has_nuclear_strike_assets_trigger = yes
+		}
+		has_operation_token = { tag = FROM token = coi_alien_token_institutional_access }
+		has_operation_token = { tag = FROM token = coi_alien_token_research_access }
+	}
+
+	available = {
+		coi_alien_framework_active_trigger = yes
+		has_tech = coi_alien_atomic_disruption_protocols
+		has_done_agency_upgrade = coi_alien_upgrade_distributed_drone_cells
+		FROM = { coi_alien_target_has_nuclear_strike_assets_trigger = yes }
+		has_operation_token = { tag = FROM token = coi_alien_token_institutional_access }
+		has_operation_token = { tag = FROM token = coi_alien_token_research_access }
+	}
+
+	requirements = {
+		coi_alien_framework_active_trigger = yes
+		has_tech = coi_alien_atomic_disruption_protocols
+		has_done_agency_upgrade = coi_alien_upgrade_distributed_drone_cells
+		FROM = { coi_alien_target_has_nuclear_strike_assets_trigger = yes }
+		has_operation_token = { tag = FROM token = coi_alien_token_institutional_access }
+		has_operation_token = { tag = FROM token = coi_alien_token_research_access }
+	}
+
+	selection_target = { targets = { FROM } }
+	selection_target_state = { coi_alien_operation_state_has_nuclear_launch_site_trigger = yes }
+	required_tokens = {
+		coi_alien_token_institutional_access
+		coi_alien_token_research_access
+	}
+	equipment = {
+		civilian_factories = { amount = 1 days = 45 }
+	}
+	risk_chance = 0.35
+	outcome_extra_chance = 0.15
+	risk_modifiers = { target_sabotage_risk operation_risk }
+	outcome_modifiers = { target_sabotage_factor operation_outcome }
+	cost_modifiers = { target_sabotage_cost operation_cost }
+	ai_will_do = { factor = 100 }
+
+	outcome_potential = { custom_effect_tooltip = coi_alien_atomic_disruption_outcome_tt }
+	outcome_execute = { coi_alien_atomic_disruption_standard_effect = yes }
+	outcome_extra_execute = { coi_alien_atomic_disruption_critical_effect = yes }
+
+	phases = { coi_alien_phase_atomic_disruption_map = { base = 100 } }
+	phases = { coi_alien_phase_atomic_disruption_seed = { base = 100 } }
+	phases = { coi_alien_phase_atomic_disruption_collapse = { base = 100 } }
+}

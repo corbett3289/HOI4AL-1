@@ -1,0 +1,10 @@
+project_tags = {
+	# Shared by every human attempt to translate alien science. Technologies and
+	# ideas can target this tag through the generated
+	# coi_alien_sp_tag_reverse_engineering_speed_factor modifier.
+	coi_alien_sp_tag_reverse_engineering
+
+	# Domain tags are extension points for later equipment and special projects.
+	coi_alien_sp_tag_exotic_materials
+	coi_alien_sp_tag_field_propulsion
+}

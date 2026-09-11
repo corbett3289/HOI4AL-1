@@ -1,0 +1,781 @@
+### Idempotent country-scope discovery transitions and global setup effects.
+### coi_alien_awareness is retained for save compatibility and now means
+### classified government knowledge, never public belief or readiness.
+
+coi_alien_initialize_country_awareness_effect = {
+	if = {
+		limit = { NOT = { has_variable = coi_alien_awareness } }
+		set_variable = { coi_alien_awareness = 0 }
+	}
+	else = {
+		clamp_variable = { var = coi_alien_awareness min = 0 max = 4 }
+	}
+}
+
+### Versioned discovery-state initializer. A missing preparedness value on an
+### old awareness-4 save is the only case that receives the legacy Mobilized
+### migration. New authored countries can prevent it by setting preparedness.
+coi_alien_initialize_country_discovery_effect = {
+	coi_alien_initialize_country_awareness_effect = yes
+
+	if = {
+		limit = { NOT = { has_variable = coi_alien_public_awareness } }
+		if = {
+			limit = { has_global_flag = coi_alien_disclosure_active }
+			set_variable = { coi_alien_public_awareness = 3 }
+		}
+		else = { set_variable = { coi_alien_public_awareness = 0 } }
+	}
+	else = {
+		clamp_variable = { var = coi_alien_public_awareness min = 0 max = 4 }
+	}
+
+	if = {
+		limit = { NOT = { has_variable = coi_alien_preparedness } }
+		if = {
+			limit = { check_variable = { coi_alien_awareness = 4 } }
+			set_variable = { coi_alien_preparedness = 3 }
+		}
+		else = { set_variable = { coi_alien_preparedness = 0 } }
+	}
+	else = {
+		clamp_variable = { var = coi_alien_preparedness min = 0 max = 4 }
+	}
+
+	if = {
+		limit = { NOT = { has_variable = coi_alien_leak_pressure } }
+		set_variable = { coi_alien_leak_pressure = 0 }
+	}
+	else = {
+		clamp_variable = { var = coi_alien_leak_pressure min = 0 max = 100 }
+	}
+
+	if = {
+		limit = {
+			check_variable = { coi_alien_awareness > 2 }
+			NOT = { has_country_flag = coi_alien_special_access_program }
+		}
+		set_country_flag = coi_alien_special_access_program
+	}
+	set_country_flag = coi_alien_discovery_state_v1_migrated
+}
+
+### Public callable knowledge transitions. These are monotonic; exact setters
+### below remain debug-only for deterministic test setup.
+coi_alien_raise_knowledge_to_anomalous_reports_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	if = {
+		limit = { check_variable = { coi_alien_awareness < 1 } }
+		set_variable = { coi_alien_awareness = 1 }
+	}
+}
+
+coi_alien_raise_knowledge_to_correlated_pattern_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	if = {
+		limit = { check_variable = { coi_alien_awareness < 2 } }
+		set_variable = { coi_alien_awareness = 2 }
+		coi_alien_news_record_correlated_pattern_effect = yes
+	}
+}
+
+coi_alien_raise_knowledge_to_classified_confirmation_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	if = {
+		limit = { check_variable = { coi_alien_awareness < 3 } }
+		set_variable = { coi_alien_awareness = 3 }
+		coi_alien_news_record_special_access_program_effect = yes
+	}
+	set_country_flag = coi_alien_special_access_program
+}
+
+coi_alien_raise_knowledge_to_material_proof_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	if = {
+		limit = { check_variable = { coi_alien_awareness < 4 } }
+		set_variable = { coi_alien_awareness = 4 }
+	}
+	set_country_flag = coi_alien_special_access_program
+}
+
+### Public-awareness transitions. Public awareness never decreases in normal
+### play; suppression changes leak pressure and incident cadence instead.
+coi_alien_raise_public_awareness_one_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	add_to_variable = { coi_alien_public_awareness = 1 }
+	clamp_variable = { var = coi_alien_public_awareness min = 0 max = 4 }
+}
+
+coi_alien_raise_public_awareness_to_rumors_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	if = {
+		limit = { check_variable = { coi_alien_public_awareness < 1 } }
+		set_variable = { coi_alien_public_awareness = 1 }
+	}
+}
+
+coi_alien_raise_public_awareness_to_credible_controversy_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	if = {
+		limit = { check_variable = { coi_alien_public_awareness < 2 } }
+		set_variable = { coi_alien_public_awareness = 2 }
+	}
+}
+
+coi_alien_raise_public_awareness_to_official_acknowledgment_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	if = {
+		limit = { check_variable = { coi_alien_public_awareness < 3 } }
+		set_variable = { coi_alien_public_awareness = 3 }
+		coi_alien_news_record_official_acknowledgment_effect = yes
+	}
+}
+
+coi_alien_raise_public_awareness_to_undeniable_contact_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	if = {
+		limit = { check_variable = { coi_alien_public_awareness < 4 } }
+		set_variable = { coi_alien_public_awareness = 4 }
+	}
+}
+
+### Preparedness transitions. Stage four is reserved for the crisis layer.
+coi_alien_raise_preparedness_one_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	add_to_variable = { coi_alien_preparedness = 1 }
+	clamp_variable = { var = coi_alien_preparedness min = 0 max = 4 }
+}
+
+coi_alien_raise_preparedness_to_quiet_monitoring_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	if = {
+		limit = { check_variable = { coi_alien_preparedness < 1 } }
+		set_variable = { coi_alien_preparedness = 1 }
+	}
+}
+
+coi_alien_raise_preparedness_to_contingency_planning_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	if = {
+		limit = { check_variable = { coi_alien_preparedness < 2 } }
+		set_variable = { coi_alien_preparedness = 2 }
+		coi_alien_news_record_contact_contingencies_effect = yes
+	}
+}
+
+coi_alien_raise_preparedness_to_national_mobilization_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	if = {
+		limit = { check_variable = { coi_alien_preparedness < 3 } }
+		set_variable = { coi_alien_preparedness = 3 }
+	}
+}
+
+coi_alien_raise_preparedness_to_crisis_war_footing_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	if = {
+		limit = { check_variable = { coi_alien_preparedness < 4 } }
+		set_variable = { coi_alien_preparedness = 4 }
+	}
+}
+
+### Exact assignments are intentionally debug-only. Gameplay and integration
+### content should use the monotonic raise effects below.
+coi_alien_debug_force_awareness_unaware_effect = {
+	set_variable = { coi_alien_awareness = 0 }
+}
+
+coi_alien_debug_force_awareness_anomalies_effect = {
+	set_variable = { coi_alien_awareness = 1 }
+}
+
+coi_alien_debug_force_awareness_suspicious_effect = {
+	set_variable = { coi_alien_awareness = 2 }
+}
+
+coi_alien_debug_force_awareness_confirmed_effect = {
+	set_variable = { coi_alien_awareness = 3 }
+}
+
+coi_alien_debug_force_awareness_mobilized_effect = {
+	set_variable = { coi_alien_awareness = 4 }
+}
+
+coi_alien_raise_awareness_one_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	add_to_variable = { coi_alien_awareness = 1 }
+	clamp_variable = { var = coi_alien_awareness min = 0 max = 4 }
+	if = {
+		limit = { check_variable = { coi_alien_awareness > 2 } }
+		set_country_flag = coi_alien_special_access_program
+	}
+}
+
+coi_alien_raise_awareness_two_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	add_to_variable = { coi_alien_awareness = 2 }
+	clamp_variable = { var = coi_alien_awareness min = 0 max = 4 }
+	if = {
+		limit = { check_variable = { coi_alien_awareness > 2 } }
+		set_country_flag = coi_alien_special_access_program
+	}
+}
+
+coi_alien_raise_awareness_to_confirmed_effect = {
+	coi_alien_raise_knowledge_to_classified_confirmation_effect = yes
+}
+
+coi_alien_raise_awareness_to_mobilized_effect = {
+	### Legacy callable alias. Stage four now means Material Proof.
+	coi_alien_raise_knowledge_to_material_proof_effect = yes
+}
+
+### Exactly one disclosure-stance flag and idea may be active. The council
+### membership flag is an overlay owned by the international stance.
+coi_alien_clear_disclosure_stance_effect = {
+	clr_country_flag = coi_alien_disclosure_stance_secrecy
+	clr_country_flag = coi_alien_disclosure_stance_managed
+	clr_country_flag = coi_alien_disclosure_stance_international
+	clr_country_flag = coi_alien_disclosure_stance_open_files
+	clr_country_flag = coi_alien_international_council_member
+	clr_country_flag = coi_alien_managed_disclosure_in_progress
+	remove_ideas = coi_alien_disclosure_black_archive
+	remove_ideas = coi_alien_disclosure_prepared_public
+	remove_ideas = coi_alien_disclosure_international_council
+	remove_ideas = coi_alien_disclosure_open_files
+}
+
+coi_alien_start_disclosure_pivot_cooldown_effect = {
+	set_country_flag = {
+		flag = coi_alien_disclosure_pivot_cooldown
+		days = 180
+	}
+}
+
+coi_alien_adopt_secrecy_stance_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	coi_alien_clear_disclosure_stance_effect = yes
+	set_country_flag = coi_alien_disclosure_stance_secrecy
+	set_country_flag = coi_alien_disclosure_stance_ever_chosen
+	add_ideas = coi_alien_disclosure_black_archive
+	coi_alien_start_disclosure_pivot_cooldown_effect = yes
+}
+
+coi_alien_adopt_managed_disclosure_stance_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	coi_alien_clear_disclosure_stance_effect = yes
+	set_country_flag = coi_alien_disclosure_stance_managed
+	set_country_flag = coi_alien_disclosure_stance_ever_chosen
+	set_country_flag = coi_alien_managed_disclosure_in_progress
+	add_ideas = coi_alien_disclosure_prepared_public
+	coi_alien_raise_preparedness_to_quiet_monitoring_effect = yes
+	coi_alien_start_disclosure_pivot_cooldown_effect = yes
+	country_event = { id = coi_alien_discovery.10 days = 60 }
+}
+
+coi_alien_adopt_international_disclosure_stance_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	coi_alien_clear_disclosure_stance_effect = yes
+	set_country_flag = coi_alien_disclosure_stance_international
+	set_country_flag = coi_alien_disclosure_stance_ever_chosen
+	set_country_flag = coi_alien_international_council_member
+	set_global_flag = coi_alien_international_council_established
+	add_ideas = coi_alien_disclosure_international_council
+	coi_alien_raise_preparedness_to_quiet_monitoring_effect = yes
+	coi_alien_start_disclosure_pivot_cooldown_effect = yes
+	coi_alien_news_record_contact_council_effect = yes
+}
+
+coi_alien_adopt_open_files_stance_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	coi_alien_clear_disclosure_stance_effect = yes
+	set_country_flag = coi_alien_disclosure_stance_open_files
+	set_country_flag = coi_alien_disclosure_stance_ever_chosen
+	add_ideas = coi_alien_disclosure_open_files
+	coi_alien_raise_public_awareness_to_official_acknowledgment_effect = yes
+	add_stability = -0.15
+	coi_alien_start_disclosure_pivot_cooldown_effect = yes
+
+	### A deliberate archive release seeds basic knowledge and rumors abroad,
+	### but never changes alliances, factions, ownership, or diplomacy.
+	every_other_country = {
+		limit = {
+			exists = yes
+			NOT = { tag = XAC }
+		}
+		coi_alien_raise_knowledge_to_anomalous_reports_effect = yes
+		coi_alien_raise_public_awareness_to_rumors_effect = yes
+	}
+	coi_alien_news_record_open_files_effect = yes
+}
+
+### Called by a stance-pivot decision after its PP cost is paid.
+coi_alien_apply_disclosure_pivot_cost_effect = {
+	add_stability = -0.05
+}
+
+coi_alien_reduce_leak_pressure_ten_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	add_to_variable = { coi_alien_leak_pressure = -10 }
+	clamp_variable = { var = coi_alien_leak_pressure min = 0 max = 100 }
+	set_country_flag = {
+		flag = coi_alien_publicity_suppression_active
+		days = 90
+	}
+}
+
+### Records an ordinary report without forcing a public outcome. Secrecy can
+### suppress the headline, but the unresolved evidence becomes leak pressure.
+coi_alien_record_routine_publicity_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	if = {
+		limit = { has_country_flag = coi_alien_disclosure_stance_secrecy }
+		add_to_variable = { coi_alien_leak_pressure = 1 }
+		clamp_variable = { var = coi_alien_leak_pressure min = 0 max = 100 }
+		random_list = {
+			80 = { }
+			20 = { coi_alien_raise_public_awareness_to_rumors_effect = yes }
+		}
+	}
+	else = {
+		coi_alien_raise_public_awareness_to_rumors_effect = yes
+	}
+}
+
+coi_alien_record_unusual_sighting_effect = {
+	coi_alien_raise_knowledge_to_anomalous_reports_effect = yes
+	set_country_flag = {
+		flag = coi_alien_sighting_cooldown
+		days = 180
+	}
+	random_list = {
+		85 = { }
+		15 = { coi_alien_record_routine_publicity_effect = yes }
+	}
+	if = {
+		limit = { is_ai = no }
+		country_event = { id = coi_alien_discovery.1 }
+	}
+}
+
+### AI stance roll. The unmodified weights are exactly 80/8/8/4; ideology,
+### stability, faction participation, and existing public controversy adjust
+### those entries without changing the human-player decision interface.
+coi_alien_choose_ai_disclosure_stance_effect = {
+	random_list = {
+		80 = {
+			modifier = {
+				factor = 0
+				coi_alien_public_awareness_at_least_official_trigger = yes
+			}
+			modifier = { factor = 1.5 has_government = fascism }
+			modifier = { factor = 1.5 has_government = communism }
+			modifier = { factor = 1.5 has_stability < 0.4 }
+			modifier = { factor = 0.75 has_government = democratic }
+			modifier = {
+				factor = 0.5
+				coi_alien_public_awareness_at_least_credible_trigger = yes
+			}
+			coi_alien_adopt_secrecy_stance_effect = yes
+		}
+		8 = {
+			modifier = { factor = 2 has_government = democratic }
+			modifier = { factor = 1.5 has_stability > 0.65 }
+			modifier = { factor = 0.5 has_government = fascism }
+			coi_alien_adopt_managed_disclosure_stance_effect = yes
+		}
+		8 = {
+			modifier = { factor = 2.5 has_government = democratic }
+			modifier = { factor = 2 is_in_faction = yes }
+			modifier = { factor = 0.5 has_government = fascism }
+			coi_alien_adopt_international_disclosure_stance_effect = yes
+		}
+		4 = {
+			modifier = { factor = 0 has_political_power < 100 }
+			modifier = { factor = 1.5 has_government = democratic }
+			modifier = {
+				factor = 3
+				coi_alien_public_awareness_at_least_credible_trigger = yes
+			}
+			modifier = { factor = 0.25 has_stability < 0.4 }
+			add_political_power = -100
+			coi_alien_adopt_open_files_stance_effect = yes
+		}
+	}
+}
+
+### Global evidence ledger and low-bandwidth aid exchange for the opt-in
+### international council. Evidence only ever spreads to council members.
+coi_alien_synchronize_international_council_effect = {
+	if = {
+		limit = {
+			any_country = {
+				has_country_flag = coi_alien_international_council_member
+				has_country_flag = coi_alien_evidence_signals
+			}
+		}
+		set_global_flag = coi_alien_council_shared_signals
+	}
+	if = {
+		limit = {
+			any_country = {
+				has_country_flag = coi_alien_international_council_member
+				has_country_flag = coi_alien_evidence_fragments
+			}
+		}
+		set_global_flag = coi_alien_council_shared_fragments
+	}
+	if = {
+		limit = {
+			any_country = {
+				has_country_flag = coi_alien_international_council_member
+				has_country_flag = coi_alien_evidence_damaged_craft
+			}
+		}
+		set_global_flag = coi_alien_council_shared_damaged_craft
+	}
+
+	if = {
+		limit = {
+			any_country = {
+				has_country_flag = coi_alien_international_council_member
+				has_variable = coi_alien_preparedness
+				check_variable = { coi_alien_preparedness > 2 }
+			}
+		}
+		set_global_flag = coi_alien_council_contingency_shared
+	}
+	if = {
+		limit = {
+			any_country = {
+				has_country_flag = coi_alien_international_council_member
+				has_variable = coi_alien_preparedness
+				check_variable = { coi_alien_preparedness > 3 }
+			}
+		}
+		set_global_flag = coi_alien_council_mobilization_shared
+	}
+
+	every_country = {
+		limit = {
+			exists = yes
+			has_country_flag = coi_alien_international_council_member
+		}
+		if = {
+			limit = { has_global_flag = coi_alien_council_shared_signals }
+			set_country_flag = coi_alien_evidence_signals
+		}
+		if = {
+			limit = { has_global_flag = coi_alien_council_shared_fragments }
+			set_country_flag = coi_alien_evidence_fragments
+			coi_alien_raise_knowledge_to_correlated_pattern_effect = yes
+		}
+		if = {
+			limit = { has_global_flag = coi_alien_council_shared_damaged_craft }
+			### Members receive authenticated craft dossiers, not a duplicated
+			### physical hull. The damaged-craft project gate remains custodial.
+			set_country_flag = coi_alien_evidence_craft_dossier
+			coi_alien_raise_knowledge_to_material_proof_effect = yes
+		}
+		if = {
+			limit = { has_global_flag = coi_alien_council_contingency_shared }
+			coi_alien_raise_preparedness_to_contingency_planning_effect = yes
+		}
+		if = {
+			limit = { has_global_flag = coi_alien_council_mobilization_shared }
+			coi_alien_raise_preparedness_to_national_mobilization_effect = yes
+		}
+	}
+}
+
+### One bounded world scan per month, invoked from on_monthly_XAC. It produces
+### low-probability first reports and advances secrecy leak pressure without a
+### daily every-country loop.
+coi_alien_monthly_human_discovery_pulse_effect = {
+	every_country = {
+		limit = {
+			exists = yes
+			NOT = { tag = XAC }
+		}
+		coi_alien_initialize_country_discovery_effect = yes
+
+		if = {
+			limit = {
+				has_global_flag = coi_alien_framework_active
+				is_ai = yes
+				coi_alien_can_choose_initial_disclosure_stance_trigger = yes
+			}
+			coi_alien_choose_ai_disclosure_stance_effect = yes
+		}
+
+		if = {
+			limit = {
+				has_global_flag = coi_alien_framework_active
+				coi_alien_awareness_unaware_trigger = yes
+				NOT = { has_country_flag = coi_alien_sighting_cooldown }
+				NOT = { has_country_flag = coi_alien_investigation_disrupted }
+				NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+			}
+			if = {
+				limit = { any_owned_state = { radar_station > 0 } }
+				random_list = {
+					98 = { }
+					2 = { coi_alien_record_unusual_sighting_effect = yes }
+				}
+			}
+			else_if = {
+				limit = { is_major = yes }
+				random_list = {
+					99 = { }
+					1 = { coi_alien_record_unusual_sighting_effect = yes }
+				}
+			}
+			else_if = {
+				limit = { has_war = yes }
+				random_list = {
+					199 = { }
+					1 = { coi_alien_record_unusual_sighting_effect = yes }
+				}
+			}
+			else = {
+				random_list = {
+					499 = { }
+					1 = { coi_alien_record_unusual_sighting_effect = yes }
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				has_global_flag = coi_alien_framework_active
+				has_country_flag = coi_alien_disclosure_stance_secrecy
+				coi_alien_awareness_at_least_confirmed_trigger = yes
+				NOT = { has_country_flag = coi_alien_publicity_suppression_active }
+				NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+			}
+			add_to_variable = { coi_alien_leak_pressure = 1 }
+			if = {
+				limit = { has_country_flag = coi_alien_evidence_signals }
+				add_to_variable = { coi_alien_leak_pressure = 1 }
+			}
+			if = {
+				limit = { has_country_flag = coi_alien_evidence_fragments }
+				add_to_variable = { coi_alien_leak_pressure = 2 }
+			}
+			if = {
+				limit = { has_country_flag = coi_alien_evidence_damaged_craft }
+				add_to_variable = { coi_alien_leak_pressure = 4 }
+			}
+			clamp_variable = { var = coi_alien_leak_pressure min = 0 max = 100 }
+
+			if = {
+				limit = {
+					check_variable = { coi_alien_leak_pressure > 29 }
+					check_variable = { coi_alien_public_awareness < 2 }
+				}
+				coi_alien_raise_public_awareness_to_credible_controversy_effect = yes
+				add_to_variable = { coi_alien_leak_pressure = -20 }
+				coi_alien_news_record_archive_evidence_effect = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { coi_alien_leak_pressure > 11 }
+					check_variable = { coi_alien_public_awareness < 1 }
+				}
+				coi_alien_raise_public_awareness_to_rumors_effect = yes
+				add_to_variable = { coi_alien_leak_pressure = -8 }
+				coi_alien_news_record_archive_rumor_effect = yes
+			}
+			clamp_variable = { var = coi_alien_leak_pressure min = 0 max = 100 }
+		}
+	}
+
+	if = {
+		limit = {
+			has_global_flag = coi_alien_framework_active
+			has_global_flag = coi_alien_international_council_established
+		}
+		coi_alien_synchronize_international_council_effect = yes
+	}
+}
+
+coi_alien_initialize_operation_data_effect = {
+	if = {
+		limit = { NOT = { has_variable = coi_alien_survey_data } }
+		set_variable = { coi_alien_survey_data = 0 }
+	}
+}
+
+coi_alien_add_survey_data_one_effect = {
+	coi_alien_initialize_operation_data_effect = yes
+	add_to_variable = { coi_alien_survey_data = 1 }
+}
+
+coi_alien_add_survey_data_two_effect = {
+	coi_alien_initialize_operation_data_effect = yes
+	add_to_variable = { coi_alien_survey_data = 2 }
+}
+
+coi_alien_add_survey_data_three_effect = {
+	coi_alien_initialize_operation_data_effect = yes
+	add_to_variable = { coi_alien_survey_data = 3 }
+}
+
+coi_alien_reconcile_country_awareness_effect = {
+	if = {
+		limit = { has_global_flag = coi_alien_disclosure_active }
+		coi_alien_raise_knowledge_to_classified_confirmation_effect = yes
+		coi_alien_raise_public_awareness_to_official_acknowledgment_effect = yes
+	}
+	else = {
+		coi_alien_initialize_country_discovery_effect = yes
+	}
+}
+
+coi_alien_set_inert_mode_effect = {
+	clr_global_flag = coi_alien_framework_active
+	clr_global_flag = coi_alien_mode_hidden
+	clr_global_flag = coi_alien_disclosure_active
+	clr_global_flag = coi_alien_immediate_landfall_pending
+	clr_global_flag = coi_alien_landfall_selection_unlocked
+}
+
+coi_alien_set_hidden_mode_effect = {
+	set_global_flag = coi_alien_framework_active
+	set_global_flag = coi_alien_mode_hidden
+	clr_global_flag = coi_alien_disclosure_active
+	clr_global_flag = coi_alien_immediate_landfall_pending
+	set_global_flag = coi_alien_landfall_selection_unlocked
+	every_country = {
+		coi_alien_initialize_country_discovery_effect = yes
+	}
+}
+
+coi_alien_set_immediate_disclosure_mode_effect = {
+	set_global_flag = coi_alien_framework_active
+	clr_global_flag = coi_alien_mode_hidden
+	set_global_flag = coi_alien_disclosure_active
+	clr_global_flag = coi_alien_immediate_landfall_pending
+	clr_global_flag = coi_alien_landfall_selection_unlocked
+	every_country = {
+		coi_alien_raise_knowledge_to_classified_confirmation_effect = yes
+		coi_alien_raise_public_awareness_to_official_acknowledgment_effect = yes
+	}
+}
+
+coi_alien_set_immediate_landfall_mode_effect = {
+	set_global_flag = coi_alien_framework_active
+	clr_global_flag = coi_alien_mode_hidden
+	set_global_flag = coi_alien_disclosure_active
+	set_global_flag = coi_alien_immediate_landfall_pending
+	set_global_flag = coi_alien_landfall_selection_unlocked
+	every_country = {
+		coi_alien_raise_knowledge_to_classified_confirmation_effect = yes
+		coi_alien_raise_public_awareness_to_official_acknowledgment_effect = yes
+	}
+}
+
+coi_alien_initialize_framework_effect = {
+	if = {
+		limit = { NOT = { has_global_flag = coi_alien_framework_initialized } }
+		set_global_flag = coi_alien_framework_initialized
+
+		every_country = {
+			coi_alien_initialize_country_discovery_effect = yes
+		}
+
+		if = {
+			limit = {
+				has_game_rule = {
+					rule = coi_alien_crisis_start_mode
+					option = coi_alien_rule_hidden
+				}
+			}
+			coi_alien_set_hidden_mode_effect = yes
+		}
+		else_if = {
+			limit = {
+				has_game_rule = {
+					rule = coi_alien_crisis_start_mode
+					option = coi_alien_rule_immediate_disclosure
+				}
+			}
+			coi_alien_set_immediate_disclosure_mode_effect = yes
+		}
+		else_if = {
+			limit = {
+				has_game_rule = {
+					rule = coi_alien_crisis_start_mode
+					option = coi_alien_rule_immediate_landfall
+				}
+			}
+			coi_alien_set_immediate_landfall_mode_effect = yes
+		}
+		else = {
+			coi_alien_set_inert_mode_effect = yes
+		}
+	}
+}
+
+### Runs in the intended terrestrial target's country scope.
+### This deliberately does not change state ownership or control.
+coi_alien_prepare_landfall_target_effect = {
+	if = {
+		limit = {
+			coi_alien_can_prepare_landfall_target_trigger = yes
+		}
+		coi_alien_raise_awareness_to_confirmed_effect = yes
+		set_country_flag = coi_alien_landfall_target
+		save_global_event_target_as = coi_alien_landfall_target
+		set_global_flag = coi_alien_landfall_prepared
+		clr_global_flag = coi_alien_immediate_landfall_pending
+
+		XAC = {
+			if = {
+				limit = {
+					NOT = {
+						has_wargoal_against = {
+							target = event_target:coi_alien_landfall_target
+							type = coi_alien_landfall_wargoal
+						}
+					}
+				}
+				create_wargoal = {
+					type = coi_alien_landfall_wargoal
+					target = event_target:coi_alien_landfall_target
+				}
+			}
+		}
+	}
+}
+
+### Debug-only reset. The saved target flag guards every event-target reference.
+coi_alien_reset_landfall_preparation_effect = {
+	if = {
+		limit = { has_global_flag = coi_alien_landfall_prepared }
+		XAC = {
+			if = {
+				limit = {
+					has_wargoal_against = {
+						target = event_target:coi_alien_landfall_target
+						type = coi_alien_landfall_wargoal
+					}
+				}
+				remove_wargoal = {
+					type = coi_alien_landfall_wargoal
+					target = event_target:coi_alien_landfall_target
+				}
+			}
+		}
+		event_target:coi_alien_landfall_target = {
+			clr_country_flag = coi_alien_landfall_target
+		}
+		clear_global_event_target = coi_alien_landfall_target
+		clr_global_flag = coi_alien_landfall_prepared
+		if = {
+			limit = { has_global_flag = coi_alien_framework_active }
+			set_global_flag = coi_alien_landfall_selection_unlocked
+			set_global_flag = coi_alien_immediate_landfall_pending
+		}
+	}
+}

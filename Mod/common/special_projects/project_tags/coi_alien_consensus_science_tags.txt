@@ -1,0 +1,7 @@
+project_tags = {
+	coi_alien_sp_tag_consensus_science
+	coi_alien_sp_tag_matter_fabrication
+	coi_alien_sp_tag_field_energy
+	coi_alien_sp_tag_cognition_observation
+	coi_alien_sp_tag_biogenesis
+}

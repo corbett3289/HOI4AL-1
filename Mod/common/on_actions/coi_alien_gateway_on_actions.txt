@@ -1,0 +1,68 @@
+on_actions = {
+	on_startup = {
+		effect = {
+			XAC = {
+				coi_alien_reconcile_mothership_anchorage_status_effect = yes
+				coi_alien_initialize_gateway_network_effect = yes
+				coi_alien_reconcile_gateway_committed_count_effect = yes
+				coi_alien_recalculate_gateway_output_effect = yes
+				coi_alien_initialize_basic_sentinel_reserve_effect = yes
+			}
+		}
+	}
+
+	# Country-scoped reconciliation makes off-map output respond within one day
+	# to capture, strategic damage, repair, or Anchorage shutdown.
+	on_daily_XAC = {
+		effect = {
+			coi_alien_reconcile_mothership_anchorage_status_effect = yes
+			coi_alien_initialize_gateway_network_effect = yes
+			coi_alien_reconcile_gateway_committed_count_effect = yes
+			coi_alien_recalculate_gateway_output_effect = yes
+			coi_alien_initialize_basic_sentinel_reserve_effect = yes
+		}
+	}
+
+	# Control changes can suspend or restore the Anchorage immediately; physical
+	# destruction and repair remain covered by the daily health reconciliation.
+	on_state_control_changed = {
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						ROOT = { original_tag = XAC }
+						FROM = { original_tag = XAC }
+					}
+				}
+				XAC = {
+					coi_alien_reconcile_mothership_anchorage_status_effect = yes
+					coi_alien_reconcile_gateway_committed_count_effect = yes
+					coi_alien_recalculate_gateway_output_effect = yes
+					coi_alien_initialize_basic_sentinel_reserve_effect = yes
+				}
+			}
+		}
+	}
+
+	on_monthly_XAC = {
+		effect = {
+			coi_alien_recalculate_gateway_output_effect = yes
+			coi_alien_generate_gateway_fabrication_capacity_effect = yes
+		}
+	}
+
+	# Atomic Disruption consumes both durable access tokens. Refresh the bespoke
+	# Quiet Chorus plan immediately for AI XAC instead of leaving a stale plan
+	# until the next monthly intelligence pulse.
+	on_operation_completed = {
+		effect = {
+			if = {
+				limit = {
+					ROOT = { original_tag = XAC is_ai = yes }
+					is_operation_type = coi_alien_atomic_disruption
+				}
+				ROOT = { coi_alien_update_operation_ai_effect = yes }
+			}
+		}
+	}
+}

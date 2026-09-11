@@ -1,0 +1,215 @@
+### Magenta / RS-33 and Vatican institutional state. The alleged 1933
+### recovery is treated as true in the mod's timeline, not as a real-world
+### historical assertion.
+
+coi_alien_initialize_vatican_institution_effect = {
+	if = {
+		limit = { NOT = { has_global_flag = coi_alien_vatican_institution_initialized } }
+		set_global_flag = coi_alien_vatican_institution_initialized
+		set_global_flag = coi_alien_vatican_archive_sealed
+	}
+	else_if = {
+		limit = { has_global_flag = coi_alien_vatican_reliquary_opened }
+		clr_global_flag = coi_alien_vatican_archive_sealed
+	}
+	else = {
+		set_global_flag = coi_alien_vatican_archive_sealed
+	}
+	set_global_flag = coi_alien_vatican_biological_remains_secured
+	set_global_flag = coi_alien_vatican_vault_permanent
+}
+
+### Country scope. Used only while setting or repairing the unique physical
+### custodian of the damaged Magenta craft.
+coi_alien_assign_magenta_craft_custody_silently_effect = {
+	if = {
+		limit = { has_event_target = coi_alien_magenta_craft_custodian }
+		event_target:coi_alien_magenta_craft_custodian = {
+			clr_country_flag = coi_alien_magenta_craft_custodian
+			clr_country_flag = coi_alien_magenta_primary_craft
+			clr_country_flag = coi_alien_evidence_damaged_craft
+			if = {
+				limit = { has_idea = coi_alien_captured_magenta_craft }
+				remove_ideas = coi_alien_captured_magenta_craft
+			}
+		}
+		clear_global_event_target = coi_alien_magenta_craft_custodian
+	}
+
+	set_country_flag = coi_alien_magenta_craft_custodian
+	set_country_flag = coi_alien_magenta_primary_craft
+	set_country_flag = coi_alien_evidence_damaged_craft
+	set_country_flag = coi_alien_evidence_fragments
+	if = {
+		limit = { NOT = { tag = ITA } }
+		add_ideas = coi_alien_captured_magenta_craft
+	}
+	save_global_event_target_as = coi_alien_magenta_craft_custodian
+}
+
+### Exact new-campaign seed, called from history/general after vanilla country
+### history. Authored preparedness=1 prevents the legacy awareness-4 migration
+### from incorrectly making Italy nationally mobilized.
+coi_alien_seed_1936_magenta_vatican_effect = {
+	if = {
+		limit = { NOT = { has_global_flag = coi_alien_magenta_vatican_initialized } }
+		set_global_flag = coi_alien_magenta_vatican_initialized
+		coi_alien_initialize_vatican_institution_effect = yes
+
+		159 = { set_state_flag = coi_alien_magenta_craft_vault }
+
+		set_variable = { coi_alien_awareness = 4 }
+		set_variable = { coi_alien_public_awareness = 0 }
+		set_variable = { coi_alien_preparedness = 1 }
+		set_variable = { coi_alien_leak_pressure = 0 }
+		set_country_flag = coi_alien_rs33_black_program
+		set_country_flag = coi_alien_special_access_program
+		set_country_flag = coi_alien_evidence_signals
+		set_country_flag = coi_alien_evidence_fragments
+		add_ideas = coi_alien_rs33_office
+
+		coi_alien_adopt_secrecy_stance_effect = yes
+		# This is authored starting state, not a mid-campaign pivot.
+		clr_country_flag = coi_alien_disclosure_pivot_cooldown
+
+		coi_alien_assign_magenta_craft_custody_silently_effect = yes
+	}
+}
+
+### Old saves never execute history/general. This monotonic migration creates
+### the same canon without lowering public awareness or preparedness and gives
+### the physical craft to whoever currently controls its Lombardy vault.
+coi_alien_migrate_magenta_vatican_effect = {
+	coi_alien_initialize_vatican_institution_effect = yes
+	159 = { set_state_flag = coi_alien_magenta_craft_vault }
+
+	if = {
+		limit = { NOT = { has_global_flag = coi_alien_magenta_vatican_initialized } }
+		set_global_flag = coi_alien_magenta_vatican_initialized
+
+		if = {
+			limit = { country_exists = ITA }
+			ITA = {
+				coi_alien_initialize_country_discovery_effect = yes
+				coi_alien_raise_knowledge_to_material_proof_effect = yes
+				coi_alien_raise_preparedness_to_quiet_monitoring_effect = yes
+				set_country_flag = coi_alien_rs33_black_program
+				set_country_flag = coi_alien_evidence_signals
+				set_country_flag = coi_alien_evidence_fragments
+				if = {
+					limit = { NOT = { has_idea = coi_alien_rs33_office } }
+					add_ideas = coi_alien_rs33_office
+				}
+				if = {
+					limit = { NOT = { coi_alien_has_any_disclosure_stance_trigger = yes } }
+					coi_alien_adopt_secrecy_stance_effect = yes
+				}
+			}
+		}
+
+		159 = {
+			controller = {
+				coi_alien_assign_magenta_craft_custody_silently_effect = yes
+			}
+		}
+	}
+}
+
+### Country scope, normally ITA. Sends the aligned Axis partner only records
+### and samples. The damaged primary craft remains with its current custodian.
+coi_alien_share_rs33_with_germany_effect = {
+	set_country_flag = coi_alien_magenta_german_sharing_resolved
+	set_country_flag = coi_alien_magenta_german_dossier_shared
+	add_political_power = 25
+
+	GER = {
+		coi_alien_initialize_country_discovery_effect = yes
+		coi_alien_raise_knowledge_to_classified_confirmation_effect = yes
+		set_country_flag = coi_alien_special_access_program
+		set_country_flag = coi_alien_evidence_signals
+		set_country_flag = coi_alien_evidence_fragments
+		set_country_flag = coi_alien_rs33_parallel_office
+		if = {
+			limit = { NOT = { coi_alien_has_any_disclosure_stance_trigger = yes } }
+			coi_alien_adopt_secrecy_stance_effect = yes
+		}
+		if = {
+			limit = { NOT = { has_idea = coi_alien_rs33_german_dossier } }
+			add_ideas = coi_alien_rs33_german_dossier
+		}
+		country_event = { id = coi_alien_magenta_vatican.2 hours = 1 }
+	}
+}
+
+### Country scope, the new controller of state 159. No state is transferred.
+coi_alien_transfer_magenta_craft_custody_effect = {
+	if = {
+		limit = { has_event_target = coi_alien_magenta_craft_custodian }
+		event_target:coi_alien_magenta_craft_custodian = {
+			if = {
+				limit = { exists = yes }
+				country_event = { id = coi_alien_magenta_vatican.5 hours = 1 }
+			}
+			clr_country_flag = coi_alien_magenta_craft_custodian
+			clr_country_flag = coi_alien_magenta_primary_craft
+			clr_country_flag = coi_alien_evidence_damaged_craft
+			if = {
+				limit = { has_idea = coi_alien_captured_magenta_craft }
+				remove_ideas = coi_alien_captured_magenta_craft
+			}
+		}
+		clear_global_event_target = coi_alien_magenta_craft_custodian
+	}
+
+	set_country_flag = coi_alien_magenta_craft_custodian
+	set_country_flag = coi_alien_magenta_primary_craft
+	set_country_flag = coi_alien_evidence_damaged_craft
+	set_country_flag = coi_alien_evidence_fragments
+	coi_alien_raise_knowledge_to_material_proof_effect = yes
+	if = {
+		limit = { NOT = { tag = ITA } }
+		add_ideas = coi_alien_captured_magenta_craft
+	}
+	save_global_event_target_as = coi_alien_magenta_craft_custodian
+	country_event = { id = coi_alien_magenta_vatican.4 hours = 1 }
+}
+
+### Repairs PAP custody whenever that releasable tag becomes a real country.
+### The global archive/remains flags preserve the institution while PAP is
+### absent, occupied, or annexed.
+coi_alien_reconcile_vatican_custodian_effect = {
+	coi_alien_initialize_vatican_institution_effect = yes
+	if = {
+		limit = { country_exists = PAP }
+		PAP = {
+			set_country_flag = coi_alien_vatican_archive_custodian
+			set_country_flag = coi_alien_evidence_alien_biological_remains
+			if = {
+				limit = {
+					NOT = { has_global_flag = coi_alien_vatican_reliquary_opened }
+					NOT = { has_idea = coi_alien_vatican_sealed_reliquary }
+				}
+				add_ideas = coi_alien_vatican_sealed_reliquary
+			}
+			else_if = {
+				limit = {
+					has_global_flag = coi_alien_vatican_reliquary_opened
+					has_idea = coi_alien_vatican_sealed_reliquary
+				}
+				remove_ideas = coi_alien_vatican_sealed_reliquary
+			}
+			save_global_event_target_as = coi_alien_vatican_custodian
+		}
+	}
+}
+
+### Country scope: PAP if it exists, otherwise the controller of Rome. This
+### only opens the political/theological placeholder event after catastrophic
+### disclosure; it never transfers research, scientists, or evidence.
+coi_alien_dispatch_vatican_reckoning_effect = {
+	if = {
+		limit = { coi_alien_vatican_reckoning_host_trigger = yes }
+		set_global_flag = coi_alien_vatican_reckoning_prompted
+		country_event = { id = coi_alien_magenta_vatican.3 hours = 1 }
+	}
+}

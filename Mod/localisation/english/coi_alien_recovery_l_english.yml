@@ -1,0 +1,20 @@
+﻿l_english:
+ coi_alien_attempt_craft_interception: "Project NIGHT LANTERN"
+ coi_alien_attempt_craft_interception_desc: "Turn correlated radar tracks into an interception solution. Fighters, searchlights, listening posts, and recovery teams will be placed under one compartmented command. The target may vanish, shed debris, come down intact—or come down where the whole world can see it."
+ coi_alien_attempt_craft_interception_tt: "After §Y30 days§!, the interception may produce signals, physical fragments, a damaged craft, or a public crash. Radar and preparedness improve recovery odds. A major physical recovery suppresses further intact-craft outcomes worldwide for five years."
+
+ coi_alien_recovery.1.t: "The Track Went Vertical"
+ coi_alien_recovery.1.desc: "The target crossed the intercept line without turning. It stopped, brightened, and climbed beyond the plotting board in seconds. No aircraft could follow. The gun-camera film shows only a white geometry and three frames of darkness, but every station recorded the same impossible ascent."
+ coi_alien_recovery.1.a: "Archive every trace."
+
+ coi_alien_recovery.2.t: "Fragments in the Mud"
+ coi_alien_recovery.2.desc: "Search teams found a shallow scar beyond the last confirmed radar return. Within it lay splinters that are too light for steel, too resilient for aluminum, and layered at scales our microscopes struggle to resolve. There is no engine and no crew—only enough material to prove the sky held something made."
+ coi_alien_recovery.2.a: "Move the samples under armed guard."
+
+ coi_alien_recovery.3.t: "A Craft Behind Closed Doors"
+ coi_alien_recovery.3.desc: "The object descended wounded and silent. Recovery crews reached it before dawn, screened the roads, and carried the damaged hull into a hangar that officially does not exist. Its seamless surfaces still change temperature without cause. We now possess a machine from somewhere else."
+ coi_alien_recovery.3.a: "Begin reverse engineering."
+
+ coi_alien_recovery.4.t: "Too Many Witnesses"
+ coi_alien_recovery.4.desc: "The craft fell across a populated corridor in daylight. Police radios, civilian cameras, military units, and foreign correspondents all reached the site before the cordon closed. Film is already moving through newsrooms. The age of denial has ended in fire, metal, and a thousand matching testimonies."
+ coi_alien_recovery.4.a: "The world is about to change."

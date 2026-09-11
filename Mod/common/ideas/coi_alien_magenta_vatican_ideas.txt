@@ -1,0 +1,47 @@
+ideas = {
+	country = {
+		coi_alien_rs33_office = {
+			allowed = { original_tag = ITA }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_magenta_recovery
+			modifier = {
+				research_speed_factor = 0.03
+				political_power_gain = -0.05
+			}
+		}
+
+		coi_alien_rs33_german_dossier = {
+			allowed = { original_tag = GER }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_magenta_recovery
+			modifier = {
+				research_speed_factor = 0.015
+				political_power_gain = -0.025
+			}
+		}
+
+		coi_alien_captured_magenta_craft = {
+			allowed = { NOT = { tag = XAC } }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_magenta_recovery
+			modifier = {
+				research_speed_factor = 0.025
+				political_power_gain = -0.05
+			}
+		}
+
+		coi_alien_vatican_sealed_reliquary = {
+			allowed = { original_tag = PAP }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_vatican_reliquary
+			modifier = {
+				stability_factor = 0.03
+				political_power_gain = -0.02
+			}
+		}
+	}
+}

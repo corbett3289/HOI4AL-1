@@ -1,0 +1,24 @@
+coi_alien_phase_atomic_disruption_map = {
+	name = coi_alien_phase_atomic_disruption_map
+	desc = coi_alien_phase_atomic_disruption_map_desc
+	icon = GFX_coi_alien_operation_introduce_cascading_faults_phase_icon
+	picture = GFX_coi_alien_operation_introduce_cascading_faults_phase_picture
+	outcome = coi_alien_phase_atomic_disruption_map_outcome
+}
+
+coi_alien_phase_atomic_disruption_seed = {
+	name = coi_alien_phase_atomic_disruption_seed
+	desc = coi_alien_phase_atomic_disruption_seed_desc
+	icon = GFX_coi_alien_operation_introduce_cascading_faults_phase_icon
+	picture = GFX_coi_alien_operation_introduce_cascading_faults_phase_picture
+	outcome = coi_alien_phase_atomic_disruption_seed_outcome
+}
+
+coi_alien_phase_atomic_disruption_collapse = {
+	name = coi_alien_phase_atomic_disruption_collapse
+	desc = coi_alien_phase_atomic_disruption_collapse_desc
+	icon = GFX_coi_alien_operation_introduce_cascading_faults_phase_icon
+	picture = GFX_coi_alien_operation_introduce_cascading_faults_phase_picture
+	outcome = coi_alien_phase_atomic_disruption_collapse_outcome
+	risk_extra = coi_alien_phase_atomic_disruption_collapse_risk
+}

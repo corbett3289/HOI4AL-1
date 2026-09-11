@@ -1,0 +1,6 @@
+# Treat the alleged 1933 Magenta recovery as campaign canon. This file runs
+# after vanilla country history and seeds Italy exactly once for a 1936 start.
+every_possible_country = {
+	limit = { original_tag = ITA }
+	coi_alien_seed_1936_magenta_vatican_effect = yes
+}

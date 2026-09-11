@@ -1,0 +1,20 @@
+technology_categories = {
+	coi_alien_science
+	coi_alien_material_science
+	coi_alien_field_dynamics
+	coi_alien_coherent_energy
+	coi_alien_predictive_cognition
+	coi_alien_human_sciences
+	coi_alien_fabrication
+}
+
+technology_folders = {
+	# The research tab exists only for the Grey Consensus. Human countries never
+	# receive the folder, even though its GUI shell is present in the interface.
+	coi_alien_technology_folder = {
+		available = {
+			original_tag = XAC
+		}
+		ledger = civilian
+	}
+}

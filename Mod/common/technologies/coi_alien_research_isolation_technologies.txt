@@ -1,0 +1,13 @@
+technologies = {
+	# Human countries receive this hidden helper from the research-isolation
+	# on_action. The pinned building shadow uses the ordinary technology unlock
+	# mechanism so XAC cannot construct the four vanilla project facilities.
+	coi_alien_human_experimental_facility_access = {
+		allow = { always = no }
+		start_year = 1936
+		enable_building = { building = naval_facility level = 1 }
+		enable_building = { building = nuclear_facility level = 1 }
+		enable_building = { building = air_facility level = 1 }
+		enable_building = { building = land_facility level = 1 }
+	}
+}

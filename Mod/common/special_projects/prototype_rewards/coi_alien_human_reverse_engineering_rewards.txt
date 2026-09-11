@@ -1,0 +1,81 @@
+### Repeatable, project-specific prototype choices. Neither option consumes the
+### recovered evidence; fragments and damaged craft remain permanent campaign
+### facts for later projects and events.
+
+coi_alien_sp_reward_exotic_materials_assay = {
+	fire_only_once = no
+
+	threshold = {
+		min = 0
+		max = 100
+	}
+
+	weight = {
+		base = 1
+	}
+
+	option = {
+		token = coi_alien_sp_reward_exotic_materials_preserve
+		default = yes
+
+		iteration_output = {
+			scientist_effects = {
+				add_scientist_xp = {
+					experience = constant:sp_scientist_xp_gain.medium
+					specialization = specialization_land
+				}
+			}
+		}
+	}
+
+	option = {
+		token = coi_alien_sp_reward_exotic_materials_section
+
+		iteration_output = {
+			country_effects = {
+				FROM = {
+					add_project_progress_ratio = constant:sp_progress.gain.low
+				}
+			}
+		}
+	}
+}
+
+coi_alien_sp_reward_field_resonance = {
+	fire_only_once = no
+
+	threshold = {
+		min = 0
+		max = 100
+	}
+
+	weight = {
+		base = 1
+	}
+
+	option = {
+		token = coi_alien_sp_reward_field_resonance_isolate
+		default = yes
+
+		iteration_output = {
+			scientist_effects = {
+				add_scientist_xp = {
+					experience = constant:sp_scientist_xp_gain.medium
+					specialization = specialization_air
+				}
+			}
+		}
+	}
+
+	option = {
+		token = coi_alien_sp_reward_field_resonance_increase_load
+
+		iteration_output = {
+			country_effects = {
+				FROM = {
+					add_project_progress_ratio = constant:sp_progress.gain.low
+				}
+			}
+		}
+	}
+}

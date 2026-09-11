@@ -1,0 +1,17 @@
+on_actions = {
+	### XAC is the single narrative clock. Daily work is limited to migration and
+	### the short post-contact delays; no country-wide daily iterator is used.
+	on_daily_XAC = {
+		effect = {
+			coi_alien_news_daily_dispatch_effect = yes
+		}
+	}
+
+	### Historical anchors and optional public stories need only one monthly
+	### evaluation, preserving the existing discovery system's bounded cadence.
+	on_monthly_XAC = {
+		effect = {
+			coi_alien_news_monthly_dispatch_effect = yes
+		}
+	}
+}

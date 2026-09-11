@@ -1,0 +1,620 @@
+### Signals in the Noise: country reports, optional public stories, historical
+### anchors, and the first post-contact news sequence. All persistent changes
+### occur here before any visible event is queued.
+
+coi_alien_news_begin_optional_cooldown_effect = {
+	set_global_flag = {
+		flag = coi_alien_news_optional_cooldown
+		days = 120
+	}
+}
+
+### Country scope. A temporary country marker supplies contextual news options;
+### the event target supplies the originating country's localized name.
+coi_alien_news_prepare_origin_effect = {
+	every_country = {
+		limit = { has_country_flag = coi_alien_news_origin_country }
+		clr_country_flag = coi_alien_news_origin_country
+	}
+	set_country_flag = coi_alien_news_origin_country
+	save_global_event_target_as = coi_alien_news_origin
+}
+
+### Transition reports. Call only after the corresponding knowledge or
+### preparedness variable has already advanced.
+coi_alien_news_record_correlated_pattern_effect = {
+	if = {
+		limit = {
+			NOT = { tag = XAC }
+			NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+			NOT = { has_country_flag = coi_alien_news_transition_report_suppressed }
+			NOT = { has_country_flag = coi_alien_news_report_correlated_pattern_seen }
+		}
+		set_country_flag = coi_alien_news_report_correlated_pattern_seen
+		country_event = { id = coi_alien_news.2 hours = 1 }
+	}
+}
+
+coi_alien_news_record_special_access_program_effect = {
+	if = {
+		limit = {
+			NOT = { tag = XAC }
+			NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+			NOT = { has_country_flag = coi_alien_news_transition_report_suppressed }
+			NOT = { has_country_flag = coi_alien_news_report_special_access_seen }
+		}
+		set_country_flag = coi_alien_news_report_special_access_seen
+		country_event = { id = coi_alien_news.3 hours = 1 }
+	}
+}
+
+coi_alien_news_record_contact_contingencies_effect = {
+	if = {
+		limit = {
+			NOT = { tag = XAC }
+			NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+			NOT = { has_country_flag = coi_alien_news_transition_report_suppressed }
+			NOT = { has_country_flag = coi_alien_news_report_contact_contingencies_seen }
+		}
+		set_country_flag = coi_alien_news_report_contact_contingencies_seen
+		country_event = { id = coi_alien_news.11 hours = 1 }
+	}
+}
+
+### Human country scope after aggressive observation has raised knowledge.
+coi_alien_news_record_returned_witness_effect = {
+	if = {
+		limit = {
+			NOT = { tag = XAC }
+			NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+			NOT = { has_country_flag = coi_alien_news_report_returned_witness_seen }
+		}
+		set_country_flag = coi_alien_news_report_returned_witness_seen
+		set_country_flag = coi_alien_evidence_signals
+		coi_alien_record_routine_publicity_effect = yes
+		country_event = { id = coi_alien_news.8 hours = 1 }
+	}
+}
+
+### Optional leak headlines can wait behind the shared 120-day cooldown. The
+### country report itself never waits, and each country receives it only once.
+coi_alien_news_publish_archive_rumor_effect = {
+	if = {
+		limit = {
+			NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+			NOT = { has_global_flag = coi_alien_news_optional_cooldown }
+			NOT = { has_global_flag = coi_alien_news_whistleblower_published }
+		}
+		clr_country_flag = coi_alien_news_whistleblower_candidate
+		coi_alien_news_prepare_origin_effect = yes
+		set_global_flag = coi_alien_news_whistleblower_published
+		coi_alien_news_begin_optional_cooldown_effect = yes
+		XAC = { news_event = { id = coi_alien_news.106 hours = 1 } }
+	}
+}
+
+coi_alien_news_record_archive_rumor_effect = {
+	if = {
+		limit = {
+			NOT = { tag = XAC }
+			NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+			NOT = { has_country_flag = coi_alien_news_report_archive_rumor_seen }
+		}
+		set_country_flag = coi_alien_news_report_archive_rumor_seen
+		set_country_flag = coi_alien_news_whistleblower_candidate
+		country_event = { id = coi_alien_news.9 hours = 1 }
+		coi_alien_news_publish_archive_rumor_effect = yes
+	}
+}
+
+coi_alien_news_publish_archive_evidence_effect = {
+	if = {
+		limit = {
+			NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+			NOT = { has_global_flag = coi_alien_news_optional_cooldown }
+			NOT = { has_global_flag = coi_alien_news_authenticated_film_published }
+		}
+		clr_country_flag = coi_alien_news_authenticated_film_candidate
+		coi_alien_news_prepare_origin_effect = yes
+		set_global_flag = coi_alien_news_authenticated_film_published
+		coi_alien_news_begin_optional_cooldown_effect = yes
+		XAC = { news_event = { id = coi_alien_news.107 hours = 1 } }
+	}
+}
+
+coi_alien_news_record_archive_evidence_effect = {
+	if = {
+		limit = {
+			NOT = { tag = XAC }
+			NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+			NOT = { has_country_flag = coi_alien_news_report_archive_evidence_seen }
+		}
+		set_country_flag = coi_alien_news_report_archive_evidence_seen
+		set_country_flag = coi_alien_news_authenticated_film_candidate
+		country_event = { id = coi_alien_news.10 hours = 1 }
+		coi_alien_news_publish_archive_evidence_effect = yes
+	}
+}
+
+### Mandatory public milestones bypass the optional-news cooldown and are
+### global one-shots even if other countries later choose the same policy.
+coi_alien_news_record_official_acknowledgment_effect = {
+	if = {
+		limit = {
+			NOT = { tag = XAC }
+			NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+			NOT = { has_global_flag = coi_alien_news_official_acknowledgment_published }
+			NOT = { has_country_flag = coi_alien_disclosure_stance_open_files }
+			NOT = { has_country_flag = coi_alien_public_crash_origin }
+		}
+		coi_alien_news_prepare_origin_effect = yes
+		set_global_flag = coi_alien_news_official_acknowledgment_published
+		XAC = { news_event = { id = coi_alien_news.108 hours = 1 } }
+	}
+}
+
+coi_alien_news_record_open_files_effect = {
+	if = {
+		limit = {
+			NOT = { tag = XAC }
+			NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+			NOT = { has_global_flag = coi_alien_news_open_files_published }
+		}
+		coi_alien_news_prepare_origin_effect = yes
+		set_global_flag = coi_alien_news_open_files_published
+		XAC = { news_event = { id = coi_alien_news.109 hours = 1 } }
+	}
+}
+
+coi_alien_news_record_contact_council_effect = {
+	if = {
+		limit = {
+			NOT = { tag = XAC }
+			NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+			NOT = { has_global_flag = coi_alien_news_contact_council_published }
+		}
+		coi_alien_news_prepare_origin_effect = yes
+		set_global_flag = coi_alien_news_contact_council_published
+		XAC = { news_event = { id = coi_alien_news.110 hours = 1 } }
+	}
+}
+
+coi_alien_news_record_vatican_reliquary_opened_effect = {
+	if = {
+		limit = {
+			has_global_flag = coi_alien_vatican_reliquary_opened
+			NOT = { has_global_flag = coi_alien_news_vatican_reliquary_published }
+		}
+		coi_alien_news_prepare_origin_effect = yes
+		set_global_flag = coi_alien_news_vatican_reliquary_published
+		XAC = { news_event = { id = coi_alien_news.112 hours = 1 } }
+	}
+}
+
+### Historical incident resolvers. The chosen country receives its classified
+### report; a non-secretive origin can also generate the associated optional
+### public headline if the global cadence permits it.
+coi_alien_news_resolve_luminous_escorts_effect = {
+	set_global_flag = coi_alien_news_luminous_escorts_resolved
+	set_country_flag = coi_alien_news_report_luminous_escorts_seen
+	set_country_flag = coi_alien_evidence_signals
+	set_country_flag = coi_alien_news_transition_report_suppressed
+	coi_alien_raise_knowledge_to_anomalous_reports_effect = yes
+	clr_country_flag = coi_alien_news_transition_report_suppressed
+	country_event = { id = coi_alien_news.4 hours = 1 }
+	if = {
+		limit = {
+			NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy }
+			NOT = { has_global_flag = coi_alien_news_optional_cooldown }
+			NOT = { has_global_flag = coi_alien_news_luminous_escorts_published }
+		}
+		coi_alien_raise_public_awareness_to_rumors_effect = yes
+		coi_alien_news_prepare_origin_effect = yes
+		set_global_flag = coi_alien_news_luminous_escorts_published
+		coi_alien_news_begin_optional_cooldown_effect = yes
+		XAC = { news_event = { id = coi_alien_news.100 hours = 1 } }
+	}
+}
+
+coi_alien_news_resolve_northern_rockets_effect = {
+	set_global_flag = coi_alien_news_northern_rockets_resolved
+	set_country_flag = coi_alien_news_report_northern_rockets_seen
+	set_country_flag = coi_alien_evidence_signals
+	set_country_flag = coi_alien_news_transition_report_suppressed
+	coi_alien_raise_knowledge_to_anomalous_reports_effect = yes
+	clr_country_flag = coi_alien_news_transition_report_suppressed
+	country_event = { id = coi_alien_news.5 hours = 1 }
+	if = {
+		limit = {
+			NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy }
+			NOT = { has_global_flag = coi_alien_news_optional_cooldown }
+			NOT = { has_global_flag = coi_alien_news_northern_rockets_published }
+		}
+		coi_alien_raise_public_awareness_to_rumors_effect = yes
+		coi_alien_news_prepare_origin_effect = yes
+		set_global_flag = coi_alien_news_northern_rockets_published
+		coi_alien_news_begin_optional_cooldown_effect = yes
+		XAC = { news_event = { id = coi_alien_news.101 hours = 1 } }
+	}
+}
+
+coi_alien_news_resolve_new_mexico_effect = {
+	set_global_flag = coi_alien_news_new_mexico_resolved
+	set_country_flag = coi_alien_news_report_new_mexico_seen
+	set_country_flag = coi_alien_evidence_signals
+	set_country_flag = coi_alien_evidence_fragments
+	set_country_flag = coi_alien_news_transition_report_suppressed
+	coi_alien_raise_knowledge_to_correlated_pattern_effect = yes
+	clr_country_flag = coi_alien_news_transition_report_suppressed
+	country_event = { id = coi_alien_news.6 hours = 1 }
+	if = {
+		limit = {
+			NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy }
+			NOT = { has_global_flag = coi_alien_news_optional_cooldown }
+			NOT = { has_global_flag = coi_alien_news_flying_disc_fever_published }
+		}
+		coi_alien_raise_public_awareness_to_rumors_effect = yes
+		coi_alien_news_prepare_origin_effect = yes
+		set_global_flag = coi_alien_news_flying_disc_fever_published
+		coi_alien_news_begin_optional_cooldown_effect = yes
+		XAC = { news_event = { id = coi_alien_news.102 hours = 1 } }
+	}
+}
+
+coi_alien_news_resolve_capital_radar_effect = {
+	set_global_flag = coi_alien_news_capital_radar_resolved
+	set_country_flag = coi_alien_news_report_capital_radar_seen
+	set_country_flag = coi_alien_evidence_signals
+	set_country_flag = coi_alien_news_transition_report_suppressed
+	coi_alien_raise_knowledge_to_anomalous_reports_effect = yes
+	clr_country_flag = coi_alien_news_transition_report_suppressed
+	country_event = { id = coi_alien_news.7 hours = 1 }
+	if = {
+		limit = {
+			NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy }
+			NOT = { has_global_flag = coi_alien_news_optional_cooldown }
+			NOT = { has_global_flag = coi_alien_news_capital_radar_published }
+		}
+		coi_alien_raise_public_awareness_to_rumors_effect = yes
+		coi_alien_news_prepare_origin_effect = yes
+		set_global_flag = coi_alien_news_capital_radar_published
+		coi_alien_news_begin_optional_cooldown_effect = yes
+		XAC = { news_event = { id = coi_alien_news.103 hours = 1 } }
+	}
+}
+
+### Optional public stories not bound to one fixed date.
+coi_alien_news_publish_public_inquiry_effect = {
+	coi_alien_news_prepare_origin_effect = yes
+	set_global_flag = coi_alien_news_public_inquiry_published
+	coi_alien_news_begin_optional_cooldown_effect = yes
+	XAC = { news_event = { id = coi_alien_news.105 hours = 1 } }
+}
+
+coi_alien_news_publish_scientists_demand_effect = {
+	coi_alien_news_prepare_origin_effect = yes
+	set_global_flag = coi_alien_news_scientists_demand_published
+	coi_alien_news_begin_optional_cooldown_effect = yes
+	XAC = { news_event = { id = coi_alien_news.104 hours = 1 } }
+}
+
+### One-time migration. Expired historical windows are marked resolved rather
+### than queued, preventing an old save from receiving decades of backlogged
+### reports. A pre-v0.6 catastrophe is recognized without replaying its opening.
+coi_alien_news_initialize_effect = {
+	if = {
+		limit = { NOT = { has_global_flag = coi_alien_news_framework_initialized } }
+		set_global_flag = coi_alien_news_framework_initialized
+
+		if = { limit = { date > 1939.12.31 } set_global_flag = coi_alien_news_rs33_resolved }
+		if = { limit = { date > 1945.12.31 } set_global_flag = coi_alien_news_luminous_escorts_resolved }
+		if = { limit = { date > 1948.12.31 } set_global_flag = coi_alien_news_northern_rockets_resolved }
+		if = { limit = { date > 1947.12.31 } set_global_flag = coi_alien_news_new_mexico_resolved }
+		if = { limit = { date > 1953.12.31 } set_global_flag = coi_alien_news_capital_radar_resolved }
+
+		if = {
+			limit = {
+				has_global_flag = coi_alien_catastrophic_disclosure_active
+				NOT = { has_global_flag = coi_alien_news_catastrophic_opening_dispatched }
+			}
+			set_global_flag = coi_alien_news_catastrophic_opening_dispatched
+			set_global_flag = coi_alien_news_catastrophic_fallback_recorded
+			set_global_flag = {
+				flag = coi_alien_news_first_transmission_delay
+				days = 7
+			}
+		}
+	}
+}
+
+### XAC daily pulse: cheap migration, the Italian opening briefing, and exact
+### seven-/fourteen-day post-contact sequencing without a world iterator.
+coi_alien_news_daily_dispatch_effect = {
+	coi_alien_news_initialize_effect = yes
+	if = {
+		limit = {
+			has_global_flag = coi_alien_catastrophic_disclosure_active
+			NOT = { has_global_flag = coi_alien_news_catastrophic_opening_dispatched }
+		}
+		### A migrated catastrophe already showed the legacy headline. Record it
+		### without replaying an opening, then begin only the new continuation.
+		set_global_flag = coi_alien_news_catastrophic_opening_dispatched
+		set_global_flag = coi_alien_news_catastrophic_fallback_recorded
+		set_global_flag = {
+			flag = coi_alien_news_first_transmission_delay
+			days = 7
+		}
+	}
+
+	if = {
+		limit = {
+			has_global_flag = coi_alien_framework_active
+			NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+			NOT = { has_global_flag = coi_alien_news_rs33_resolved }
+			date < 1940.1.1
+			country_exists = ITA
+		}
+		ITA = {
+			if = {
+				limit = {
+					has_country_flag = coi_alien_rs33_black_program
+					NOT = { has_country_flag = coi_alien_news_report_rs33_seen }
+				}
+				set_country_flag = coi_alien_news_report_rs33_seen
+				set_global_flag = coi_alien_news_rs33_resolved
+				country_event = { id = coi_alien_news.1 hours = 1 }
+			}
+		}
+	}
+	if = {
+		limit = {
+			NOT = { has_global_flag = coi_alien_news_rs33_resolved }
+			date > 1939.12.31
+		}
+		set_global_flag = coi_alien_news_rs33_resolved
+	}
+
+	if = {
+		limit = {
+			has_global_flag = coi_alien_catastrophic_disclosure_active
+			has_global_flag = coi_alien_news_catastrophic_opening_dispatched
+			NOT = { has_global_flag = coi_alien_news_first_transmission_delay }
+			NOT = { has_global_flag = coi_alien_news_first_transmission_dispatched }
+		}
+		coi_alien_news_prepare_origin_effect = yes
+		set_global_flag = coi_alien_news_first_transmission_dispatched
+		set_global_flag = {
+			flag = coi_alien_news_doctrine_verdict_delay
+			days = 14
+		}
+		news_event = { id = coi_alien_news.114 hours = 1 }
+	}
+
+	if = {
+		limit = {
+			has_global_flag = coi_alien_catastrophic_disclosure_active
+			has_global_flag = coi_alien_news_first_transmission_dispatched
+			NOT = { has_global_flag = coi_alien_news_doctrine_verdict_delay }
+			NOT = { has_global_flag = coi_alien_news_doctrine_verdict_dispatched }
+			has_country_flag = coi_alien_doctrine_selected
+		}
+		coi_alien_news_prepare_origin_effect = yes
+		set_global_flag = coi_alien_news_doctrine_verdict_dispatched
+		set_global_flag = {
+			flag = coi_alien_news_xcom_demand_delay
+			days = 14
+		}
+		news_event = { id = coi_alien_news.115 hours = 1 }
+	}
+
+	if = {
+		limit = {
+			has_global_flag = coi_alien_news_doctrine_verdict_dispatched
+			NOT = { has_global_flag = coi_alien_news_xcom_demand_delay }
+			NOT = { has_global_flag = coi_alien_news_unified_defense_dispatched }
+		}
+		coi_alien_news_prepare_origin_effect = yes
+		set_global_flag = coi_alien_xcom_demand_established
+		set_global_flag = coi_alien_news_unified_defense_dispatched
+		news_event = { id = coi_alien_news.116 hours = 1 }
+	}
+}
+
+### XAC monthly pulse: bounded historical anchors and at most one optional
+### public story per 120 days. Catastrophic disclosure ends every pre-contact
+### branch immediately.
+coi_alien_news_monthly_dispatch_effect = {
+	coi_alien_news_initialize_effect = yes
+
+	if = {
+		limit = {
+			has_global_flag = coi_alien_framework_active
+			NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+		}
+
+		if = {
+			limit = {
+				NOT = { has_global_flag = coi_alien_news_luminous_escorts_resolved }
+				date > 1939.12.31
+				date < 1946.1.1
+				any_country = { exists = yes NOT = { tag = XAC } has_war = yes }
+			}
+			random_country = {
+				limit = { exists = yes NOT = { tag = XAC } has_war = yes }
+				coi_alien_news_resolve_luminous_escorts_effect = yes
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { has_global_flag = coi_alien_news_northern_rockets_resolved }
+				date > 1945.12.31
+				date < 1949.1.1
+			}
+			if = {
+				limit = { country_exists = SWE }
+				SWE = { coi_alien_news_resolve_northern_rockets_effect = yes }
+			}
+			else_if = {
+				limit = { country_exists = NOR }
+				NOR = { coi_alien_news_resolve_northern_rockets_effect = yes }
+			}
+			else_if = {
+				limit = { country_exists = FIN }
+				FIN = { coi_alien_news_resolve_northern_rockets_effect = yes }
+			}
+			else_if = {
+				limit = { country_exists = DEN }
+				DEN = { coi_alien_news_resolve_northern_rockets_effect = yes }
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { has_global_flag = coi_alien_news_new_mexico_resolved }
+				date > 1947.6.1
+				date < 1948.1.1
+				country_exists = USA
+			}
+			USA = { coi_alien_news_resolve_new_mexico_effect = yes }
+		}
+
+		if = {
+			limit = {
+				NOT = { has_global_flag = coi_alien_news_capital_radar_resolved }
+				date > 1951.12.31
+				date < 1954.1.1
+				any_country = {
+					exists = yes
+					NOT = { tag = XAC }
+					is_major = yes
+					any_owned_state = { radar_station > 0 }
+				}
+			}
+			random_country = {
+				limit = {
+					exists = yes
+					NOT = { tag = XAC }
+					is_major = yes
+					any_owned_state = { radar_station > 0 }
+				}
+				coi_alien_news_resolve_capital_radar_effect = yes
+			}
+		}
+
+		### Authenticated evidence and whistleblowers take precedence over broad
+		### commentary once the optional cadence is available.
+		if = {
+			limit = {
+				NOT = { has_global_flag = coi_alien_news_optional_cooldown }
+				NOT = { has_global_flag = coi_alien_news_authenticated_film_published }
+				any_country = { has_country_flag = coi_alien_news_authenticated_film_candidate }
+			}
+			random_country = {
+				limit = { has_country_flag = coi_alien_news_authenticated_film_candidate }
+				coi_alien_news_publish_archive_evidence_effect = yes
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_global_flag = coi_alien_news_optional_cooldown }
+				NOT = { has_global_flag = coi_alien_news_whistleblower_published }
+				any_country = { has_country_flag = coi_alien_news_whistleblower_candidate }
+			}
+			random_country = {
+				limit = { has_country_flag = coi_alien_news_whistleblower_candidate }
+				coi_alien_news_publish_archive_rumor_effect = yes
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { has_global_flag = coi_alien_news_optional_cooldown }
+				NOT = { has_global_flag = coi_alien_news_public_inquiry_published }
+				any_country = {
+					exists = yes
+					NOT = { tag = XAC }
+					has_country_flag = coi_alien_special_access_program
+					check_variable = { coi_alien_public_awareness > 0 }
+					check_variable = { coi_alien_public_awareness < 3 }
+					NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy }
+					NOT = { has_country_flag = coi_alien_disclosure_stance_open_files }
+				}
+			}
+			random_country = {
+				limit = {
+					exists = yes
+					NOT = { tag = XAC }
+					has_country_flag = coi_alien_special_access_program
+					check_variable = { coi_alien_public_awareness > 0 }
+					check_variable = { coi_alien_public_awareness < 3 }
+					NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy }
+					NOT = { has_country_flag = coi_alien_disclosure_stance_open_files }
+				}
+				coi_alien_news_publish_public_inquiry_effect = yes
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { has_global_flag = coi_alien_news_optional_cooldown }
+				NOT = { has_global_flag = coi_alien_news_scientists_demand_published }
+				any_country = {
+					exists = yes
+					NOT = { tag = XAC }
+					check_variable = { coi_alien_public_awareness > 1 }
+					check_variable = { coi_alien_public_awareness < 3 }
+				}
+			}
+			random_country = {
+				limit = {
+					exists = yes
+					NOT = { tag = XAC }
+					check_variable = { coi_alien_public_awareness > 1 }
+					check_variable = { coi_alien_public_awareness < 3 }
+				}
+				coi_alien_news_publish_scientists_demand_effect = yes
+			}
+		}
+	}
+
+	### These guards also handle a window that elapsed after a fresh v0.6 start.
+	if = { limit = { NOT = { has_global_flag = coi_alien_news_luminous_escorts_resolved } date > 1945.12.31 } set_global_flag = coi_alien_news_luminous_escorts_resolved }
+	if = { limit = { NOT = { has_global_flag = coi_alien_news_northern_rockets_resolved } date > 1948.12.31 } set_global_flag = coi_alien_news_northern_rockets_resolved }
+	if = { limit = { NOT = { has_global_flag = coi_alien_news_new_mexico_resolved } date > 1947.12.31 } set_global_flag = coi_alien_news_new_mexico_resolved }
+	if = { limit = { NOT = { has_global_flag = coi_alien_news_capital_radar_resolved } date > 1953.12.31 } set_global_flag = coi_alien_news_capital_radar_resolved }
+}
+
+### Called after the disclosure origin and cause have both been recorded.
+coi_alien_news_dispatch_catastrophic_opening_effect = {
+	if = {
+		limit = { NOT = { has_global_flag = coi_alien_news_catastrophic_opening_dispatched } }
+		set_global_flag = coi_alien_news_catastrophic_opening_dispatched
+
+		if = {
+			limit = { has_event_target = coi_alien_disclosure_origin }
+			event_target:coi_alien_disclosure_origin = { coi_alien_news_prepare_origin_effect = yes }
+		}
+		else = { coi_alien_news_prepare_origin_effect = yes }
+
+		if = {
+			limit = { has_global_flag = coi_alien_news_catastrophic_cause_public_crash }
+			set_global_flag = coi_alien_news_public_crash_published
+			XAC = { news_event = { id = coi_alien_news.111 hours = 1 } }
+		}
+		else_if = {
+			limit = { has_global_flag = coi_alien_news_catastrophic_cause_landfall }
+			set_global_flag = coi_alien_news_landfall_published
+			XAC = { news_event = { id = coi_alien_news.113 hours = 1 } }
+		}
+		else = {
+			set_global_flag = coi_alien_news_catastrophic_fallback_recorded
+			XAC = { news_event = { id = coi_alien_catastrophic_disclosure.1 hours = 1 } }
+		}
+
+		set_global_flag = {
+			flag = coi_alien_news_first_transmission_delay
+			days = 7
+		}
+	}
+}

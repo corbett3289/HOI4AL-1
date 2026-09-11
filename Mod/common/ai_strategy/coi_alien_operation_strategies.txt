@@ -1,0 +1,56 @@
+# The vanilla generic-operation strategy scores 900 and captive rescue scores
+# 1000. Quiet Chorus planning sits deliberately between them: authored alien
+# operations win over generic busywork, while recovering an operative remains
+# the AI's first responsibility.
+coi_alien_run_quiet_chorus_operation = {
+	allowed = {
+		original_tag = XAC
+	}
+
+	enable = {
+		original_tag = XAC
+		is_ai = yes
+		has_dlc = "La Resistance"
+		has_intelligence_agency = yes
+		coi_alien_framework_active_trigger = yes
+		num_of_operatives > 1
+
+		NOT = {
+			any_operative_leader = {
+				is_operative_captured = yes
+			}
+		}
+
+		NOT = { check_variable = { coi_alien_ai_operation_target = 0 } }
+		NOT = { check_variable = { coi_alien_ai_operation_type = 0 } }
+
+		var:coi_alien_ai_operation_target = {
+			exists = yes
+			has_capitulated = no
+			NOT = { original_tag = XAC }
+			NOT = { is_ally_with = PREV }
+			any_owned_state = { always = yes }
+		}
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = operative_operation
+		operation = var:coi_alien_ai_operation_type
+		value = 950
+		operation_target = var:coi_alien_ai_operation_target
+	}
+
+	ai_strategy = {
+		type = operation_equipment_priority
+		value = 100
+	}
+
+	ai_strategy = {
+		type = operative_mission
+		mission = build_intel_network
+		value = 850
+		mission_target = var:coi_alien_ai_operation_target
+	}
+}

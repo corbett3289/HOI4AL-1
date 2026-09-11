@@ -1,0 +1,191 @@
+add_namespace = coi_alien_catastrophic_disclosure
+
+news_event = {
+	id = coi_alien_catastrophic_disclosure.1
+	title = coi_alien_catastrophic_disclosure.1.t
+	desc = coi_alien_catastrophic_disclosure.1.desc
+	picture = GFX_news_event_coi_alien_catastrophic_disclosure
+	major = yes
+	is_triggered_only = yes
+
+	option = { name = coi_alien_catastrophic_disclosure.1.a }
+}
+
+### Day zero: origin plus the great powers see enough simultaneous evidence to
+### make denial impossible. Later country events are independently scheduled.
+country_event = {
+	id = coi_alien_catastrophic_disclosure.10
+	title = coi_alien_catastrophic_disclosure.10.t
+	desc = coi_alien_catastrophic_disclosure.10.desc
+	picture = GFX_report_event_coi_alien_catastrophic_disclosure
+	is_triggered_only = yes
+	trigger = {
+		has_global_flag = coi_alien_catastrophic_disclosure_active
+		NOT = { has_country_flag = coi_alien_catastrophic_disclosure_processed }
+		OR = {
+			has_country_flag = coi_alien_catastrophic_disclosure_origin
+			is_major = yes
+		}
+	}
+	immediate = { coi_alien_apply_catastrophic_disclosure_to_country_effect = yes }
+	option = { name = coi_alien_catastrophic_disclosure.10.a }
+}
+
+### Day fourteen: countries with an existing controversy or council link.
+country_event = {
+	id = coi_alien_catastrophic_disclosure.11
+	title = coi_alien_catastrophic_disclosure.11.t
+	desc = coi_alien_catastrophic_disclosure.11.desc
+	picture = GFX_report_event_coi_alien_catastrophic_disclosure
+	is_triggered_only = yes
+	trigger = {
+		has_global_flag = coi_alien_catastrophic_disclosure_active
+		NOT = { has_country_flag = coi_alien_catastrophic_disclosure_processed }
+		OR = {
+			coi_alien_public_awareness_at_least_credible_trigger = yes
+			has_country_flag = coi_alien_international_council_member
+		}
+	}
+	immediate = { coi_alien_apply_catastrophic_disclosure_to_country_effect = yes }
+	option = { name = coi_alien_catastrophic_disclosure.11.a }
+}
+
+### Day thirty: wartime and radar networks can no longer contain the tracks.
+country_event = {
+	id = coi_alien_catastrophic_disclosure.12
+	title = coi_alien_catastrophic_disclosure.12.t
+	desc = coi_alien_catastrophic_disclosure.12.desc
+	picture = GFX_report_event_coi_alien_catastrophic_disclosure
+	is_triggered_only = yes
+	trigger = {
+		has_global_flag = coi_alien_catastrophic_disclosure_active
+		NOT = { has_country_flag = coi_alien_catastrophic_disclosure_processed }
+		OR = {
+			has_war = yes
+			any_owned_state = { radar_station > 0 }
+		}
+	}
+	immediate = { coi_alien_apply_catastrophic_disclosure_to_country_effect = yes }
+	option = { name = coi_alien_catastrophic_disclosure.12.a }
+}
+
+### Day sixty: coastal sightings, naval traffic, and civilian film carry the
+### wave beyond governments with modern detection networks.
+country_event = {
+	id = coi_alien_catastrophic_disclosure.13
+	title = coi_alien_catastrophic_disclosure.13.t
+	desc = coi_alien_catastrophic_disclosure.13.desc
+	picture = GFX_report_event_coi_alien_catastrophic_disclosure
+	is_triggered_only = yes
+	trigger = {
+		has_global_flag = coi_alien_catastrophic_disclosure_active
+		NOT = { has_country_flag = coi_alien_catastrophic_disclosure_processed }
+		any_owned_state = { is_coastal = yes }
+	}
+	immediate = { coi_alien_apply_catastrophic_disclosure_to_country_effect = yes }
+	option = { name = coi_alien_catastrophic_disclosure.13.a }
+}
+
+### Day ninety: there is nowhere left outside the common human reality.
+country_event = {
+	id = coi_alien_catastrophic_disclosure.14
+	title = coi_alien_catastrophic_disclosure.14.t
+	desc = coi_alien_catastrophic_disclosure.14.desc
+	picture = GFX_report_event_coi_alien_catastrophic_disclosure
+	is_triggered_only = yes
+	trigger = {
+		has_global_flag = coi_alien_catastrophic_disclosure_active
+		NOT = { has_country_flag = coi_alien_catastrophic_disclosure_processed }
+	}
+	immediate = {
+		set_global_flag = coi_alien_catastrophic_wave_complete
+		coi_alien_apply_catastrophic_disclosure_to_country_effect = yes
+	}
+	option = { name = coi_alien_catastrophic_disclosure.14.a }
+}
+
+### Global sentinel for the end of the scheduled disclosure wave. This is
+### deliberately independent of the day-ninety country filter: if every
+### country entered the crisis in an earlier tranche, post-wave releases and
+### newly created countries must still inherit disclosure on the monthly tick.
+country_event = {
+	id = coi_alien_catastrophic_disclosure.99
+	hidden = yes
+	is_triggered_only = yes
+	immediate = { set_global_flag = coi_alien_catastrophic_wave_complete }
+}
+
+### Notification for a country released after the original wave.
+country_event = {
+	id = coi_alien_catastrophic_disclosure.15
+	title = coi_alien_catastrophic_disclosure.15.t
+	desc = coi_alien_catastrophic_disclosure.15.desc
+	picture = GFX_report_event_coi_alien_catastrophic_disclosure
+	is_triggered_only = yes
+	option = { name = coi_alien_catastrophic_disclosure.15.a }
+}
+
+### Six-month resolution. Scores at or below forty stabilize. A score above
+### seventy becomes existential only if stability is also below twenty-five.
+country_event = {
+	id = coi_alien_catastrophic_disclosure.90
+	title = coi_alien_catastrophic_disclosure.90.t
+	desc = coi_alien_catastrophic_disclosure.90.desc
+	picture = GFX_report_event_coi_alien_catastrophic_disclosure
+	is_triggered_only = yes
+	trigger = { has_country_flag = coi_alien_disclosure_crisis_active }
+
+	option = {
+		name = coi_alien_catastrophic_disclosure.90.a
+		trigger = { check_variable = { coi_alien_crisis_score < 41 } }
+		coi_alien_disclosure_stabilized_effect = yes
+	}
+	option = {
+		name = coi_alien_catastrophic_disclosure.90.b
+		trigger = {
+			check_variable = { coi_alien_crisis_score > 40 }
+		OR = {
+			check_variable = { coi_alien_crisis_score < 71 }
+			NOT = { has_stability < 0.25 }
+		}
+		}
+		coi_alien_disclosure_leadership_collapse_effect = yes
+	}
+	option = {
+		name = coi_alien_catastrophic_disclosure.90.c
+		trigger = {
+			check_variable = { coi_alien_crisis_score > 70 }
+			has_stability < 0.25
+		}
+		country_event = { id = coi_alien_catastrophic_disclosure.91 hours = 1 }
+	}
+}
+
+### Explicit warning gate: civil conflict can only occur after this event and
+### the player deliberately accepts the risk. AI overwhelmingly chooses rule.
+country_event = {
+	id = coi_alien_catastrophic_disclosure.91
+	title = coi_alien_catastrophic_disclosure.91.t
+	desc = coi_alien_catastrophic_disclosure.91.desc
+	picture = GFX_report_event_coi_alien_catastrophic_disclosure
+	is_triggered_only = yes
+
+	option = {
+		name = coi_alien_catastrophic_disclosure.91.a
+		coi_alien_disclosure_emergency_rule_effect = yes
+		ai_chance = { base = 95 }
+	}
+	option = {
+		name = coi_alien_catastrophic_disclosure.91.b
+		trigger = { coi_alien_disclosure_civil_conflict_possible_trigger = yes }
+		custom_effect_tooltip = coi_alien_disclosure_civil_conflict_warning_tt
+		hidden_effect = { coi_alien_start_disclosure_civil_conflict_effect = yes }
+		ai_chance = { base = 5 }
+	}
+	option = {
+		name = coi_alien_catastrophic_disclosure.91.c
+		trigger = { NOT = { coi_alien_disclosure_civil_conflict_possible_trigger = yes } }
+		coi_alien_disclosure_leadership_collapse_effect = yes
+		ai_chance = { base = 100 }
+	}
+}

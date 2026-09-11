@@ -1,0 +1,365 @@
+### Catastrophic disclosure is a fast global information wave followed by a
+### six-month national legitimacy crisis. Public awareness remains monotonic;
+### the crisis score can be reduced through decisions but never hidden again.
+
+coi_alien_clear_catastrophic_severity_ideas_effect = {
+	remove_ideas = coi_alien_disclosure_shock_contained
+	remove_ideas = coi_alien_disclosure_shock_panic
+	remove_ideas = coi_alien_disclosure_shock_fracture
+	remove_ideas = coi_alien_disclosure_shock_existential
+}
+
+coi_alien_calculate_catastrophic_shock_effect = {
+	coi_alien_initialize_country_discovery_effect = yes
+	set_temp_variable = { coi_alien_disclosure_shock_calc = 8 }
+	subtract_from_temp_variable = {
+		coi_alien_disclosure_shock_calc = coi_alien_public_awareness
+	}
+	subtract_from_temp_variable = {
+		coi_alien_disclosure_shock_calc = coi_alien_preparedness
+	}
+
+	if = {
+		limit = { has_country_flag = coi_alien_disclosure_stance_secrecy }
+		add_to_temp_variable = { coi_alien_disclosure_shock_calc = 2 }
+	}
+	else_if = {
+		limit = { has_country_flag = coi_alien_disclosure_stance_managed }
+		add_to_temp_variable = { coi_alien_disclosure_shock_calc = -1 }
+	}
+	else_if = {
+		limit = { has_country_flag = coi_alien_disclosure_stance_international }
+		add_to_temp_variable = { coi_alien_disclosure_shock_calc = -2 }
+	}
+	else_if = {
+		limit = { has_country_flag = coi_alien_disclosure_stance_open_files }
+		add_to_temp_variable = { coi_alien_disclosure_shock_calc = -1 }
+	}
+	else = {
+		add_to_temp_variable = { coi_alien_disclosure_shock_calc = 1 }
+	}
+
+	clamp_temp_variable = {
+		var = coi_alien_disclosure_shock_calc
+		min = 0
+		max = 10
+	}
+	set_variable = {
+		coi_alien_disclosure_shock = coi_alien_disclosure_shock_calc
+	}
+}
+
+coi_alien_apply_catastrophic_disclosure_to_country_effect = {
+	if = {
+		limit = {
+			exists = yes
+			NOT = { tag = XAC }
+			NOT = { has_country_flag = coi_alien_catastrophic_disclosure_processed }
+		}
+		coi_alien_calculate_catastrophic_shock_effect = yes
+		set_country_flag = coi_alien_catastrophic_disclosure_processed
+		set_country_flag = coi_alien_disclosure_crisis_active
+		set_variable = { coi_alien_crisis_score = 25 }
+		coi_alien_clear_catastrophic_severity_ideas_effect = yes
+
+		if = {
+			limit = { check_variable = { coi_alien_disclosure_shock < 3 } }
+			set_variable = { coi_alien_crisis_score = 25 }
+			add_timed_idea = {
+				idea = coi_alien_disclosure_shock_contained
+				days = 181
+			}
+			add_stability = -0.01
+		}
+		else_if = {
+			limit = { check_variable = { coi_alien_disclosure_shock < 6 } }
+			set_variable = { coi_alien_crisis_score = 50 }
+			add_timed_idea = {
+				idea = coi_alien_disclosure_shock_panic
+				days = 181
+			}
+			add_stability = -0.05
+		}
+		else_if = {
+			limit = { check_variable = { coi_alien_disclosure_shock < 8 } }
+			set_variable = { coi_alien_crisis_score = 75 }
+			add_timed_idea = {
+				idea = coi_alien_disclosure_shock_fracture
+				days = 181
+			}
+			add_stability = -0.10
+		}
+		else = {
+			set_variable = { coi_alien_crisis_score = 100 }
+			add_timed_idea = {
+				idea = coi_alien_disclosure_shock_existential
+				days = 181
+			}
+			add_stability = -0.15
+		}
+
+		coi_alien_raise_knowledge_to_material_proof_effect = yes
+		coi_alien_raise_public_awareness_to_undeniable_contact_effect = yes
+		coi_alien_raise_preparedness_to_crisis_war_footing_effect = yes
+		clr_country_flag = coi_alien_managed_disclosure_in_progress
+		country_event = { id = coi_alien_catastrophic_disclosure.90 days = 180 }
+	}
+}
+
+### Callable in any country scope. If XAC initiates contact, the prepared
+### landfall country becomes the origin; otherwise a major is selected only as
+### a flavor anchor. Every country receives its own delayed events, so annexing
+### the origin cannot break the world wave.
+coi_alien_begin_catastrophic_disclosure_effect = {
+	if = {
+		limit = { NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active } }
+		clr_global_flag = coi_alien_news_catastrophic_cause_public_crash
+		clr_global_flag = coi_alien_news_catastrophic_cause_landfall
+		clr_global_flag = coi_alien_news_catastrophic_cause_other
+		if = {
+			limit = { has_country_flag = coi_alien_public_crash_origin }
+			set_global_flag = coi_alien_news_catastrophic_cause_public_crash
+		}
+		else_if = {
+			limit = {
+				has_global_flag = coi_alien_landfall_prepared
+				OR = {
+					has_country_flag = coi_alien_landfall_target
+					AND = {
+						tag = XAC
+						has_event_target = coi_alien_landfall_target
+					}
+				}
+			}
+			set_global_flag = coi_alien_news_catastrophic_cause_landfall
+		}
+		else = { set_global_flag = coi_alien_news_catastrophic_cause_other }
+
+		set_global_flag = coi_alien_catastrophic_disclosure_active
+		set_global_flag = coi_alien_disclosure_active
+		clr_global_flag = coi_alien_mode_hidden
+
+		if = {
+			limit = { NOT = { tag = XAC } }
+			set_country_flag = coi_alien_catastrophic_disclosure_origin
+			save_global_event_target_as = coi_alien_disclosure_origin
+		}
+		else_if = {
+			limit = {
+				has_global_flag = coi_alien_landfall_prepared
+				has_event_target = coi_alien_landfall_target
+			}
+			event_target:coi_alien_landfall_target = {
+				set_country_flag = coi_alien_catastrophic_disclosure_origin
+				save_global_event_target_as = coi_alien_disclosure_origin
+			}
+		}
+		else = {
+			random_country = {
+				limit = {
+					exists = yes
+					NOT = { tag = XAC }
+					is_major = yes
+				}
+				set_country_flag = coi_alien_catastrophic_disclosure_origin
+				save_global_event_target_as = coi_alien_disclosure_origin
+			}
+		}
+
+		coi_alien_news_dispatch_catastrophic_opening_effect = yes
+
+		every_country = {
+			limit = {
+				exists = yes
+				NOT = { tag = XAC }
+			}
+			country_event = { id = coi_alien_catastrophic_disclosure.10 hours = 1 }
+			country_event = { id = coi_alien_catastrophic_disclosure.11 days = 14 }
+			country_event = { id = coi_alien_catastrophic_disclosure.12 days = 30 }
+			country_event = { id = coi_alien_catastrophic_disclosure.13 days = 60 }
+			country_event = { id = coi_alien_catastrophic_disclosure.14 days = 90 }
+			# Unfiltered and redundantly queued so the post-wave inheritance flag
+			# survives annexation of XAC, the origin, or any single host country.
+			country_event = { id = coi_alien_catastrophic_disclosure.99 days = 90 }
+		}
+	}
+}
+
+coi_alien_reduce_crisis_score_ten_effect = {
+	subtract_from_variable = { coi_alien_crisis_score = 10 }
+	clamp_variable = { var = coi_alien_crisis_score min = 0 max = 100 }
+}
+
+coi_alien_reduce_crisis_score_fifteen_effect = {
+	subtract_from_variable = { coi_alien_crisis_score = 15 }
+	clamp_variable = { var = coi_alien_crisis_score min = 0 max = 100 }
+}
+
+coi_alien_reduce_crisis_score_twenty_effect = {
+	subtract_from_variable = { coi_alien_crisis_score = 20 }
+	clamp_variable = { var = coi_alien_crisis_score min = 0 max = 100 }
+}
+
+coi_alien_resolve_catastrophic_crisis_common_effect = {
+	coi_alien_clear_catastrophic_severity_ideas_effect = yes
+	clr_country_flag = coi_alien_disclosure_crisis_active
+	clr_country_flag = coi_alien_crisis_response_in_progress
+}
+
+coi_alien_disclosure_stabilized_effect = {
+	coi_alien_resolve_catastrophic_crisis_common_effect = yes
+	set_variable = { coi_alien_crisis_score = 0 }
+	add_stability = 0.05
+	add_timed_idea = {
+		idea = coi_alien_disclosure_crisis_recovery
+		days = 365
+	}
+}
+
+coi_alien_disclosure_leadership_collapse_effect = {
+	coi_alien_resolve_catastrophic_crisis_common_effect = yes
+	add_political_power = -100
+	add_stability = -0.05
+	add_timed_idea = {
+		idea = coi_alien_disclosure_leadership_collapse
+		days = 365
+	}
+}
+
+coi_alien_disclosure_emergency_rule_effect = {
+	coi_alien_resolve_catastrophic_crisis_common_effect = yes
+	set_country_flag = coi_alien_disclosure_emergency_rule_imposed
+	add_political_power = -100
+	add_stability = 0.05
+	add_war_support = 0.10
+	add_timed_idea = {
+		idea = coi_alien_disclosure_emergency_rule
+		days = 730
+	}
+}
+
+### Determines the strongest non-ruling ideology only after the player accepts
+### the warned failure option. One-state, capitulated, existing-civil-war, and
+### low-opposition cases fall back to leadership collapse.
+coi_alien_start_disclosure_civil_conflict_effect = {
+	if = {
+		limit = { coi_alien_disclosure_civil_conflict_possible_trigger = yes }
+		set_temp_variable = { coi_alien_rebel_support = 0 }
+		set_temp_variable = { coi_alien_rebel_code = 0 }
+
+		if = {
+			limit = {
+				NOT = { has_government = fascism }
+				check_variable = { party_popularity@fascism > coi_alien_rebel_support }
+			}
+			set_temp_variable = { coi_alien_rebel_support = party_popularity@fascism }
+			set_temp_variable = { coi_alien_rebel_code = 1 }
+		}
+		if = {
+			limit = {
+				NOT = { has_government = democratic }
+				check_variable = { party_popularity@democratic > coi_alien_rebel_support }
+			}
+			set_temp_variable = { coi_alien_rebel_support = party_popularity@democratic }
+			set_temp_variable = { coi_alien_rebel_code = 2 }
+		}
+		if = {
+			limit = {
+				NOT = { has_government = communism }
+				check_variable = { party_popularity@communism > coi_alien_rebel_support }
+			}
+			set_temp_variable = { coi_alien_rebel_support = party_popularity@communism }
+			set_temp_variable = { coi_alien_rebel_code = 3 }
+		}
+		if = {
+			limit = {
+				NOT = { has_government = neutrality }
+				check_variable = { party_popularity@neutrality > coi_alien_rebel_support }
+			}
+			set_temp_variable = { coi_alien_rebel_support = party_popularity@neutrality }
+			set_temp_variable = { coi_alien_rebel_code = 4 }
+		}
+
+		set_temp_variable = { coi_alien_rebel_size = coi_alien_rebel_support }
+		clamp_temp_variable = {
+			var = coi_alien_rebel_size
+			min = 0.30
+			max = 0.45
+		}
+		coi_alien_resolve_catastrophic_crisis_common_effect = yes
+		set_country_flag = coi_alien_disclosure_civil_conflict_triggered
+
+		if = {
+			limit = { check_variable = { coi_alien_rebel_code = 1 } }
+			start_civil_war = {
+				ideology = fascism
+				size = var:coi_alien_rebel_size
+				keep_all_characters = yes
+			}
+		}
+		else_if = {
+			limit = { check_variable = { coi_alien_rebel_code = 2 } }
+			start_civil_war = {
+				ideology = democratic
+				size = var:coi_alien_rebel_size
+				keep_all_characters = yes
+			}
+		}
+		else_if = {
+			limit = { check_variable = { coi_alien_rebel_code = 3 } }
+			start_civil_war = {
+				ideology = communism
+				size = var:coi_alien_rebel_size
+				keep_all_characters = yes
+			}
+		}
+		else = {
+			start_civil_war = {
+				ideology = neutrality
+				size = var:coi_alien_rebel_size
+				keep_all_characters = yes
+			}
+		}
+	}
+	else = {
+		coi_alien_disclosure_leadership_collapse_effect = yes
+	}
+}
+
+### ROOT is one country during the regular monthly on_action.
+coi_alien_monthly_catastrophic_disclosure_country_effect = {
+	if = {
+		limit = {
+			has_global_flag = coi_alien_catastrophic_disclosure_active
+			has_global_flag = coi_alien_catastrophic_wave_complete
+			exists = yes
+			NOT = { tag = XAC }
+			NOT = { has_country_flag = coi_alien_catastrophic_disclosure_processed }
+		}
+		coi_alien_apply_catastrophic_disclosure_to_country_effect = yes
+		if = {
+			limit = { is_ai = no }
+			country_event = { id = coi_alien_catastrophic_disclosure.15 hours = 1 }
+		}
+	}
+
+	if = {
+		limit = { coi_alien_catastrophic_crisis_active_trigger = yes }
+		if = {
+			limit = { check_variable = { coi_alien_disclosure_shock > 5 } }
+			add_to_variable = { coi_alien_crisis_score = 1 }
+		}
+		if = {
+			limit = {
+				has_country_flag = coi_alien_disclosure_stance_secrecy
+				NOT = { has_country_flag = coi_alien_coverup_exposed }
+			}
+			add_to_variable = { coi_alien_crisis_score = 1 }
+		}
+		clamp_variable = { var = coi_alien_crisis_score min = 0 max = 100 }
+		if = {
+			limit = { check_variable = { coi_alien_crisis_score > 70 } }
+			add_stability = -0.005
+		}
+	}
+}

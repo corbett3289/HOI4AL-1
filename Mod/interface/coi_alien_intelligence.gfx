@@ -1,0 +1,37 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_portrait_coi_alien_neth_witness"
+		texturefile = "gfx/leaders/XAC/Operatives/coi_alien_neth_witness.dds"
+	}
+	spriteType = {
+		name = "GFX_portrait_coi_alien_ysil_lattice"
+		texturefile = "gfx/leaders/XAC/Operatives/coi_alien_ysil_lattice.dds"
+	}
+	spriteType = {
+		name = "GFX_portrait_coi_alien_cael_current"
+		texturefile = "gfx/leaders/XAC/Operatives/coi_alien_cael_current.dds"
+	}
+	spriteType = {
+		name = "GFX_portrait_coi_alien_drone_quiet_orbit"
+		texturefile = "gfx/leaders/XAC/Operatives/coi_alien_drone_quiet_orbit.dds"
+	}
+	spriteType = {
+		name = "GFX_portrait_coi_alien_drone_pale_echo"
+		texturefile = "gfx/leaders/XAC/Operatives/coi_alien_drone_pale_echo.dds"
+	}
+	spriteType = {
+		name = "GFX_portrait_coi_alien_drone_outer_witness"
+		texturefile = "gfx/leaders/XAC/Operatives/coi_alien_drone_outer_witness.dds"
+	}
+
+	spriteType = {
+		name = "GFX_trait_coi_alien_autonomous_infiltration_drone"
+		texturefile = "gfx/interface/traits/coi_alien_trait_autonomous_infiltration_drone.dds"
+	}
+
+	spriteType = {
+		name = "GFX_intelligence_agency_logo_coi_alien_quiet_chorus"
+		texturefile = "gfx/interface/operatives/agencies/coi_alien_quiet_chorus.dds"
+		noOfFrames = 2
+	}
+}

@@ -1,0 +1,369 @@
+add_namespace = coi_alien_news
+
+### Classified reports. All mechanical state is committed by scripted effects
+### before these notifications are queued; their single options are inert.
+
+country_event = {
+	id = coi_alien_news.1
+	title = coi_alien_news.1.t
+	desc = coi_alien_news.1.desc
+	picture = GFX_report_event_coi_alien_magenta_recovery
+	is_triggered_only = yes
+	option = { name = coi_alien_news.report.a }
+}
+
+country_event = {
+	id = coi_alien_news.2
+	title = coi_alien_news.2.t
+	desc = coi_alien_news.2.desc
+	picture = GFX_report_event_coi_alien_discovery_anomaly
+	is_triggered_only = yes
+	option = { name = coi_alien_news.report.a }
+}
+
+country_event = {
+	id = coi_alien_news.3
+	title = coi_alien_news.3.t
+	desc = coi_alien_news.3.desc
+	picture = GFX_report_event_coi_alien_news_black_program
+	is_triggered_only = yes
+	option = { name = coi_alien_news.report.a }
+}
+
+country_event = {
+	id = coi_alien_news.4
+	title = coi_alien_news.4.t
+	desc = coi_alien_news.4.desc
+	picture = GFX_report_event_coi_alien_news_luminous_escorts
+	is_triggered_only = yes
+	option = { name = coi_alien_news.report.a }
+}
+
+country_event = {
+	id = coi_alien_news.5
+	title = coi_alien_news.5.t
+	desc = coi_alien_news.5.desc
+	picture = GFX_report_event_coi_alien_news_northern_rockets
+	is_triggered_only = yes
+	option = { name = coi_alien_news.report.a }
+}
+
+country_event = {
+	id = coi_alien_news.6
+	title = coi_alien_news.6.t
+	desc = coi_alien_news.6.desc
+	picture = GFX_report_event_coi_alien_news_new_mexico_1947
+	is_triggered_only = yes
+	option = { name = coi_alien_news.report.a }
+}
+
+country_event = {
+	id = coi_alien_news.7
+	title = coi_alien_news.7.t
+	desc = coi_alien_news.7.desc
+	picture = GFX_report_event_coi_alien_news_capital_radar
+	is_triggered_only = yes
+	option = { name = coi_alien_news.report.a }
+}
+
+country_event = {
+	id = coi_alien_news.8
+	title = coi_alien_news.8.t
+	desc = coi_alien_news.8.desc
+	picture = GFX_report_event_coi_alien_news_returned_witness
+	is_triggered_only = yes
+	option = { name = coi_alien_news.report.a }
+}
+
+country_event = {
+	id = coi_alien_news.9
+	title = coi_alien_news.9.t
+	desc = coi_alien_news.9.desc
+	picture = GFX_report_event_coi_alien_news_archive_leak
+	is_triggered_only = yes
+	option = { name = coi_alien_news.report.a }
+}
+
+country_event = {
+	id = coi_alien_news.10
+	title = coi_alien_news.10.t
+	desc = coi_alien_news.10.desc
+	picture = GFX_report_event_coi_alien_news_archive_leak
+	is_triggered_only = yes
+	option = { name = coi_alien_news.report.a }
+}
+
+country_event = {
+	id = coi_alien_news.11
+	title = coi_alien_news.11.t
+	desc = coi_alien_news.11.desc
+	picture = GFX_report_event_coi_alien_news_public_inquiry
+	is_triggered_only = yes
+	option = { name = coi_alien_news.report.a }
+}
+
+### News events use mutually exclusive empty options. Each recipient therefore
+### sees exactly one contextual reaction without allowing an open newspaper to
+### delay or alter synchronized state.
+
+news_event = {
+	id = coi_alien_news.100
+	title = coi_alien_news.100.t
+	desc = coi_alien_news.100.desc
+	picture = GFX_news_event_coi_alien_news_luminous_escorts
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = coi_alien_news.option.xac trigger = { original_tag = XAC } }
+	option = { name = coi_alien_news.option.origin trigger = { NOT = { original_tag = XAC } has_country_flag = coi_alien_news_origin_country } }
+	option = { name = coi_alien_news.option.secretive trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } has_country_flag = coi_alien_disclosure_stance_secrecy } }
+	option = { name = coi_alien_news.option.human trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy } } }
+}
+
+news_event = {
+	id = coi_alien_news.101
+	title = coi_alien_news.101.t
+	desc = coi_alien_news.101.desc
+	picture = GFX_news_event_coi_alien_news_northern_rockets
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = coi_alien_news.option.xac trigger = { original_tag = XAC } }
+	option = { name = coi_alien_news.option.origin trigger = { NOT = { original_tag = XAC } has_country_flag = coi_alien_news_origin_country } }
+	option = { name = coi_alien_news.option.secretive trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } has_country_flag = coi_alien_disclosure_stance_secrecy } }
+	option = { name = coi_alien_news.option.human trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy } } }
+}
+
+news_event = {
+	id = coi_alien_news.102
+	title = coi_alien_news.102.t
+	desc = coi_alien_news.102.desc
+	picture = GFX_news_event_coi_alien_news_new_mexico_1947
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = coi_alien_news.option.xac trigger = { original_tag = XAC } }
+	option = { name = coi_alien_news.option.origin trigger = { NOT = { original_tag = XAC } has_country_flag = coi_alien_news_origin_country } }
+	option = { name = coi_alien_news.option.secretive trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } has_country_flag = coi_alien_disclosure_stance_secrecy } }
+	option = { name = coi_alien_news.option.human trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy } } }
+}
+
+news_event = {
+	id = coi_alien_news.103
+	title = coi_alien_news.103.t
+	desc = coi_alien_news.103.desc
+	picture = GFX_news_event_coi_alien_news_capital_radar
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = coi_alien_news.option.xac trigger = { original_tag = XAC } }
+	option = { name = coi_alien_news.option.origin trigger = { NOT = { original_tag = XAC } has_country_flag = coi_alien_news_origin_country } }
+	option = { name = coi_alien_news.option.secretive trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } has_country_flag = coi_alien_disclosure_stance_secrecy } }
+	option = { name = coi_alien_news.option.human trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy } } }
+}
+
+news_event = {
+	id = coi_alien_news.104
+	title = coi_alien_news.104.t
+	desc = { text = coi_alien_news.104.desc.radio trigger = { date < 1956.1.1 } }
+	desc = { text = coi_alien_news.104.desc.broadcast trigger = { date > 1955.12.31 date < 1986.1.1 } }
+	desc = { text = coi_alien_news.104.desc.digital trigger = { date > 1985.12.31 } }
+	picture = GFX_news_event_coi_alien_news_public_inquiry
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = coi_alien_news.option.xac trigger = { original_tag = XAC } }
+	option = { name = coi_alien_news.option.origin trigger = { NOT = { original_tag = XAC } has_country_flag = coi_alien_news_origin_country } }
+	option = { name = coi_alien_news.option.secretive trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } has_country_flag = coi_alien_disclosure_stance_secrecy } }
+	option = { name = coi_alien_news.option.human trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy } } }
+}
+
+news_event = {
+	id = coi_alien_news.105
+	title = coi_alien_news.105.t
+	desc = { text = coi_alien_news.105.desc.radio trigger = { date < 1956.1.1 } }
+	desc = { text = coi_alien_news.105.desc.broadcast trigger = { date > 1955.12.31 date < 1986.1.1 } }
+	desc = { text = coi_alien_news.105.desc.digital trigger = { date > 1985.12.31 } }
+	picture = GFX_news_event_coi_alien_news_public_inquiry
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = coi_alien_news.option.xac trigger = { original_tag = XAC } }
+	option = { name = coi_alien_news.option.origin trigger = { NOT = { original_tag = XAC } has_country_flag = coi_alien_news_origin_country } }
+	option = { name = coi_alien_news.option.secretive trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } has_country_flag = coi_alien_disclosure_stance_secrecy } }
+	option = { name = coi_alien_news.option.human trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy } } }
+}
+
+news_event = {
+	id = coi_alien_news.106
+	title = coi_alien_news.106.t
+	desc = { text = coi_alien_news.106.desc.radio trigger = { date < 1956.1.1 } }
+	desc = { text = coi_alien_news.106.desc.broadcast trigger = { date > 1955.12.31 date < 1986.1.1 } }
+	desc = { text = coi_alien_news.106.desc.digital trigger = { date > 1985.12.31 } }
+	picture = GFX_news_event_coi_alien_news_archive_leak
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = coi_alien_news.option.xac trigger = { original_tag = XAC } }
+	option = { name = coi_alien_news.option.origin trigger = { NOT = { original_tag = XAC } has_country_flag = coi_alien_news_origin_country } }
+	option = { name = coi_alien_news.option.secretive trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } has_country_flag = coi_alien_disclosure_stance_secrecy } }
+	option = { name = coi_alien_news.option.human trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy } } }
+}
+
+news_event = {
+	id = coi_alien_news.107
+	title = coi_alien_news.107.t
+	desc = { text = coi_alien_news.107.desc.radio trigger = { date < 1956.1.1 } }
+	desc = { text = coi_alien_news.107.desc.broadcast trigger = { date > 1955.12.31 date < 1986.1.1 } }
+	desc = { text = coi_alien_news.107.desc.digital trigger = { date > 1985.12.31 } }
+	picture = GFX_news_event_coi_alien_news_authenticated_film
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = coi_alien_news.option.xac trigger = { original_tag = XAC } }
+	option = { name = coi_alien_news.option.origin trigger = { NOT = { original_tag = XAC } has_country_flag = coi_alien_news_origin_country } }
+	option = { name = coi_alien_news.option.secretive trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } has_country_flag = coi_alien_disclosure_stance_secrecy } }
+	option = { name = coi_alien_news.option.human trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy } } }
+}
+
+news_event = {
+	id = coi_alien_news.108
+	title = coi_alien_news.108.t
+	desc = { text = coi_alien_news.108.desc.radio trigger = { date < 1956.1.1 } }
+	desc = { text = coi_alien_news.108.desc.broadcast trigger = { date > 1955.12.31 date < 1986.1.1 } }
+	desc = { text = coi_alien_news.108.desc.digital trigger = { date > 1985.12.31 } }
+	picture = GFX_news_event_coi_alien_news_official_podium
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = coi_alien_news.option.xac trigger = { original_tag = XAC } }
+	option = { name = coi_alien_news.option.origin trigger = { NOT = { original_tag = XAC } has_country_flag = coi_alien_news_origin_country } }
+	option = { name = coi_alien_news.option.secretive trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } has_country_flag = coi_alien_disclosure_stance_secrecy } }
+	option = { name = coi_alien_news.option.human trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy } } }
+}
+
+news_event = {
+	id = coi_alien_news.109
+	title = coi_alien_news.109.t
+	desc = { text = coi_alien_news.109.desc.radio trigger = { date < 1956.1.1 } }
+	desc = { text = coi_alien_news.109.desc.broadcast trigger = { date > 1955.12.31 date < 1986.1.1 } }
+	desc = { text = coi_alien_news.109.desc.digital trigger = { date > 1985.12.31 } }
+	picture = GFX_news_event_coi_alien_news_archive_leak
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = coi_alien_news.option.xac trigger = { original_tag = XAC } }
+	option = { name = coi_alien_news.option.origin trigger = { NOT = { original_tag = XAC } has_country_flag = coi_alien_news_origin_country } }
+	option = { name = coi_alien_news.option.secretive trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } has_country_flag = coi_alien_disclosure_stance_secrecy } }
+	option = { name = coi_alien_news.option.human trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy } } }
+}
+
+news_event = {
+	id = coi_alien_news.110
+	title = coi_alien_news.110.t
+	desc = { text = coi_alien_news.110.desc.radio trigger = { date < 1956.1.1 } }
+	desc = { text = coi_alien_news.110.desc.broadcast trigger = { date > 1955.12.31 date < 1986.1.1 } }
+	desc = { text = coi_alien_news.110.desc.digital trigger = { date > 1985.12.31 } }
+	picture = GFX_news_event_coi_alien_news_contact_council
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = coi_alien_news.option.xac trigger = { original_tag = XAC } }
+	option = { name = coi_alien_news.option.origin trigger = { NOT = { original_tag = XAC } has_country_flag = coi_alien_news_origin_country } }
+	option = { name = coi_alien_news.option.secretive trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } has_country_flag = coi_alien_disclosure_stance_secrecy } }
+	option = { name = coi_alien_news.option.human trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy } } }
+}
+
+news_event = {
+	id = coi_alien_news.111
+	title = coi_alien_news.111.t
+	desc = { text = coi_alien_news.111.desc.radio trigger = { date < 1956.1.1 } }
+	desc = { text = coi_alien_news.111.desc.broadcast trigger = { date > 1955.12.31 date < 1986.1.1 } }
+	desc = { text = coi_alien_news.111.desc.digital trigger = { date > 1985.12.31 } }
+	picture = GFX_news_event_coi_alien_news_public_crash
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = coi_alien_news.option.xac trigger = { original_tag = XAC } }
+	option = { name = coi_alien_news.option.origin trigger = { NOT = { original_tag = XAC } has_country_flag = coi_alien_news_origin_country } }
+	option = { name = coi_alien_news.option.secretive trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } has_country_flag = coi_alien_disclosure_stance_secrecy } }
+	option = { name = coi_alien_news.option.human trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy } } }
+}
+
+news_event = {
+	id = coi_alien_news.112
+	title = coi_alien_news.112.t
+	desc = { text = coi_alien_news.112.desc.radio trigger = { date < 1956.1.1 } }
+	desc = { text = coi_alien_news.112.desc.broadcast trigger = { date > 1955.12.31 date < 1986.1.1 } }
+	desc = { text = coi_alien_news.112.desc.digital trigger = { date > 1985.12.31 } }
+	picture = GFX_news_event_coi_alien_vatican_reliquary
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = coi_alien_news.option.xac trigger = { original_tag = XAC } }
+	option = { name = coi_alien_news.option.origin trigger = { NOT = { original_tag = XAC } has_country_flag = coi_alien_news_origin_country } }
+	option = { name = coi_alien_news.option.secretive trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } has_country_flag = coi_alien_disclosure_stance_secrecy } }
+	option = { name = coi_alien_news.option.human trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy } } }
+}
+
+news_event = {
+	id = coi_alien_news.113
+	title = coi_alien_news.113.t
+	desc = { text = coi_alien_news.113.desc.radio trigger = { date < 1956.1.1 } }
+	desc = { text = coi_alien_news.113.desc.broadcast trigger = { date > 1955.12.31 date < 1986.1.1 } }
+	desc = { text = coi_alien_news.113.desc.digital trigger = { date > 1985.12.31 } }
+	picture = GFX_coi_alien_landfall
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = coi_alien_news.option.xac trigger = { original_tag = XAC } }
+	option = { name = coi_alien_news.option.origin trigger = { NOT = { original_tag = XAC } has_country_flag = coi_alien_news_origin_country } }
+	option = { name = coi_alien_news.option.secretive trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } has_country_flag = coi_alien_disclosure_stance_secrecy } }
+	option = { name = coi_alien_news.option.human trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_news_origin_country } NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy } } }
+}
+
+news_event = {
+	id = coi_alien_news.114
+	title = coi_alien_news.114.t
+	desc = { text = coi_alien_news.114.desc.radio trigger = { date < 1956.1.1 } }
+	desc = { text = coi_alien_news.114.desc.broadcast trigger = { date > 1955.12.31 date < 1986.1.1 } }
+	desc = { text = coi_alien_news.114.desc.digital trigger = { date > 1985.12.31 } }
+	picture = GFX_news_event_coi_alien_news_first_transmission
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = coi_alien_news.option.xac trigger = { original_tag = XAC } }
+	option = { name = coi_alien_news.option.secretive trigger = { NOT = { original_tag = XAC } has_country_flag = coi_alien_disclosure_stance_secrecy } }
+	option = { name = coi_alien_news.option.human trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy } } }
+}
+
+news_event = {
+	id = coi_alien_news.115
+	title = coi_alien_news.115.t
+	desc = { text = coi_alien_news.115.desc.federation trigger = { XAC = { has_country_flag = coi_alien_doctrine_galactic_federation } } }
+	desc = { text = coi_alien_news.115.desc.annihilation trigger = { XAC = { has_country_flag = coi_alien_doctrine_annihilation } } }
+	desc = { text = coi_alien_news.115.desc.sovereignty trigger = { XAC = { has_country_flag = coi_alien_doctrine_singular_sovereignty } } }
+	desc = { text = coi_alien_news.115.desc.mandate trigger = { XAC = { has_country_flag = coi_alien_doctrine_planetary_mandate } } }
+	picture = GFX_news_event_coi_alien_news_consensus_verdict
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = coi_alien_news.option.xac trigger = { original_tag = XAC } }
+	option = { name = coi_alien_news.option.secretive trigger = { NOT = { original_tag = XAC } has_country_flag = coi_alien_disclosure_stance_secrecy } }
+	option = { name = coi_alien_news.option.human trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy } } }
+}
+
+news_event = {
+	id = coi_alien_news.116
+	title = coi_alien_news.116.t
+	desc = { text = coi_alien_news.116.desc.radio trigger = { date < 1956.1.1 } }
+	desc = { text = coi_alien_news.116.desc.broadcast trigger = { date > 1955.12.31 date < 1986.1.1 } }
+	desc = { text = coi_alien_news.116.desc.digital trigger = { date > 1985.12.31 } }
+	picture = GFX_news_event_coi_alien_news_unified_defense
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = coi_alien_news.option.xac trigger = { original_tag = XAC } }
+	option = { name = coi_alien_news.option.secretive trigger = { NOT = { original_tag = XAC } has_country_flag = coi_alien_disclosure_stance_secrecy } }
+	option = { name = coi_alien_news.option.human trigger = { NOT = { original_tag = XAC } NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy } } }
+}

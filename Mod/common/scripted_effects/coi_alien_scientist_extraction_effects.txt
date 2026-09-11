@@ -1,0 +1,132 @@
+### Scientist extraction and disposition effects.
+###
+### Public operation entry point:
+###   coi_alien_complete_extract_lead_scientist = yes
+### Contract: SCOPE_OPERATION with ROOT = XAC, FROM = target country, and
+### FROM.FROM = selected state. Both normal and bonus outcome branches call the
+### same entry point. It owns validation, token consumption, awareness, cooldown,
+### scientist selection, and the disposition event.
+
+coi_alien_initialize_scientist_disposition_ledgers_effect = {
+	if = {
+		limit = { NOT = { has_variable = coi_alien_scientist_dispositions_total } }
+		set_variable = { coi_alien_scientist_dispositions_total = 0 }
+	}
+	if = {
+		limit = { NOT = { has_variable = coi_alien_scientist_dispositions_studied } }
+		set_variable = { coi_alien_scientist_dispositions_studied = 0 }
+	}
+	if = {
+		limit = { NOT = { has_variable = coi_alien_scientist_dispositions_offworld } }
+		set_variable = { coi_alien_scientist_dispositions_offworld = 0 }
+	}
+	if = {
+		limit = { NOT = { has_variable = coi_alien_scientist_dispositions_removed } }
+		set_variable = { coi_alien_scientist_dispositions_removed = 0 }
+	}
+}
+
+coi_alien_record_scientist_studied_effect = {
+	coi_alien_initialize_scientist_disposition_ledgers_effect = yes
+	add_to_variable = { coi_alien_scientist_dispositions_studied = 1 }
+	add_to_variable = { coi_alien_scientist_dispositions_total = 1 }
+}
+
+coi_alien_record_scientist_offworld_effect = {
+	coi_alien_initialize_scientist_disposition_ledgers_effect = yes
+	add_to_variable = { coi_alien_scientist_dispositions_offworld = 1 }
+	add_to_variable = { coi_alien_scientist_dispositions_total = 1 }
+}
+
+coi_alien_record_scientist_removed_effect = {
+	coi_alien_initialize_scientist_disposition_ledgers_effect = yes
+	add_to_variable = { coi_alien_scientist_dispositions_removed = 1 }
+	add_to_variable = { coi_alien_scientist_dispositions_total = 1 }
+}
+
+### Completion-time removal and target notification. This happens before the
+### XAC disposition event is shown, so an unanswered event cannot leave the
+### scientist working for the target. The character is never transferred,
+### naturalized, assigned a new role, or added to the XAC roster.
+coi_alien_remove_and_notify_extracted_scientist_effect = {
+	event_target:coi_alien_extracted_scientist = {
+		remove_scientist_role = yes
+		retire = yes
+	}
+
+	# Awareness was raised at operation completion, so this test deliberately
+	# uses the post-operation value.
+	event_target:coi_alien_extraction_target = {
+		if = {
+			limit = { coi_alien_awareness_at_least_confirmed_trigger = yes }
+			country_event = { id = coi_alien_scientist_extraction.4 }
+		}
+		else = {
+			country_event = { id = coi_alien_scientist_extraction.3 }
+		}
+	}
+}
+
+coi_alien_complete_extract_lead_scientist = {
+	# Local event targets survive the immediate event chain and make the
+	# disposition text deterministic even though the operation UI selects a
+	# facility state rather than a named character.
+	FROM = { save_event_target_as = coi_alien_extraction_target }
+	FROM.FROM = { save_event_target_as = coi_alien_extraction_state }
+
+	if = {
+		limit = {
+			# Completion revalidates the cooldown, selected facility state,
+			# state controller, and an active/uninjured eligible scientist.
+			FROM = { coi_alien_target_has_extractable_scientist_trigger = yes }
+			FROM.FROM = { coi_alien_operation_state_has_extractable_scientist_trigger = yes }
+		}
+
+		FROM = {
+			random_active_scientist = {
+				limit = {
+					coi_alien_extractable_scientist_character_trigger = yes
+					is_in_state = FROM.FROM
+				}
+				save_event_target_as = coi_alien_extracted_scientist
+			}
+		}
+
+		ROOT = {
+			coi_alien_initialize_scientist_disposition_ledgers_effect = yes
+			remove_operation_token = {
+				tag = FROM
+				token = coi_alien_token_institutional_access
+			}
+			remove_operation_token = {
+				tag = FROM
+				token = coi_alien_token_research_access
+			}
+		}
+
+		FROM = {
+			set_country_flag = {
+				flag = coi_alien_scientist_extraction_cooldown
+				value = 1
+				days = 730
+			}
+			coi_alien_raise_awareness_one_effect = yes
+			random_list = {
+				25 = { coi_alien_raise_awareness_one_effect = yes }
+				75 = { }
+			}
+		}
+
+		# Removal is an operation result, not a delayed disposition-option result.
+		# Awareness is already updated so the target receives the correct low- or
+		# high-awareness disappearance notification immediately.
+		coi_alien_remove_and_notify_extracted_scientist_effect = yes
+
+		ROOT = { country_event = { id = coi_alien_scientist_extraction.1 } }
+	}
+	else = {
+		# The window-closed path intentionally consumes no access tokens, applies
+		# no cooldown, raises no awareness, and changes no disposition ledger.
+		ROOT = { country_event = { id = coi_alien_scientist_extraction.2 } }
+	}
+}

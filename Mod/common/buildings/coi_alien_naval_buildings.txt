@@ -1,0 +1,62 @@
+buildings = {
+	# Script-placed strategic objective. It deliberately does not use the
+	# "facility" tag or a special-project specialization: those are one-to-one
+	# systems and this anchorage is a fleet/supply asset, not a research site.
+	coi_alien_mothership_anchorage = {
+		show_on_map = 1
+		has_destroyed_mesh = yes
+		base_cost = 30000
+		# Province buildings cannot be queried with non_damaged_building_level.
+		# Conventional damage therefore cannot place this alien mothership into
+		# an unobservable half-online state; capture or removal still shuts it down.
+		damage_factor = 0
+		repair_speed_factor = 0.25
+		icon_frame = 18
+		value = 20
+		spawn_point = naval_base_spawn
+		only_costal = yes
+		is_buildable = no
+		disabled_in_dmz = yes
+		need_supply = yes
+		need_detection = yes
+		detecting_intel_type = navy
+		only_display_if_exists = yes
+		special_icon = GFX_coi_alien_mothership_anchorage
+		tags = { coi_alien_mothership_anchorage_tag }
+		level_cap = {
+			province_max = 1
+			state_max = 1
+			group_by = coi_alien_mothership_anchorage
+		}
+	}
+
+	# One script/history-placed laboratory serves the unified Consensus Sciences
+	# specialization. HOI4 facilities accept one primary specialization; the six
+	# visible research domains remain distinct technology categories and project
+	# tags. `is_buildable = no` prevents terrestrial construction.
+	coi_alien_consensus_research_nexus = {
+		dlc_allowed = { has_dlc = "Gotterdammerung" }
+		show_on_map = 1
+		has_destroyed_mesh = yes
+		base_cost = 18000
+		damage_factor = 0
+		repair_speed_factor = 0.50
+		icon_frame = 20
+		value = 5
+		spawn_point = special_project_facility_spawn
+		specialization = { coi_alien_specialization_matter_fabrication }
+		tags = { facility coi_alien_consensus_nexus }
+		is_buildable = no
+		disabled_in_dmz = yes
+		need_supply = yes
+		need_detection = yes
+		detecting_intel_type = civilian
+		only_display_if_exists = yes
+		special_icon = GFX_specialization_nuclear
+		level_cap = {
+			province_max = 1
+			state_max = 1
+			group_by = special_project_facility
+		}
+	}
+}

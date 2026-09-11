@@ -1,0 +1,165 @@
+### Transformative Consensus projects. Ordinary refinements remain in the
+### research tree; these eight programs gate capabilities requiring prototypes.
+
+coi_alien_sp_self_healing_lattice_demonstrator = {
+	specialization = coi_alien_specialization_matter_fabrication
+	icon = GFX_coi_alien_sp_self_healing_lattice_demonstrator
+	blueprint_image = GFX_coi_alien_sp_self_healing_lattice_demonstrator_blueprint
+	project_tags = { coi_alien_sp_tag_consensus_science coi_alien_sp_tag_matter_fabrication }
+	allowed = { has_dlc = "Gotterdammerung" original_tag = XAC }
+	visible = { FROM = { has_tech = coi_alien_personal_phase_sheaths } }
+	available = { FROM = { has_tech = coi_alien_personal_phase_sheaths } }
+	breakthrough_cost = { coi_alien_specialization_matter_fabrication = 1 }
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+	project_output = {
+		country_effects = { set_country_flag = coi_alien_self_healing_lattice_demonstrated }
+	}
+	ai_will_do = { base = 10 }
+}
+
+coi_alien_sp_aperture_stabilization_experiment = {
+	specialization = coi_alien_specialization_matter_fabrication
+	icon = GFX_coi_alien_sp_aperture_stabilization_experiment
+	blueprint_image = GFX_coi_alien_sp_aperture_stabilization_experiment_blueprint
+	project_tags = { coi_alien_sp_tag_consensus_science coi_alien_sp_tag_field_energy }
+	allowed = { has_dlc = "Gotterdammerung" original_tag = XAC }
+	visible = { FROM = { has_tech = coi_alien_spacetime_aperture_geometry } }
+	available = { FROM = { has_tech = coi_alien_spacetime_aperture_geometry } }
+	breakthrough_cost = { coi_alien_specialization_matter_fabrication = 1 }
+	prototype_time = sp_time.prototype.medium
+	complexity = sp_complexity.medium
+	project_output = {
+		country_effects = { set_country_flag = coi_alien_aperture_stabilization_demonstrated }
+	}
+	ai_will_do = { base = 12 }
+}
+
+coi_alien_sp_interorbital_sentinel_prototype = {
+	specialization = coi_alien_specialization_matter_fabrication
+	icon = GFX_coi_alien_sp_interorbital_sentinel_prototype
+	blueprint_image = GFX_coi_alien_sp_interorbital_sentinel_prototype_blueprint
+	project_tags = { coi_alien_sp_tag_consensus_science coi_alien_sp_tag_field_energy }
+	allowed = { has_dlc = "Gotterdammerung" original_tag = XAC }
+	visible = { FROM = { has_tech = coi_alien_predictive_intercept_lattice } }
+	available = { FROM = { has_tech = coi_alien_predictive_intercept_lattice } }
+	breakthrough_cost = { coi_alien_specialization_matter_fabrication = 1 }
+	prototype_time = sp_time.prototype.medium
+	complexity = sp_complexity.medium
+	project_output = {
+		country_effects = { set_country_flag = coi_alien_interorbital_sentinel_prototyped }
+	}
+	ai_will_do = { base = 12 }
+}
+
+coi_alien_sp_controlled_atomic_decoherence = {
+	specialization = coi_alien_specialization_matter_fabrication
+	icon = GFX_coi_alien_sp_controlled_atomic_decoherence
+	blueprint_image = GFX_coi_alien_sp_controlled_atomic_decoherence_blueprint
+	project_tags = { coi_alien_sp_tag_consensus_science coi_alien_sp_tag_field_energy }
+	allowed = { has_dlc = "Gotterdammerung" original_tag = XAC }
+	visible = { FROM = { has_tech = coi_alien_sentinel_reserve_fabrication } }
+	available = { FROM = { has_tech = coi_alien_sentinel_reserve_fabrication } }
+	breakthrough_cost = { coi_alien_specialization_matter_fabrication = 2 }
+	prototype_time = sp_time.prototype.medium
+	complexity = sp_complexity.medium
+	project_output = {
+		country_effects = { set_country_flag = coi_alien_atomic_decoherence_controlled }
+	}
+	ai_will_do = { base = 12 }
+}
+
+coi_alien_sp_full_spectrum_human_culture_model = {
+	specialization = coi_alien_specialization_matter_fabrication
+	icon = GFX_coi_alien_sp_full_spectrum_human_culture_model
+	blueprint_image = GFX_coi_alien_sp_full_spectrum_human_culture_model_blueprint
+	project_tags = { coi_alien_sp_tag_consensus_science coi_alien_sp_tag_cognition_observation }
+	allowed = { has_dlc = "Gotterdammerung" original_tag = XAC }
+	visible = { FROM = { has_tech = coi_alien_comparative_human_ethology } }
+	available = { FROM = { has_tech = coi_alien_comparative_human_ethology } }
+	breakthrough_cost = { coi_alien_specialization_matter_fabrication = 1 }
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+	project_output = {
+		country_effects = { set_country_flag = coi_alien_full_spectrum_culture_model_completed }
+	}
+	ai_will_do = { base = 12 }
+}
+
+coi_alien_sp_human_genome_atlas = {
+	specialization = coi_alien_specialization_matter_fabrication
+	icon = GFX_coi_alien_sp_human_genome_atlas
+	blueprint_image = GFX_coi_alien_sp_human_genome_atlas_blueprint
+	project_tags = { coi_alien_sp_tag_consensus_science coi_alien_sp_tag_biogenesis }
+	allowed = { has_dlc = "Gotterdammerung" original_tag = XAC }
+	visible = { FROM = { has_tech = coi_alien_tissue_analysis } }
+	available = {
+		FROM = {
+			has_tech = coi_alien_tissue_analysis
+			has_variable = coi_alien_tissue_samples
+			check_variable = { coi_alien_tissue_samples > 0 }
+		}
+	}
+	breakthrough_cost = { coi_alien_specialization_matter_fabrication = 1 }
+	prototype_time = sp_time.prototype.medium
+	complexity = sp_complexity.medium
+	project_output = {
+		country_effects = {
+			add_to_variable = { coi_alien_tissue_samples = -1 }
+			clamp_variable = { var = coi_alien_tissue_samples min = 0 max = 10 }
+			set_country_flag = coi_alien_human_genome_atlas_completed
+		}
+	}
+	ai_will_do = { base = 12 }
+}
+
+coi_alien_sp_viable_adult_clone = {
+	specialization = coi_alien_specialization_matter_fabrication
+	icon = GFX_coi_alien_sp_viable_adult_clone
+	blueprint_image = GFX_coi_alien_sp_viable_adult_clone_blueprint
+	project_tags = { coi_alien_sp_tag_consensus_science coi_alien_sp_tag_biogenesis }
+	allowed = { has_dlc = "Gotterdammerung" original_tag = XAC }
+	special_project_parent = { coi_alien_sp_human_genome_atlas }
+	visible = {
+		FROM = {
+			has_tech = coi_alien_accelerated_human_cloning
+			is_special_project_completed = sp:coi_alien_sp_human_genome_atlas
+		}
+	}
+	available = {
+		FROM = {
+			has_tech = coi_alien_accelerated_human_cloning
+			is_special_project_completed = sp:coi_alien_sp_human_genome_atlas
+			has_variable = coi_alien_tissue_samples
+			check_variable = { coi_alien_tissue_samples > 0 }
+		}
+	}
+	breakthrough_cost = { coi_alien_specialization_matter_fabrication = 2 }
+	prototype_time = sp_time.prototype.medium
+	complexity = sp_complexity.medium
+	project_output = {
+		country_effects = {
+			add_to_variable = { coi_alien_tissue_samples = -1 }
+			clamp_variable = { var = coi_alien_tissue_samples min = 0 max = 10 }
+			set_country_flag = coi_alien_viable_adult_clone_completed
+		}
+	}
+	ai_will_do = { base = 12 }
+}
+
+coi_alien_sp_molecular_airframe_printer = {
+	specialization = coi_alien_specialization_matter_fabrication
+	icon = GFX_coi_alien_sp_molecular_airframe_printer
+	blueprint_image = GFX_coi_alien_sp_molecular_airframe_printer_blueprint
+	project_tags = { coi_alien_sp_tag_consensus_science coi_alien_sp_tag_matter_fabrication }
+	allowed = { has_dlc = "Gotterdammerung" original_tag = XAC }
+	visible = { FROM = { has_tech = coi_alien_additive_airframe_printing } }
+	available = { FROM = { has_tech = coi_alien_additive_airframe_printing } }
+	breakthrough_cost = { coi_alien_specialization_matter_fabrication = 1 }
+	prototype_time = sp_time.prototype.medium
+	complexity = sp_complexity.medium
+	project_output = {
+		country_effects = { set_country_flag = coi_alien_molecular_airframe_printer_completed }
+	}
+	ai_will_do = { base = 12 }
+}

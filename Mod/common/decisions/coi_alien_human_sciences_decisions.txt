@@ -1,0 +1,187 @@
+coi_alien_human_sciences_category = {
+	coi_alien_adopt_passive_observation = {
+		icon = coi_alien_human_sciences
+		allowed = { original_tag = XAC }
+		visible = {
+			coi_alien_precatastrophic_observation_trigger = yes
+			has_tech = coi_alien_comparative_human_ethology
+			NOT = { has_country_flag = coi_alien_observation_passive }
+		}
+		available = { coi_alien_can_change_observation_policy_trigger = yes }
+		cost = 25
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_adopt_passive_observation_tt
+			hidden_effect = { coi_alien_adopt_passive_observation_effect = yes }
+		}
+		ai_will_do = { base = 70 }
+	}
+
+	coi_alien_adopt_directed_infiltration = {
+		icon = coi_alien_human_sciences
+		allowed = { original_tag = XAC }
+		visible = {
+			coi_alien_precatastrophic_observation_trigger = yes
+			has_tech = coi_alien_mass_media_semiotics
+			NOT = { has_country_flag = coi_alien_observation_directed }
+		}
+		available = { coi_alien_can_change_observation_policy_trigger = yes }
+		cost = 25
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_adopt_directed_infiltration_tt
+			hidden_effect = { coi_alien_adopt_directed_infiltration_effect = yes }
+		}
+		ai_will_do = { base = 25 }
+	}
+
+	coi_alien_adopt_aggressive_sampling = {
+		icon = coi_alien_human_sciences
+		allowed = { original_tag = XAC }
+		visible = {
+			coi_alien_precatastrophic_observation_trigger = yes
+			has_tech = coi_alien_tissue_analysis
+			NOT = { has_country_flag = coi_alien_observation_aggressive }
+		}
+		available = { coi_alien_can_change_observation_policy_trigger = yes }
+		cost = 25
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_adopt_aggressive_sampling_tt
+			hidden_effect = { coi_alien_adopt_aggressive_sampling_effect = yes }
+		}
+		ai_will_do = { base = 5 }
+	}
+
+	coi_alien_review_cultural_dossier = {
+		icon = coi_alien_human_sciences
+		allowed = { original_tag = XAC }
+		target_root_trigger = { has_tech = coi_alien_comparative_human_ethology }
+		target_trigger = {
+			FROM = {
+				exists = yes
+				NOT = { original_tag = XAC }
+				has_variable = coi_alien_cultural_dossier
+				check_variable = { coi_alien_cultural_dossier > 0 }
+			}
+		}
+		visible = {
+			FROM = {
+				has_variable = coi_alien_cultural_dossier
+				check_variable = { coi_alien_cultural_dossier > 0 }
+			}
+		}
+		cost = 0
+		days_re_enable = 30
+		complete_effect = { custom_effect_tooltip = coi_alien_review_cultural_dossier_tt }
+		ai_will_do = { base = 0 }
+	}
+
+	coi_alien_create_facsimile_lena_marlow = {
+		icon = coi_alien_viable_adult_clone
+		allowed = { original_tag = XAC }
+		target_root_trigger = {
+			coi_alien_can_create_conditioned_facsimile_trigger = yes
+			NOT = { has_country_flag = coi_alien_facsimile_lena_created }
+			NOT = { has_country_flag = coi_alien_facsimile_lena_in_progress }
+		}
+		target_trigger = { FROM = { coi_alien_has_cultural_fluency_dossier_trigger = yes } }
+		visible = {
+			OR = {
+				has_country_flag = coi_alien_facsimile_lena_in_progress
+				AND = {
+					coi_alien_can_create_conditioned_facsimile_trigger = yes
+					NOT = { has_country_flag = coi_alien_facsimile_lena_created }
+					FROM = { coi_alien_has_cultural_fluency_dossier_trigger = yes }
+				}
+			}
+		}
+		cost = 50
+		days_remove = 60
+		# Reserve the scarce sample and one of the two active slots at project
+		# start. This prevents parallel target decisions from oversubscribing
+		# either resource during the 60-day growth period.
+		complete_effect = {
+			add_to_variable = { coi_alien_tissue_samples = -1 }
+			add_to_variable = { coi_alien_active_clone_operatives = 1 }
+			clamp_variable = { var = coi_alien_tissue_samples min = 0 max = 10 }
+			clamp_variable = { var = coi_alien_active_clone_operatives min = 0 max = 2 }
+			set_country_flag = coi_alien_facsimile_lena_in_progress
+		}
+		cancel_trigger = { FROM = { NOT = { exists = yes } } }
+		cancel_effect = {
+			add_to_variable = { coi_alien_tissue_samples = 1 }
+			add_to_variable = { coi_alien_active_clone_operatives = -1 }
+			clamp_variable = { var = coi_alien_tissue_samples min = 0 max = 10 }
+			clamp_variable = { var = coi_alien_active_clone_operatives min = 0 max = 2 }
+			clr_country_flag = coi_alien_facsimile_lena_in_progress
+		}
+		remove_effect = {
+			create_operative_leader = {
+				name = coi_alien_facsimile_lena_marlow
+				GFX = GFX_portrait_coi_alien_facsimile_lena_marlow
+				portrait_tag_override = FROM
+				traits = { coi_alien_conditioned_human_facsimile operative_infiltrator operative_linguist operative_tough }
+				bypass_recruitment = yes
+				available_to_spy_master = no
+				gender = female
+				nationalities = { FROM }
+			}
+			clr_country_flag = coi_alien_facsimile_lena_in_progress
+			set_country_flag = coi_alien_facsimile_lena_created
+			country_event = { id = coi_alien_human_sciences.7 }
+		}
+		ai_will_do = { base = 5 }
+	}
+
+	coi_alien_create_facsimile_daniel_voss = {
+		icon = coi_alien_viable_adult_clone
+		allowed = { original_tag = XAC }
+		target_root_trigger = {
+			coi_alien_can_create_conditioned_facsimile_trigger = yes
+			NOT = { has_country_flag = coi_alien_facsimile_daniel_created }
+			NOT = { has_country_flag = coi_alien_facsimile_daniel_in_progress }
+		}
+		target_trigger = { FROM = { coi_alien_has_cultural_fluency_dossier_trigger = yes } }
+		visible = {
+			OR = {
+				has_country_flag = coi_alien_facsimile_daniel_in_progress
+				AND = {
+					coi_alien_can_create_conditioned_facsimile_trigger = yes
+					NOT = { has_country_flag = coi_alien_facsimile_daniel_created }
+					FROM = { coi_alien_has_cultural_fluency_dossier_trigger = yes }
+				}
+			}
+		}
+		cost = 50
+		days_remove = 60
+		complete_effect = {
+			add_to_variable = { coi_alien_tissue_samples = -1 }
+			add_to_variable = { coi_alien_active_clone_operatives = 1 }
+			clamp_variable = { var = coi_alien_tissue_samples min = 0 max = 10 }
+			clamp_variable = { var = coi_alien_active_clone_operatives min = 0 max = 2 }
+			set_country_flag = coi_alien_facsimile_daniel_in_progress
+		}
+		cancel_trigger = { FROM = { NOT = { exists = yes } } }
+		cancel_effect = {
+			add_to_variable = { coi_alien_tissue_samples = 1 }
+			add_to_variable = { coi_alien_active_clone_operatives = -1 }
+			clamp_variable = { var = coi_alien_tissue_samples min = 0 max = 10 }
+			clamp_variable = { var = coi_alien_active_clone_operatives min = 0 max = 2 }
+			clr_country_flag = coi_alien_facsimile_daniel_in_progress
+		}
+		remove_effect = {
+			create_operative_leader = {
+				name = coi_alien_facsimile_daniel_voss
+				GFX = GFX_portrait_coi_alien_facsimile_daniel_voss
+				portrait_tag_override = FROM
+				traits = { coi_alien_conditioned_human_facsimile operative_infiltrator operative_linguist operative_tough }
+				bypass_recruitment = yes
+				available_to_spy_master = no
+				gender = male
+				nationalities = { FROM }
+			}
+			clr_country_flag = coi_alien_facsimile_daniel_in_progress
+			set_country_flag = coi_alien_facsimile_daniel_created
+			country_event = { id = coi_alien_human_sciences.7 }
+		}
+		ai_will_do = { base = 5 }
+	}
+}

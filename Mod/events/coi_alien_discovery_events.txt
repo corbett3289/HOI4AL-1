@@ -1,0 +1,78 @@
+add_namespace = coi_alien_discovery
+
+### Player notification for the bounded monthly first-sighting pulse. Knowledge
+### is recorded before this event is queued, so leaving it open cannot stall the
+### synchronized world state.
+country_event = {
+	id = coi_alien_discovery.1
+	title = coi_alien_discovery.1.t
+	desc = coi_alien_discovery.1.desc
+	picture = GFX_report_event_coi_alien_discovery_anomaly
+	is_triggered_only = yes
+
+	option = {
+		name = coi_alien_discovery.1.a
+	}
+}
+
+### Managed disclosure unfolds at sixty-day intervals. The persistent public
+### variable is monotonic, while the stance check safely terminates an authored
+### policy change or a future catastrophic-disclosure override.
+country_event = {
+	id = coi_alien_discovery.10
+	title = coi_alien_discovery.10.t
+	desc = coi_alien_discovery.10.desc
+	picture = GFX_report_event_coi_alien_disclosure_managed
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = coi_alien_disclosure_stance_managed
+		has_country_flag = coi_alien_managed_disclosure_in_progress
+		NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+	}
+
+	option = {
+		name = coi_alien_discovery.10.a
+		coi_alien_raise_public_awareness_to_rumors_effect = yes
+		country_event = { id = coi_alien_discovery.11 days = 60 }
+	}
+}
+
+country_event = {
+	id = coi_alien_discovery.11
+	title = coi_alien_discovery.11.t
+	desc = coi_alien_discovery.11.desc
+	picture = GFX_report_event_coi_alien_disclosure_managed
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = coi_alien_disclosure_stance_managed
+		has_country_flag = coi_alien_managed_disclosure_in_progress
+		NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+	}
+
+	option = {
+		name = coi_alien_discovery.11.a
+		coi_alien_raise_public_awareness_to_credible_controversy_effect = yes
+		coi_alien_raise_preparedness_to_contingency_planning_effect = yes
+		country_event = { id = coi_alien_discovery.12 days = 60 }
+	}
+}
+
+country_event = {
+	id = coi_alien_discovery.12
+	title = coi_alien_discovery.12.t
+	desc = coi_alien_discovery.12.desc
+	picture = GFX_report_event_coi_alien_disclosure_managed
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = coi_alien_disclosure_stance_managed
+		has_country_flag = coi_alien_managed_disclosure_in_progress
+		NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+	}
+
+	option = {
+		name = coi_alien_discovery.12.a
+		coi_alien_raise_public_awareness_to_official_acknowledgment_effect = yes
+		coi_alien_raise_preparedness_to_national_mobilization_effect = yes
+		clr_country_flag = coi_alien_managed_disclosure_in_progress
+	}
+}

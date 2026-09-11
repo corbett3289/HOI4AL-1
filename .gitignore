@@ -1,0 +1,65 @@
+# Local game/runtime state
+/Tools/
+/RuntimeVariants/
+/RuntimeEvidence/
+/TestUserDir*/
+/Validation-*.log
+**/logs/
+**/crashes/
+*.hoi4
+*.dmp
+*.mdmp
+*.log
+*.cache
+*.scache
+
+# Local Steam Workshop state. Keep only the sanitized template.
+/Workshop/*.vdf
+!/Workshop/*.example.vdf
+
+# Local launcher output (the portable *.template remains tracked).
+/Launcher/*.mod
+
+# Locally generated Paradox-derived shadows. Rebuild these from a lawful local
+# HOI4 1.19.2 installation with the scripts under Source/.
+/Mod/common/buildings/00_buildings.txt
+/Mod/common/raids/nuclear_raids.txt
+/Mod/common/special_projects/projects/air_projects.txt
+/Mod/common/special_projects/projects/land_projects.txt
+/Mod/common/special_projects/projects/naval_projects.txt
+/Mod/common/special_projects/projects/nuclear_projects.txt
+/Mod/common/special_projects/projects/radar_projects.txt
+/Mod/common/special_projects/projects/rocket_projects.txt
+/Mod/common/technology_tags/00_technology.txt
+/Mod/interface/countryintelligenceagencyview.gui
+/Mod/interface/countrytechtreeview.gui
+/Mod/map/buildings.txt
+/Mod/map/definition.csv
+/Mod/map/heightmap.bmp
+/Mod/map/provinces.bmp
+/Mod/map/rivers.bmp
+/Mod/map/strategicregions/32-Southern Ocean.txt
+/Mod/map/supply_nodes.txt
+/Mod/map/terrain.bmp
+/Mod/map/unitstacks.txt
+
+# Derived review renders; runtime assets under Mod/ remain tracked.
+/Source/Art/Preview/
+
+# Editor and operating-system noise
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.bak
+*.tmp
+*.swp
+*~
+.idea/
+.vscode/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx

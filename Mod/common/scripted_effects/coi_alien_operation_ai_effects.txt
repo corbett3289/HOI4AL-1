@@ -1,0 +1,303 @@
+# COUNTRY scope. Variables are saved so ai_strategy can consume a dynamic
+# operation token and country target using the same 1.19.x pattern as the
+# vanilla generic-operation planner.
+coi_alien_clear_operation_ai_plan_effect = {
+	set_variable = { coi_alien_ai_operation_target = 0 }
+	set_variable = { coi_alien_ai_operation_type = 0 }
+}
+
+# COUNTRY scope. This planner is intentionally deterministic until every
+# available operation has been demonstrated once against the current target.
+# Thereafter archive harvesting is the standing task, with scientist extraction
+# interrupting it only when the strict eligibility trigger and 730-day target
+# cooldown permit another attempt.
+coi_alien_update_operation_ai_effect = {
+	if = {
+		limit = {
+			OR = {
+				NOT = { original_tag = XAC }
+				is_ai = no
+				NOT = { has_dlc = "La Resistance" }
+				NOT = { has_intelligence_agency = yes }
+				NOT = { coi_alien_framework_active_trigger = yes }
+				num_of_operatives < 2
+				any_operative_leader = {
+					is_operative_captured = yes
+				}
+			}
+		}
+		coi_alien_clear_operation_ai_plan_effect = yes
+	}
+	else = {
+		# Discard a dead, capitulated, allied, or landless target. Clearing the
+		# operation token with it prevents a stale strategy from surviving a
+		# diplomatic or map-state change.
+		if = {
+			limit = {
+				NOT = { check_variable = { coi_alien_ai_operation_target = 0 } }
+				var:coi_alien_ai_operation_target = {
+					OR = {
+						exists = no
+						original_tag = XAC
+						has_capitulated = yes
+						is_ally_with = PREV
+						NOT = { any_owned_state = { always = yes } }
+					}
+				}
+			}
+			coi_alien_clear_operation_ai_plan_effect = yes
+		}
+
+		# A monthly pulse must not replace the serialized token while an operation
+		# is preparing or in flight. The completion on_action requests a new plan.
+		if = {
+			limit = {
+				NOT = { check_variable = { coi_alien_ai_operation_target = 0 } }
+				NOT = { check_variable = { coi_alien_ai_operation_type = 0 } }
+				OR = {
+					is_preparing_operation = {
+						target = var:coi_alien_ai_operation_target
+						operation = var:coi_alien_ai_operation_type
+					}
+					is_running_operation = {
+						target = var:coi_alien_ai_operation_target
+						operation = var:coi_alien_ai_operation_type
+					}
+				}
+			}
+		}
+		else = {
+			get_highest_scored_country = {
+				scorer = coi_alien_quiet_chorus_target_scorer
+				var = coi_alien_ai_operation_target
+			}
+
+			set_variable = { coi_alien_ai_operation_type = 0 }
+
+			if = {
+				limit = {
+					NOT = { check_variable = { coi_alien_ai_operation_target = 0 } }
+					var:coi_alien_ai_operation_target = {
+						exists = yes
+						has_capitulated = no
+						NOT = { original_tag = XAC }
+						NOT = { is_ally_with = PREV }
+						any_owned_state = { always = yes }
+					}
+				}
+
+				# Access-chain operations always pre-empt payload operations. Surface
+				# profiling persists; institutional and research access are rebuilt
+				# whenever a payload consumes them.
+				if = {
+					limit = {
+						NOT = {
+							has_operation_token = {
+								tag = var:coi_alien_ai_operation_target
+								token = coi_alien_token_surface_profile
+							}
+						}
+					}
+					set_variable = {
+						coi_alien_ai_operation_type = token:coi_alien_silent_systems_survey
+					}
+				}
+				else_if = {
+					limit = {
+						NOT = {
+							has_operation_token = {
+								tag = var:coi_alien_ai_operation_target
+								token = coi_alien_token_institutional_access
+							}
+						}
+					}
+					if = {
+						limit = {
+							has_tech = coi_alien_multi_agent_infiltration_models
+						}
+						set_variable = {
+							coi_alien_ai_operation_type = token:coi_alien_seed_mimetic_access
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						NOT = {
+							has_operation_token = {
+								tag = var:coi_alien_ai_operation_target
+								token = coi_alien_token_research_access
+							}
+						}
+					}
+					if = {
+						limit = {
+							has_tech = coi_alien_institutional_behavior_prediction
+						}
+						set_variable = {
+							coi_alien_ai_operation_type = token:coi_alien_penetrate_research_networks
+						}
+					}
+				}
+				# A functioning human nuclear strike complex is the highest-priority
+				# payload once the complete access chain and three operatives exist.
+				# Active disruption modifiers form the natural 180/365-day cooldown.
+				else_if = {
+					limit = {
+						has_tech = coi_alien_atomic_disruption_protocols
+						has_done_agency_upgrade = coi_alien_upgrade_distributed_drone_cells
+						num_of_operatives > 2
+						has_operation_token = {
+							tag = var:coi_alien_ai_operation_target
+							token = coi_alien_token_institutional_access
+						}
+						has_operation_token = {
+							tag = var:coi_alien_ai_operation_target
+							token = coi_alien_token_research_access
+						}
+						var:coi_alien_ai_operation_target = {
+							coi_alien_target_has_nuclear_strike_assets_trigger = yes
+							NOT = { has_dynamic_modifier = coi_alien_atomic_disruption_degraded }
+							NOT = { has_dynamic_modifier = coi_alien_atomic_disruption_critical }
+						}
+					}
+					set_variable = {
+						coi_alien_ai_operation_type = token:coi_alien_atomic_disruption
+					}
+				}
+				# First payload after the five-country reconnaissance sweep: archives
+				# are the core research loop and remain the preferred standing task.
+				else_if = {
+					limit = {
+						has_tech = coi_alien_institutional_behavior_prediction
+						has_done_agency_upgrade = coi_alien_upgrade_distributed_drone_cells
+						num_finished_operations = {
+							target = var:coi_alien_ai_operation_target
+							operation = coi_alien_harvest_project_archives
+							value < 1
+						}
+					}
+					set_variable = {
+						coi_alien_ai_operation_type = token:coi_alien_harvest_project_archives
+					}
+				}
+				# Scientist extraction is not an abduction raid. Its country trigger
+				# guarantees an eligible active scientist, controlled facility state,
+				# and no target cooldown.
+				else_if = {
+					limit = {
+						has_tech = coi_alien_deep_substitution_architecture
+						has_done_agency_upgrade = coi_alien_upgrade_distributed_drone_cells
+						var:coi_alien_ai_operation_target = {
+							coi_alien_target_has_extractable_scientist_trigger = yes
+						}
+						num_finished_operations = {
+							target = var:coi_alien_ai_operation_target
+							operation = coi_alien_extract_lead_scientist
+							value < 1
+						}
+					}
+					set_variable = {
+						coi_alien_ai_operation_type = token:coi_alien_extract_lead_scientist
+					}
+				}
+				# Direct sabotage is intentionally below reconnaissance, access, and
+				# research acquisition in the first-pass catalog.
+				else_if = {
+					limit = {
+						has_tech = coi_alien_cascading_failure_models
+						has_done_agency_upgrade = coi_alien_upgrade_distributed_drone_cells
+						var:coi_alien_ai_operation_target = {
+							coi_alien_target_has_disruptable_research_complex_trigger = yes
+						}
+						num_finished_operations = {
+							target = var:coi_alien_ai_operation_target
+							operation = coi_alien_disrupt_research_complex
+							value < 1
+						}
+					}
+					set_variable = {
+						coi_alien_ai_operation_type = token:coi_alien_disrupt_research_complex
+					}
+				}
+				else_if = {
+					limit = {
+						has_tech = coi_alien_cascading_failure_models
+						has_done_agency_upgrade = coi_alien_upgrade_distributed_drone_cells
+						var:coi_alien_ai_operation_target = {
+							coi_alien_target_has_cascading_fault_target_trigger = yes
+						}
+						num_finished_operations = {
+							target = var:coi_alien_ai_operation_target
+							operation = coi_alien_introduce_cascading_faults
+							value < 1
+						}
+					}
+					set_variable = {
+						coi_alien_ai_operation_type = token:coi_alien_introduce_cascading_faults
+					}
+				}
+				# Spoil evidence only while the target's investigation remains in the
+				# Anomalies or Suspicious tiers supported by the operation contract.
+				else_if = {
+					limit = {
+						var:coi_alien_ai_operation_target = {
+							OR = {
+								coi_alien_awareness_anomalies_trigger = yes
+								coi_alien_awareness_suspicious_trigger = yes
+							}
+						}
+						num_finished_operations = {
+							target = var:coi_alien_ai_operation_target
+							operation = coi_alien_spoil_the_evidence
+							value < 1
+						}
+					}
+					set_variable = {
+						coi_alien_ai_operation_type = token:coi_alien_spoil_the_evidence
+					}
+				}
+				# After every currently valid payload has had a first attempt, an
+				# eligible extraction interrupts the archive loop once per cooldown.
+				else_if = {
+					limit = {
+						has_tech = coi_alien_deep_substitution_architecture
+						has_done_agency_upgrade = coi_alien_upgrade_distributed_drone_cells
+						var:coi_alien_ai_operation_target = {
+							coi_alien_target_has_extractable_scientist_trigger = yes
+						}
+					}
+					set_variable = {
+						coi_alien_ai_operation_type = token:coi_alien_extract_lead_scientist
+					}
+				}
+				else_if = {
+					limit = {
+						has_tech = coi_alien_institutional_behavior_prediction
+						has_done_agency_upgrade = coi_alien_upgrade_distributed_drone_cells
+					}
+					set_variable = {
+						coi_alien_ai_operation_type = token:coi_alien_harvest_project_archives
+					}
+				}
+				# Before Distributed Drone Cells is ready, Spoil the Evidence is the
+				# only payload available after full access. Usually the global scorer
+				# will instead keep rotating to fresh survey targets until data = 5.
+				else_if = {
+					limit = {
+						var:coi_alien_ai_operation_target = {
+							OR = {
+								coi_alien_awareness_anomalies_trigger = yes
+								coi_alien_awareness_suspicious_trigger = yes
+							}
+						}
+					}
+					set_variable = {
+						coi_alien_ai_operation_type = token:coi_alien_spoil_the_evidence
+					}
+				}
+			}
+		}
+	}
+
+	set_country_flag = coi_alien_operation_ai_v1_initialized
+}

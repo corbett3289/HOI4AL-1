@@ -1,0 +1,37 @@
+### XAC country-scope hooks for focus availability and later crisis content.
+
+coi_alien_doctrine_unselected_trigger = {
+	NOT = { has_country_flag = coi_alien_doctrine_selected }
+}
+
+coi_alien_humanity_dominant_democratic_trigger = {
+	has_country_flag = coi_alien_humanity_dominant_democratic
+}
+
+coi_alien_humanity_dominant_fascism_trigger = {
+	has_country_flag = coi_alien_humanity_dominant_fascism
+}
+
+coi_alien_humanity_dominant_communism_trigger = {
+	has_country_flag = coi_alien_humanity_dominant_communism
+}
+
+coi_alien_humanity_dominant_non_aligned_trigger = {
+	has_country_flag = coi_alien_humanity_dominant_non_aligned
+}
+
+coi_alien_federation_response_trigger = {
+	has_country_flag = coi_alien_doctrine_galactic_federation
+}
+
+coi_alien_annihilation_response_trigger = {
+	has_country_flag = coi_alien_doctrine_annihilation
+}
+
+coi_alien_singular_sovereignty_response_trigger = {
+	has_country_flag = coi_alien_doctrine_singular_sovereignty
+}
+
+coi_alien_planetary_mandate_response_trigger = {
+	has_country_flag = coi_alien_doctrine_planetary_mandate
+}

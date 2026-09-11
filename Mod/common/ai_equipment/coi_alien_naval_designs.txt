@@ -1,0 +1,145 @@
+coi_alien_mothership_designs = {
+	category = naval
+	available_for = { XAC }
+	roles = { naval_carrier }
+	priority = {
+		factor = 5000
+		modifier = {
+			factor = 0
+			NOT = { has_tech = coi_alien_expeditionary_naval_architecture }
+		}
+	}
+
+	coi_alien_pale_horizon_design = {
+		priority = {
+			factor = 1000
+			modifier = {
+				factor = 0
+				has_tech = coi_alien_pale_horizon_phase_refit
+			}
+		}
+		role_icon_index = 7
+		history = yes
+		target_variant = {
+			match_value = 10000
+			type = coi_alien_mothership_hull_1
+			modules = {
+				fixed_coi_alien_hangar_slot_1 = coi_alien_phase_hangar_matrix
+				fixed_coi_alien_hangar_slot_2 = coi_alien_phase_hangar_matrix
+				fixed_coi_alien_drive_slot = coi_alien_gravitic_tide_drive
+				fixed_coi_alien_sensor_slot = coi_alien_spectral_sensor_web
+				fixed_coi_alien_lattice_slot = coi_alien_phase_lattice
+				fixed_coi_alien_point_defense_slot = coi_alien_point_defense_matrix
+				fixed_coi_alien_weapon_slot = coi_alien_lance_battery
+				coi_alien_auxiliary_slot_1 = coi_alien_phase_hangar_matrix
+				coi_alien_auxiliary_slot_2 = coi_alien_point_defense_matrix
+			}
+		}
+		allowed_modules = {
+			coi_alien_phase_hangar_matrix
+			coi_alien_point_defense_matrix
+			coi_alien_lance_battery
+			coi_alien_spectral_sensor_web
+			coi_alien_gravitic_tide_drive
+			coi_alien_phase_lattice
+		}
+	}
+
+	coi_alien_pale_horizon_phase_refit_design = {
+		priority = { factor = 2000 }
+		role_icon_index = 7
+		history = yes
+		target_variant = {
+			match_value = 12000
+			type = coi_alien_mothership_hull_2
+			modules = {
+				fixed_coi_alien_hangar_slot_1 = coi_alien_phase_hangar_matrix
+				fixed_coi_alien_hangar_slot_2 = coi_alien_phase_hangar_matrix
+				fixed_coi_alien_drive_slot = coi_alien_gravitic_tide_drive
+				fixed_coi_alien_sensor_slot = coi_alien_spectral_sensor_web
+				fixed_coi_alien_lattice_slot = coi_alien_phase_lattice
+				fixed_coi_alien_point_defense_slot = coi_alien_point_defense_matrix
+				fixed_coi_alien_weapon_slot = coi_alien_lance_battery
+				coi_alien_auxiliary_slot_1 = coi_alien_phase_hangar_matrix
+				coi_alien_auxiliary_slot_2 = coi_alien_point_defense_matrix
+			}
+		}
+		allowed_modules = {
+			coi_alien_phase_hangar_matrix
+			coi_alien_point_defense_matrix
+			coi_alien_lance_battery
+			coi_alien_spectral_sensor_web
+			coi_alien_gravitic_tide_drive
+			coi_alien_phase_lattice
+		}
+	}
+}
+
+coi_alien_escort_designs = {
+	category = naval
+	available_for = { XAC }
+	roles = { naval_screen naval_escort }
+	priority = {
+		factor = 6000
+		modifier = {
+			factor = 0
+			NOT = { has_tech = coi_alien_expeditionary_naval_architecture }
+		}
+	}
+
+	coi_alien_silent_current_escort_design = {
+		priority = {
+			factor = 1000
+			modifier = {
+				factor = 0
+				has_tech = coi_alien_silent_current_field_refit
+			}
+		}
+		role_icon_index = 2
+		history = yes
+		target_variant = {
+			match_value = 10000
+			type = coi_alien_escort_hull_1
+			modules = {
+				fixed_coi_alien_drive_slot = coi_alien_gravitic_tide_drive
+				fixed_coi_alien_sensor_slot = coi_alien_spectral_sensor_web
+				fixed_coi_alien_lattice_slot = coi_alien_phase_lattice
+				fixed_coi_alien_point_defense_slot = coi_alien_point_defense_matrix
+				fixed_coi_alien_weapon_slot = coi_alien_lance_battery
+				coi_alien_escort_auxiliary_slot = coi_alien_point_defense_matrix
+			}
+		}
+		allowed_modules = {
+			coi_alien_point_defense_matrix
+			coi_alien_lance_battery
+			coi_alien_spectral_sensor_web
+			coi_alien_gravitic_tide_drive
+			coi_alien_phase_lattice
+		}
+	}
+
+	coi_alien_silent_current_field_refit_design = {
+		priority = { factor = 2000 }
+		role_icon_index = 2
+		history = yes
+		target_variant = {
+			match_value = 12000
+			type = coi_alien_escort_hull_2
+			modules = {
+				fixed_coi_alien_drive_slot = coi_alien_gravitic_tide_drive
+				fixed_coi_alien_sensor_slot = coi_alien_spectral_sensor_web
+				fixed_coi_alien_lattice_slot = coi_alien_phase_lattice
+				fixed_coi_alien_point_defense_slot = coi_alien_point_defense_matrix
+				fixed_coi_alien_weapon_slot = coi_alien_lance_battery
+				coi_alien_escort_auxiliary_slot = coi_alien_point_defense_matrix
+			}
+		}
+		allowed_modules = {
+			coi_alien_point_defense_matrix
+			coi_alien_lance_battery
+			coi_alien_spectral_sensor_web
+			coi_alien_gravitic_tide_drive
+			coi_alien_phase_lattice
+		}
+	}
+}

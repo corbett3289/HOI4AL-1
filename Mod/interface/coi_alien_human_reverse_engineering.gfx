@@ -1,0 +1,20 @@
+spriteTypes = {
+	# Native 1.19.2 special-project cards and blueprints generated from the two
+	# dedicated ImageGen masters. Keep these four public GFX IDs stable.
+	spriteType = {
+		name = "GFX_coi_alien_sp_exotic_materials_characterization"
+		texturefile = "gfx/interface/special_project/project_icons/coi_alien_sp_exotic_materials_characterization.dds"
+	}
+	spriteType = {
+		name = "GFX_coi_alien_sp_exotic_materials_characterization_blueprint"
+		texturefile = "gfx/interface/special_project/blueprints/coi_alien_sp_exotic_materials_characterization_blueprint.dds"
+	}
+	spriteType = {
+		name = "GFX_coi_alien_sp_field_propulsion_reconstruction"
+		texturefile = "gfx/interface/special_project/project_icons/coi_alien_sp_field_propulsion_reconstruction.dds"
+	}
+	spriteType = {
+		name = "GFX_coi_alien_sp_field_propulsion_reconstruction_blueprint"
+		texturefile = "gfx/interface/special_project/blueprints/coi_alien_sp_field_propulsion_reconstruction_blueprint.dds"
+	}
+}

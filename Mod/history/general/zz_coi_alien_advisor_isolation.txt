@@ -1,0 +1,11 @@
+# Vanilla history/general/generic_advisors.txt creates human ideological and
+# intelligence advisors for every otherwise-uncovered static country. The
+# generated character tokens are not stable in saves, so isolate them by the
+# four fallback advisor traits instead. This new-game pass runs after the
+# vanilla file; a separately guarded XAC daily hook migrates existing saves.
+every_possible_country = {
+	limit = {
+		original_tag = XAC
+	}
+	coi_alien_isolate_human_fallback_advisors_effect = yes
+}

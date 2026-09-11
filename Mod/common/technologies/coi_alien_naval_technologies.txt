@@ -1,0 +1,81 @@
+technologies = {
+	# These are script-granted helper technologies, not research-tree roots.
+	# Intentionally omit folder/path entries, matching vanilla focus and special-
+	# project unlock technologies, so countrytechtreeview does not require custom
+	# grid boxes in the monolithic vanilla interface file.
+	coi_alien_expeditionary_naval_architecture = {
+		allow_branch = {
+			has_dlc = "Man the Guns"
+			original_tag = XAC
+		}
+		allow = {
+			always = no
+		}
+		enable_equipments = {
+			coi_alien_mothership_hull_1
+			coi_alien_escort_hull_1
+		}
+		enable_equipment_modules = {
+			coi_alien_gravitic_tide_drive
+			coi_alien_phase_hangar_matrix
+			coi_alien_lance_battery
+			coi_alien_point_defense_matrix
+			coi_alien_spectral_sensor_web
+			coi_alien_phase_lattice
+		}
+		research_cost = 4
+		start_year = 2100
+		categories = {
+			coi_alien_science
+			coi_alien_material_science
+			coi_alien_field_dynamics
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	coi_alien_needle_interceptor_program = {
+		allow_branch = {
+			original_tag = XAC
+		}
+		allow = {
+			always = no
+		}
+		enable_equipments = {
+			coi_alien_needle_equipment_1
+		}
+		research_cost = 3
+		start_year = 2100
+		categories = {
+			coi_alien_science
+			coi_alien_predictive_cognition
+		}
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	coi_alien_gleam_strike_program = {
+		allow_branch = {
+			original_tag = XAC
+		}
+		allow = {
+			always = no
+		}
+		enable_equipments = {
+			coi_alien_gleam_equipment_1
+		}
+		research_cost = 3
+		start_year = 2100
+		categories = {
+			coi_alien_science
+			coi_alien_coherent_energy
+		}
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}

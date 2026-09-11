@@ -1,0 +1,37 @@
+coi_alien_awareness_category = {
+	coi_alien_attempt_craft_interception = {
+		icon = coi_alien_discovery_anomaly
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			coi_alien_can_attempt_craft_interception_trigger = yes
+		}
+		available = {
+			coi_alien_can_attempt_craft_interception_trigger = yes
+			command_power > 24.9
+		}
+		cost = 0
+		days_remove = 30
+		cancel_if_not_visible = no
+		complete_effect = {
+			add_command_power = -25
+			set_country_flag = coi_alien_interception_program_active
+		}
+		remove_effect = {
+			custom_effect_tooltip = coi_alien_attempt_craft_interception_tt
+			hidden_effect = { coi_alien_resolve_craft_interception_effect = yes }
+		}
+		cancel_effect = {
+			clr_country_flag = coi_alien_interception_program_active
+			add_command_power = 12.5
+		}
+		ai_will_do = {
+			base = 2
+			modifier = { factor = 2 is_major = yes }
+			modifier = {
+				factor = 2
+				any_owned_state = { radar_station > 0 }
+			}
+			modifier = { factor = 2 date > 1945.1.1 }
+		}
+	}
+}

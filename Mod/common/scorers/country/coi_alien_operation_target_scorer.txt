@@ -1,0 +1,111 @@
+# THIS is each candidate country; FROM is the initiating XAC country.
+coi_alien_quiet_chorus_target_scorer = {
+	targets = {
+		target_array = global.countries
+
+		score = {
+			base = 100
+
+			modifier = {
+				OR = {
+					exists = no
+					original_tag = XAC
+					has_capitulated = yes
+					is_ally_with = FROM
+					NOT = { any_owned_state = { always = yes } }
+				}
+				factor = 0
+			}
+
+			# Survey Data is cumulative species-wide knowledge. Until the five-data
+			# threshold for Distributed Drone Cells is reached, rotate away from
+			# already-profiled countries and survey a fresh polity.
+			modifier = {
+				FROM = {
+					OR = {
+						NOT = { has_variable = coi_alien_survey_data }
+						check_variable = { coi_alien_survey_data < 5 }
+					}
+					has_operation_token = {
+						tag = PREV
+						token = coi_alien_token_surface_profile
+					}
+				}
+				factor = 0
+			}
+
+			modifier = {
+				FROM = {
+					OR = {
+						NOT = { has_variable = coi_alien_survey_data }
+						check_variable = { coi_alien_survey_data < 5 }
+					}
+					NOT = {
+						has_operation_token = {
+							tag = PREV
+							token = coi_alien_token_surface_profile
+						}
+					}
+				}
+				factor = 20.0
+			}
+
+			# Once human or scripted play has designated a landfall site, the
+			# reconnaissance service should converge on that polity.
+			modifier = {
+				has_country_flag = coi_alien_landfall_target
+				factor = 8.0
+			}
+
+			# Preserve built networks and access tokens instead of thrashing
+			# between targets at each monthly planning pulse.
+			modifier = {
+				check_variable = { id = coi_alien_ai_operation_target }
+				factor = 3.0
+			}
+
+			modifier = {
+				is_major = yes
+				factor = 2.0
+			}
+
+			modifier = {
+				FROM = {
+					has_operation_token = {
+						tag = PREV
+						token = coi_alien_token_surface_profile
+					}
+				}
+				factor = 1.25
+			}
+
+			modifier = {
+				FROM = {
+					has_operation_token = {
+						tag = PREV
+						token = coi_alien_token_institutional_access
+					}
+				}
+				factor = 1.5
+			}
+
+			modifier = {
+				FROM = {
+					has_operation_token = {
+						tag = PREV
+						token = coi_alien_token_research_access
+					}
+				}
+				factor = 2.0
+			}
+
+			modifier = {
+				has_dlc = "Gotterdammerung"
+				any_controlled_state = {
+					coi_alien_state_has_special_project_facility_trigger = yes
+				}
+				factor = 1.5
+			}
+		}
+	}
+}

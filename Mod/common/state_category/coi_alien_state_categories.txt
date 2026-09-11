@@ -1,0 +1,7 @@
+state_categories = {
+	coi_alien_arcology = {
+		# Fourteen slots are occupied at scenario start; two remain for expansion.
+		local_building_slots = 16
+		color = { 136 92 168 }
+	}
+}

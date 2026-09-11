@@ -1,0 +1,73 @@
+spriteTypes = {
+	# First-pass research and equipment aliases intentionally reuse the existing
+	# XAC ship/craft art. Replacing these aliases later will not touch tech data.
+	SpriteType = {
+		name = "GFX_coi_alien_adaptive_metamaterials_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_tech_adaptive_metamaterials.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_pale_horizon_phase_refit_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_pale_horizon.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_inertial_field_theory_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_tech_inertial_field_theory.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_silent_current_field_refit_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_silent_current.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_coherent_energy_control_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_tech_coherent_energy_control.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_gleam_resonance_package_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_gleam.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_predictive_computation_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_tech_predictive_computation.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_needle_guidance_lattice_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_needle.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_tic_tac_fabrication_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_tech_tic_tac_fabrication.dds"
+	}
+
+	SpriteType = {
+		name = "GFX_coi_alien_mothership_hull_2_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_pale_horizon.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_escort_hull_2_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_silent_current.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_needle_equipment_2_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_needle.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_needle_equipment_3_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_needle.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_needle_equipment_4_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_needle.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_gleam_equipment_2_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_gleam.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_gleam_equipment_3_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_gleam.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_gleam_equipment_4_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_gleam.dds"
+	}
+}

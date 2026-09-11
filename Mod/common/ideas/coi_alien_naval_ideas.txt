@@ -1,0 +1,42 @@
+ideas = {
+	country = {
+		coi_alien_mothership_anchorage_online = {
+			allowed = {
+				original_tag = XAC
+			}
+			removal_cost = -1
+			picture = coi_alien_mothership_anchorage_online
+			modifier = {
+				industrial_capacity_dockyard = 0.20
+				naval_speed_factor = 0.10
+				naval_coordination = 0.20
+				naval_detection = 0.20
+				air_mission_efficiency = 0.10
+			}
+		}
+
+		# HOI4 supports only one global convoy equipment class. This XAC-only
+		# envelope therefore carries the Tic Tac performance profile for
+		# every convoy_1 variant owned by XAC, including the expeditionary reserve.
+		coi_alien_tic_tac_transit_envelope = {
+			allowed = {
+				original_tag = XAC
+			}
+			removal_cost = -1
+			equipment_bonus = {
+				convoy_1 = {
+					instant = yes
+					naval_speed = 4
+					surface_visibility = -0.928571
+					reliability = 0.2375
+					max_strength = 9
+					max_organisation = 70
+					anti_air_attack = 149
+					lg_attack = 7
+					lg_armor_piercing = 19
+					build_cost_ic = 4
+				}
+			}
+		}
+	}
+}

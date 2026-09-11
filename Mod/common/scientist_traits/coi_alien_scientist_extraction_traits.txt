@@ -1,0 +1,12 @@
+### Temporary companion to `coi_alien_scientific_leadership_disrupted`.
+### It is applied only through the Strategic Removal event and is removed by
+### `coi_alien_scientist_extraction.5` after 180 days. The vanilla icon avoids
+### an unresolved GFX key while bespoke extraction art remains out of scope.
+
+coi_alien_scientist_breakthrough_disrupted = {
+	icon = GFX_scientist_trait_brilliant_theorist
+	available = { always = yes }
+	modifier = {
+		scientist_breakthrough_bonus_factor = -0.15
+	}
+}

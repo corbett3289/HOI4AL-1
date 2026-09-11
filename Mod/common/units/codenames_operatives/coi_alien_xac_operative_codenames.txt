@@ -1,0 +1,21 @@
+COI_ALIEN_XAC_OPERATIVE_CODENAMES = {
+	name = coi_alien_xac_operative_codename_theme
+	for_countries = { XAC }
+	type = codename
+	fallback_name = "Signal %d"
+
+	unique = {
+		"Far Signal"
+		"Still Light"
+		"Third Voice"
+		"Cold Meridian"
+		"Glass Rain"
+		"Null Star"
+		"Silent Vector"
+		"Deep Listener"
+		"Last Reflection"
+		"Dark Current"
+		"Empty Shore"
+		"Unblinking Eye"
+	}
+}

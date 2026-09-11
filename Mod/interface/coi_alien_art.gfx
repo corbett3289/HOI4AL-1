@@ -1,0 +1,26 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_coi_alien_pale_horizon"
+		texturefile = "gfx/interface/coi_alien/coi_alien_pale_horizon.dds"
+	}
+	spriteType = {
+		name = "GFX_coi_alien_silent_current"
+		texturefile = "gfx/interface/coi_alien/coi_alien_silent_current.dds"
+	}
+	spriteType = {
+		name = "GFX_coi_alien_needle"
+		texturefile = "gfx/interface/coi_alien/coi_alien_needle.dds"
+	}
+	spriteType = {
+		name = "GFX_coi_alien_gleam"
+		texturefile = "gfx/interface/coi_alien/coi_alien_gleam.dds"
+	}
+	spriteType = {
+		name = "GFX_coi_alien_anchorage"
+		texturefile = "gfx/interface/coi_alien/coi_alien_anchorage.dds"
+	}
+	spriteType = {
+		name = "GFX_coi_alien_landfall"
+		texturefile = "gfx/event_pictures/coi_alien_landfall.dds"
+	}
+}

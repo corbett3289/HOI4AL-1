@@ -1,0 +1,627 @@
+equipments = {
+	coi_alien_mothership_hull = {
+		year = 2100
+		is_archetype = yes
+		is_buildable = no
+		type = carrier
+		sprite = coi_alien_mothership_hull
+		group_by = archetype
+		priority = 5000
+		interface_category = interface_category_capital_ships
+		max_dockyard_factories = 10
+
+		can_be_produced = {
+			has_dlc = "Man the Guns"
+			original_tag = XAC
+			has_idea = coi_alien_mothership_anchorage_online
+		}
+
+		module_slots = {
+			fixed_coi_alien_hangar_slot_1 = {
+				required = yes
+				allowed_module_categories = { coi_alien_ship_hangar }
+				gfx = ship_deck_space_slot
+			}
+			fixed_coi_alien_hangar_slot_2 = {
+				required = no
+				allowed_module_categories = { coi_alien_ship_hangar coi_alien_ship_lattice }
+				gfx = ship_deck_space_slot
+			}
+			fixed_coi_alien_drive_slot = {
+				required = yes
+				allowed_module_categories = { coi_alien_ship_drive }
+			}
+			fixed_coi_alien_sensor_slot = {
+				required = yes
+				allowed_module_categories = { coi_alien_ship_sensor }
+			}
+			fixed_coi_alien_lattice_slot = {
+				required = yes
+				allowed_module_categories = { coi_alien_ship_lattice }
+			}
+			fixed_coi_alien_point_defense_slot = {
+				required = yes
+				allowed_module_categories = { coi_alien_ship_point_defense }
+			}
+			fixed_coi_alien_weapon_slot = {
+				required = yes
+				allowed_module_categories = { coi_alien_ship_lance }
+			}
+			coi_alien_auxiliary_slot_1 = {
+				required = no
+				allowed_module_categories = {
+					coi_alien_ship_hangar
+					coi_alien_ship_point_defense
+					coi_alien_ship_lance
+					coi_alien_ship_sensor
+				}
+			}
+			coi_alien_auxiliary_slot_2 = {
+				required = no
+				allowed_module_categories = {
+					coi_alien_ship_hangar
+					coi_alien_ship_point_defense
+					coi_alien_ship_lance
+					coi_alien_ship_sensor
+				}
+			}
+		}
+
+		module_count_limit = {
+			category = coi_alien_ship_drive
+			count < 2
+		}
+		module_count_limit = {
+			category = coi_alien_ship_lattice
+			count < 2
+		}
+
+		default_modules = {
+			fixed_coi_alien_hangar_slot_1 = coi_alien_phase_hangar_matrix
+			fixed_coi_alien_hangar_slot_2 = coi_alien_phase_hangar_matrix
+			fixed_coi_alien_drive_slot = coi_alien_gravitic_tide_drive
+			fixed_coi_alien_sensor_slot = coi_alien_spectral_sensor_web
+			fixed_coi_alien_lattice_slot = coi_alien_phase_lattice
+			fixed_coi_alien_point_defense_slot = coi_alien_point_defense_matrix
+			fixed_coi_alien_weapon_slot = coi_alien_lance_battery
+			coi_alien_auxiliary_slot_1 = coi_alien_phase_hangar_matrix
+			coi_alien_auxiliary_slot_2 = coi_alien_point_defense_matrix
+		}
+
+		lg_armor_piercing = 0
+		lg_attack = 0
+		hg_armor_piercing = 0
+		hg_attack = 0
+		torpedo_attack = 0
+		sub_attack = 5
+		anti_air_attack = 0
+		armor_value = 0
+		surface_detection = 90
+		sub_detection = 35
+		surface_visibility = 65
+		naval_speed = 32
+		reliability = 0.95
+		naval_range = 15000
+		max_strength = 1400
+		fuel_consumption = 180
+		offensive_weapons = yes
+		build_cost_ic = 18000
+		resources = {
+			steel = 8
+			chromium = 6
+			aluminium = 4
+		}
+		manpower = 2400
+		naval_dominance_factor = 1200
+		naval_weather_penalty_factor = 1
+	}
+
+	coi_alien_mothership_hull_1 = {
+		abbreviation = "xam"
+		year = 2100
+		visual_level = 1
+		archetype = coi_alien_mothership_hull
+		priority = 5000
+		module_slots = inherit
+		default_modules = {
+			fixed_coi_alien_hangar_slot_1 = coi_alien_phase_hangar_matrix
+			fixed_coi_alien_hangar_slot_2 = coi_alien_phase_hangar_matrix
+			fixed_coi_alien_drive_slot = coi_alien_gravitic_tide_drive
+			fixed_coi_alien_sensor_slot = coi_alien_spectral_sensor_web
+			fixed_coi_alien_lattice_slot = coi_alien_phase_lattice
+			fixed_coi_alien_point_defense_slot = coi_alien_point_defense_matrix
+			fixed_coi_alien_weapon_slot = coi_alien_lance_battery
+			coi_alien_auxiliary_slot_1 = coi_alien_phase_hangar_matrix
+			coi_alien_auxiliary_slot_2 = coi_alien_point_defense_matrix
+		}
+	}
+
+	coi_alien_mothership_hull_2 = {
+		abbreviation = "xan"
+		year = 1937
+		# Reuse the current Pale Horizon 3D stand-in until a second model exists.
+		visual_level = 1
+		archetype = coi_alien_mothership_hull
+		priority = 5001
+		parent = coi_alien_mothership_hull_1
+		module_slots = inherit
+		default_modules = {
+			fixed_coi_alien_hangar_slot_1 = coi_alien_phase_hangar_matrix
+			fixed_coi_alien_hangar_slot_2 = coi_alien_phase_hangar_matrix
+			fixed_coi_alien_drive_slot = coi_alien_gravitic_tide_drive
+			fixed_coi_alien_sensor_slot = coi_alien_spectral_sensor_web
+			fixed_coi_alien_lattice_slot = coi_alien_phase_lattice
+			fixed_coi_alien_point_defense_slot = coi_alien_point_defense_matrix
+			fixed_coi_alien_weapon_slot = coi_alien_lance_battery
+			coi_alien_auxiliary_slot_1 = coi_alien_phase_hangar_matrix
+			coi_alien_auxiliary_slot_2 = coi_alien_point_defense_matrix
+		}
+		naval_range = 16500
+		naval_speed = 34
+		reliability = 0.96
+		max_strength = 1550
+		build_cost_ic = 19500
+		naval_dominance_factor = 1320
+	}
+
+	coi_alien_escort_hull = {
+		year = 2100
+		is_archetype = yes
+		is_buildable = no
+		type = screen_ship
+		sprite = coi_alien_escort_hull
+		alias = destroyer
+		group_by = archetype
+		priority = 5100
+		interface_category = interface_category_screen_ships
+		max_dockyard_factories = 5
+
+		can_be_produced = {
+			has_dlc = "Man the Guns"
+			original_tag = XAC
+			has_idea = coi_alien_mothership_anchorage_online
+		}
+
+		module_slots = {
+			fixed_coi_alien_drive_slot = {
+				required = yes
+				allowed_module_categories = { coi_alien_ship_drive }
+			}
+			fixed_coi_alien_sensor_slot = {
+				required = yes
+				allowed_module_categories = { coi_alien_ship_sensor }
+			}
+			fixed_coi_alien_lattice_slot = {
+				required = yes
+				allowed_module_categories = { coi_alien_ship_lattice }
+			}
+			fixed_coi_alien_point_defense_slot = {
+				required = yes
+				allowed_module_categories = { coi_alien_ship_point_defense }
+			}
+			fixed_coi_alien_weapon_slot = {
+				required = yes
+				allowed_module_categories = { coi_alien_ship_lance }
+			}
+			coi_alien_escort_auxiliary_slot = {
+				required = no
+				allowed_module_categories = {
+					coi_alien_ship_point_defense
+					coi_alien_ship_lance
+					coi_alien_ship_sensor
+				}
+			}
+		}
+
+		module_count_limit = {
+			category = coi_alien_ship_drive
+			count < 2
+		}
+		module_count_limit = {
+			category = coi_alien_ship_lattice
+			count < 2
+		}
+
+		default_modules = {
+			fixed_coi_alien_drive_slot = coi_alien_gravitic_tide_drive
+			fixed_coi_alien_sensor_slot = coi_alien_spectral_sensor_web
+			fixed_coi_alien_lattice_slot = coi_alien_phase_lattice
+			fixed_coi_alien_point_defense_slot = coi_alien_point_defense_matrix
+			fixed_coi_alien_weapon_slot = coi_alien_lance_battery
+			coi_alien_escort_auxiliary_slot = coi_alien_point_defense_matrix
+		}
+
+		lg_armor_piercing = 0
+		lg_attack = 0
+		hg_armor_piercing = 0
+		hg_attack = 0
+		torpedo_attack = 0
+		sub_attack = 10
+		anti_air_attack = 0
+		armor_value = 0
+		surface_detection = 65
+		sub_detection = 30
+		surface_visibility = 8
+		naval_speed = 38
+		reliability = 0.94
+		naval_range = 12000
+		max_strength = 180
+		fuel_consumption = 35
+		offensive_weapons = yes
+		build_cost_ic = 3200
+		resources = {
+			steel = 4
+			chromium = 3
+			aluminium = 2
+		}
+		manpower = 180
+		naval_dominance_factor = 150
+		naval_weather_penalty_factor = 1
+	}
+
+	coi_alien_escort_hull_1 = {
+		abbreviation = "xae"
+		year = 2100
+		visual_level = 1
+		archetype = coi_alien_escort_hull
+		priority = 5100
+		module_slots = inherit
+		default_modules = {
+			fixed_coi_alien_drive_slot = coi_alien_gravitic_tide_drive
+			fixed_coi_alien_sensor_slot = coi_alien_spectral_sensor_web
+			fixed_coi_alien_lattice_slot = coi_alien_phase_lattice
+			fixed_coi_alien_point_defense_slot = coi_alien_point_defense_matrix
+			fixed_coi_alien_weapon_slot = coi_alien_lance_battery
+			coi_alien_escort_auxiliary_slot = coi_alien_point_defense_matrix
+		}
+	}
+
+	coi_alien_escort_hull_2 = {
+		abbreviation = "xaf"
+		year = 1937
+		# Reuse the current Silent Current 3D stand-in until a second model exists.
+		visual_level = 1
+		archetype = coi_alien_escort_hull
+		priority = 5101
+		parent = coi_alien_escort_hull_1
+		module_slots = inherit
+		default_modules = {
+			fixed_coi_alien_drive_slot = coi_alien_gravitic_tide_drive
+			fixed_coi_alien_sensor_slot = coi_alien_spectral_sensor_web
+			fixed_coi_alien_lattice_slot = coi_alien_phase_lattice
+			fixed_coi_alien_point_defense_slot = coi_alien_point_defense_matrix
+			fixed_coi_alien_weapon_slot = coi_alien_lance_battery
+			coi_alien_escort_auxiliary_slot = coi_alien_point_defense_matrix
+		}
+		naval_range = 13500
+		naval_speed = 41
+		reliability = 0.95
+		max_strength = 210
+		build_cost_ic = 3500
+		naval_dominance_factor = 170
+	}
+
+	# Non-modular carrier craft intentionally mirror the vanilla mothership
+	# pattern, so they remain usable with or without the aircraft designer DLC.
+	coi_alien_needle_equipment = {
+		year = 2100
+		is_archetype = yes
+		is_buildable = no
+		picture = archetype_fighter_equipment
+		type = { fighter }
+		allowed_types = { fighter interceptor }
+		ai_type = cv_fighter
+		carrier_capable = yes
+		allow_mission_type = training
+		group_by = archetype
+		sprite = coi_alien_needle
+		air_map_icon_frame = 4
+		interface_category = interface_category_air
+		interface_overview_category_index = 1
+		default_carrier_composition_weight = 2
+		max_military_factories = 15
+		can_be_produced = {
+			original_tag = XAC
+			has_idea = coi_alien_mothership_anchorage_online
+		}
+	}
+
+	coi_alien_needle_equipment_1 = {
+		year = 2100
+		archetype = coi_alien_needle_equipment
+		priority = 500
+		carrier_capable = yes
+		allow_mission_type = {
+			air_superiority
+			interception
+			naval_patrol
+		}
+		air_range = 4800
+		maximum_speed = 2100
+		air_agility = 120
+		air_attack = 92
+		air_defence = 52
+		naval_strike_attack = 12
+		naval_strike_targetting = 18
+		surface_detection = 45
+		sub_detection = 12
+		air_superiority = 2
+		reliability = 0.96
+		build_cost_ic = 72
+		resources = {
+			aluminium = 5
+			chromium = 4
+			tungsten = 2
+		}
+		lend_lease_cost = 18
+		manpower = 8
+		fuel_consumption = 0.72
+	}
+
+	coi_alien_needle_equipment_2 = {
+		year = 1937
+		archetype = coi_alien_needle_equipment
+		parent = coi_alien_needle_equipment_1
+		priority = 501
+		carrier_capable = yes
+		allow_mission_type = {
+			air_superiority
+			interception
+			naval_patrol
+		}
+		air_range = 5200
+		maximum_speed = 2300
+		air_agility = 128
+		air_attack = 102
+		air_defence = 58
+		naval_strike_attack = 14
+		naval_strike_targetting = 20
+		surface_detection = 50
+		sub_detection = 14
+		air_superiority = 2.2
+		reliability = 0.97
+		build_cost_ic = 78
+		resources = {
+			aluminium = 5
+			chromium = 4
+			tungsten = 2
+		}
+		lend_lease_cost = 20
+		manpower = 8
+		fuel_consumption = 0.78
+	}
+
+	# Molecularly printed generations retain the mature flight pattern while
+	# lowering both factory work and discrete strategic-material requirements.
+	coi_alien_needle_equipment_3 = {
+		year = 1936
+		archetype = coi_alien_needle_equipment
+		parent = coi_alien_needle_equipment_2
+		priority = 502
+		carrier_capable = yes
+		allow_mission_type = {
+			air_superiority
+			interception
+			naval_patrol
+		}
+		air_range = 5200
+		maximum_speed = 2300
+		air_agility = 128
+		air_attack = 102
+		air_defence = 58
+		naval_strike_attack = 14
+		naval_strike_targetting = 20
+		surface_detection = 50
+		sub_detection = 14
+		air_superiority = 2.2
+		reliability = 0.97
+		build_cost_ic = 70
+		resources = {
+			aluminium = 4
+			chromium = 4
+			tungsten = 2
+		}
+		lend_lease_cost = 20
+		manpower = 8
+		fuel_consumption = 0.78
+	}
+
+	coi_alien_needle_equipment_4 = {
+		year = 1936
+		archetype = coi_alien_needle_equipment
+		parent = coi_alien_needle_equipment_3
+		priority = 503
+		carrier_capable = yes
+		allow_mission_type = {
+			air_superiority
+			interception
+			naval_patrol
+		}
+		air_range = 5200
+		maximum_speed = 2300
+		air_agility = 128
+		air_attack = 102
+		air_defence = 58
+		naval_strike_attack = 14
+		naval_strike_targetting = 20
+		surface_detection = 50
+		sub_detection = 14
+		air_superiority = 2.2
+		reliability = 0.97
+		build_cost_ic = 63
+		resources = {
+			aluminium = 4
+			chromium = 3
+			tungsten = 2
+		}
+		lend_lease_cost = 20
+		manpower = 8
+		fuel_consumption = 0.78
+	}
+
+	coi_alien_gleam_equipment = {
+		year = 2100
+		is_archetype = yes
+		is_buildable = no
+		picture = archetype_CAS_equipment
+		type = { cas }
+		allowed_types = { cas naval_bomber }
+		ai_type = cv_cas
+		carrier_capable = yes
+		allow_mission_type = training
+		group_by = archetype
+		sprite = coi_alien_gleam
+		air_map_icon_frame = 2
+		interface_category = interface_category_air
+		interface_overview_category_index = 0
+		default_carrier_composition_weight = 1
+		max_military_factories = 15
+		can_be_produced = {
+			original_tag = XAC
+			has_idea = coi_alien_mothership_anchorage_online
+		}
+	}
+
+	coi_alien_gleam_equipment_1 = {
+		year = 2100
+		archetype = coi_alien_gleam_equipment
+		priority = 510
+		carrier_capable = yes
+		allow_mission_type = {
+			cas
+			naval_bomber
+			port_strike
+			attack_logistics
+			naval_patrol
+		}
+		air_range = 5200
+		maximum_speed = 1450
+		air_agility = 74
+		air_attack = 42
+		air_defence = 48
+		air_ground_attack = 76
+		naval_strike_attack = 82
+		naval_strike_targetting = 24
+		surface_detection = 62
+		sub_detection = 26
+		air_superiority = 1
+		reliability = 0.95
+		build_cost_ic = 104
+		resources = {
+			aluminium = 6
+			chromium = 4
+			tungsten = 3
+		}
+		lend_lease_cost = 22
+		manpower = 12
+		fuel_consumption = 1.05
+	}
+
+	coi_alien_gleam_equipment_2 = {
+		year = 1937
+		archetype = coi_alien_gleam_equipment
+		parent = coi_alien_gleam_equipment_1
+		priority = 511
+		carrier_capable = yes
+		allow_mission_type = {
+			cas
+			naval_bomber
+			port_strike
+			attack_logistics
+			naval_patrol
+		}
+		air_range = 5600
+		maximum_speed = 1550
+		air_agility = 80
+		air_attack = 46
+		air_defence = 54
+		air_ground_attack = 86
+		naval_strike_attack = 92
+		naval_strike_targetting = 26
+		surface_detection = 68
+		sub_detection = 30
+		air_superiority = 1.1
+		reliability = 0.96
+		build_cost_ic = 112
+		resources = {
+			aluminium = 6
+			chromium = 4
+			tungsten = 3
+		}
+		lend_lease_cost = 24
+		manpower = 12
+		fuel_consumption = 1.12
+	}
+
+	coi_alien_gleam_equipment_3 = {
+		year = 1936
+		archetype = coi_alien_gleam_equipment
+		parent = coi_alien_gleam_equipment_2
+		priority = 512
+		carrier_capable = yes
+		allow_mission_type = {
+			cas
+			naval_bomber
+			port_strike
+			attack_logistics
+			naval_patrol
+		}
+		air_range = 5600
+		maximum_speed = 1550
+		air_agility = 80
+		air_attack = 46
+		air_defence = 54
+		air_ground_attack = 86
+		naval_strike_attack = 92
+		naval_strike_targetting = 26
+		surface_detection = 68
+		sub_detection = 30
+		air_superiority = 1.1
+		reliability = 0.96
+		build_cost_ic = 101
+		resources = {
+			aluminium = 5
+			chromium = 4
+			tungsten = 3
+		}
+		lend_lease_cost = 24
+		manpower = 12
+		fuel_consumption = 1.12
+	}
+
+	coi_alien_gleam_equipment_4 = {
+		year = 1936
+		archetype = coi_alien_gleam_equipment
+		parent = coi_alien_gleam_equipment_3
+		priority = 513
+		carrier_capable = yes
+		allow_mission_type = {
+			cas
+			naval_bomber
+			port_strike
+			attack_logistics
+			naval_patrol
+		}
+		air_range = 5600
+		maximum_speed = 1550
+		air_agility = 80
+		air_attack = 46
+		air_defence = 54
+		air_ground_attack = 86
+		naval_strike_attack = 92
+		naval_strike_targetting = 26
+		surface_detection = 68
+		sub_detection = 30
+		air_superiority = 1.1
+		reliability = 0.96
+		build_cost_ic = 91
+		resources = {
+			aluminium = 5
+			chromium = 3
+			tungsten = 3
+		}
+		lend_lease_cost = 24
+		manpower = 12
+		fuel_consumption = 1.12
+	}
+}

@@ -1,0 +1,32 @@
+### Human attempts to turn classified confirmation into physical evidence.
+
+coi_alien_has_interception_infrastructure_trigger = {
+	OR = {
+		is_major = yes
+		any_owned_state = { radar_station > 0 }
+		any_owned_state = { air_base > 1 }
+	}
+}
+
+coi_alien_can_attempt_craft_interception_trigger = {
+	exists = yes
+	NOT = { tag = XAC }
+	coi_alien_framework_active_trigger = yes
+	coi_alien_awareness_at_least_confirmed_trigger = yes
+	has_country_flag = coi_alien_special_access_program
+	coi_alien_has_interception_infrastructure_trigger = yes
+	NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+	NOT = { has_country_flag = coi_alien_interception_program_active }
+	NOT = { has_country_flag = coi_alien_interception_program_cooldown }
+}
+
+### The familiar 1947 American incident is an optional historical echo rather
+### than a forced calendar event. It only changes weights inside an operation
+### the United States has actually earned the ability to undertake.
+coi_alien_1947_recovery_echo_trigger = {
+	tag = USA
+	date > 1947.1.1
+	date < 1948.1.1
+	NOT = { has_global_flag = coi_alien_post_magenta_recovery_recorded }
+	NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+}

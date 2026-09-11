@@ -1,0 +1,93 @@
+coi_alien_branch_quiet_chorus = {
+	coi_alien_upgrade_mimetic_interface_lab = {
+		picture = GFX_coi_alien_upgrade_mimetic_interface_lab
+		sound = Spy_Agency_Operations_Upgrades_Confirm
+
+		visible = {
+			original_tag = XAC
+			has_dlc = "La Resistance"
+		}
+
+		available = {
+			has_completed_focus = coi_alien_observe_divided_world
+			custom_trigger_tooltip = {
+				tooltip = coi_alien_requires_survey_data_1_tt
+				check_variable = { coi_alien_survey_data > 0 }
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+
+		# AGENCY_UPGRADE_DAYS is 30 in HOI4 1.19.x.
+		modifiers_during_progress = {
+			civilian_factory_use = 1
+		}
+
+		level = {
+			modifier = {
+				operation_infiltrate_risk = -0.05
+			}
+		}
+	}
+
+	coi_alien_upgrade_cognitive_translation_matrix = {
+		picture = GFX_coi_alien_upgrade_cognitive_translation_matrix
+		sound = Spy_Agency_Operations_Upgrades_Confirm
+
+		visible = {
+			original_tag = XAC
+			has_dlc = "La Resistance"
+		}
+
+		available = {
+			has_done_agency_upgrade = coi_alien_upgrade_mimetic_interface_lab
+			has_completed_focus = coi_alien_classify_human_order
+			custom_trigger_tooltip = {
+				tooltip = coi_alien_requires_survey_data_3_tt
+				check_variable = { coi_alien_survey_data > 2 }
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+
+		modifiers_during_progress = {
+			civilian_factory_use = 1
+		}
+
+		level = {
+			modifier = {
+				operation_steal_tech_outcome = 0.10
+			}
+		}
+	}
+
+	coi_alien_upgrade_distributed_drone_cells = {
+		picture = GFX_coi_alien_upgrade_distributed_drone_cells
+		sound = Spy_Agency_Operations_Upgrades_Confirm
+
+		visible = {
+			original_tag = XAC
+			has_dlc = "La Resistance"
+		}
+
+		available = {
+			has_done_agency_upgrade = coi_alien_upgrade_cognitive_translation_matrix
+			custom_trigger_tooltip = {
+				tooltip = coi_alien_requires_survey_data_5_tt
+				check_variable = { coi_alien_survey_data > 4 }
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+
+		modifiers_during_progress = {
+			civilian_factory_use = 1
+		}
+
+		level = {
+			modifier = {
+				operative_slot = 1
+			}
+		}
+	}
+}

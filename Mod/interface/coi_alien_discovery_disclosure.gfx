@@ -1,0 +1,104 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_decision_category_coi_alien_discovery"
+		texturefile = "gfx/interface/coi_alien/coi_alien_decision_category_discovery.dds"
+	}
+	spriteType = {
+		name = "GFX_decision_coi_alien_discovery_anomaly"
+		texturefile = "gfx/interface/coi_alien/coi_alien_decision_discovery_anomaly.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_coi_alien_discovery_anomaly"
+		texturefile = "gfx/event_pictures/coi_alien_discovery_anomaly.dds"
+	}
+
+	spriteType = {
+		name = "GFX_decision_coi_alien_disclosure_secrecy"
+		texturefile = "gfx/interface/coi_alien/coi_alien_decision_disclosure_secrecy.dds"
+	}
+	spriteType = {
+		name = "GFX_idea_coi_alien_disclosure_secrecy"
+		texturefile = "gfx/interface/ideas/coi_alien_disclosure_secrecy.dds"
+	}
+	spriteType = {
+		name = "GFX_decision_coi_alien_disclosure_managed"
+		texturefile = "gfx/interface/coi_alien/coi_alien_decision_disclosure_managed.dds"
+	}
+	spriteType = {
+		name = "GFX_idea_coi_alien_disclosure_managed"
+		texturefile = "gfx/interface/ideas/coi_alien_disclosure_managed.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_coi_alien_disclosure_managed"
+		texturefile = "gfx/event_pictures/coi_alien_disclosure_managed.dds"
+	}
+	spriteType = {
+		name = "GFX_decision_coi_alien_disclosure_international"
+		texturefile = "gfx/interface/coi_alien/coi_alien_decision_disclosure_international.dds"
+	}
+	spriteType = {
+		name = "GFX_idea_coi_alien_disclosure_international"
+		texturefile = "gfx/interface/ideas/coi_alien_disclosure_international.dds"
+	}
+	spriteType = {
+		name = "GFX_decision_coi_alien_disclosure_open_files"
+		texturefile = "gfx/interface/coi_alien/coi_alien_decision_disclosure_open_files.dds"
+	}
+	spriteType = {
+		name = "GFX_idea_coi_alien_disclosure_open_files"
+		texturefile = "gfx/interface/ideas/coi_alien_disclosure_open_files.dds"
+	}
+
+	spriteType = {
+		name = "GFX_report_event_coi_alien_magenta_recovery"
+		texturefile = "gfx/event_pictures/coi_alien_magenta_recovery.dds"
+	}
+	spriteType = {
+		name = "GFX_idea_coi_alien_magenta_recovery"
+		texturefile = "gfx/interface/ideas/coi_alien_magenta_recovery.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_coi_alien_vatican_reliquary"
+		texturefile = "gfx/event_pictures/coi_alien_vatican_reliquary.dds"
+	}
+	spriteType = {
+		name = "GFX_idea_coi_alien_vatican_reliquary"
+		texturefile = "gfx/interface/ideas/coi_alien_vatican_reliquary.dds"
+	}
+
+	spriteType = {
+		name = "GFX_decision_category_coi_alien_catastrophic_disclosure"
+		texturefile = "gfx/interface/coi_alien/coi_alien_decision_category_catastrophic_disclosure.dds"
+	}
+	spriteType = {
+		name = "GFX_decision_coi_alien_catastrophic_disclosure"
+		texturefile = "gfx/interface/coi_alien/coi_alien_decision_catastrophic_disclosure.dds"
+	}
+	spriteType = {
+		name = "GFX_idea_coi_alien_catastrophic_disclosure"
+		texturefile = "gfx/interface/ideas/coi_alien_catastrophic_disclosure.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_coi_alien_catastrophic_disclosure"
+		texturefile = "gfx/event_pictures/coi_alien_catastrophic_disclosure.dds"
+	}
+	spriteType = {
+		name = "GFX_news_event_coi_alien_catastrophic_disclosure"
+		texturefile = "gfx/event_pictures/coi_alien_catastrophic_disclosure_news.dds"
+	}
+
+	### Recovery events reuse the matching cinematic masters through separate
+	### namespaced sprite contracts.
+	spriteType = {
+		name = "GFX_report_event_coi_alien_recovery_debris"
+		texturefile = "gfx/event_pictures/coi_alien_magenta_recovery.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_coi_alien_recovery_craft"
+		texturefile = "gfx/event_pictures/coi_alien_magenta_recovery.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_coi_alien_recovery_public_crash"
+		texturefile = "gfx/event_pictures/coi_alien_catastrophic_disclosure.dds"
+	}
+}

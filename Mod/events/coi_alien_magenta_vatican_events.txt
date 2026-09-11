@@ -1,0 +1,132 @@
+add_namespace = coi_alien_magenta_vatican
+
+### Italy decides whether the aligned German government receives the RS/33
+### dossier and limited samples. Historical AI always shares; players choose.
+country_event = {
+	id = coi_alien_magenta_vatican.1
+	title = coi_alien_magenta_vatican.1.t
+	desc = coi_alien_magenta_vatican.1.desc
+	picture = GFX_report_event_coi_alien_magenta_recovery
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = coi_alien_magenta_vatican.1.a
+		ai_chance = {
+			base = 85
+			modifier = {
+				factor = 10
+				is_historical_focus_on = yes
+			}
+		}
+		custom_effect_tooltip = coi_alien_magenta_share_germany_tt
+		hidden_effect = { coi_alien_share_rs33_with_germany_effect = yes }
+	}
+
+	option = {
+		name = coi_alien_magenta_vatican.1.b
+		ai_chance = {
+			base = 15
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+		custom_effect_tooltip = coi_alien_magenta_withhold_germany_tt
+		hidden_effect = {
+			set_country_flag = coi_alien_magenta_german_sharing_resolved
+			set_country_flag = coi_alien_magenta_german_dossier_withheld
+			add_political_power = -75
+			add_stability = -0.02
+			GER = {
+				add_opinion_modifier = {
+					target = ITA
+					modifier = refused_help
+				}
+			}
+		}
+	}
+}
+
+### German receipt notification. Samples unlock fragment-level work only; the
+### primary craft and its damaged-craft evidence flag remain in Lombardy.
+country_event = {
+	id = coi_alien_magenta_vatican.2
+	title = coi_alien_magenta_vatican.2.t
+	desc = coi_alien_magenta_vatican.2.desc
+	picture = GFX_report_event_coi_alien_magenta_recovery
+	is_triggered_only = yes
+
+	option = { name = coi_alien_magenta_vatican.2.a }
+}
+
+### Post-catastrophe Holy See reckoning. Until this event, the independent
+### global vault survives occupation and annexation without disclosing itself.
+country_event = {
+	id = coi_alien_magenta_vatican.3
+	title = coi_alien_magenta_vatican.3.t
+	desc = coi_alien_magenta_vatican.3.desc
+	picture = GFX_report_event_coi_alien_vatican_reliquary
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = coi_alien_magenta_vatican.3.a
+		ai_chance = { base = 20 }
+		set_global_flag = coi_alien_vatican_reckoning_resolved
+		set_global_flag = coi_alien_vatican_reckoning_denial
+		set_country_flag = coi_alien_vatican_reckoning_host
+		add_political_power = 25
+		add_stability = -0.01
+	}
+
+	option = {
+		name = coi_alien_magenta_vatican.3.b
+		ai_chance = { base = 60 }
+		set_global_flag = coi_alien_vatican_reckoning_resolved
+		set_global_flag = coi_alien_vatican_reckoning_reinterpretation
+		set_country_flag = coi_alien_vatican_reckoning_host
+		add_stability = 0.03
+	}
+
+	option = {
+		name = coi_alien_magenta_vatican.3.c
+		ai_chance = { base = 20 }
+		set_global_flag = coi_alien_vatican_reckoning_resolved
+		set_global_flag = coi_alien_vatican_reliquary_opened
+		clr_global_flag = coi_alien_vatican_archive_sealed
+		if = {
+			limit = { country_exists = PAP }
+			PAP = {
+				if = {
+					limit = { has_idea = coi_alien_vatican_sealed_reliquary }
+					remove_ideas = coi_alien_vatican_sealed_reliquary
+				}
+			}
+		}
+		set_country_flag = coi_alien_vatican_reckoning_host
+		add_political_power = 50
+		add_stability = -0.03
+		hidden_effect = { coi_alien_news_record_vatican_reliquary_opened_effect = yes }
+	}
+}
+
+country_event = {
+	id = coi_alien_magenta_vatican.4
+	title = coi_alien_magenta_vatican.4.t
+	desc = coi_alien_magenta_vatican.4.desc
+	picture = GFX_report_event_coi_alien_magenta_recovery
+	is_triggered_only = yes
+
+	option = { name = coi_alien_magenta_vatican.4.a }
+}
+
+country_event = {
+	id = coi_alien_magenta_vatican.5
+	title = coi_alien_magenta_vatican.5.t
+	desc = coi_alien_magenta_vatican.5.desc
+	picture = GFX_report_event_coi_alien_magenta_recovery
+	is_triggered_only = yes
+
+	option = { name = coi_alien_magenta_vatican.5.a }
+}

@@ -1,0 +1,54 @@
+on_actions = {
+	on_startup = {
+		effect = {
+			# The standalone prototype always instantiates its playable country and
+			# starting expedition. Crisis rules control disclosure and landfall,
+			# not whether the Grey Consensus exists at Pale Anchorage. Using XAC as
+			# the explicit country scope also gives the framework initializer the
+			# scope required by scripted effects during the global startup hook.
+			XAC = {
+				coi_alien_initialize_framework_effect = yes
+				coi_alien_activate_mothership_anchorage = yes
+				coi_alien_initialize_tic_tac_reserve_effect = yes
+				coi_alien_create_point_nemo_reserve_fleet = yes
+				coi_alien_reconcile_xac_focus_tree_effect = yes
+			}
+		}
+	}
+
+	# Old saves do not replay new-game startup. This country-specific, one-time
+	# daily guard migrates XAC away from a persisted generic tree without a
+	# global iterator; fresh starts consume the same guard during on_startup.
+	on_daily_XAC = {
+		effect = {
+			coi_alien_initialize_tic_tac_reserve_effect = yes
+			# Reconciles old saves in which the technology predates this named
+			# convoy variant, and retries if research completed while offline.
+			coi_alien_unlock_tic_tac_fabrication_effect = yes
+			coi_alien_reconcile_xac_focus_tree_effect = yes
+		}
+	}
+
+	# A single monthly census keeps the focus-tree diagnosis current without a
+	# daily every-country loop. Doctrine selection performs its own final census.
+	on_monthly_XAC = {
+		effect = {
+			coi_alien_recalculate_human_ideology_balance_effect = yes
+			coi_alien_monthly_human_discovery_pulse_effect = yes
+		}
+	}
+
+	# ROOT is the newly released country. These hooks cover countries that did
+	# not exist during the one-time startup initialization without a daily scan.
+	on_release_as_puppet = {
+		effect = {
+			coi_alien_reconcile_country_awareness_effect = yes
+		}
+	}
+
+	on_release_as_free = {
+		effect = {
+			coi_alien_reconcile_country_awareness_effect = yes
+		}
+	}
+}

@@ -1,0 +1,65 @@
+units = {
+	fleet = {
+		name = "Pale Horizon Expeditionary Fleet"
+		naval_base = 13414 # Pale Anchorage, Point Nemo
+		task_force = {
+			name = "Pale Horizon Expedition"
+			location = 13414 # Pale Anchorage, Point Nemo
+			ship = {
+				name = "Pale Horizon"
+				definition = coi_alien_mothership
+				equipment = {
+					coi_alien_mothership_hull_1 = {
+						amount = 1
+						owner = XAC
+						version_name = "Pale Horizon Pattern"
+					}
+				}
+			}
+			ship = {
+				name = "Silent Current I"
+				definition = coi_alien_escort
+				equipment = {
+					coi_alien_escort_hull_1 = {
+						amount = 1
+						owner = XAC
+						version_name = "Silent Current Escort Pattern"
+					}
+				}
+			}
+			ship = {
+				name = "Silent Current II"
+				definition = coi_alien_escort
+				equipment = {
+					coi_alien_escort_hull_1 = {
+						amount = 1
+						owner = XAC
+						version_name = "Silent Current Escort Pattern"
+					}
+				}
+			}
+			ship = {
+				name = "Silent Current III"
+				definition = coi_alien_escort
+				equipment = {
+					coi_alien_escort_hull_1 = {
+						amount = 1
+						owner = XAC
+						version_name = "Silent Current Escort Pattern"
+					}
+				}
+			}
+			ship = {
+				name = "Silent Current IV"
+				definition = coi_alien_escort
+				equipment = {
+					coi_alien_escort_hull_1 = {
+						amount = 1
+						owner = XAC
+						version_name = "Silent Current Escort Pattern"
+					}
+				}
+			}
+		}
+	}
+}

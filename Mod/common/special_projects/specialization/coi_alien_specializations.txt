@@ -1,0 +1,26 @@
+### Consensus specializations. One operational program supports all six
+### player-facing research domains through a single Nexus.
+
+# Operational primary specialization. The internal ID is retained from 0.5.0
+# development builds so Oru and migrated saves keep their established skill.
+coi_alien_specialization_matter_fabrication = {
+	color = { 150 230 225 }
+	program_background = "GFX_sp_facility_card_bg"
+}
+
+# Legacy registry entries keep pre-release saves loadable. They are no longer
+# assigned to facilities, scientists, technologies, or projects.
+coi_alien_specialization_field_energy = {
+	color = { 95 190 255 }
+	program_background = "GFX_sp_facility_card_bg"
+}
+
+coi_alien_specialization_cognition_observation = {
+	color = { 205 115 255 }
+	program_background = "GFX_sp_facility_card_bg"
+}
+
+coi_alien_specialization_biogenesis = {
+	color = { 130 240 150 }
+	program_background = "GFX_sp_facility_card_bg"
+}

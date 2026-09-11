@@ -1,0 +1,35 @@
+### COUNTRY-scope, idempotent completion effects. Flags mirror the hidden
+### helper technologies so later content can use either a light-weight flag
+### check or the technology API without re-running either project.
+
+coi_alien_grant_human_exotic_materials_effect = {
+	if = {
+		limit = { NOT = { has_country_flag = coi_alien_human_exotic_materials } }
+		set_country_flag = coi_alien_human_exotic_materials
+	}
+	if = {
+		limit = { NOT = { has_tech = coi_alien_human_exotic_materials } }
+		set_technology = {
+			coi_alien_human_exotic_materials = 1
+			popup = no
+		}
+	}
+}
+
+coi_alien_grant_human_field_dynamics_effect = {
+	# Repair either half of the first-project mirror before granting the second
+	# layer; this keeps migrated saves coherent without consuming evidence.
+	coi_alien_grant_human_exotic_materials_effect = yes
+
+	if = {
+		limit = { NOT = { has_country_flag = coi_alien_human_field_dynamics } }
+		set_country_flag = coi_alien_human_field_dynamics
+	}
+	if = {
+		limit = { NOT = { has_tech = coi_alien_human_field_dynamics } }
+		set_technology = {
+			coi_alien_human_field_dynamics = 1
+			popup = no
+		}
+	}
+}

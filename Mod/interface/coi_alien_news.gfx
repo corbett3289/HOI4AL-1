@@ -1,0 +1,100 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_news_event_coi_alien_news_black_program"
+		texturefile = "gfx/event_pictures/coi_alien_news_black_program_news.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_coi_alien_news_black_program"
+		texturefile = "gfx/event_pictures/coi_alien_news_black_program.dds"
+	}
+	spriteType = {
+		name = "GFX_news_event_coi_alien_news_luminous_escorts"
+		texturefile = "gfx/event_pictures/coi_alien_news_luminous_escorts_news.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_coi_alien_news_luminous_escorts"
+		texturefile = "gfx/event_pictures/coi_alien_news_luminous_escorts.dds"
+	}
+	spriteType = {
+		name = "GFX_news_event_coi_alien_news_northern_rockets"
+		texturefile = "gfx/event_pictures/coi_alien_news_northern_rockets_news.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_coi_alien_news_northern_rockets"
+		texturefile = "gfx/event_pictures/coi_alien_news_northern_rockets.dds"
+	}
+	spriteType = {
+		name = "GFX_news_event_coi_alien_news_new_mexico_1947"
+		texturefile = "gfx/event_pictures/coi_alien_news_new_mexico_1947_news.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_coi_alien_news_new_mexico_1947"
+		texturefile = "gfx/event_pictures/coi_alien_news_new_mexico_1947.dds"
+	}
+	spriteType = {
+		name = "GFX_news_event_coi_alien_news_capital_radar"
+		texturefile = "gfx/event_pictures/coi_alien_news_capital_radar_news.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_coi_alien_news_capital_radar"
+		texturefile = "gfx/event_pictures/coi_alien_news_capital_radar.dds"
+	}
+	spriteType = {
+		name = "GFX_news_event_coi_alien_news_returned_witness"
+		texturefile = "gfx/event_pictures/coi_alien_news_returned_witness_news.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_coi_alien_news_returned_witness"
+		texturefile = "gfx/event_pictures/coi_alien_news_returned_witness.dds"
+	}
+	spriteType = {
+		name = "GFX_news_event_coi_alien_news_archive_leak"
+		texturefile = "gfx/event_pictures/coi_alien_news_archive_leak_news.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_coi_alien_news_archive_leak"
+		texturefile = "gfx/event_pictures/coi_alien_news_archive_leak.dds"
+	}
+	spriteType = {
+		name = "GFX_news_event_coi_alien_news_public_inquiry"
+		texturefile = "gfx/event_pictures/coi_alien_news_public_inquiry_news.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_coi_alien_news_public_inquiry"
+		texturefile = "gfx/event_pictures/coi_alien_news_public_inquiry.dds"
+	}
+	spriteType = {
+		name = "GFX_news_event_coi_alien_news_authenticated_film"
+		texturefile = "gfx/event_pictures/coi_alien_news_authenticated_film_news.dds"
+	}
+	spriteType = {
+		name = "GFX_news_event_coi_alien_news_official_podium"
+		texturefile = "gfx/event_pictures/coi_alien_news_official_podium_news.dds"
+	}
+	spriteType = {
+		name = "GFX_news_event_coi_alien_news_contact_council"
+		texturefile = "gfx/event_pictures/coi_alien_news_contact_council_news.dds"
+	}
+	spriteType = {
+		name = "GFX_news_event_coi_alien_news_public_crash"
+		texturefile = "gfx/event_pictures/coi_alien_news_public_crash_news.dds"
+	}
+	spriteType = {
+		name = "GFX_news_event_coi_alien_news_first_transmission"
+		texturefile = "gfx/event_pictures/coi_alien_news_first_transmission_news.dds"
+	}
+	spriteType = {
+		name = "GFX_news_event_coi_alien_news_consensus_verdict"
+		texturefile = "gfx/event_pictures/coi_alien_news_consensus_verdict_news.dds"
+	}
+	spriteType = {
+		name = "GFX_news_event_coi_alien_news_unified_defense"
+		texturefile = "gfx/event_pictures/coi_alien_news_unified_defense_news.dds"
+	}
+
+	# Reuse the existing Vatican master while exposing a native news-strip crop.
+	spriteType = {
+		name = "GFX_news_event_coi_alien_vatican_reliquary"
+		texturefile = "gfx/event_pictures/coi_alien_vatican_reliquary_news.dds"
+	}
+}

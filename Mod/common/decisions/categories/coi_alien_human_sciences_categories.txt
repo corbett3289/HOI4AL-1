@@ -1,0 +1,14 @@
+coi_alien_human_sciences_category = {
+	icon = coi_alien_human_sciences
+	priority = 92
+	allowed = {
+		original_tag = XAC
+	}
+	visible = {
+		coi_alien_framework_active_trigger = yes
+		OR = {
+			has_tech = coi_alien_comparative_human_ethology
+			check_variable = { coi_alien_human_insights > 0 }
+		}
+	}
+}

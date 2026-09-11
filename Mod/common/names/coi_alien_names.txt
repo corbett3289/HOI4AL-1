@@ -1,0 +1,20 @@
+# XAC uses one gender-neutral naming pool for automatically generated command
+# characters. Both engine gender branches intentionally draw from the same names.
+XAC = {
+	male = {
+		names = {
+			Aru Cael Iven Keth Lyr Neth Raal Soryn Taal Veyr Ysil Zai
+		}
+	}
+	female = {
+		names = {
+			Aru Cael Iven Keth Lyr Neth Raal Soryn Taal Veyr Ysil Zai
+		}
+	}
+	surnames = {
+		Archive Chorus Current Horizon Lattice Meridian Vector Witness
+	}
+	callsigns = {
+		"Far Signal" "Quiet Orbit" "Still Light" "Third Voice"
+	}
+}

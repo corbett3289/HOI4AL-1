@@ -1,0 +1,720 @@
+### Quiet Chorus intelligence operations.
+### Operation scope contract: ROOT = XAC; FROM = target country; FROM.FROM =
+### selected state for the three state-targeted operations.
+
+coi_alien_silent_systems_survey = {
+	icon = GFX_coi_alien_operation_silent_systems_survey
+	map_icon = GFX_coi_alien_operation_silent_systems_survey_map
+	name = coi_alien_silent_systems_survey
+	desc = coi_alien_silent_systems_survey_desc
+	priority = 80
+
+	days = 45
+	network_strength = 20
+	operatives = 1
+
+	allowed = {
+		original_tag = XAC
+		has_dlc = "La Resistance"
+	}
+
+	visible = {
+		coi_alien_framework_active_trigger = yes
+		FROM = { coi_alien_valid_operation_target_trigger = yes }
+		NOT = {
+			has_operation_token = {
+				tag = FROM
+				token = coi_alien_token_surface_profile
+			}
+		}
+	}
+
+	available = {
+		coi_alien_framework_active_trigger = yes
+		FROM = { coi_alien_valid_operation_target_trigger = yes }
+		NOT = {
+			has_operation_token = {
+				tag = FROM
+				token = coi_alien_token_surface_profile
+			}
+		}
+	}
+
+	requirements = {
+		coi_alien_framework_active_trigger = yes
+		FROM = { coi_alien_valid_operation_target_trigger = yes }
+		NOT = {
+			has_operation_token = {
+				tag = FROM
+				token = coi_alien_token_surface_profile
+			}
+		}
+	}
+
+	awarded_tokens = { coi_alien_token_surface_profile }
+	risk_chance = 0.05
+	risk_modifiers = { operation_infiltrate_risk operation_risk }
+	outcome_modifiers = { operation_infiltrate_outcome operation_outcome }
+	cost_modifiers = { operation_infiltrate_cost operation_cost }
+
+	ai_will_do = { factor = 100 }
+
+	outcome_potential = {
+		custom_effect_tooltip = coi_alien_silent_systems_survey_outcome_tt
+	}
+	outcome_execute = {
+		coi_alien_complete_silent_systems_survey_effect = yes
+	}
+
+	phases = {
+		coi_alien_phase_silent_systems_survey_calibrate = { base = 100 }
+	}
+	phases = {
+		coi_alien_phase_silent_systems_survey_observe = { base = 100 }
+	}
+	phases = {
+		coi_alien_phase_silent_systems_survey_withdraw = { base = 100 }
+	}
+}
+
+coi_alien_seed_mimetic_access = {
+	icon = GFX_coi_alien_operation_seed_mimetic_access
+	map_icon = GFX_coi_alien_operation_seed_mimetic_access_map
+	name = coi_alien_seed_mimetic_access
+	desc = coi_alien_seed_mimetic_access_desc
+	priority = 70
+
+	days = 75
+	network_strength = 35
+	operatives = 2
+
+	allowed = {
+		original_tag = XAC
+		has_dlc = "La Resistance"
+	}
+
+	visible = {
+		coi_alien_framework_active_trigger = yes
+		FROM = { coi_alien_valid_operation_target_trigger = yes }
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_surface_profile
+		}
+		NOT = {
+			has_operation_token = {
+				tag = FROM
+				token = coi_alien_token_institutional_access
+			}
+		}
+	}
+
+	available = {
+		coi_alien_framework_active_trigger = yes
+		FROM = { coi_alien_valid_operation_target_trigger = yes }
+		has_tech = coi_alien_multi_agent_infiltration_models
+		has_done_agency_upgrade = coi_alien_upgrade_mimetic_interface_lab
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_surface_profile
+		}
+		NOT = {
+			has_operation_token = {
+				tag = FROM
+				token = coi_alien_token_institutional_access
+			}
+		}
+	}
+
+	requirements = {
+		coi_alien_framework_active_trigger = yes
+		FROM = { coi_alien_valid_operation_target_trigger = yes }
+		has_tech = coi_alien_multi_agent_infiltration_models
+		has_done_agency_upgrade = coi_alien_upgrade_mimetic_interface_lab
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_surface_profile
+		}
+		NOT = {
+			has_operation_token = {
+				tag = FROM
+				token = coi_alien_token_institutional_access
+			}
+		}
+	}
+
+	required_tokens = { coi_alien_token_surface_profile }
+	awarded_tokens = { coi_alien_token_institutional_access }
+	risk_chance = 0.10
+	risk_modifiers = { operation_infiltrate_risk operation_risk }
+	outcome_modifiers = { operation_infiltrate_outcome operation_outcome }
+	cost_modifiers = { operation_infiltrate_cost operation_cost }
+
+	ai_will_do = { factor = 100 }
+
+	outcome_potential = {
+		custom_effect_tooltip = coi_alien_seed_mimetic_access_outcome_tt
+	}
+	outcome_execute = {
+		coi_alien_complete_seed_mimetic_access_effect = yes
+	}
+
+	phases = {
+		coi_alien_phase_seed_mimetic_access_model = { base = 100 }
+	}
+	phases = {
+		coi_alien_phase_seed_mimetic_access_insert = { base = 100 }
+	}
+	phases = {
+		coi_alien_phase_seed_mimetic_access_stabilize = { base = 100 }
+	}
+}
+
+coi_alien_penetrate_research_networks = {
+	icon = GFX_coi_alien_operation_penetrate_research_networks
+	map_icon = GFX_coi_alien_operation_penetrate_research_networks_map
+	name = coi_alien_penetrate_research_networks
+	desc = coi_alien_penetrate_research_networks_desc
+	priority = 60
+
+	days = 90
+	network_strength = 50
+	operatives = 2
+
+	allowed = {
+		original_tag = XAC
+		has_dlc = "La Resistance"
+	}
+
+	visible = {
+		coi_alien_framework_active_trigger = yes
+		FROM = { coi_alien_valid_operation_target_trigger = yes }
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_institutional_access
+		}
+		NOT = {
+			has_operation_token = {
+				tag = FROM
+				token = coi_alien_token_research_access
+			}
+		}
+	}
+
+	available = {
+		coi_alien_framework_active_trigger = yes
+		FROM = { coi_alien_valid_operation_target_trigger = yes }
+		has_tech = coi_alien_institutional_behavior_prediction
+		has_done_agency_upgrade = coi_alien_upgrade_cognitive_translation_matrix
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_institutional_access
+		}
+		NOT = {
+			has_operation_token = {
+				tag = FROM
+				token = coi_alien_token_research_access
+			}
+		}
+	}
+
+	requirements = {
+		coi_alien_framework_active_trigger = yes
+		FROM = { coi_alien_valid_operation_target_trigger = yes }
+		has_tech = coi_alien_institutional_behavior_prediction
+		has_done_agency_upgrade = coi_alien_upgrade_cognitive_translation_matrix
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_institutional_access
+		}
+		NOT = {
+			has_operation_token = {
+				tag = FROM
+				token = coi_alien_token_research_access
+			}
+		}
+	}
+
+	required_tokens = { coi_alien_token_institutional_access }
+	awarded_tokens = { coi_alien_token_research_access }
+	risk_chance = 0.10
+	risk_modifiers = { operation_infiltrate_risk operation_risk }
+	outcome_modifiers = { operation_infiltrate_outcome operation_outcome }
+	cost_modifiers = { operation_infiltrate_cost operation_cost }
+
+	ai_will_do = { factor = 100 }
+
+	outcome_potential = {
+		custom_effect_tooltip = coi_alien_penetrate_research_networks_outcome_tt
+	}
+	outcome_execute = {
+		coi_alien_complete_penetrate_research_networks_effect = yes
+	}
+
+	phases = {
+		coi_alien_phase_penetrate_research_networks_map = { base = 100 }
+	}
+	phases = {
+		coi_alien_phase_penetrate_research_networks_mirror = { base = 100 }
+	}
+	phases = {
+		coi_alien_phase_penetrate_research_networks_bury = { base = 100 }
+	}
+}
+
+coi_alien_spoil_the_evidence = {
+	icon = GFX_coi_alien_operation_spoil_the_evidence
+	map_icon = GFX_coi_alien_operation_spoil_the_evidence_map
+	name = coi_alien_spoil_the_evidence
+	desc = coi_alien_spoil_the_evidence_desc
+	priority = 40
+
+	days = 60
+	network_strength = 40
+	operatives = 2
+
+	allowed = {
+		original_tag = XAC
+		has_dlc = "La Resistance"
+	}
+
+	visible = {
+		coi_alien_framework_active_trigger = yes
+		FROM = {
+			coi_alien_valid_operation_target_trigger = yes
+			OR = {
+				coi_alien_awareness_anomalies_trigger = yes
+				coi_alien_awareness_suspicious_trigger = yes
+			}
+		}
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_institutional_access
+		}
+	}
+
+	available = {
+		coi_alien_framework_active_trigger = yes
+		FROM = {
+			coi_alien_valid_operation_target_trigger = yes
+			OR = {
+				coi_alien_awareness_anomalies_trigger = yes
+				coi_alien_awareness_suspicious_trigger = yes
+			}
+		}
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_institutional_access
+		}
+	}
+
+	requirements = {
+		coi_alien_framework_active_trigger = yes
+		FROM = {
+			coi_alien_valid_operation_target_trigger = yes
+			OR = {
+				coi_alien_awareness_anomalies_trigger = yes
+				coi_alien_awareness_suspicious_trigger = yes
+			}
+		}
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_institutional_access
+		}
+	}
+
+	required_tokens = { coi_alien_token_institutional_access }
+	risk_chance = 0.10
+	risk_modifiers = { target_sabotage_risk operation_risk }
+	outcome_modifiers = { target_sabotage_factor operation_outcome }
+	cost_modifiers = { target_sabotage_cost operation_cost }
+
+	ai_will_do = { factor = 100 }
+
+	outcome_potential = {
+		custom_effect_tooltip = coi_alien_spoil_the_evidence_outcome_tt
+	}
+	outcome_execute = {
+		coi_alien_complete_spoil_the_evidence_effect = yes
+	}
+
+	phases = {
+		coi_alien_phase_spoil_the_evidence_identify = { base = 100 }
+	}
+	phases = {
+		coi_alien_phase_spoil_the_evidence_replace = { base = 100 }
+	}
+	phases = {
+		coi_alien_phase_spoil_the_evidence_redirect = { base = 100 }
+	}
+}
+
+coi_alien_introduce_cascading_faults = {
+	icon = GFX_coi_alien_operation_introduce_cascading_faults
+	map_icon = GFX_coi_alien_operation_introduce_cascading_faults_map
+	name = coi_alien_introduce_cascading_faults
+	desc = coi_alien_introduce_cascading_faults_desc
+	priority = 30
+
+	days = 90
+	network_strength = 60
+	operatives = 3
+
+	allowed = {
+		original_tag = XAC
+		has_dlc = "La Resistance"
+	}
+
+	visible = {
+		coi_alien_framework_active_trigger = yes
+		FROM = {
+			coi_alien_valid_operation_target_trigger = yes
+			coi_alien_target_has_cascading_fault_target_trigger = yes
+		}
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_institutional_access
+		}
+	}
+
+	available = {
+		coi_alien_framework_active_trigger = yes
+		has_tech = coi_alien_cascading_failure_models
+		FROM = {
+			coi_alien_valid_operation_target_trigger = yes
+			coi_alien_target_has_cascading_fault_target_trigger = yes
+		}
+		has_done_agency_upgrade = coi_alien_upgrade_distributed_drone_cells
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_institutional_access
+		}
+	}
+
+	requirements = {
+		coi_alien_framework_active_trigger = yes
+		has_tech = coi_alien_cascading_failure_models
+		FROM = {
+			coi_alien_valid_operation_target_trigger = yes
+			coi_alien_target_has_cascading_fault_target_trigger = yes
+		}
+		has_done_agency_upgrade = coi_alien_upgrade_distributed_drone_cells
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_institutional_access
+		}
+	}
+
+	selection_target = { targets = { FROM } }
+	selection_target_state = {
+		coi_alien_operation_state_has_cascading_fault_target_trigger = yes
+	}
+
+	required_tokens = { coi_alien_token_institutional_access }
+	equipment = {
+		civilian_factories = {
+			amount = 1
+			days = 30
+		}
+	}
+	risk_chance = 0.20
+	risk_modifiers = { target_sabotage_risk operation_risk }
+	outcome_modifiers = { target_sabotage_factor operation_outcome }
+	cost_modifiers = { target_sabotage_cost operation_cost }
+
+	ai_will_do = { factor = 100 }
+
+	outcome_potential = {
+		custom_effect_tooltip = coi_alien_introduce_cascading_faults_outcome_tt
+	}
+	outcome_execute = {
+		coi_alien_complete_introduce_cascading_faults_effect = yes
+	}
+
+	phases = {
+		coi_alien_phase_introduce_cascading_faults_reconnoiter = { base = 100 }
+	}
+	phases = {
+		coi_alien_phase_introduce_cascading_faults_seed = { base = 100 }
+	}
+	phases = {
+		coi_alien_phase_introduce_cascading_faults_trigger = { base = 100 }
+	}
+}
+
+coi_alien_harvest_project_archives = {
+	icon = GFX_coi_alien_operation_harvest_project_archives
+	map_icon = GFX_coi_alien_operation_harvest_project_archives_map
+	name = coi_alien_harvest_project_archives
+	desc = coi_alien_harvest_project_archives_desc
+	priority = 50
+
+	days = 120
+	network_strength = 60
+	operatives = 3
+
+	allowed = {
+		original_tag = XAC
+		has_dlc = "La Resistance"
+	}
+
+	visible = {
+		coi_alien_framework_active_trigger = yes
+		FROM = { coi_alien_valid_operation_target_trigger = yes }
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_research_access
+		}
+	}
+
+	available = {
+		coi_alien_framework_active_trigger = yes
+		has_tech = coi_alien_institutional_behavior_prediction
+		FROM = { coi_alien_valid_operation_target_trigger = yes }
+		has_done_agency_upgrade = coi_alien_upgrade_distributed_drone_cells
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_research_access
+		}
+	}
+
+	requirements = {
+		coi_alien_framework_active_trigger = yes
+		has_tech = coi_alien_institutional_behavior_prediction
+		FROM = { coi_alien_valid_operation_target_trigger = yes }
+		has_done_agency_upgrade = coi_alien_upgrade_distributed_drone_cells
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_research_access
+		}
+	}
+
+	required_tokens = { coi_alien_token_research_access }
+	equipment = {
+		civilian_factories = {
+			amount = 1
+			days = 30
+		}
+	}
+	risk_chance = 0.20
+	outcome_extra_chance = 0.25
+	risk_modifiers = { operation_steal_tech_risk operation_risk }
+	outcome_modifiers = { operation_steal_tech_outcome operation_outcome }
+	cost_modifiers = { operation_steal_tech_cost operation_cost }
+
+	ai_will_do = { factor = 100 }
+
+	outcome_potential = {
+		custom_effect_tooltip = coi_alien_harvest_project_archives_outcome_tt
+	}
+	outcome_execute = {
+		coi_alien_complete_harvest_project_archives_effect = yes
+	}
+	outcome_extra_execute = {
+		coi_alien_complete_harvest_project_archives_effect = yes
+		coi_alien_grant_archive_breakthrough_effect = yes
+	}
+
+	phases = {
+		coi_alien_phase_harvest_project_archives_classify = { base = 100 }
+	}
+	phases = {
+		coi_alien_phase_harvest_project_archives_copy = { base = 100 }
+	}
+	phases = {
+		coi_alien_phase_harvest_project_archives_sanitize = { base = 100 }
+	}
+}
+
+coi_alien_disrupt_research_complex = {
+	icon = GFX_coi_alien_operation_disrupt_research_complex
+	map_icon = GFX_coi_alien_operation_disrupt_research_complex_map
+	name = coi_alien_disrupt_research_complex
+	desc = coi_alien_disrupt_research_complex_desc
+	priority = 20
+
+	days = 105
+	network_strength = 60
+	operatives = 3
+
+	allowed = {
+		original_tag = XAC
+		has_dlc = "La Resistance"
+	}
+
+	visible = {
+		coi_alien_framework_active_trigger = yes
+		FROM = {
+			coi_alien_valid_operation_target_trigger = yes
+			coi_alien_target_has_disruptable_research_complex_trigger = yes
+		}
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_research_access
+		}
+	}
+
+	available = {
+		coi_alien_framework_active_trigger = yes
+		has_tech = coi_alien_cascading_failure_models
+		FROM = {
+			coi_alien_valid_operation_target_trigger = yes
+			coi_alien_target_has_disruptable_research_complex_trigger = yes
+		}
+		has_done_agency_upgrade = coi_alien_upgrade_distributed_drone_cells
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_research_access
+		}
+	}
+
+	requirements = {
+		coi_alien_framework_active_trigger = yes
+		has_tech = coi_alien_cascading_failure_models
+		FROM = {
+			coi_alien_valid_operation_target_trigger = yes
+			coi_alien_target_has_disruptable_research_complex_trigger = yes
+		}
+		has_done_agency_upgrade = coi_alien_upgrade_distributed_drone_cells
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_research_access
+		}
+	}
+
+	selection_target = { targets = { FROM } }
+	selection_target_state = {
+		coi_alien_operation_state_has_disruptable_research_complex_trigger = yes
+	}
+
+	required_tokens = { coi_alien_token_research_access }
+	equipment = {
+		civilian_factories = {
+			amount = 1
+			days = 30
+		}
+	}
+	risk_chance = 0.25
+	outcome_extra_chance = 0.25
+	risk_modifiers = { operation_steal_tech_risk operation_risk }
+	outcome_modifiers = { operation_steal_tech_outcome operation_outcome }
+	cost_modifiers = { operation_steal_tech_cost operation_cost }
+
+	ai_will_do = { factor = 100 }
+
+	outcome_potential = {
+		custom_effect_tooltip = coi_alien_disrupt_research_complex_outcome_tt
+	}
+	outcome_execute = {
+		coi_alien_disrupt_research_complex_standard_effect = yes
+	}
+	outcome_extra_execute = {
+		coi_alien_disrupt_research_complex_bonus_effect = yes
+	}
+
+	phases = {
+		coi_alien_phase_disrupt_research_complex_fix = { base = 100 }
+	}
+	phases = {
+		coi_alien_phase_disrupt_research_complex_infiltrate = { base = 100 }
+	}
+	phases = {
+		coi_alien_phase_disrupt_research_complex_overload = { base = 100 }
+	}
+}
+
+coi_alien_extract_lead_scientist = {
+	icon = GFX_coi_alien_operation_extract_lead_scientist
+	map_icon = GFX_coi_alien_operation_extract_lead_scientist_map
+	name = coi_alien_extract_lead_scientist
+	desc = coi_alien_extract_lead_scientist_desc
+	priority = 10
+
+	days = 150
+	network_strength = 70
+	operatives = 3
+
+	allowed = {
+		original_tag = XAC
+		has_dlc = "La Resistance"
+	}
+
+	visible = {
+		coi_alien_framework_active_trigger = yes
+		FROM = {
+			coi_alien_valid_operation_target_trigger = yes
+			coi_alien_target_has_extractable_scientist_trigger = yes
+		}
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_research_access
+		}
+	}
+
+	available = {
+		coi_alien_framework_active_trigger = yes
+		has_tech = coi_alien_deep_substitution_architecture
+		FROM = {
+			coi_alien_valid_operation_target_trigger = yes
+			coi_alien_target_has_extractable_scientist_trigger = yes
+		}
+		has_done_agency_upgrade = coi_alien_upgrade_distributed_drone_cells
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_research_access
+		}
+	}
+
+	requirements = {
+		coi_alien_framework_active_trigger = yes
+		has_tech = coi_alien_deep_substitution_architecture
+		FROM = {
+			coi_alien_valid_operation_target_trigger = yes
+			coi_alien_target_has_extractable_scientist_trigger = yes
+		}
+		has_done_agency_upgrade = coi_alien_upgrade_distributed_drone_cells
+		has_operation_token = {
+			tag = FROM
+			token = coi_alien_token_research_access
+		}
+	}
+
+	selection_target = { targets = { FROM } }
+	selection_target_state = {
+		coi_alien_operation_state_has_extractable_scientist_trigger = yes
+	}
+
+	required_tokens = { coi_alien_token_research_access }
+	equipment = {
+		civilian_factories = {
+			amount = 1
+			days = 45
+		}
+	}
+	risk_chance = 0.30
+	outcome_extra_chance = 0.25
+	risk_modifiers = { operation_steal_tech_risk operation_risk }
+	outcome_modifiers = { operation_steal_tech_outcome operation_outcome }
+	cost_modifiers = { operation_steal_tech_cost operation_cost }
+
+	ai_will_do = { factor = 100 }
+
+	outcome_potential = {
+		custom_effect_tooltip = coi_alien_extract_lead_scientist_outcome_tt
+	}
+	outcome_execute = {
+		coi_alien_complete_extract_lead_scientist = yes
+	}
+	outcome_extra_execute = {
+		coi_alien_complete_extract_lead_scientist = yes
+	}
+
+	phases = {
+		coi_alien_phase_extract_lead_scientist_contact = { base = 100 }
+	}
+	phases = {
+		coi_alien_phase_extract_lead_scientist_substitute = { base = 100 }
+	}
+	phases = {
+		coi_alien_phase_extract_lead_scientist_exfiltrate = { base = 100 }
+	}
+}

@@ -1,0 +1,126 @@
+ideas = {
+	country = {
+		coi_alien_observation_passive = {
+			allowed = { original_tag = XAC }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_human_sciences
+			modifier = {
+				own_operative_detection_chance_factor = -0.05
+				operation_infiltrate_risk = -0.05
+			}
+		}
+
+		coi_alien_observation_directed = {
+			allowed = { original_tag = XAC }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_human_sciences
+			modifier = {
+				operation_cost = -0.05
+				operation_infiltrate_outcome = 0.05
+				operation_outcome = 0.05
+			}
+		}
+
+		coi_alien_observation_aggressive = {
+			allowed = { original_tag = XAC }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_human_sciences
+			modifier = {
+				own_operative_detection_chance_factor = 0.10
+				operation_outcome = 0.10
+				target_sabotage_factor = 0.10
+			}
+		}
+
+		coi_alien_insight_surface_models = {
+			allowed = { original_tag = XAC }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_human_sciences
+			modifier = { operation_infiltrate_outcome = 0.03 }
+		}
+
+		coi_alien_insight_institutional_models = {
+			allowed = { original_tag = XAC }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_human_sciences
+			modifier = { operation_cost = -0.05 operation_outcome = 0.05 }
+		}
+
+		coi_alien_insight_predictive_models = {
+			allowed = { original_tag = XAC }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_human_sciences
+			modifier = { own_operative_detection_chance_factor = -0.05 operation_outcome = 0.07 }
+		}
+
+		coi_alien_conditioned_facsimile_program = {
+			allowed = { original_tag = XAC }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_viable_adult_clone
+			modifier = { operative_slot = 2 }
+		}
+
+		coi_alien_clone_personhood_protocol = {
+			allowed = { original_tag = XAC }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_viable_adult_clone
+			modifier = { own_operative_detection_chance_factor = -0.03 stability_factor = 0.02 }
+		}
+
+		coi_alien_clone_reconditioning_cycle = {
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_viable_adult_clone
+			modifier = { operation_outcome = 0.08 stability_factor = -0.02 }
+		}
+
+		coi_alien_postcontact_cultural_exchange = {
+			allowed = { original_tag = XAC }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_human_sciences
+			modifier = { operation_infiltrate_outcome = 0.10 opinion_gain_monthly_factor = 0.10 }
+		}
+
+		coi_alien_postcontact_target_catalogue = {
+			allowed = { original_tag = XAC }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_human_sciences
+			modifier = { target_sabotage_factor = 0.15 operation_outcome = 0.10 }
+		}
+
+		coi_alien_postcontact_harmonization = {
+			allowed = { original_tag = XAC }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_human_sciences
+			modifier = { operation_cost = -0.10 operation_infiltrate_outcome = 0.10 }
+		}
+
+		coi_alien_postcontact_imperial_census = {
+			allowed = { original_tag = XAC }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_human_sciences
+			modifier = { enemy_operative_detection_chance_factor = 0.10 operation_outcome = 0.05 }
+		}
+
+		coi_alien_postcontact_direct_observation = {
+			allowed = { original_tag = XAC }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_human_sciences
+			modifier = { operation_outcome = 0.05 }
+		}
+	}
+}

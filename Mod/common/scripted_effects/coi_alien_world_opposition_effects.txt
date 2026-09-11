@@ -1,0 +1,211 @@
+### XAC country-scope census and irreversible opposition-doctrine effects.
+### Humanity is counted by existing country, not population, industry, or faction.
+
+### One-time migration for saves created before coi_alien_xac_focus existed.
+### keep_completed preserves any focus IDs shared by the old and new trees; the
+### vanilla generic tree currently shares none with this XAC-only starter tree.
+coi_alien_reconcile_xac_focus_tree_effect = {
+	if = {
+		limit = {
+			NOT = { has_country_flag = coi_alien_focus_tree_migration_checked }
+		}
+		if = {
+			limit = {
+				NOT = { has_focus_tree = coi_alien_xac_focus }
+			}
+			load_focus_tree = {
+				tree = coi_alien_xac_focus
+				keep_completed = yes
+			}
+			mark_focus_tree_layout_dirty = yes
+			log = "[COI ALIEN] Reconciled XAC onto the Grey Consensus focus tree."
+		}
+		coi_alien_recalculate_human_ideology_balance_effect = yes
+		set_country_flag = coi_alien_focus_tree_migration_checked
+	}
+}
+
+coi_alien_recalculate_human_ideology_balance_effect = {
+	set_variable = { coi_alien_human_democratic_countries = 0 }
+	set_variable = { coi_alien_human_fascism_countries = 0 }
+	set_variable = { coi_alien_human_communism_countries = 0 }
+	set_variable = { coi_alien_human_non_aligned_countries = 0 }
+	set_variable = { coi_alien_human_country_count = 0 }
+
+	clr_country_flag = coi_alien_humanity_dominant_democratic
+	clr_country_flag = coi_alien_humanity_dominant_fascism
+	clr_country_flag = coi_alien_humanity_dominant_communism
+	clr_country_flag = coi_alien_humanity_dominant_non_aligned
+
+	# One monthly pass over extant countries is deliberately used instead of a
+	# daily world scan. XAC is the observer and is not counted as humanity.
+	every_country = {
+		limit = {
+			exists = yes
+			NOT = { tag = XAC }
+		}
+
+		XAC = {
+			add_to_variable = { coi_alien_human_country_count = 1 }
+		}
+
+		if = {
+			limit = { has_government = democratic }
+			XAC = {
+				add_to_variable = { coi_alien_human_democratic_countries = 1 }
+			}
+		}
+		else_if = {
+			limit = { has_government = fascism }
+			XAC = {
+				add_to_variable = { coi_alien_human_fascism_countries = 1 }
+			}
+		}
+		else_if = {
+			limit = { has_government = communism }
+			XAC = {
+				add_to_variable = { coi_alien_human_communism_countries = 1 }
+			}
+		}
+		else_if = {
+			limit = { has_government = neutrality }
+			XAC = {
+				add_to_variable = { coi_alien_human_non_aligned_countries = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = { check_variable = { coi_alien_human_country_count > 0 } }
+
+		# Exact ties resolve in deterministic order: democratic, fascist,
+		# communist, then non-aligned. This prevents multiplayer desyncs and
+		# leaves a stable, documented answer for an evenly divided world.
+		if = {
+			limit = {
+				check_variable = {
+					var = coi_alien_human_democratic_countries
+					value = coi_alien_human_fascism_countries
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					var = coi_alien_human_democratic_countries
+					value = coi_alien_human_communism_countries
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					var = coi_alien_human_democratic_countries
+					value = coi_alien_human_non_aligned_countries
+					compare = greater_than_or_equals
+				}
+			}
+			set_country_flag = coi_alien_humanity_dominant_democratic
+			set_variable = { coi_alien_human_dominant_ideology = 0 }
+		}
+		else_if = {
+			limit = {
+				check_variable = {
+					var = coi_alien_human_fascism_countries
+					value = coi_alien_human_democratic_countries
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					var = coi_alien_human_fascism_countries
+					value = coi_alien_human_communism_countries
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					var = coi_alien_human_fascism_countries
+					value = coi_alien_human_non_aligned_countries
+					compare = greater_than_or_equals
+				}
+			}
+			set_country_flag = coi_alien_humanity_dominant_fascism
+			set_variable = { coi_alien_human_dominant_ideology = 1 }
+		}
+		else_if = {
+			limit = {
+				check_variable = {
+					var = coi_alien_human_communism_countries
+					value = coi_alien_human_democratic_countries
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					var = coi_alien_human_communism_countries
+					value = coi_alien_human_fascism_countries
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					var = coi_alien_human_communism_countries
+					value = coi_alien_human_non_aligned_countries
+					compare = greater_than_or_equals
+				}
+			}
+			set_country_flag = coi_alien_humanity_dominant_communism
+			set_variable = { coi_alien_human_dominant_ideology = 2 }
+		}
+		else = {
+			set_country_flag = coi_alien_humanity_dominant_non_aligned
+			set_variable = { coi_alien_human_dominant_ideology = 3 }
+		}
+	}
+	else = {
+		set_variable = { coi_alien_human_dominant_ideology = -1 }
+	}
+}
+
+### These effects lock a response only if the corresponding human plurality is
+### still current when the player selects the focus. Later censuses remain
+### informative but never rewrite an adopted doctrine.
+
+coi_alien_adopt_federation_response_effect = {
+	if = {
+		limit = {
+			coi_alien_doctrine_unselected_trigger = yes
+			coi_alien_humanity_dominant_fascism_trigger = yes
+		}
+		set_country_flag = coi_alien_doctrine_selected
+		set_country_flag = coi_alien_doctrine_galactic_federation
+		set_variable = { coi_alien_opposition_doctrine = 1 }
+		log = "[COI ALIEN] Fascist-dominant humanity produced the Galactic Federation response."
+	}
+}
+
+coi_alien_adopt_annihilation_response_effect = {
+	if = {
+		limit = {
+			coi_alien_doctrine_unselected_trigger = yes
+			coi_alien_humanity_dominant_democratic_trigger = yes
+		}
+		set_country_flag = coi_alien_doctrine_selected
+		set_country_flag = coi_alien_doctrine_annihilation
+		set_variable = { coi_alien_opposition_doctrine = 2 }
+		log = "[COI ALIEN] Democratic-dominant humanity produced the Annihilation response."
+	}
+}
+
+coi_alien_adopt_singular_sovereignty_response_effect = {
+	if = {
+		limit = {
+			coi_alien_doctrine_unselected_trigger = yes
+			coi_alien_humanity_dominant_communism_trigger = yes
+		}
+		set_country_flag = coi_alien_doctrine_selected
+		set_country_flag = coi_alien_doctrine_singular_sovereignty
+		set_variable = { coi_alien_opposition_doctrine = 3 }
+		log = "[COI ALIEN] Communist-dominant humanity produced the Singular Sovereignty response."
+	}
+}
+
+coi_alien_adopt_planetary_mandate_response_effect = {
+	if = {
+		limit = {
+			coi_alien_doctrine_unselected_trigger = yes
+			coi_alien_humanity_dominant_non_aligned_trigger = yes
+		}
+		set_country_flag = coi_alien_doctrine_selected
+		set_country_flag = coi_alien_doctrine_planetary_mandate
+		set_variable = { coi_alien_opposition_doctrine = 4 }
+		log = "[COI ALIEN] Non-aligned-dominant humanity produced the Planetary Mandate response."
+	}
+}

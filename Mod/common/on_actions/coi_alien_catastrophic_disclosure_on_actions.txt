@@ -1,0 +1,9 @@
+on_actions = {
+	### ROOT is each existing country. This both escalates an unresolved local
+	### crisis and catches countries released after the ninety-day world wave.
+	on_monthly = {
+		effect = {
+			coi_alien_monthly_catastrophic_disclosure_country_effect = yes
+		}
+	}
+}

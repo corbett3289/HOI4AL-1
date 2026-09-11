@@ -1,0 +1,108 @@
+equipment_modules = {
+	limit = {
+		has_dlc = "Man the Guns"
+	}
+
+	coi_alien_gravitic_tide_drive = {
+		abbreviation = "xad"
+		category = coi_alien_ship_drive
+		gfx = sub_ship_aip_engine_3
+		sfx = sfx_ui_sd_module_engine
+		add_stats = {
+			fuel_consumption = 30
+			build_cost_ic = 1200
+		}
+		multiply_stats = {
+			naval_speed = 0.45
+			build_cost_ic = 0.10
+		}
+	}
+
+	coi_alien_phase_hangar_matrix = {
+		abbreviation = "xah"
+		category = coi_alien_ship_hangar
+		gfx = ship_deck_space
+		add_stats = {
+			carrier_size = 6
+			build_cost_ic = 1800
+			carrier_surface_detection = 20
+			carrier_sub_detection = 10
+		}
+		manpower = 100
+		multiply_stats = {
+			naval_speed = -0.03
+		}
+		dismantle_cost_ic = 900
+	}
+
+	coi_alien_lance_battery = {
+		abbreviation = "xal"
+		category = coi_alien_ship_lance
+		gfx = ship_heavy_battery_5
+		sfx = sfx_ui_sd_module_turret
+		add_stats = {
+			lg_attack = 60
+			hg_attack = 45
+			build_cost_ic = 1500
+		}
+		add_average_stats = {
+			lg_armor_piercing = 80
+			hg_armor_piercing = 100
+		}
+		multiply_stats = {
+			naval_speed = -0.03
+		}
+	}
+
+	coi_alien_point_defense_matrix = {
+		abbreviation = "xap"
+		category = coi_alien_ship_point_defense
+		gfx = dp_secondary_battery_4
+		sfx = sfx_ui_sd_module_turret
+		add_stats = {
+			anti_air_attack = 45
+			lg_attack = 12
+			build_cost_ic = 650
+		}
+		add_average_stats = {
+			lg_armor_piercing = 35
+		}
+	}
+
+	coi_alien_spectral_sensor_web = {
+		abbreviation = "xas"
+		category = coi_alien_ship_sensor
+		gfx = ship_sonar_4
+		sfx = sfx_ui_sd_module_sonar
+		add_stats = {
+			surface_detection = 55
+			sub_detection = 35
+			naval_light_gun_hit_chance_factor = 0.20
+			naval_heavy_gun_hit_chance_factor = 0.20
+			build_cost_ic = 500
+		}
+		multiply_stats = {
+			anti_air_attack = 0.15
+		}
+	}
+
+	coi_alien_phase_lattice = {
+		abbreviation = "xaa"
+		category = coi_alien_ship_lattice
+		gfx = ship_armor_thick_3
+		add_stats = {
+			armor_value = 75
+			naval_torpedo_enemy_critical_chance_factor = -0.35
+			naval_torpedo_damage_reduction_factor = 0.45
+		}
+		multiply_stats = {
+			max_strength = 0.30
+			build_cost_ic = 0.20
+			naval_speed = -0.05
+		}
+		build_cost_resources = {
+			chromium = 2
+		}
+		dismantle_cost_ic = 3500
+	}
+}

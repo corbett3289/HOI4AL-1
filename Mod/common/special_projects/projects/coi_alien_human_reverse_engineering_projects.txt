@@ -1,0 +1,130 @@
+### Human reverse-engineering foundations.
+###
+### Special-project rules are verified against the installed 1.19.2 project
+### database. Project scope uses FROM for the owning country. Specialization
+### binds each project to the matching facility; breakthrough_cost is consumed
+### by the engine when the project begins.
+
+coi_alien_sp_exotic_materials_characterization = {
+	specialization = specialization_land
+
+	icon = GFX_coi_alien_sp_exotic_materials_characterization
+	blueprint_image = GFX_coi_alien_sp_exotic_materials_characterization_blueprint
+
+	project_tags = {
+		coi_alien_sp_tag_reverse_engineering
+		coi_alien_sp_tag_exotic_materials
+	}
+
+	allowed = {
+		has_dlc = "Gotterdammerung"
+		NOT = { original_tag = XAC }
+	}
+
+	visible = {
+		FROM = {
+			has_country_flag = coi_alien_special_access_program
+		}
+	}
+
+	available = {
+		FROM = {
+			coi_alien_can_start_exotic_materials_project_trigger = yes
+		}
+	}
+
+	breakthrough_cost = {
+		specialization_land = 1
+	}
+
+	# A short prototype cycle with vanilla's small-complexity range keeps this
+	# foundational project substantial without turning fragments into a decade.
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	project_output = {
+		country_effects = {
+			custom_effect_tooltip = coi_alien_sp_exotic_materials_output_tt
+			hidden_effect = {
+				coi_alien_grant_human_exotic_materials_effect = yes
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		coi_alien_sp_reward_exotic_materials_assay
+	}
+
+	ai_will_do = {
+		base = 4
+		modifier = {
+			factor = 2
+			ROOT = { is_major = yes }
+		}
+	}
+}
+
+coi_alien_sp_field_propulsion_reconstruction = {
+	specialization = specialization_air
+
+	icon = GFX_coi_alien_sp_field_propulsion_reconstruction
+	blueprint_image = GFX_coi_alien_sp_field_propulsion_reconstruction_blueprint
+
+	project_tags = {
+		coi_alien_sp_tag_reverse_engineering
+		coi_alien_sp_tag_field_propulsion
+	}
+
+	allowed = {
+		has_dlc = "Gotterdammerung"
+		NOT = { original_tag = XAC }
+	}
+
+	special_project_parent = {
+		coi_alien_sp_exotic_materials_characterization
+	}
+
+	visible = {
+		FROM = {
+			has_country_flag = coi_alien_special_access_program
+			has_country_flag = coi_alien_human_exotic_materials
+			has_tech = coi_alien_human_exotic_materials
+		}
+	}
+
+	available = {
+		FROM = {
+			coi_alien_can_start_field_propulsion_project_trigger = yes
+		}
+	}
+
+	breakthrough_cost = {
+		specialization_air = 2
+	}
+
+	# Medium cycles and medium complexity make intact-field reconstruction a
+	# meaningfully longer commitment than material characterization.
+	prototype_time = sp_time.prototype.medium
+	complexity = sp_complexity.medium
+
+	project_output = {
+		country_effects = {
+			custom_effect_tooltip = coi_alien_sp_field_propulsion_output_tt
+			hidden_effect = {
+				coi_alien_grant_human_field_dynamics_effect = yes
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		coi_alien_sp_reward_field_resonance
+	}
+
+	ai_will_do = {
+		base = 5
+		modifier = {
+			factor = 2
+			ROOT = { is_major = yes }
+		}
+	}
+}

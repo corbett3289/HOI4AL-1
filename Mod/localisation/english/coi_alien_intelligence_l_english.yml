@@ -1,0 +1,23 @@
+﻿l_english:
+ coi_alien_quiet_chorus_agency_name: "The Quiet Chorus"
+
+ coi_alien_expeditionary_intelligence_complement: "Expeditionary Intelligence Complement"
+ coi_alien_expeditionary_intelligence_complement_desc: "The Pale Horizon carried both living observers and autonomous infiltration constructs. Together they form a self-contained intelligence complement, answerable only to the Consensus."
+
+ coi_alien_autonomous_infiltration_drone: "Autonomous Infiltration Drone"
+ coi_alien_autonomous_infiltration_drone_desc: "A purpose-built intelligence construct can alter its observable profile, operate without biological fatigue, and surrender no interrogable mind if captured."
+
+ coi_alien_operative_neth_witness: "Neth Witness"
+ coi_alien_operative_neth_witness_desc: "A patient observer trained to map institutions, languages, and the hidden assumptions of unfamiliar societies."
+ coi_alien_operative_ysil_lattice: "Ysil Lattice"
+ coi_alien_operative_ysil_lattice_desc: "A counter-intelligence examiner whose memory lattice preserves every contradiction it encounters."
+ coi_alien_operative_cael_current: "Cael Current"
+ coi_alien_operative_cael_current_desc: "A direct-action specialist equipped to open sealed systems and erase compromised sites."
+ coi_alien_operative_drone_quiet_orbit: "Quiet Orbit"
+ coi_alien_operative_drone_quiet_orbit_desc: "An autonomous observation drone optimized for persistent access and unnoticed passage through defended territory."
+ coi_alien_operative_drone_pale_echo: "Pale Echo"
+ coi_alien_operative_drone_pale_echo_desc: "A data-extraction drone whose adaptive probes can interpret and copy primitive storage systems without physical damage."
+ coi_alien_operative_drone_outer_witness: "Outer Witness"
+ coi_alien_operative_drone_outer_witness_desc: "A hardened reconnaissance drone designed to survive hostile environments, pursuit, and deliberate countermeasures."
+
+ coi_alien_xac_operative_codename_theme: "Consensus Signal Designations"

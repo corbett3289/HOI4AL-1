@@ -1,0 +1,66 @@
+spriteTypes = {
+	# Domain art is deliberately reused across related refinements. The eight
+	# transformational projects receive their own native project-card art.
+	SpriteType = { name = "GFX_coi_alien_terrestrial_composite_translation_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_adaptive_metamaterials.dds" }
+	SpriteType = { name = "GFX_coi_alien_personal_phase_sheaths_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_adaptive_metamaterials.dds" }
+	SpriteType = { name = "GFX_coi_alien_self_healing_phase_lattice_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_adaptive_metamaterials.dds" }
+	SpriteType = { name = "GFX_coi_alien_adaptive_warform_shells_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_adaptive_metamaterials.dds" }
+
+	SpriteType = { name = "GFX_coi_alien_spacetime_aperture_geometry_medium" texturefile = "gfx/interface/coi_alien/coi_alien_energy_gateway.dds" }
+	SpriteType = { name = "GFX_coi_alien_energy_gateway_synchronization_medium" texturefile = "gfx/interface/coi_alien/coi_alien_energy_gateway.dds" }
+	SpriteType = { name = "GFX_coi_alien_stabilized_transit_network_medium" texturefile = "gfx/interface/coi_alien/coi_alien_energy_gateway.dds" }
+
+	SpriteType = { name = "GFX_coi_alien_atomic_resonance_cartography_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_coherent_energy_control.dds" }
+	SpriteType = { name = "GFX_coi_alien_predictive_intercept_lattice_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_orbital_sentinel.dds" }
+	SpriteType = { name = "GFX_coi_alien_sentinel_reserve_fabrication_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_orbital_sentinel.dds" }
+	SpriteType = { name = "GFX_coi_alien_atomic_disruption_protocols_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_coherent_energy_control.dds" }
+
+	SpriteType = { name = "GFX_coi_alien_multi_agent_infiltration_models_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_predictive_computation.dds" }
+	SpriteType = { name = "GFX_coi_alien_institutional_behavior_prediction_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_predictive_computation.dds" }
+	SpriteType = { name = "GFX_coi_alien_cascading_failure_models_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_predictive_computation.dds" }
+	SpriteType = { name = "GFX_coi_alien_deep_substitution_architecture_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_predictive_computation.dds" }
+
+	SpriteType = { name = "GFX_coi_alien_comparative_human_ethology_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_human_sciences.dds" }
+	SpriteType = { name = "GFX_coi_alien_mass_media_semiotics_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_human_sciences.dds" }
+	SpriteType = { name = "GFX_coi_alien_tissue_analysis_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_human_sciences.dds" }
+	SpriteType = { name = "GFX_coi_alien_human_genome_atlas_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_human_sciences.dds" }
+	SpriteType = { name = "GFX_coi_alien_accelerated_human_cloning_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_human_sciences.dds" }
+	SpriteType = { name = "GFX_coi_alien_conditioned_identity_imprinting_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_human_sciences.dds" }
+
+	SpriteType = { name = "GFX_coi_alien_expeditionary_pattern_libraries_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_fabrication.dds" }
+	SpriteType = { name = "GFX_coi_alien_molecular_feedstock_recovery_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_fabrication.dds" }
+	SpriteType = { name = "GFX_coi_alien_additive_airframe_printing_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_fabrication.dds" }
+	SpriteType = { name = "GFX_coi_alien_continuous_airframe_lattice_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_fabrication.dds" }
+	SpriteType = { name = "GFX_coi_alien_distributed_fabrication_logic_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_fabrication.dds" }
+	SpriteType = { name = "GFX_coi_alien_autonomous_fabrication_ecology_medium" texturefile = "gfx/interface/coi_alien/coi_alien_tech_fabrication.dds" }
+
+	SpriteType = { name = "GFX_coi_alien_orbital_sentinel_equipment_1_medium" texturefile = "gfx/interface/coi_alien/coi_alien_orbital_sentinel.dds" }
+
+	SpriteType = { name = "GFX_decision_category_coi_alien_human_sciences" texturefile = "gfx/interface/coi_alien/coi_alien_decision_category_human_sciences.dds" }
+	SpriteType = { name = "GFX_decision_coi_alien_human_sciences" texturefile = "gfx/interface/coi_alien/coi_alien_decision_human_sciences.dds" }
+	SpriteType = { name = "GFX_idea_coi_alien_human_sciences" texturefile = "gfx/interface/ideas/coi_alien_human_sciences.dds" }
+	SpriteType = { name = "GFX_decision_coi_alien_viable_adult_clone" texturefile = "gfx/interface/coi_alien/coi_alien_decision_viable_adult_clone.dds" }
+	SpriteType = { name = "GFX_idea_coi_alien_viable_adult_clone" texturefile = "gfx/interface/ideas/coi_alien_viable_adult_clone.dds" }
+	SpriteType = { name = "GFX_report_event_coi_alien_human_sciences" texturefile = "gfx/event_pictures/coi_alien_human_sciences.dds" }
+	SpriteType = { name = "GFX_report_event_coi_alien_viable_adult_clone" texturefile = "gfx/event_pictures/coi_alien_viable_adult_clone.dds" }
+	SpriteType = { name = "GFX_portrait_coi_alien_facsimile_lena_marlow" texturefile = "gfx/leaders/XAC/Operatives/coi_alien_facsimile_lena_marlow.dds" }
+	SpriteType = { name = "GFX_portrait_coi_alien_facsimile_daniel_voss" texturefile = "gfx/leaders/XAC/Operatives/coi_alien_facsimile_daniel_voss.dds" }
+	SpriteType = { name = "GFX_trait_coi_alien_conditioned_human_facsimile" texturefile = "gfx/interface/traits/coi_alien_trait_conditioned_human_facsimile.dds" }
+
+	SpriteType = { name = "GFX_coi_alien_sp_self_healing_lattice_demonstrator" texturefile = "gfx/interface/special_project/project_icons/coi_alien_sp_self_healing_lattice_demonstrator.dds" }
+	SpriteType = { name = "GFX_coi_alien_sp_self_healing_lattice_demonstrator_blueprint" texturefile = "gfx/interface/special_project/blueprints/coi_alien_sp_self_healing_lattice_demonstrator_blueprint.dds" }
+	SpriteType = { name = "GFX_coi_alien_sp_aperture_stabilization_experiment" texturefile = "gfx/interface/special_project/project_icons/coi_alien_sp_aperture_stabilization_experiment.dds" }
+	SpriteType = { name = "GFX_coi_alien_sp_aperture_stabilization_experiment_blueprint" texturefile = "gfx/interface/special_project/blueprints/coi_alien_sp_aperture_stabilization_experiment_blueprint.dds" }
+	SpriteType = { name = "GFX_coi_alien_sp_interorbital_sentinel_prototype" texturefile = "gfx/interface/special_project/project_icons/coi_alien_sp_interorbital_sentinel_prototype.dds" }
+	SpriteType = { name = "GFX_coi_alien_sp_interorbital_sentinel_prototype_blueprint" texturefile = "gfx/interface/special_project/blueprints/coi_alien_sp_interorbital_sentinel_prototype_blueprint.dds" }
+	SpriteType = { name = "GFX_coi_alien_sp_controlled_atomic_decoherence" texturefile = "gfx/interface/special_project/project_icons/coi_alien_sp_controlled_atomic_decoherence.dds" }
+	SpriteType = { name = "GFX_coi_alien_sp_controlled_atomic_decoherence_blueprint" texturefile = "gfx/interface/special_project/blueprints/coi_alien_sp_controlled_atomic_decoherence_blueprint.dds" }
+	SpriteType = { name = "GFX_coi_alien_sp_full_spectrum_human_culture_model" texturefile = "gfx/interface/special_project/project_icons/coi_alien_sp_full_spectrum_human_culture_model.dds" }
+	SpriteType = { name = "GFX_coi_alien_sp_full_spectrum_human_culture_model_blueprint" texturefile = "gfx/interface/special_project/blueprints/coi_alien_sp_full_spectrum_human_culture_model_blueprint.dds" }
+	SpriteType = { name = "GFX_coi_alien_sp_human_genome_atlas" texturefile = "gfx/interface/special_project/project_icons/coi_alien_sp_human_genome_atlas.dds" }
+	SpriteType = { name = "GFX_coi_alien_sp_human_genome_atlas_blueprint" texturefile = "gfx/interface/special_project/blueprints/coi_alien_sp_human_genome_atlas_blueprint.dds" }
+	SpriteType = { name = "GFX_coi_alien_sp_viable_adult_clone" texturefile = "gfx/interface/special_project/project_icons/coi_alien_sp_viable_adult_clone.dds" }
+	SpriteType = { name = "GFX_coi_alien_sp_viable_adult_clone_blueprint" texturefile = "gfx/interface/special_project/blueprints/coi_alien_sp_viable_adult_clone_blueprint.dds" }
+	SpriteType = { name = "GFX_coi_alien_sp_molecular_airframe_printer" texturefile = "gfx/interface/special_project/project_icons/coi_alien_sp_molecular_airframe_printer.dds" }
+	SpriteType = { name = "GFX_coi_alien_sp_molecular_airframe_printer_blueprint" texturefile = "gfx/interface/special_project/blueprints/coi_alien_sp_molecular_airframe_printer_blueprint.dds" }
+}

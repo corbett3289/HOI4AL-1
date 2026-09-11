@@ -1,0 +1,44 @@
+ideas = {
+	country = {
+		coi_alien_disclosure_black_archive = {
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_disclosure_secrecy
+			modifier = {
+				special_project_speed_factor = 0.10
+			}
+		}
+
+		coi_alien_disclosure_prepared_public = {
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_disclosure_managed
+			modifier = {
+				stability_factor = 0.02
+			}
+		}
+
+		coi_alien_disclosure_international_council = {
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_disclosure_international
+			modifier = {
+				special_project_speed_factor = 0.05
+				research_speed_factor = 0.02
+			}
+		}
+
+		coi_alien_disclosure_open_files = {
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			picture = coi_alien_disclosure_open_files
+			modifier = {
+				political_power_factor = 0.05
+			}
+		}
+	}
+}

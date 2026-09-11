@@ -1,0 +1,312 @@
+focus_tree = {
+	id = coi_alien_xac_focus
+
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = XAC
+		}
+	}
+
+	default = no
+	reset_on_civilwar = no
+
+	initial_show_position = {
+		focus = coi_alien_observe_divided_world
+	}
+
+	focus = {
+		id = coi_alien_observe_divided_world
+		icon = GFX_goal_generic_intelligence_exchange
+		x = 4
+		y = 0
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available_if_capitulated = yes
+
+		completion_reward = {
+			coi_alien_recalculate_human_ideology_balance_effect = yes
+			add_political_power = 25
+			custom_effect_tooltip = coi_alien_world_census_tt
+		}
+
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = coi_alien_classify_human_order
+		icon = GFX_goal_generic_scientific_exchange
+		prerequisite = { focus = coi_alien_observe_divided_world }
+		x = 0
+		y = 1
+		relative_position_id = coi_alien_observe_divided_world
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available_if_capitulated = yes
+
+		completion_reward = {
+			coi_alien_recalculate_human_ideology_balance_effect = yes
+			add_political_power = 25
+			custom_effect_tooltip = coi_alien_world_census_tt
+		}
+
+		ai_will_do = { factor = 10 }
+	}
+
+	### Fascist plurality -> liberation and accession to a galactic federation.
+	focus = {
+		id = coi_alien_federations_open_hand
+		icon = GFX_goal_generic_alliance
+		prerequisite = { focus = coi_alien_classify_human_order }
+		mutually_exclusive = {
+			focus = coi_alien_verdict_final_silence
+			focus = coi_alien_sovereignty_of_every_mind
+			focus = coi_alien_one_world_mandate
+		}
+		x = -3
+		y = 1
+		relative_position_id = coi_alien_classify_human_order
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available_if_capitulated = yes
+		cancel_if_invalid = yes
+
+		available = {
+			OR = {
+				coi_alien_federation_response_trigger = yes
+				AND = {
+					coi_alien_doctrine_unselected_trigger = yes
+					custom_trigger_tooltip = {
+						tooltip = coi_alien_requires_fascist_dominance_tt
+						coi_alien_humanity_dominant_fascism_trigger = yes
+					}
+				}
+			}
+		}
+
+		select_effect = {
+			coi_alien_recalculate_human_ideology_balance_effect = yes
+			coi_alien_adopt_federation_response_effect = yes
+		}
+
+		completion_reward = {
+			add_political_power = 50
+			custom_effect_tooltip = coi_alien_adopt_federation_response_tt
+		}
+
+		ai_will_do = { factor = 10 }
+	}
+
+	### Democratic plurality -> extermination of a civilization judged unstable.
+	focus = {
+		id = coi_alien_verdict_final_silence
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = coi_alien_classify_human_order }
+		mutually_exclusive = {
+			focus = coi_alien_federations_open_hand
+			focus = coi_alien_sovereignty_of_every_mind
+			focus = coi_alien_one_world_mandate
+		}
+		x = -1
+		y = 1
+		relative_position_id = coi_alien_classify_human_order
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available_if_capitulated = yes
+		cancel_if_invalid = yes
+
+		available = {
+			OR = {
+				coi_alien_annihilation_response_trigger = yes
+				AND = {
+					coi_alien_doctrine_unselected_trigger = yes
+					custom_trigger_tooltip = {
+						tooltip = coi_alien_requires_democratic_dominance_tt
+						coi_alien_humanity_dominant_democratic_trigger = yes
+					}
+				}
+			}
+		}
+
+		select_effect = {
+			coi_alien_recalculate_human_ideology_balance_effect = yes
+			coi_alien_adopt_annihilation_response_effect = yes
+		}
+
+		completion_reward = {
+			add_political_power = 50
+			custom_effect_tooltip = coi_alien_adopt_annihilation_response_tt
+		}
+
+		ai_will_do = { factor = 10 }
+	}
+
+	### Communist plurality -> decentralization and inviolable individual minds.
+	focus = {
+		id = coi_alien_sovereignty_of_every_mind
+		icon = GFX_goal_generic_neutrality_focus
+		prerequisite = { focus = coi_alien_classify_human_order }
+		mutually_exclusive = {
+			focus = coi_alien_federations_open_hand
+			focus = coi_alien_verdict_final_silence
+			focus = coi_alien_one_world_mandate
+		}
+		x = 1
+		y = 1
+		relative_position_id = coi_alien_classify_human_order
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available_if_capitulated = yes
+		cancel_if_invalid = yes
+
+		available = {
+			OR = {
+				coi_alien_singular_sovereignty_response_trigger = yes
+				AND = {
+					coi_alien_doctrine_unselected_trigger = yes
+					custom_trigger_tooltip = {
+						tooltip = coi_alien_requires_communist_dominance_tt
+						coi_alien_humanity_dominant_communism_trigger = yes
+					}
+				}
+			}
+		}
+
+		select_effect = {
+			coi_alien_recalculate_human_ideology_balance_effect = yes
+			coi_alien_adopt_singular_sovereignty_response_effect = yes
+		}
+
+		completion_reward = {
+			add_political_power = 50
+			custom_effect_tooltip = coi_alien_adopt_singular_sovereignty_response_tt
+		}
+
+		ai_will_do = { factor = 10 }
+	}
+
+	### Non-aligned plurality -> compulsory planetary unification.
+	focus = {
+		id = coi_alien_one_world_mandate
+		icon = GFX_goal_generic_forceful_treaty
+		prerequisite = { focus = coi_alien_classify_human_order }
+		mutually_exclusive = {
+			focus = coi_alien_federations_open_hand
+			focus = coi_alien_verdict_final_silence
+			focus = coi_alien_sovereignty_of_every_mind
+		}
+		x = 3
+		y = 1
+		relative_position_id = coi_alien_classify_human_order
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available_if_capitulated = yes
+		cancel_if_invalid = yes
+
+		available = {
+			OR = {
+				coi_alien_planetary_mandate_response_trigger = yes
+				AND = {
+					coi_alien_doctrine_unselected_trigger = yes
+					custom_trigger_tooltip = {
+						tooltip = coi_alien_requires_non_aligned_dominance_tt
+						coi_alien_humanity_dominant_non_aligned_trigger = yes
+					}
+				}
+			}
+		}
+
+		select_effect = {
+			coi_alien_recalculate_human_ideology_balance_effect = yes
+			coi_alien_adopt_planetary_mandate_response_effect = yes
+		}
+
+		completion_reward = {
+			add_political_power = 50
+			custom_effect_tooltip = coi_alien_adopt_planetary_mandate_response_tt
+		}
+
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = coi_alien_accession_protocols
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = coi_alien_federations_open_hand }
+		x = 0
+		y = 1
+		relative_position_id = coi_alien_federations_open_hand
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available_if_capitulated = yes
+
+		completion_reward = {
+			set_country_flag = coi_alien_accession_protocols_ready
+			add_political_power = 50
+			custom_effect_tooltip = coi_alien_accession_protocols_ready_tt
+		}
+
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = coi_alien_calculate_last_dawn
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = coi_alien_verdict_final_silence }
+		x = 0
+		y = 1
+		relative_position_id = coi_alien_verdict_final_silence
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available_if_capitulated = yes
+
+		completion_reward = {
+			set_country_flag = coi_alien_annihilation_plan_ready
+			add_political_power = 50
+			custom_effect_tooltip = coi_alien_annihilation_plan_ready_tt
+		}
+
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = coi_alien_seed_sovereign_enclaves
+		icon = GFX_goal_generic_intelligence_exchange
+		prerequisite = { focus = coi_alien_sovereignty_of_every_mind }
+		x = 0
+		y = 1
+		relative_position_id = coi_alien_sovereignty_of_every_mind
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available_if_capitulated = yes
+
+		completion_reward = {
+			set_country_flag = coi_alien_sovereign_enclaves_ready
+			add_political_power = 50
+			custom_effect_tooltip = coi_alien_sovereign_enclaves_ready_tt
+		}
+
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = coi_alien_dissolve_old_borders
+		icon = GFX_goal_generic_demand_territory
+		prerequisite = { focus = coi_alien_one_world_mandate }
+		x = 0
+		y = 1
+		relative_position_id = coi_alien_one_world_mandate
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available_if_capitulated = yes
+
+		completion_reward = {
+			set_country_flag = coi_alien_planetary_mandate_ready
+			add_political_power = 50
+			custom_effect_tooltip = coi_alien_planetary_mandate_ready_tt
+		}
+
+		ai_will_do = { factor = 10 }
+	}
+}

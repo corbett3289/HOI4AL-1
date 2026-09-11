@@ -1,0 +1,90 @@
+on_actions = {
+	on_startup = {
+		effect = {
+			if = {
+				limit = { country_exists = ITA }
+				ITA = { coi_alien_migrate_magenta_vatican_effect = yes }
+			}
+			else = {
+				159 = {
+					controller = { coi_alien_migrate_magenta_vatican_effect = yes }
+				}
+			}
+			if = {
+				limit = { country_exists = PAP }
+				PAP = { coi_alien_reconcile_vatican_custodian_effect = yes }
+			}
+		}
+	}
+
+	# ROOT is every existing country once per month. All branches are cheap tag,
+	# state-control, or global-flag checks; there is no daily world iterator.
+	on_monthly = {
+		effect = {
+			# Old saves do not replay new-game startup. The single controller of
+			# Lombardy therefore owns the bounded monthly migration/repair pulse.
+			if = {
+				limit = { controls_state = 159 }
+				coi_alien_migrate_magenta_vatican_effect = yes
+			}
+
+			if = {
+				limit = {
+					tag = ITA
+					coi_alien_magenta_german_alignment_trigger = yes
+				}
+				set_country_flag = coi_alien_magenta_german_sharing_prompted
+				country_event = { id = coi_alien_magenta_vatican.1 hours = 1 }
+			}
+
+			if = {
+				limit = {
+					coi_alien_controls_magenta_vault_trigger = yes
+					NOT = { has_country_flag = coi_alien_magenta_craft_custodian }
+				}
+				coi_alien_transfer_magenta_craft_custody_effect = yes
+			}
+
+			if = {
+				limit = { tag = PAP }
+				coi_alien_reconcile_vatican_custodian_effect = yes
+			}
+
+			coi_alien_dispatch_vatican_reckoning_effect = yes
+		}
+	}
+
+	# ROOT is the new controller, FROM the former controller, FROM.FROM the state.
+	on_state_control_changed = {
+		effect = {
+			if = {
+				limit = {
+					FROM.FROM = {
+						state = 159
+						has_state_flag = coi_alien_magenta_craft_vault
+					}
+					NOT = { has_country_flag = coi_alien_magenta_craft_custodian }
+				}
+				coi_alien_transfer_magenta_craft_custody_effect = yes
+			}
+		}
+	}
+
+	on_release_as_puppet = {
+		effect = {
+			if = {
+				limit = { tag = PAP }
+				coi_alien_reconcile_vatican_custodian_effect = yes
+			}
+		}
+	}
+
+	on_release_as_free = {
+		effect = {
+			if = {
+				limit = { tag = PAP }
+				coi_alien_reconcile_vatican_custodian_effect = yes
+			}
+		}
+	}
+}

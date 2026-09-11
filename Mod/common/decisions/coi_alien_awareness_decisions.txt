@@ -1,0 +1,599 @@
+coi_alien_awareness_category = {
+	coi_alien_investigate_anomalies = {
+		icon = generic_research
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			coi_alien_framework_active_trigger = yes
+			coi_alien_knowledge_anomalous_reports_trigger = yes
+			NOT = { has_country_flag = coi_alien_investigation_disrupted }
+		}
+		cost = 25
+		days_remove = 30
+		cancel_if_not_visible = yes
+		remove_effect = {
+			custom_effect_tooltip = coi_alien_catalog_impossible_tt
+			hidden_effect = {
+				coi_alien_raise_knowledge_to_correlated_pattern_effect = yes
+			}
+		}
+		ai_will_do = {
+			base = 5
+		}
+	}
+
+	coi_alien_form_investigation_cell = {
+		icon = generic_civil_support
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			coi_alien_framework_active_trigger = yes
+			coi_alien_knowledge_correlated_pattern_trigger = yes
+			NOT = { has_country_flag = coi_alien_investigation_disrupted }
+		}
+		cost = 50
+		days_remove = 60
+		cancel_if_not_visible = yes
+		remove_effect = {
+			custom_effect_tooltip = coi_alien_establish_sap_tt
+			hidden_effect = {
+				coi_alien_raise_knowledge_to_classified_confirmation_effect = yes
+			}
+		}
+		ai_will_do = {
+			base = 5
+		}
+	}
+
+	coi_alien_begin_quiet_monitoring = {
+		icon = generic_research
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			coi_alien_framework_active_trigger = yes
+			coi_alien_awareness_at_least_anomalies_trigger = yes
+			coi_alien_preparedness_unprepared_trigger = yes
+		}
+		cost = 25
+		days_remove = 30
+		cancel_if_not_visible = yes
+		remove_effect = {
+			custom_effect_tooltip = coi_alien_preparedness_quiet_monitoring_tt
+			hidden_effect = {
+				coi_alien_raise_preparedness_to_quiet_monitoring_effect = yes
+			}
+		}
+		ai_will_do = { base = 3 }
+	}
+
+	coi_alien_draft_contact_contingencies = {
+		icon = generic_civil_support
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			coi_alien_framework_active_trigger = yes
+			coi_alien_awareness_at_least_suspicious_trigger = yes
+			coi_alien_preparedness_quiet_monitoring_trigger = yes
+		}
+		cost = 50
+		days_remove = 60
+		cancel_if_not_visible = yes
+		remove_effect = {
+			custom_effect_tooltip = coi_alien_preparedness_contingency_tt
+			hidden_effect = {
+				coi_alien_raise_preparedness_to_contingency_planning_effect = yes
+			}
+		}
+		ai_will_do = { base = 2 }
+	}
+
+	coi_alien_mobilize_against_extraterrestrial_threat = {
+		icon = generic_army_support
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			coi_alien_framework_active_trigger = yes
+			coi_alien_awareness_at_least_confirmed_trigger = yes
+			coi_alien_preparedness_contingency_planning_trigger = yes
+			NOT = { has_country_flag = coi_alien_investigation_disrupted }
+		}
+		cost = 75
+		days_remove = 90
+		cancel_if_not_visible = yes
+		remove_effect = {
+			custom_effect_tooltip = coi_alien_preparedness_national_mobilization_tt
+			hidden_effect = {
+				coi_alien_raise_preparedness_to_national_mobilization_effect = yes
+			}
+		}
+		ai_will_do = { base = 2 }
+	}
+
+	### Initial stance selections are free except Open the Files, whose 100 PP
+	### cost is part of its deliberate-release price. Their relative AI bases
+	### are the canonical 80/8/8/4 distribution before modifiers.
+	coi_alien_choose_black_archive = {
+		icon = coi_alien_disclosure_secrecy
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			is_ai = no
+			coi_alien_framework_active_trigger = yes
+			coi_alien_can_choose_initial_disclosure_stance_trigger = yes
+			NOT = { coi_alien_public_awareness_at_least_official_trigger = yes }
+		}
+		cost = 0
+		fire_only_once = yes
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_choose_black_archive_tt
+			hidden_effect = { coi_alien_adopt_secrecy_stance_effect = yes }
+		}
+		ai_will_do = {
+			base = 80
+			modifier = { has_government = fascism factor = 1.5 }
+			modifier = { has_government = communism factor = 1.5 }
+			modifier = { has_stability < 0.4 factor = 1.5 }
+			modifier = { has_government = democratic factor = 0.75 }
+			modifier = {
+				coi_alien_public_awareness_at_least_credible_trigger = yes
+				factor = 0.5
+			}
+		}
+	}
+
+	coi_alien_choose_prepared_public = {
+		icon = coi_alien_disclosure_managed
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			is_ai = no
+			coi_alien_framework_active_trigger = yes
+			coi_alien_can_choose_initial_disclosure_stance_trigger = yes
+		}
+		cost = 0
+		fire_only_once = yes
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_choose_prepared_public_tt
+			hidden_effect = { coi_alien_adopt_managed_disclosure_stance_effect = yes }
+		}
+		ai_will_do = {
+			base = 8
+			modifier = { has_government = democratic factor = 2 }
+			modifier = { has_stability > 0.65 factor = 1.5 }
+			modifier = { has_government = fascism factor = 0.5 }
+		}
+	}
+
+	coi_alien_choose_world_must_know = {
+		icon = coi_alien_disclosure_international
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			is_ai = no
+			coi_alien_framework_active_trigger = yes
+			coi_alien_can_choose_initial_disclosure_stance_trigger = yes
+		}
+		cost = 0
+		fire_only_once = yes
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_choose_world_must_know_tt
+			hidden_effect = { coi_alien_adopt_international_disclosure_stance_effect = yes }
+		}
+		ai_will_do = {
+			base = 8
+			modifier = { has_government = democratic factor = 2.5 }
+			modifier = { is_in_faction = yes factor = 2 }
+			modifier = { has_government = fascism factor = 0.5 }
+		}
+	}
+
+	coi_alien_choose_open_files = {
+		icon = coi_alien_disclosure_open_files
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			is_ai = no
+			coi_alien_framework_active_trigger = yes
+			coi_alien_can_choose_initial_disclosure_stance_trigger = yes
+		}
+		cost = 100
+		fire_only_once = yes
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_choose_open_files_tt
+			hidden_effect = { coi_alien_adopt_open_files_stance_effect = yes }
+		}
+		ai_will_do = {
+			base = 4
+			modifier = { has_government = democratic factor = 1.5 }
+			modifier = {
+				coi_alien_public_awareness_at_least_credible_trigger = yes
+				factor = 3
+			}
+			modifier = { has_stability < 0.4 factor = 0.25 }
+		}
+	}
+
+	### Player-facing policy pivots. AI countries commit to their initial policy;
+	### authored national content can still invoke the public stance effects.
+	coi_alien_pivot_to_black_archive = {
+		icon = coi_alien_disclosure_secrecy
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			is_ai = no
+			coi_alien_can_restore_secrecy_trigger = yes
+			NOT = { has_country_flag = coi_alien_disclosure_stance_secrecy }
+		}
+		cost = 100
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_disclosure_pivot_cost_tt
+			hidden_effect = {
+				coi_alien_apply_disclosure_pivot_cost_effect = yes
+				coi_alien_adopt_secrecy_stance_effect = yes
+			}
+		}
+		ai_will_do = { base = 0 }
+	}
+
+	coi_alien_pivot_to_prepared_public = {
+		icon = coi_alien_disclosure_managed
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			is_ai = no
+			coi_alien_can_pivot_disclosure_stance_trigger = yes
+			NOT = { has_country_flag = coi_alien_disclosure_stance_managed }
+		}
+		cost = 100
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_disclosure_pivot_cost_tt
+			hidden_effect = {
+				coi_alien_apply_disclosure_pivot_cost_effect = yes
+				coi_alien_adopt_managed_disclosure_stance_effect = yes
+			}
+		}
+		ai_will_do = { base = 0 }
+	}
+
+	coi_alien_pivot_to_world_must_know = {
+		icon = coi_alien_disclosure_international
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			is_ai = no
+			coi_alien_can_pivot_disclosure_stance_trigger = yes
+			NOT = { has_country_flag = coi_alien_disclosure_stance_international }
+		}
+		cost = 100
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_disclosure_pivot_cost_tt
+			hidden_effect = {
+				coi_alien_apply_disclosure_pivot_cost_effect = yes
+				coi_alien_adopt_international_disclosure_stance_effect = yes
+			}
+		}
+		ai_will_do = { base = 0 }
+	}
+
+	coi_alien_pivot_to_open_files = {
+		icon = coi_alien_disclosure_open_files
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			is_ai = no
+			coi_alien_can_pivot_disclosure_stance_trigger = yes
+			NOT = { has_country_flag = coi_alien_disclosure_stance_open_files }
+		}
+		cost = 100
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_pivot_open_files_tt
+			hidden_effect = {
+				coi_alien_apply_disclosure_pivot_cost_effect = yes
+				coi_alien_adopt_open_files_stance_effect = yes
+			}
+		}
+		ai_will_do = { base = 0 }
+	}
+
+	coi_alien_suppress_routine_leaks = {
+		icon = coi_alien_disclosure_secrecy
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			coi_alien_framework_active_trigger = yes
+			has_country_flag = coi_alien_disclosure_stance_secrecy
+			has_variable = coi_alien_leak_pressure
+			check_variable = { coi_alien_leak_pressure > 4 }
+		}
+		available = {
+			NOT = { has_country_flag = coi_alien_publicity_suppression_active }
+		}
+		cost = 25
+		days_remove = 30
+		cancel_if_not_visible = yes
+		remove_effect = {
+			custom_effect_tooltip = coi_alien_suppress_routine_leaks_tt
+			hidden_effect = { coi_alien_reduce_leak_pressure_ten_effect = yes }
+		}
+		ai_will_do = { base = 4 }
+	}
+}
+
+coi_alien_operations_category = {
+	# Deprecated compatibility shell. Agent-driven operations now provide the
+	# survey loop; retaining this ID keeps older saves able to deserialize it.
+	coi_alien_silent_survey = {
+		icon = generic_operation
+		allowed = { always = no }
+		target_root_trigger = {
+			coi_alien_framework_active_trigger = yes
+			NOT = { coi_alien_landfall_target_locked_trigger = yes }
+		}
+		target_trigger = {
+			FROM = {
+				exists = yes
+				NOT = { tag = XAC }
+				coi_alien_awareness_below_confirmed_trigger = yes
+			}
+		}
+		visible = { always = no }
+		cost = 10
+		days_remove = 14
+		days_re_enable = 21
+		cancel_if_not_visible = yes
+		remove_effect = {
+			custom_effect_tooltip = coi_alien_silent_survey_effect_tt
+			hidden_effect = {
+				coi_alien_add_survey_data_one_effect = yes
+				FROM = {
+					random_list = {
+						70 = { }
+						30 = { coi_alien_raise_awareness_one_effect = yes }
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			base = 0
+		}
+	}
+
+	# Deprecated compatibility shell. Physical specimen abduction belongs to
+	# the future raid layer and is no longer exposed as a political decision.
+	coi_alien_specimen_acquisition = {
+		icon = generic_operation
+		allowed = { always = no }
+		target_root_trigger = {
+			coi_alien_framework_active_trigger = yes
+			NOT = { coi_alien_landfall_target_locked_trigger = yes }
+		}
+		target_trigger = {
+			FROM = {
+				exists = yes
+				NOT = { tag = XAC }
+				coi_alien_awareness_at_least_anomalies_trigger = yes
+				coi_alien_awareness_below_confirmed_trigger = yes
+			}
+		}
+		visible = { always = no }
+		available = {
+			has_variable = coi_alien_survey_data
+			check_variable = { coi_alien_survey_data > 0 }
+		}
+		cost = 25
+		days_remove = 21
+		days_re_enable = 35
+		cancel_if_not_visible = yes
+		remove_effect = {
+			custom_effect_tooltip = coi_alien_specimen_acquisition_effect_tt
+			hidden_effect = {
+				coi_alien_add_survey_data_two_effect = yes
+				FROM = { coi_alien_raise_awareness_one_effect = yes }
+			}
+		}
+		ai_will_do = {
+			base = 0
+		}
+	}
+
+	# Deprecated compatibility shell. Controlled infrastructure interference is
+	# now planned through The Quiet Chorus' cascading-faults operation.
+	coi_alien_infrastructure_probe = {
+		icon = generic_operation
+		allowed = { always = no }
+		target_root_trigger = {
+			coi_alien_framework_active_trigger = yes
+			NOT = { coi_alien_landfall_target_locked_trigger = yes }
+		}
+		target_trigger = {
+			FROM = {
+				exists = yes
+				NOT = { tag = XAC }
+				coi_alien_awareness_at_least_suspicious_trigger = yes
+				coi_alien_awareness_below_confirmed_trigger = yes
+			}
+		}
+		visible = { always = no }
+		available = {
+			has_variable = coi_alien_survey_data
+			check_variable = { coi_alien_survey_data > 2 }
+		}
+		cost = 40
+		days_remove = 28
+		days_re_enable = 45
+		cancel_if_not_visible = yes
+		remove_effect = {
+			custom_effect_tooltip = coi_alien_infrastructure_probe_effect_tt
+			hidden_effect = {
+				coi_alien_add_survey_data_three_effect = yes
+				FROM = { coi_alien_raise_awareness_two_effect = yes }
+			}
+		}
+		ai_will_do = {
+			base = 0
+		}
+	}
+
+	# XAC-player path: choose a confirmed/mobilized country (or any country under the
+	# immediate-landfall rule) as the target. It does not declare war.
+	coi_alien_select_landfall_target = {
+		icon = generic_operation
+		allowed = { tag = XAC }
+		target_root_trigger = {
+			is_ai = no
+			coi_alien_framework_active_trigger = yes
+			NOT = { coi_alien_landfall_target_locked_trigger = yes }
+		}
+		target_trigger = {
+			FROM = {
+				coi_alien_can_prepare_landfall_target_trigger = yes
+			}
+		}
+		visible = {
+			is_ai = no
+			FROM = { coi_alien_can_prepare_landfall_target_trigger = yes }
+		}
+		cost = 0
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_prepare_landfall_effect_tt
+			hidden_effect = {
+				FROM = { coi_alien_prepare_landfall_target_effect = yes }
+			}
+		}
+		ai_will_do = {
+			base = 0
+		}
+	}
+}
+
+coi_alien_landfall_control_category = {
+	# Terrestrial-player path. In multiplayer, the first eligible player to
+	# take this decision becomes the single saved landfall target.
+	coi_alien_prepare_landfall_here = {
+		icon = generic_operation
+		allowed = {
+			NOT = { tag = XAC }
+		}
+		visible = {
+			is_ai = no
+			coi_alien_can_prepare_landfall_target_trigger = yes
+		}
+		available = {
+			coi_alien_can_prepare_landfall_target_trigger = yes
+		}
+		cost = 0
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_prepare_landfall_effect_tt
+			hidden_effect = {
+				coi_alien_prepare_landfall_target_effect = yes
+			}
+		}
+		ai_will_do = {
+			base = 0
+		}
+	}
+}
+
+coi_alien_debug_category = {
+	coi_alien_debug_activate_hidden = {
+		icon = generic_research
+		visible = {
+			is_debug = yes
+			NOT = { coi_alien_framework_active_trigger = yes }
+		}
+		cost = 0
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_debug_activate_hidden_tt
+			hidden_effect = { coi_alien_set_hidden_mode_effect = yes }
+		}
+		ai_will_do = { base = 0 }
+	}
+
+	coi_alien_debug_immediate_disclosure = {
+		icon = generic_research
+		visible = { is_debug = yes }
+		cost = 0
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_debug_immediate_disclosure_tt
+			hidden_effect = { coi_alien_set_immediate_disclosure_mode_effect = yes }
+		}
+		ai_will_do = { base = 0 }
+	}
+
+	coi_alien_debug_immediate_landfall = {
+		icon = generic_operation
+		visible = {
+			is_debug = yes
+			NOT = { coi_alien_landfall_target_locked_trigger = yes }
+		}
+		cost = 0
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_debug_immediate_landfall_tt
+			hidden_effect = { coi_alien_set_immediate_landfall_mode_effect = yes }
+		}
+		ai_will_do = { base = 0 }
+	}
+
+	coi_alien_debug_set_awareness_0 = {
+		icon = generic_research
+		visible = { is_debug = yes }
+		cost = 0
+		complete_effect = { coi_alien_debug_force_awareness_unaware_effect = yes }
+		ai_will_do = { base = 0 }
+	}
+
+	coi_alien_debug_set_awareness_1 = {
+		icon = generic_research
+		visible = { is_debug = yes }
+		cost = 0
+		complete_effect = { coi_alien_debug_force_awareness_anomalies_effect = yes }
+		ai_will_do = { base = 0 }
+	}
+
+	coi_alien_debug_set_awareness_2 = {
+		icon = generic_research
+		visible = { is_debug = yes }
+		cost = 0
+		complete_effect = { coi_alien_debug_force_awareness_suspicious_effect = yes }
+		ai_will_do = { base = 0 }
+	}
+
+	coi_alien_debug_set_awareness_3 = {
+		icon = generic_research
+		visible = { is_debug = yes }
+		cost = 0
+		complete_effect = { coi_alien_debug_force_awareness_confirmed_effect = yes }
+		ai_will_do = { base = 0 }
+	}
+
+	coi_alien_debug_set_awareness_4 = {
+		icon = generic_research
+		visible = { is_debug = yes }
+		cost = 0
+		complete_effect = { coi_alien_debug_force_awareness_mobilized_effect = yes }
+		ai_will_do = { base = 0 }
+	}
+
+	coi_alien_debug_prepare_landfall_here = {
+		icon = generic_operation
+		visible = {
+			is_debug = yes
+			NOT = { tag = XAC }
+			NOT = { coi_alien_landfall_target_locked_trigger = yes }
+		}
+		cost = 0
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_prepare_landfall_effect_tt
+			hidden_effect = {
+				if = {
+					limit = { NOT = { coi_alien_framework_active_trigger = yes } }
+					coi_alien_set_hidden_mode_effect = yes
+				}
+				set_global_flag = coi_alien_landfall_selection_unlocked
+				set_global_flag = coi_alien_immediate_landfall_pending
+				coi_alien_prepare_landfall_target_effect = yes
+			}
+		}
+		ai_will_do = { base = 0 }
+	}
+
+	coi_alien_debug_reset_landfall = {
+		icon = generic_operation
+		visible = {
+			is_debug = yes
+			coi_alien_landfall_target_locked_trigger = yes
+		}
+		cost = 0
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_debug_reset_landfall_tt
+			hidden_effect = { coi_alien_reset_landfall_preparation_effect = yes }
+		}
+		ai_will_do = { base = 0 }
+	}
+}

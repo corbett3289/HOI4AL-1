@@ -1,0 +1,34 @@
+* text=auto
+
+# Clausewitz data, localization, and the deterministic PowerShell builders are
+# authored and checked out as LF. Several hash-pinned generators embed exact
+# line-ending anchors, so platform-dependent checkout conversion is unsafe.
+*.asset text eol=lf
+*.csv text eol=lf
+*.gfx text eol=lf
+*.gui text eol=lf
+*.md text eol=lf
+*.mod text eol=lf
+*.ps1 text eol=lf
+*.template text eol=lf
+*.txt text eol=lf
+*.vdf text eol=lf
+*.yml text eol=lf
+
+# Game and source artwork are ordinary Git binary files. The repository does
+# not require Git LFS.
+*.bmp binary
+*.dds binary
+*.gif binary
+*.ico binary
+*.jpeg binary
+*.jpg binary
+*.png binary
+*.tga binary
+*.webp binary
+*.zip binary
+
+# Runtime evidence must remain untracked, but mark these formats defensively.
+*.dmp binary
+*.hoi4 binary
+*.mdmp binary

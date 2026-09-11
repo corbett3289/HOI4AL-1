@@ -1,0 +1,175 @@
+spriteTypes = {
+	# Unique naval interface art. The 3D entities remain vanilla stand-ins until
+	# dedicated alien ship models are available.
+	SpriteType = {
+		name = "GFX_coi_alien_mothership_anchorage"
+		texturefile = "gfx/interface/coi_alien/coi_alien_anchorage.dds"
+	}
+	SpriteType = {
+		name = "GFX_idea_coi_alien_mothership_anchorage_online"
+		texturefile = "gfx/interface/coi_alien/coi_alien_anchorage.dds"
+	}
+
+	# Per-sub-unit naval art follows each exact engine lookup contract: 50x34
+	# roster icons, class-sized two-frame fleet/combat strips, 30x12 compact
+	# counters, and 30x12 inline texticons. None replaces a global human UI key.
+	SpriteType = {
+		name = "GFX_navy_icon_coi_alien_mothership"
+		texturefile = "gfx/interface/coi_alien/coi_alien_mothership_navy_icon.dds"
+	}
+	SpriteType = {
+		name = "GFX_navalcombat_ship_icon_coi_alien_mothership"
+		texturefile = "gfx/interface/navalcombat/ships/coi_alien_mothership.dds"
+		noOfFrames = 2
+	}
+	SpriteType = {
+		name = "GFX_unit_coi_alien_mothership_icon_medium"
+		texturefile = "gfx/interface/navalcombat/ships/coi_alien_mothership.dds"
+		noOfFrames = 2
+	}
+	SpriteType = {
+		name = "GFX_unit_coi_alien_mothership_1_icon_medium"
+		texturefile = "gfx/interface/navalcombat/ships/coi_alien_mothership.dds"
+		noOfFrames = 2
+	}
+	SpriteType = {
+		name = "GFX_unit_coi_alien_mothership_2_icon_medium"
+		texturefile = "gfx/interface/navalcombat/ships/coi_alien_mothership.dds"
+		noOfFrames = 2
+	}
+	SpriteType = {
+		name = "GFX_unit_coi_alien_mothership_icon_medium_white"
+		texturefile = "gfx/interface/counters/ships_small/onmap_coi_alien_mothership.dds"
+	}
+	SpriteType = {
+		name = "GFX_unit_coi_alien_mothership_icon_medium_black"
+		texturefile = "gfx/interface/counters/ships_small/onmap_coi_alien_mothership_inverted.dds"
+	}
+	SpriteType = {
+		name = "GFX_ship_coi_alien_mothership_icon_small"
+		texturefile = "gfx/texticons/ship_coi_alien_mothership_icon_small.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "unit_coi_alien_mothership_icon_small"
+		texturefile = "gfx/texticons/ship_coi_alien_mothership_icon_small.dds"
+		legacy_lazy_load = no
+	}
+
+	SpriteType = {
+		name = "GFX_navy_icon_coi_alien_escort"
+		texturefile = "gfx/interface/coi_alien/coi_alien_escort_navy_icon.dds"
+	}
+	SpriteType = {
+		name = "GFX_navalcombat_ship_icon_coi_alien_escort"
+		texturefile = "gfx/interface/navalcombat/ships/coi_alien_escort.dds"
+		noOfFrames = 2
+	}
+	SpriteType = {
+		name = "GFX_unit_coi_alien_escort_icon_medium"
+		texturefile = "gfx/interface/navalcombat/ships/coi_alien_escort.dds"
+		noOfFrames = 2
+	}
+	SpriteType = {
+		name = "GFX_unit_coi_alien_escort_1_icon_medium"
+		texturefile = "gfx/interface/navalcombat/ships/coi_alien_escort.dds"
+		noOfFrames = 2
+	}
+	SpriteType = {
+		name = "GFX_unit_coi_alien_escort_2_icon_medium"
+		texturefile = "gfx/interface/navalcombat/ships/coi_alien_escort.dds"
+		noOfFrames = 2
+	}
+	SpriteType = {
+		name = "GFX_unit_coi_alien_escort_icon_medium_white"
+		texturefile = "gfx/interface/counters/ships_small/onmap_coi_alien_escort.dds"
+	}
+	SpriteType = {
+		name = "GFX_unit_coi_alien_escort_icon_medium_black"
+		texturefile = "gfx/interface/counters/ships_small/onmap_coi_alien_escort_inverted.dds"
+	}
+	SpriteType = {
+		name = "GFX_ship_coi_alien_escort_icon_small"
+		texturefile = "gfx/texticons/ship_coi_alien_escort_icon_small.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "unit_coi_alien_escort_icon_small"
+		texturefile = "gfx/texticons/ship_coi_alien_escort_icon_small.dds"
+		legacy_lazy_load = no
+	}
+
+	# The stock naval movement arrow and mission/activity sprites are global.
+	# Keep this glyph namespaced for a future XAC-only GUI instead of replacing
+	# those global sprites for every country.
+	SpriteType = {
+		name = "GFX_coi_alien_phase_movement"
+		texturefile = "gfx/interface/coi_alien/coi_alien_phase_movement.dds"
+	}
+
+	SpriteType = {
+		name = "GFX_coi_alien_mothership_hull_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_pale_horizon.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_mothership_hull_1_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_pale_horizon.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_escort_hull_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_silent_current.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_escort_hull_1_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_silent_current.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_needle_equipment_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_needle.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_needle_equipment_1_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_needle.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_gleam_equipment_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_gleam.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_gleam_equipment_1_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_gleam.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_tic_tac_convoy_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_tic_tac_convoy.dds"
+	}
+
+	# create_equipment_variant.icon can bind the namespaced equipment-card key,
+	# but a variant's name/country never participates in naval-combat lookups.
+	# These combat aliases therefore belong only to the distinct
+	# coi_alien_tic_tac_convoy equipment type and deliberately do not replace the
+	# global GFX_unit_convoy_1_icon_medium or GFX_navalcombat_ship_icon_convoy.
+	SpriteType = {
+		name = "GFX_navalcombat_ship_icon_coi_alien_tic_tac_convoy"
+		texturefile = "gfx/interface/navalcombat/ships/coi_alien_tic_tac_convoy.dds"
+		noOfFrames = 2
+	}
+	SpriteType = {
+		name = "GFX_unit_coi_alien_tic_tac_convoy_icon_medium"
+		texturefile = "gfx/interface/navalcombat/ships/coi_alien_tic_tac_convoy.dds"
+		noOfFrames = 2
+	}
+
+	SpriteType = {
+		name = "GFX_coi_alien_expeditionary_naval_architecture_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_pale_horizon.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_needle_interceptor_program_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_needle.dds"
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_gleam_strike_program_medium"
+		texturefile = "gfx/interface/coi_alien/coi_alien_gleam.dds"
+	}
+}

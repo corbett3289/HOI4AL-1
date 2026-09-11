@@ -1,0 +1,31 @@
+coi_alien_precatastrophic_observation_trigger = {
+	original_tag = XAC
+	coi_alien_framework_active_trigger = yes
+	NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+}
+
+coi_alien_can_change_observation_policy_trigger = {
+	coi_alien_precatastrophic_observation_trigger = yes
+	has_tech = coi_alien_comparative_human_ethology
+	NOT = { has_country_flag = coi_alien_observation_policy_cooldown }
+}
+
+coi_alien_can_create_conditioned_facsimile_trigger = {
+	original_tag = XAC
+	has_dlc = "La Resistance"
+	has_tech = coi_alien_conditioned_identity_imprinting
+		OR = {
+			NOT = { has_dlc = "Gotterdammerung" }
+			is_special_project_completed = sp:coi_alien_sp_viable_adult_clone
+		}
+	has_variable = coi_alien_tissue_samples
+	check_variable = { coi_alien_tissue_samples > 0 }
+	check_variable = { coi_alien_active_clone_operatives < 2 }
+}
+
+coi_alien_has_cultural_fluency_dossier_trigger = {
+	exists = yes
+	NOT = { original_tag = XAC }
+	has_variable = coi_alien_cultural_dossier
+	check_variable = { coi_alien_cultural_dossier > 2 }
+}

@@ -1,0 +1,41 @@
+add_namespace = coi_alien_recovery
+
+country_event = {
+	id = coi_alien_recovery.1
+	title = coi_alien_recovery.1.t
+	desc = coi_alien_recovery.1.desc
+	picture = GFX_report_event_coi_alien_discovery_anomaly
+	is_triggered_only = yes
+
+	option = { name = coi_alien_recovery.1.a }
+}
+
+country_event = {
+	id = coi_alien_recovery.2
+	title = coi_alien_recovery.2.t
+	desc = coi_alien_recovery.2.desc
+	picture = GFX_report_event_coi_alien_recovery_debris
+	is_triggered_only = yes
+
+	option = { name = coi_alien_recovery.2.a }
+}
+
+country_event = {
+	id = coi_alien_recovery.3
+	title = coi_alien_recovery.3.t
+	desc = coi_alien_recovery.3.desc
+	picture = GFX_report_event_coi_alien_recovery_craft
+	is_triggered_only = yes
+
+	option = { name = coi_alien_recovery.3.a }
+}
+
+country_event = {
+	id = coi_alien_recovery.4
+	title = coi_alien_recovery.4.t
+	desc = coi_alien_recovery.4.desc
+	picture = GFX_report_event_coi_alien_recovery_public_crash
+	is_triggered_only = yes
+
+	option = { name = coi_alien_recovery.4.a }
+}

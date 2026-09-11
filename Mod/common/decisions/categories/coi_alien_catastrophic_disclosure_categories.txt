@@ -1,0 +1,18 @@
+coi_alien_catastrophic_disclosure_category = {
+	icon = coi_alien_catastrophic_disclosure
+	priority = 120
+	visible = {
+		OR = {
+			AND = {
+				NOT = { tag = XAC }
+				coi_alien_catastrophic_crisis_active_trigger = yes
+			}
+			AND = {
+				tag = XAC
+				is_ai = no
+				has_global_flag = coi_alien_landfall_prepared
+				NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+			}
+		}
+	}
+}

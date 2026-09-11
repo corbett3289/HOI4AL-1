@@ -1,0 +1,120 @@
+add_namespace = coi_alien_scientist_extraction
+
+### XAC disposition choice. The scientist is captured as a saved character
+### event target but is never transferred into XAC's character roster.
+country_event = {
+	id = coi_alien_scientist_extraction.1
+	title = coi_alien_scientist_extraction.1.t
+	desc = coi_alien_scientist_extraction.1.desc
+	picture = GFX_report_event_generic_research_lab
+	is_triggered_only = yes
+
+	option = {
+		name = coi_alien_scientist_extraction.1.a
+		ai_chance = { factor = 50 }
+		custom_effect_tooltip = coi_alien_scientist_extraction_study_tt
+		hidden_effect = {
+			coi_alien_add_survey_data_two_effect = yes
+			add_tech_bonus = {
+				name = coi_alien_extracted_scientist_study_bonus
+				bonus = 1.0
+				uses = 1
+				category = coi_alien_science
+			}
+			coi_alien_record_scientist_studied_effect = yes
+		}
+	}
+
+	option = {
+		name = coi_alien_scientist_extraction.1.b
+		ai_chance = { factor = 30 }
+		custom_effect_tooltip = coi_alien_scientist_extraction_transplant_tt
+		hidden_effect = {
+			coi_alien_add_survey_data_one_effect = yes
+			coi_alien_record_scientist_offworld_effect = yes
+		}
+	}
+
+	option = {
+		name = coi_alien_scientist_extraction.1.c
+		ai_chance = { factor = 20 }
+		custom_effect_tooltip = coi_alien_scientist_extraction_removal_tt
+		hidden_effect = {
+			coi_alien_record_scientist_removed_effect = yes
+			event_target:coi_alien_extraction_target = {
+				add_timed_idea = {
+					idea = coi_alien_scientific_leadership_disrupted
+					days = 180
+				}
+				every_active_scientist = {
+					limit = {
+						NOT = { has_trait = coi_alien_scientist_breakthrough_disrupted }
+					}
+					add_scientist_trait = coi_alien_scientist_breakthrough_disrupted
+				}
+				# This hidden event removes the CHARACTER-category component at
+				# the same 180-day horizon as the timed country idea.
+				country_event = {
+					id = coi_alien_scientist_extraction.5
+					days = 180
+				}
+			}
+		}
+	}
+}
+
+### Completion-time revalidation failed. Deep access and target cooldown remain
+### untouched so a changed assignment or injured scientist is not punitive.
+country_event = {
+	id = coi_alien_scientist_extraction.2
+	title = coi_alien_scientist_extraction.2.t
+	desc = coi_alien_scientist_extraction.2.desc
+	picture = GFX_report_event_generic_research_lab
+	is_triggered_only = yes
+
+	option = {
+		name = coi_alien_scientist_extraction.2.a
+	}
+}
+
+### Low-awareness target notification. It reports a disappearance without
+### identifying XAC or asserting an extraterrestrial cause.
+country_event = {
+	id = coi_alien_scientist_extraction.3
+	title = coi_alien_scientist_extraction.3.t
+	desc = coi_alien_scientist_extraction.3.desc
+	picture = GFX_report_event_generic_research_lab
+	is_triggered_only = yes
+
+	option = {
+		name = coi_alien_scientist_extraction.3.a
+	}
+}
+
+### Confirmed-or-higher target notification. The same disappearance is now
+### interpreted through the country's established alien-awareness picture.
+country_event = {
+	id = coi_alien_scientist_extraction.4
+	title = coi_alien_scientist_extraction.4.t
+	desc = coi_alien_scientist_extraction.4.desc
+	picture = GFX_report_event_generic_research_lab
+	is_triggered_only = yes
+
+	option = {
+		name = coi_alien_scientist_extraction.4.a
+	}
+}
+
+### Hidden cleanup for Strategic Removal's CHARACTER-category penalty.
+country_event = {
+	id = coi_alien_scientist_extraction.5
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_scientist = {
+			limit = { has_trait = coi_alien_scientist_breakthrough_disrupted }
+			remove_trait = { trait = coi_alien_scientist_breakthrough_disrupted }
+		}
+	}
+}

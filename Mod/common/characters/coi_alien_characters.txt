@@ -1,0 +1,94 @@
+characters = {
+	coi_alien_eir = {
+		name = coi_alien_eir
+		portraits = {
+			civilian = {
+				large = GFX_coi_alien_portrait_eir
+				small = GFX_coi_alien_portrait_eir_small
+			}
+		}
+		country_leader = {
+			ideology = despotism
+			traits = { }
+			expire = "2200.1.1.1"
+			id = -1
+		}
+	}
+
+	coi_alien_vael = {
+		name = coi_alien_vael
+		portraits = {
+			army = {
+				large = GFX_coi_alien_portrait_vael
+				small = GFX_coi_alien_portrait_vael_small
+			}
+		}
+		field_marshal = {
+			traits = { }
+			skill = 4
+			attack_skill = 4
+			defense_skill = 4
+			planning_skill = 4
+			logistics_skill = 4
+			legacy_id = -1
+		}
+	}
+
+	coi_alien_thren = {
+		name = coi_alien_thren
+		portraits = {
+			navy = {
+				large = GFX_coi_alien_portrait_thren
+				small = GFX_coi_alien_portrait_thren_small
+			}
+		}
+		navy_leader = {
+			traits = { }
+			skill = 4
+			attack_skill = 4
+			defense_skill = 4
+			maneuvering_skill = 4
+			coordination_skill = 4
+			legacy_id = -1
+		}
+	}
+
+	coi_alien_oru = {
+		name = coi_alien_oru
+		portraits = {
+			army = {
+				large = GFX_coi_alien_portrait_oru
+				small = GFX_coi_alien_portrait_oru_small
+			}
+		}
+		scientist = {
+			desc = coi_alien_oru_desc
+			skills = {
+				coi_alien_specialization_matter_fabrication = 3
+			}
+		}
+	}
+
+	coi_alien_saal = {
+		name = coi_alien_saal
+		portraits = {
+			civilian = {
+				large = GFX_coi_alien_portrait_saal
+				small = GFX_coi_alien_portrait_saal_small
+			}
+		}
+		advisor = {
+			cost = 150
+			slot = political_advisor
+			idea_token = coi_alien_saal
+			allowed = {
+				original_tag = XAC
+			}
+			available = { always = yes }
+			traits = { silent_workhorse }
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}
+}

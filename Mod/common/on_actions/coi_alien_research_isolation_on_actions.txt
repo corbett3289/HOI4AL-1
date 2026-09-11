@@ -1,0 +1,26 @@
+on_actions = {
+	on_startup = {
+		effect = {
+			every_country = { coi_alien_grant_human_facility_access_effect = yes }
+			XAC = {
+				coi_alien_ensure_consensus_research_nexus_effect = yes
+				coi_alien_ensure_oru_consensus_skill_effect = yes
+			}
+		}
+	}
+
+	# Covers newly released or dynamically created terrestrial countries while
+	# keeping the daily path limited to XAC's one old-save migration check.
+	on_weekly = {
+		effect = {
+			every_country = { coi_alien_grant_human_facility_access_effect = yes }
+		}
+	}
+
+	on_daily_XAC = {
+		effect = {
+			coi_alien_ensure_consensus_research_nexus_effect = yes
+			coi_alien_ensure_oru_consensus_skill_effect = yes
+		}
+	}
+}

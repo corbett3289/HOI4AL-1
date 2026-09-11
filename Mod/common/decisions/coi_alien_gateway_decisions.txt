@@ -1,0 +1,341 @@
+coi_alien_gateway_category = {
+	coi_alien_construct_energy_gateway = {
+		icon = generic_construction
+		allowed = { original_tag = XAC }
+		state_target = any_owned_state
+		on_map_mode = map_and_decisions_view
+		target_root_trigger = {
+			has_tech = coi_alien_energy_gateway_synchronization
+			check_variable = { coi_alien_gateway_committed_count < 3 }
+		}
+		target_trigger = { FROM = { coi_alien_gateway_valid_construction_state_trigger = yes } }
+		visible = {
+			has_tech = coi_alien_energy_gateway_synchronization
+			check_variable = { coi_alien_gateway_committed_count < 3 }
+			FROM = { coi_alien_gateway_valid_construction_state_trigger = yes }
+		}
+		available = {
+			has_idea = coi_alien_mothership_anchorage_online
+			check_variable = { coi_alien_gateway_committed_count < 3 }
+			command_power > 24.9
+			FROM = { coi_alien_gateway_valid_construction_state_trigger = yes }
+		}
+		cost = 75
+		custom_cost_trigger = { command_power > 24.9 }
+		custom_cost_text = coi_alien_gateway_cost_75pp_25cp
+		days_remove = 120
+		cancel_if_not_visible = no
+		cancel_trigger = {
+			OR = {
+				NOT = { has_idea = coi_alien_mothership_anchorage_online }
+				FROM = {
+					OR = {
+						NOT = { is_owned_by = ROOT }
+						NOT = { is_controlled_by = ROOT }
+					}
+				}
+			}
+		}
+		complete_effect = {
+			add_command_power = -25
+			add_to_variable = { coi_alien_gateway_committed_count = 1 }
+			clamp_variable = { var = coi_alien_gateway_committed_count min = 0 max = 3 }
+			FROM = { set_state_flag = coi_alien_gateway_construction_in_progress }
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					has_idea = coi_alien_mothership_anchorage_online
+					FROM = {
+						is_owned_by = ROOT
+						is_controlled_by = ROOT
+						NOT = { coi_alien_energy_gateway > 0 }
+					}
+				}
+				FROM = {
+					add_building_construction = {
+						type = coi_alien_energy_gateway
+						level = 1
+						instant_build = yes
+					}
+					clr_state_flag = coi_alien_gateway_construction_in_progress
+					set_state_flag = coi_alien_gateway_established
+				}
+				coi_alien_reconcile_gateway_committed_count_effect = yes
+				coi_alien_recalculate_gateway_output_effect = yes
+			}
+			else = {
+				FROM = { clr_state_flag = coi_alien_gateway_construction_in_progress }
+				coi_alien_reconcile_gateway_committed_count_effect = yes
+				add_political_power = 75
+				add_command_power = 25
+			}
+		}
+		cancel_effect = {
+			FROM = { clr_state_flag = coi_alien_gateway_construction_in_progress }
+			coi_alien_reconcile_gateway_committed_count_effect = yes
+			add_political_power = 75
+			add_command_power = 25
+		}
+		ai_will_do = {
+			base = 20
+			modifier = { factor = 0 check_variable = { coi_alien_gateway_committed_count > 2 } }
+		}
+	}
+
+	coi_alien_upgrade_energy_gateway_tier_two = {
+		icon = generic_construction
+		allowed = { original_tag = XAC }
+		state_target = any_owned_state
+		on_map_mode = map_and_decisions_view
+		target_root_trigger = { has_tech = coi_alien_stabilized_transit_network }
+		target_trigger = {
+			FROM = {
+				is_owned_by = ROOT
+				is_controlled_by = ROOT
+				coi_alien_energy_gateway > 0
+				coi_alien_energy_gateway < 2
+				NOT = { has_state_flag = coi_alien_gateway_upgrade_in_progress }
+			}
+		}
+		visible = {
+			has_tech = coi_alien_stabilized_transit_network
+			FROM = {
+				coi_alien_energy_gateway > 0
+				coi_alien_energy_gateway < 2
+				NOT = { has_state_flag = coi_alien_gateway_upgrade_in_progress }
+			}
+		}
+		available = {
+			has_idea = coi_alien_mothership_anchorage_online
+			command_power > 14.9
+			FROM = { is_owned_by = ROOT is_controlled_by = ROOT }
+		}
+		cost = 50
+		custom_cost_trigger = { command_power > 14.9 }
+		custom_cost_text = coi_alien_gateway_cost_50pp_15cp
+		days_remove = 90
+		cancel_if_not_visible = no
+		cancel_trigger = {
+			OR = {
+				NOT = { has_idea = coi_alien_mothership_anchorage_online }
+				FROM = { OR = { NOT = { is_owned_by = ROOT } NOT = { is_controlled_by = ROOT } } }
+			}
+		}
+		complete_effect = {
+			add_command_power = -15
+			FROM = { set_state_flag = coi_alien_gateway_upgrade_in_progress }
+		}
+		remove_effect = {
+			FROM = {
+				add_building_construction = { type = coi_alien_energy_gateway level = 1 instant_build = yes }
+				clr_state_flag = coi_alien_gateway_upgrade_in_progress
+			}
+			coi_alien_recalculate_gateway_output_effect = yes
+		}
+		cancel_effect = {
+			FROM = { clr_state_flag = coi_alien_gateway_upgrade_in_progress }
+			add_political_power = 50
+			add_command_power = 15
+		}
+		ai_will_do = { base = 15 }
+	}
+
+	coi_alien_upgrade_energy_gateway_tier_three = {
+		icon = generic_construction
+		allowed = { original_tag = XAC }
+		state_target = any_owned_state
+		on_map_mode = map_and_decisions_view
+		target_root_trigger = { has_tech = coi_alien_autonomous_fabrication_ecology }
+		target_trigger = {
+			FROM = {
+				is_owned_by = ROOT
+				is_controlled_by = ROOT
+				coi_alien_energy_gateway > 1
+				coi_alien_energy_gateway < 3
+				NOT = { has_state_flag = coi_alien_gateway_upgrade_in_progress }
+			}
+		}
+		visible = {
+			has_tech = coi_alien_autonomous_fabrication_ecology
+			FROM = {
+				coi_alien_energy_gateway > 1
+				coi_alien_energy_gateway < 3
+				NOT = { has_state_flag = coi_alien_gateway_upgrade_in_progress }
+			}
+		}
+		available = {
+			has_idea = coi_alien_mothership_anchorage_online
+			command_power > 19.9
+			FROM = { is_owned_by = ROOT is_controlled_by = ROOT }
+		}
+		cost = 75
+		custom_cost_trigger = { command_power > 19.9 }
+		custom_cost_text = coi_alien_gateway_cost_75pp_20cp
+		days_remove = 120
+		cancel_if_not_visible = no
+		cancel_trigger = {
+			OR = {
+				NOT = { has_idea = coi_alien_mothership_anchorage_online }
+				FROM = { OR = { NOT = { is_owned_by = ROOT } NOT = { is_controlled_by = ROOT } } }
+			}
+		}
+		complete_effect = {
+			add_command_power = -20
+			FROM = { set_state_flag = coi_alien_gateway_upgrade_in_progress }
+		}
+		remove_effect = {
+			FROM = {
+				add_building_construction = { type = coi_alien_energy_gateway level = 1 instant_build = yes }
+				clr_state_flag = coi_alien_gateway_upgrade_in_progress
+			}
+			coi_alien_recalculate_gateway_output_effect = yes
+		}
+		cancel_effect = {
+			FROM = { clr_state_flag = coi_alien_gateway_upgrade_in_progress }
+			add_political_power = 75
+			add_command_power = 20
+		}
+		ai_will_do = { base = 12 }
+	}
+
+	coi_alien_print_needle_batch = {
+		icon = generic_air
+		allowed = { original_tag = XAC }
+		visible = { has_tech = coi_alien_additive_airframe_printing }
+		available = {
+			coi_alien_gateway_network_online_trigger = yes
+			check_variable = { coi_alien_fabrication_capacity > 19.9 }
+		}
+		cost = 0
+		days_remove = 30
+		cancel_if_not_visible = no
+		complete_effect = {
+			add_to_variable = { coi_alien_fabrication_capacity = -20 }
+			if = {
+				limit = { has_tech = coi_alien_continuous_airframe_lattice }
+				set_country_flag = coi_alien_print_needle_advanced_batch
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = { has_country_flag = coi_alien_print_needle_advanced_batch }
+				add_equipment_to_stockpile = { type = coi_alien_needle_equipment_4 amount = 30 producer = XAC }
+			}
+			else = {
+				add_equipment_to_stockpile = { type = coi_alien_needle_equipment_3 amount = 20 producer = XAC }
+			}
+			clr_country_flag = coi_alien_print_needle_advanced_batch
+		}
+		ai_will_do = { base = 4 modifier = { factor = 2 check_variable = { coi_alien_fabrication_capacity > 59 } } }
+	}
+
+	coi_alien_print_gleam_batch = {
+		icon = generic_air
+		allowed = { original_tag = XAC }
+		visible = { has_tech = coi_alien_additive_airframe_printing }
+		available = {
+			coi_alien_gateway_network_online_trigger = yes
+			check_variable = { coi_alien_fabrication_capacity > 19.9 }
+		}
+		cost = 0
+		days_remove = 30
+		cancel_if_not_visible = no
+		complete_effect = {
+			add_to_variable = { coi_alien_fabrication_capacity = -20 }
+			if = {
+				limit = { has_tech = coi_alien_continuous_airframe_lattice }
+				set_country_flag = coi_alien_print_gleam_advanced_batch
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = { has_country_flag = coi_alien_print_gleam_advanced_batch }
+				add_equipment_to_stockpile = { type = coi_alien_gleam_equipment_4 amount = 18 producer = XAC }
+			}
+			else = {
+				add_equipment_to_stockpile = { type = coi_alien_gleam_equipment_3 amount = 12 producer = XAC }
+			}
+			clr_country_flag = coi_alien_print_gleam_advanced_batch
+		}
+		ai_will_do = { base = 3 modifier = { factor = 2 check_variable = { coi_alien_fabrication_capacity > 59 } } }
+	}
+
+	coi_alien_print_orbital_sentinel = {
+		icon = generic_air
+		allowed = { original_tag = XAC }
+		visible = { has_tech = coi_alien_sentinel_reserve_fabrication }
+		available = {
+			coi_alien_gateway_network_online_trigger = yes
+			check_variable = { coi_alien_fabrication_capacity > 14.9 }
+			has_equipment = { coi_alien_orbital_sentinel_equipment < 12 }
+		}
+		cost = 0
+		days_remove = 45
+		cancel_if_not_visible = no
+		complete_effect = { add_to_variable = { coi_alien_fabrication_capacity = -15 } }
+		remove_effect = {
+			add_equipment_to_stockpile = {
+				type = coi_alien_orbital_sentinel_equipment_1
+				amount = 1
+				producer = XAC
+			}
+		}
+		ai_will_do = { base = 20 modifier = { factor = 0 has_equipment = { coi_alien_orbital_sentinel_equipment > 9 } } }
+	}
+
+	coi_alien_offer_orbital_protection_accord = {
+		icon = generic_political_discourse
+		allowed = { original_tag = XAC }
+		target_root_trigger = {
+			has_tech = coi_alien_predictive_intercept_lattice
+			coi_alien_gateway_network_online_trigger = yes
+		}
+		target_trigger = {
+			FROM = {
+				exists = yes
+				NOT = { original_tag = XAC }
+				NOT = { has_country_flag = coi_alien_orbital_protection_accord_member }
+				NOT = { has_country_flag = coi_alien_orbital_accord_offer_pending }
+				NOT = { has_war_with = ROOT }
+				OR = { is_in_faction_with = ROOT is_subject_of = ROOT }
+			}
+		}
+		visible = {
+			has_tech = coi_alien_predictive_intercept_lattice
+			coi_alien_gateway_network_online_trigger = yes
+		}
+		available = { FROM = { NOT = { has_war_with = ROOT } } }
+		cost = 25
+		days_re_enable = 90
+		complete_effect = {
+			FROM = {
+				set_country_flag = coi_alien_orbital_accord_offer_pending
+				country_event = { id = coi_alien_gateway.1 }
+			}
+		}
+		ai_will_do = { base = 8 }
+	}
+
+	coi_alien_revoke_orbital_protection_accord = {
+		icon = generic_political_discourse
+		allowed = { original_tag = XAC }
+		target_trigger = {
+			FROM = {
+				exists = yes
+				NOT = { original_tag = XAC }
+				has_country_flag = coi_alien_orbital_protection_accord_member
+			}
+		}
+		visible = { FROM = { has_country_flag = coi_alien_orbital_protection_accord_member } }
+		available = { always = yes }
+		cost = 0
+		complete_effect = {
+			FROM = {
+				clr_country_flag = coi_alien_orbital_protection_accord_member
+				country_event = { id = coi_alien_gateway.4 }
+			}
+		}
+		ai_will_do = { base = 0 }
+	}
+}

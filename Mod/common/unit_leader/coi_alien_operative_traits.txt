@@ -1,0 +1,23 @@
+leader_traits = {
+	# Autonomous constructs carry no interrogable biological memory and can
+	# alter their observable profile while passing through defended networks.
+	# A zero generation weight confines this trait to authored alien drones.
+	coi_alien_autonomous_infiltration_drone = {
+		type = operative
+		trait_type = personality_trait
+
+		new_commander_weight = {
+			factor = 0
+		}
+
+		modifier = {
+			own_operative_detection_chance_factor = -0.05
+			enemy_operative_intel_extraction_rate = -0.75
+			operation_outcome = 0.05
+			operation_infiltrate_outcome = 0.10
+			operation_infiltrate_risk = -0.10
+			target_sabotage_risk = -0.10
+			operation_steal_tech_risk = -0.10
+		}
+	}
+}

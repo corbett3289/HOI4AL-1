@@ -1,0 +1,11 @@
+"workshopitem"
+{
+	"appid"		"394360"
+	"publishedfileid"		"0"
+	"contentfolder"		"<ABSOLUTE_PATH_TO_REPOSITORY>\Mod"
+	"previewfile"		"<ABSOLUTE_PATH_TO_REPOSITORY>\Mod\thumbnail.png"
+	"visibility"		"2"
+	"title"		"Alien Crisis: Grey Consensus [DEV]"
+	"description"		"Private development build of Alien Crisis: Grey Consensus, a standalone Hearts of Iron IV alien-crisis framework. Requires a compatible HOI4 installation and the DLC disclosed in the project README."
+	"changenote"		"Local private testing build. See the repository changelog for version details."
+}

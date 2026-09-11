@@ -1,0 +1,85 @@
+### Gateway, fabrication, and orbital-defense contracts.
+
+# COUNTRY scope. A usable Anchorage must physically exist in a state both
+# owned and controlled by XAC. The province building is damage-immune because
+# HOI4 exposes non_damaged_building_level only for state buildings.
+coi_alien_has_healthy_mothership_anchorage_trigger = {
+	original_tag = XAC
+	any_owned_state = {
+		is_controlled_by = ROOT
+		any_province_building_level = {
+			province = { all_provinces = yes }
+			building = coi_alien_mothership_anchorage
+			level > 0
+		}
+	}
+}
+
+# COUNTRY scope.
+coi_alien_gateway_network_online_trigger = {
+	original_tag = XAC
+	has_idea = coi_alien_mothership_anchorage_online
+	check_variable = { coi_alien_gateway_online_levels > 0 }
+}
+
+# STATE scope, with the construction decision's ROOT remaining XAC.
+coi_alien_gateway_valid_construction_state_trigger = {
+	is_owned_by = ROOT
+	is_controlled_by = ROOT
+	infrastructure > 2
+	NOT = { is_demilitarized_zone = yes }
+	NOT = { coi_alien_energy_gateway > 0 }
+	NOT = { has_state_flag = coi_alien_gateway_construction_in_progress }
+}
+
+# COUNTRY scope. A formally admitted country remains eligible unless it goes
+# to war with XAC; XAC itself is always inside its own protection perimeter.
+coi_alien_country_has_orbital_protection_trigger = {
+	OR = {
+		original_tag = XAC
+		AND = {
+			has_country_flag = coi_alien_orbital_protection_accord_member
+			NOT = { has_war_with = XAC }
+		}
+	}
+}
+
+# STATE scope. This is sampled by the custom nuclear-raid success modifier.
+coi_alien_orbital_target_has_basic_defense_trigger = {
+	controller = { coi_alien_country_has_orbital_protection_trigger = yes }
+	XAC = {
+		coi_alien_gateway_network_online_trigger = yes
+		has_tech = coi_alien_predictive_intercept_lattice
+		has_equipment = { coi_alien_orbital_sentinel_equipment > 0 }
+	}
+}
+
+# STATE scope.
+coi_alien_orbital_target_has_sentinel_defense_trigger = {
+	coi_alien_orbital_target_has_basic_defense_trigger = yes
+	XAC = { has_tech = coi_alien_sentinel_reserve_fabrication }
+}
+
+# STATE scope.
+coi_alien_orbital_target_has_atomic_defense_trigger = {
+	coi_alien_orbital_target_has_basic_defense_trigger = yes
+	XAC = { has_tech = coi_alien_atomic_disruption_protocols }
+}
+
+# COUNTRY scope. Atomic Disruption needs a launch complex and something worth
+# corrupting, preventing empty targets from entering the state selector.
+coi_alien_target_has_nuclear_strike_assets_trigger = {
+	exists = yes
+	NOT = { original_tag = XAC }
+	OR = {
+		has_equipment = { nuclear_missile_equipment > 0 }
+		num_of_nukes > 0
+	}
+	any_controlled_state = { rocket_site > 0 }
+}
+
+# STATE scope. FROM is the operation target country.
+coi_alien_operation_state_has_nuclear_launch_site_trigger = {
+	controller = { tag = FROM }
+	rocket_site > 0
+}

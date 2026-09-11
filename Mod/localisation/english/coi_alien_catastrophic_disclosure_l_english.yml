@@ -1,0 +1,97 @@
+﻿l_english:
+ coi_alien_catastrophic_disclosure_category: "The Sky Is No Longer Empty"
+ coi_alien_catastrophic_disclosure_category_desc: "Contact is undeniable, but recognition is not acceptance. Institutions, markets, armed forces, churches, and families are trying to rebuild a common reality. Our current national crisis score is §Y[?coi_alien_crisis_score|0]§!. It will be judged after 180 days; decisions can drive it downward."
+
+ coi_alien_force_open_contact_at_landfall: "Cross the Threshold"
+ coi_alien_force_open_contact_at_landfall_desc: "The landfall site is prepared. Reveal the Consensus openly above the selected country and let every human sensor, camera, and witness carry the truth outward. This begins catastrophic disclosure but neither transfers territory nor declares war."
+ coi_alien_force_open_contact_at_landfall_tt: "Begins the ninety-day §RCatastrophic Disclosure§! wave at the prepared landfall target. §GNo states are transferred and no war is declared.§!"
+
+ coi_alien_address_the_nation: "Address the Nation"
+ coi_alien_address_the_nation_desc: "Speak plainly, acknowledge what is known, distinguish evidence from rumor, and give the public a timetable for the next briefing. Silence is now more frightening than uncertainty."
+ coi_alien_address_the_nation_tt: "Reduces the national crisis score by §G10§! and restores §G2% Stability§!."
+
+ coi_alien_open_emergency_shelters: "Open Emergency Shelters"
+ coi_alien_open_emergency_shelters_desc: "Convert civil-defense infrastructure into visible places of refuge, information, and medical triage. Their practical military value is uncertain; their social value is immediate."
+ coi_alien_open_emergency_shelters_tt: "Reduces the national crisis score by §G15§! and establishes an §YEmergency Shelter Network§! for one year."
+
+ coi_alien_empower_scientific_authority: "Empower Scientific Authority"
+ coi_alien_empower_scientific_authority_desc: "Release cleared physicists, astronomers, physicians, and engineers from compartmented silence. Let expertise replace speculation and turn recovered evidence into public capability."
+ coi_alien_empower_scientific_authority_tt: "Reduces the national crisis score by §G15§! and grants §YEmergency Scientific Authority§! for one year."
+
+ coi_alien_activate_military_continuity: "Activate Military Continuity"
+ coi_alien_activate_military_continuity_desc: "Disperse command posts, authenticate orders through redundant channels, and publish rules that prevent frightened formations from mistaking uncertainty for an attack."
+ coi_alien_activate_military_continuity_tt: "Costs §Y25 Command Power§!, reduces the national crisis score by §G15§!, and grants §YMilitary Continuity Protocol§! for one year."
+
+ coi_alien_expose_the_cover_up: "Expose the Cover-Up"
+ coi_alien_expose_the_cover_up_desc: "The archives prove that officials knew more than they admitted. Sacrifice the old secrecy system, name the lies, and absorb the immediate political fury before conspiracy consumes the state."
+ coi_alien_expose_the_cover_up_tt: "Reduces the national crisis score by §G20§! and ends continuing secrecy escalation, but costs §R5% Stability§! and removes the §YBlack Archive§! benefit."
+
+ coi_alien_coordinate_international_aid: "Coordinate International Aid"
+ coi_alien_coordinate_international_aid_desc: "Share verified observations, emergency broadcasts, medical protocols, and continuity plans across existing alliances or the disclosure council. This is crisis cooperation, not a new faction."
+ coi_alien_coordinate_international_aid_tt: "Reduces the national crisis score by §G20§! and restores §G2% Stability§!. It does not alter factions or alliances."
+
+ coi_alien_debug_trigger_catastrophic_disclosure: "DEBUG: Trigger Catastrophic Disclosure"
+ coi_alien_debug_trigger_catastrophic_disclosure_desc: "Use this country as the origin of the full disclosure wave and six-month crisis system."
+ coi_alien_debug_trigger_catastrophic_disclosure_tt: "Starts catastrophic disclosure immediately from this country."
+
+ coi_alien_disclosure_shock_contained: "Contained Disclosure Shock"
+ coi_alien_disclosure_shock_contained_desc: "Prepared institutions and a partially informed public are absorbing the impossible without losing their footing."
+ coi_alien_disclosure_shock_panic: "Disclosure Panic"
+ coi_alien_disclosure_shock_panic_desc: "Rumor, hoarding, religious ferment, and contradictory orders are consuming attention across the country."
+ coi_alien_disclosure_shock_fracture: "Fracturing Consensus"
+ coi_alien_disclosure_shock_fracture_desc: "The public agrees that alien intelligence is real and on almost nothing else. Every institution is being judged for what it knew and why it stayed silent."
+ coi_alien_disclosure_shock_existential: "Existential Disclosure Crisis"
+ coi_alien_disclosure_shock_existential_desc: "The national story has broken. Authority, faith, markets, and military obedience are all being renegotiated under an occupied sky."
+ coi_alien_disclosure_crisis_recovery: "A New Common Reality"
+ coi_alien_disclosure_crisis_recovery_desc: "The first panic has passed. The country has begun to treat extraterrestrial contact as a permanent fact rather than an endless emergency."
+ coi_alien_disclosure_leadership_collapse: "Leadership Collapse"
+ coi_alien_disclosure_leadership_collapse_desc: "The government survived as a legal shell, but resignations, inquiries, and broken chains of command have crippled its authority."
+ coi_alien_disclosure_emergency_rule: "Disclosure Emergency Rule"
+ coi_alien_disclosure_emergency_rule_desc: "Extraordinary powers hold the country together while ordinary legitimacy remains shattered. Stability has been purchased with political freedom and economic strain."
+ coi_alien_emergency_shelter_network: "Emergency Shelter Network"
+ coi_alien_emergency_shelter_network_desc: "A visible national refuge system reassures civilians, even as maintaining it diverts resources."
+ coi_alien_emergency_scientific_authority: "Emergency Scientific Authority"
+ coi_alien_emergency_scientific_authority_desc: "Cleared researchers can now coordinate openly across institutional boundaries and explain evidence without waiting for political scripts."
+ coi_alien_military_continuity_protocol: "Military Continuity Protocol"
+ coi_alien_military_continuity_protocol_desc: "Redundant command, authentication, and dispersal plans reduce the danger of panic inside the armed forces."
+
+ coi_alien_catastrophic_disclosure.1.t: "WE ARE NOT ALONE"
+ coi_alien_catastrophic_disclosure.1.desc: "Across continents and oceans, constructed vessels have taken fixed positions in open daylight. Civilian film, military radar, scientific observation, and live radio all confirm the same fact. No government can plausibly contain it, and no border can keep it out: an extraterrestrial civilization has confronted humanity with its presence."
+ coi_alien_catastrophic_disclosure.1.a: "History has divided into before and after."
+
+ coi_alien_catastrophic_disclosure.10.t: "The Day the Sky Answered"
+ coi_alien_catastrophic_disclosure.10.desc: "The objects did not dart through cloud or vanish behind radar noise. They arrived in formation and remained. Every camera found the same impossible hulls. Military channels confirmed civilian broadcasts; foreign stations confirmed ours. Within hours, old classified phrases sounded childish. Humanity is not alone, and whatever waits above us has chosen to be seen."
+ coi_alien_catastrophic_disclosure.10.a: "There will be no putting this back."
+
+ coi_alien_catastrophic_disclosure.11.t: "The Controversy Becomes Fact"
+ coi_alien_catastrophic_disclosure.11.desc: "Researchers, diplomats, and witnesses who were once dismissed are now speaking from crowded studios. Authenticated foreign records match our own hidden files line for line. The argument is no longer whether the phenomenon exists, but who concealed it and what it wants."
+ coi_alien_catastrophic_disclosure.11.a: "Prepare the country for the truth."
+
+ coi_alien_catastrophic_disclosure.12.t: "Every Screen Shows Them"
+ coi_alien_catastrophic_disclosure.12.desc: "Radar operators have stopped using euphemisms. Aircraft crews report luminous formations pacing them without effort. Film from distant fronts reaches the capital before censors can agree on an explanation. The same craft are appearing over enemies, allies, and neutral states alike."
+ coi_alien_catastrophic_disclosure.12.a: "This is larger than the war."
+
+ coi_alien_catastrophic_disclosure.13.t: "Ships Beneath Silent Lights"
+ coi_alien_catastrophic_disclosure.13.desc: "Merchant crews and fishing villages watched vast lights move beneath the horizon and rise without spray. Naval wireless carried the reports coast to coast. By morning, photographs were pinned in every station and passed hand to hand in every port."
+ coi_alien_catastrophic_disclosure.13.a: "The sea cannot hide them either."
+
+ coi_alien_catastrophic_disclosure.14.t: "One Human World"
+ coi_alien_catastrophic_disclosure.14.desc: "Even the most isolated districts now receive the pictures. Pilgrims, traders, soldiers, teachers, and refugees all carry the same account: constructed vessels stand openly in the sky. Borders remain, but disbelief no longer does."
+ coi_alien_catastrophic_disclosure.14.a: "We face this as part of humanity."
+
+ coi_alien_catastrophic_disclosure.15.t: "Born into the Disclosure Age"
+ coi_alien_catastrophic_disclosure.15.desc: "Our new government inherits a world in which extraterrestrial contact is already undeniable. We have no sealed era to mourn and no time to repeat its evasions. Institutions must be built for the reality overhead."
+ coi_alien_catastrophic_disclosure.15.a: "Begin from the truth."
+
+ coi_alien_catastrophic_disclosure.90.t: "Six Months Under an Occupied Sky"
+ coi_alien_catastrophic_disclosure.90.desc: "The first 180 days of open contact have ended. Emergency broadcasts have become scheduled briefings; panic has either ebbed into adaptation or hardened into a verdict against the state. The crisis score now measures whether the government restored a common reality—or merely survived while the country came apart."
+ coi_alien_catastrophic_disclosure.90.a: "The country has found its footing."
+ coi_alien_catastrophic_disclosure.90.b: "The cabinet cannot survive the reckoning."
+ coi_alien_catastrophic_disclosure.90.c: "Authority is approaching the breaking point."
+
+ coi_alien_catastrophic_disclosure.91.t: "The Last Broadcast Before the Break"
+ coi_alien_catastrophic_disclosure.91.desc: "Commands go unanswered. Rival movements accuse the government of collaboration, sacrilege, or fatal weakness. Senior officers warn that one more uncontrolled night may split their formations. We can impose emergency rule and accept its long cost, or challenge the opposition in the streets and risk organized civil conflict."
+ coi_alien_catastrophic_disclosure.91.a: "Impose emergency rule."
+ coi_alien_catastrophic_disclosure.91.b: "We will not surrender the state to panic."
+ coi_alien_catastrophic_disclosure.91.c: "The government falls before the country does."
+ coi_alien_disclosure_civil_conflict_warning_tt: "§RWARNING:§! The strongest non-ruling ideology with more than 15% support will begin a civil war controlling roughly §Y30–45%§! of the country. Custom characters remain with the original government."

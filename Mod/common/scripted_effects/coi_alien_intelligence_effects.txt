@@ -1,0 +1,132 @@
+# COUNTRY scope. This versioned initializer is shared by fresh starts and the
+# old-save daily migration hook. The flag is deliberately set only after the
+# full agency, capacity, active pair, and reserve roster have been authored.
+coi_alien_initialize_spy_roster_v1_effect = {
+	if = {
+		limit = {
+			original_tag = XAC
+			has_dlc = "La Resistance"
+			NOT = {
+				has_country_flag = coi_alien_spy_roster_v1_initialized
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = {
+					has_idea = coi_alien_expeditionary_intelligence_complement
+				}
+			}
+			add_ideas = coi_alien_expeditionary_intelligence_complement
+		}
+
+		if = {
+			limit = {
+				NOT = {
+					has_intelligence_agency = yes
+				}
+			}
+			# Supply the identity explicitly so generic always-true agency defaults
+			# cannot win a load-order tie during scripted creation.
+			create_intelligence_agency = {
+				name = coi_alien_quiet_chorus_agency_name
+				icon = GFX_intelligence_agency_logo_coi_alien_quiet_chorus
+			}
+		}
+
+		# Active Grey observer: cultural and institutional penetration.
+		create_operative_leader = {
+			name = coi_alien_operative_neth_witness
+			GFX = GFX_portrait_coi_alien_neth_witness
+			portrait_tag_override = XAC
+			traits = { operative_infiltrator operative_linguist }
+			bypass_recruitment = yes
+			gender = male
+			nationalities = { XAC }
+		}
+
+		# Active autonomous observer: high-risk access without a biological
+		# operative or interrogable memory core.
+		create_operative_leader = {
+			name = coi_alien_operative_drone_quiet_orbit
+			GFX = GFX_portrait_coi_alien_drone_quiet_orbit
+			portrait_tag_override = XAC
+			traits = { coi_alien_autonomous_infiltration_drone operative_infiltrator operative_tough }
+			bypass_recruitment = yes
+			gender = male
+			nationalities = { XAC }
+		}
+
+		# Recruitable Grey counter-intelligence specialist.
+		create_operative_leader = {
+			name = coi_alien_operative_ysil_lattice
+			GFX = GFX_portrait_coi_alien_ysil_lattice
+			portrait_tag_override = XAC
+			traits = { operative_master_interrogator operative_tough }
+			bypass_recruitment = no
+			available_to_spy_master = no
+			gender = female
+			nationalities = { XAC }
+		}
+
+		# Recruitable Grey direct-action specialist.
+		create_operative_leader = {
+			name = coi_alien_operative_cael_current
+			GFX = GFX_portrait_coi_alien_cael_current
+			portrait_tag_override = XAC
+			traits = { operative_commando operative_demolition_expert }
+			bypass_recruitment = no
+			available_to_spy_master = no
+			gender = male
+			nationalities = { XAC }
+		}
+
+		# Recruitable data-extraction drone.
+		create_operative_leader = {
+			name = coi_alien_operative_drone_pale_echo
+			GFX = GFX_portrait_coi_alien_drone_pale_echo
+			portrait_tag_override = XAC
+			traits = { coi_alien_autonomous_infiltration_drone operative_safe_cracker operative_tough }
+			bypass_recruitment = no
+			available_to_spy_master = no
+			gender = female
+			nationalities = { XAC }
+		}
+
+		# Recruitable hardened reconnaissance drone.
+		create_operative_leader = {
+			name = coi_alien_operative_drone_outer_witness
+			GFX = GFX_portrait_coi_alien_drone_outer_witness
+			portrait_tag_override = XAC
+			traits = { coi_alien_autonomous_infiltration_drone operative_commando operative_tough }
+			bypass_recruitment = no
+			available_to_spy_master = no
+			gender = male
+			nationalities = { XAC }
+		}
+
+		set_country_flag = coi_alien_spy_roster_v1_initialized
+		log = "[COI ALIEN] XAC initialized The Quiet Chorus and spy roster v1."
+	}
+}
+
+# COUNTRY scope. Existing saves retain the serialized trait lists of dynamic
+# operatives, so creation-template changes alone cannot harden drones that are
+# already active. This deliberately idempotent pass also supports future
+# recruitment from the authored reserve pool.
+coi_alien_reconcile_autonomous_drone_traits_effect = {
+	if = {
+		limit = {
+			original_tag = XAC
+			has_dlc = "La Resistance"
+		}
+
+		every_operative = {
+			limit = {
+				has_trait = coi_alien_autonomous_infiltration_drone
+				NOT = { has_trait = operative_tough }
+			}
+			add_unit_leader_trait = operative_tough
+		}
+	}
+}

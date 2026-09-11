@@ -1,0 +1,207 @@
+### Silent Systems Survey
+coi_alien_phase_silent_systems_survey_calibrate = {
+	name = coi_alien_phase_silent_systems_survey_calibrate
+	desc = coi_alien_phase_silent_systems_survey_calibrate_desc
+	icon = GFX_coi_alien_operation_silent_systems_survey_phase_icon
+	picture = GFX_coi_alien_operation_silent_systems_survey_phase_picture
+	outcome = coi_alien_phase_silent_systems_survey_calibrate_outcome
+}
+
+coi_alien_phase_silent_systems_survey_observe = {
+	name = coi_alien_phase_silent_systems_survey_observe
+	desc = coi_alien_phase_silent_systems_survey_observe_desc
+	icon = GFX_coi_alien_operation_silent_systems_survey_phase_icon
+	picture = GFX_coi_alien_operation_silent_systems_survey_phase_picture
+	outcome = coi_alien_phase_silent_systems_survey_observe_outcome
+}
+
+coi_alien_phase_silent_systems_survey_withdraw = {
+	name = coi_alien_phase_silent_systems_survey_withdraw
+	desc = coi_alien_phase_silent_systems_survey_withdraw_desc
+	icon = GFX_coi_alien_operation_silent_systems_survey_phase_icon
+	picture = GFX_coi_alien_operation_silent_systems_survey_phase_picture
+	outcome = coi_alien_phase_silent_systems_survey_withdraw_outcome
+	risk_extra = coi_alien_phase_silent_systems_survey_withdraw_risk
+}
+
+### Seed Mimetic Access
+coi_alien_phase_seed_mimetic_access_model = {
+	name = coi_alien_phase_seed_mimetic_access_model
+	desc = coi_alien_phase_seed_mimetic_access_model_desc
+	icon = GFX_coi_alien_operation_seed_mimetic_access_phase_icon
+	picture = GFX_coi_alien_operation_seed_mimetic_access_phase_picture
+	outcome = coi_alien_phase_seed_mimetic_access_model_outcome
+}
+
+coi_alien_phase_seed_mimetic_access_insert = {
+	name = coi_alien_phase_seed_mimetic_access_insert
+	desc = coi_alien_phase_seed_mimetic_access_insert_desc
+	icon = GFX_coi_alien_operation_seed_mimetic_access_phase_icon
+	picture = GFX_coi_alien_operation_seed_mimetic_access_phase_picture
+	outcome = coi_alien_phase_seed_mimetic_access_insert_outcome
+}
+
+coi_alien_phase_seed_mimetic_access_stabilize = {
+	name = coi_alien_phase_seed_mimetic_access_stabilize
+	desc = coi_alien_phase_seed_mimetic_access_stabilize_desc
+	icon = GFX_coi_alien_operation_seed_mimetic_access_phase_icon
+	picture = GFX_coi_alien_operation_seed_mimetic_access_phase_picture
+	outcome = coi_alien_phase_seed_mimetic_access_stabilize_outcome
+	risk_extra = coi_alien_phase_seed_mimetic_access_stabilize_risk
+}
+
+### Penetrate Research Networks
+coi_alien_phase_penetrate_research_networks_map = {
+	name = coi_alien_phase_penetrate_research_networks_map
+	desc = coi_alien_phase_penetrate_research_networks_map_desc
+	icon = GFX_coi_alien_operation_penetrate_research_networks_phase_icon
+	picture = GFX_coi_alien_operation_penetrate_research_networks_phase_picture
+	outcome = coi_alien_phase_penetrate_research_networks_map_outcome
+}
+
+coi_alien_phase_penetrate_research_networks_mirror = {
+	name = coi_alien_phase_penetrate_research_networks_mirror
+	desc = coi_alien_phase_penetrate_research_networks_mirror_desc
+	icon = GFX_coi_alien_operation_penetrate_research_networks_phase_icon
+	picture = GFX_coi_alien_operation_penetrate_research_networks_phase_picture
+	outcome = coi_alien_phase_penetrate_research_networks_mirror_outcome
+}
+
+coi_alien_phase_penetrate_research_networks_bury = {
+	name = coi_alien_phase_penetrate_research_networks_bury
+	desc = coi_alien_phase_penetrate_research_networks_bury_desc
+	icon = GFX_coi_alien_operation_penetrate_research_networks_phase_icon
+	picture = GFX_coi_alien_operation_penetrate_research_networks_phase_picture
+	outcome = coi_alien_phase_penetrate_research_networks_bury_outcome
+	risk_extra = coi_alien_phase_penetrate_research_networks_bury_risk
+}
+
+### Spoil the Evidence
+coi_alien_phase_spoil_the_evidence_identify = {
+	name = coi_alien_phase_spoil_the_evidence_identify
+	desc = coi_alien_phase_spoil_the_evidence_identify_desc
+	icon = GFX_coi_alien_operation_spoil_the_evidence_phase_icon
+	picture = GFX_coi_alien_operation_spoil_the_evidence_phase_picture
+	outcome = coi_alien_phase_spoil_the_evidence_identify_outcome
+}
+
+coi_alien_phase_spoil_the_evidence_replace = {
+	name = coi_alien_phase_spoil_the_evidence_replace
+	desc = coi_alien_phase_spoil_the_evidence_replace_desc
+	icon = GFX_coi_alien_operation_spoil_the_evidence_phase_icon
+	picture = GFX_coi_alien_operation_spoil_the_evidence_phase_picture
+	outcome = coi_alien_phase_spoil_the_evidence_replace_outcome
+}
+
+coi_alien_phase_spoil_the_evidence_redirect = {
+	name = coi_alien_phase_spoil_the_evidence_redirect
+	desc = coi_alien_phase_spoil_the_evidence_redirect_desc
+	icon = GFX_coi_alien_operation_spoil_the_evidence_phase_icon
+	picture = GFX_coi_alien_operation_spoil_the_evidence_phase_picture
+	outcome = coi_alien_phase_spoil_the_evidence_redirect_outcome
+	risk_extra = coi_alien_phase_spoil_the_evidence_redirect_risk
+}
+
+### Introduce Cascading Faults
+coi_alien_phase_introduce_cascading_faults_reconnoiter = {
+	name = coi_alien_phase_introduce_cascading_faults_reconnoiter
+	desc = coi_alien_phase_introduce_cascading_faults_reconnoiter_desc
+	icon = GFX_coi_alien_operation_introduce_cascading_faults_phase_icon
+	picture = GFX_coi_alien_operation_introduce_cascading_faults_phase_picture
+	outcome = coi_alien_phase_introduce_cascading_faults_reconnoiter_outcome
+}
+
+coi_alien_phase_introduce_cascading_faults_seed = {
+	name = coi_alien_phase_introduce_cascading_faults_seed
+	desc = coi_alien_phase_introduce_cascading_faults_seed_desc
+	icon = GFX_coi_alien_operation_introduce_cascading_faults_phase_icon
+	picture = GFX_coi_alien_operation_introduce_cascading_faults_phase_picture
+	outcome = coi_alien_phase_introduce_cascading_faults_seed_outcome
+}
+
+coi_alien_phase_introduce_cascading_faults_trigger = {
+	name = coi_alien_phase_introduce_cascading_faults_trigger
+	desc = coi_alien_phase_introduce_cascading_faults_trigger_desc
+	icon = GFX_coi_alien_operation_introduce_cascading_faults_phase_icon
+	picture = GFX_coi_alien_operation_introduce_cascading_faults_phase_picture
+	outcome = coi_alien_phase_introduce_cascading_faults_trigger_outcome
+	risk_extra = coi_alien_phase_introduce_cascading_faults_trigger_risk
+}
+
+### Harvest Project Archives
+coi_alien_phase_harvest_project_archives_classify = {
+	name = coi_alien_phase_harvest_project_archives_classify
+	desc = coi_alien_phase_harvest_project_archives_classify_desc
+	icon = GFX_coi_alien_operation_harvest_project_archives_phase_icon
+	picture = GFX_coi_alien_operation_harvest_project_archives_phase_picture
+	outcome = coi_alien_phase_harvest_project_archives_classify_outcome
+}
+
+coi_alien_phase_harvest_project_archives_copy = {
+	name = coi_alien_phase_harvest_project_archives_copy
+	desc = coi_alien_phase_harvest_project_archives_copy_desc
+	icon = GFX_coi_alien_operation_harvest_project_archives_phase_icon
+	picture = GFX_coi_alien_operation_harvest_project_archives_phase_picture
+	outcome = coi_alien_phase_harvest_project_archives_copy_outcome
+}
+
+coi_alien_phase_harvest_project_archives_sanitize = {
+	name = coi_alien_phase_harvest_project_archives_sanitize
+	desc = coi_alien_phase_harvest_project_archives_sanitize_desc
+	icon = GFX_coi_alien_operation_harvest_project_archives_phase_icon
+	picture = GFX_coi_alien_operation_harvest_project_archives_phase_picture
+	outcome = coi_alien_phase_harvest_project_archives_sanitize_outcome
+	risk_extra = coi_alien_phase_harvest_project_archives_sanitize_risk
+}
+
+### Disrupt Research Complex
+coi_alien_phase_disrupt_research_complex_fix = {
+	name = coi_alien_phase_disrupt_research_complex_fix
+	desc = coi_alien_phase_disrupt_research_complex_fix_desc
+	icon = GFX_coi_alien_operation_disrupt_research_complex_phase_icon
+	picture = GFX_coi_alien_operation_disrupt_research_complex_phase_picture
+	outcome = coi_alien_phase_disrupt_research_complex_fix_outcome
+}
+
+coi_alien_phase_disrupt_research_complex_infiltrate = {
+	name = coi_alien_phase_disrupt_research_complex_infiltrate
+	desc = coi_alien_phase_disrupt_research_complex_infiltrate_desc
+	icon = GFX_coi_alien_operation_disrupt_research_complex_phase_icon
+	picture = GFX_coi_alien_operation_disrupt_research_complex_phase_picture
+	outcome = coi_alien_phase_disrupt_research_complex_infiltrate_outcome
+}
+
+coi_alien_phase_disrupt_research_complex_overload = {
+	name = coi_alien_phase_disrupt_research_complex_overload
+	desc = coi_alien_phase_disrupt_research_complex_overload_desc
+	icon = GFX_coi_alien_operation_disrupt_research_complex_phase_icon
+	picture = GFX_coi_alien_operation_disrupt_research_complex_phase_picture
+	outcome = coi_alien_phase_disrupt_research_complex_overload_outcome
+	risk_extra = coi_alien_phase_disrupt_research_complex_overload_risk
+}
+
+### Extract Lead Scientist
+coi_alien_phase_extract_lead_scientist_contact = {
+	name = coi_alien_phase_extract_lead_scientist_contact
+	desc = coi_alien_phase_extract_lead_scientist_contact_desc
+	icon = GFX_coi_alien_operation_extract_lead_scientist_phase_icon
+	picture = GFX_coi_alien_operation_extract_lead_scientist_phase_picture
+	outcome = coi_alien_phase_extract_lead_scientist_contact_outcome
+}
+
+coi_alien_phase_extract_lead_scientist_substitute = {
+	name = coi_alien_phase_extract_lead_scientist_substitute
+	desc = coi_alien_phase_extract_lead_scientist_substitute_desc
+	icon = GFX_coi_alien_operation_extract_lead_scientist_phase_icon
+	picture = GFX_coi_alien_operation_extract_lead_scientist_phase_picture
+	outcome = coi_alien_phase_extract_lead_scientist_substitute_outcome
+}
+
+coi_alien_phase_extract_lead_scientist_exfiltrate = {
+	name = coi_alien_phase_extract_lead_scientist_exfiltrate
+	desc = coi_alien_phase_extract_lead_scientist_exfiltrate_desc
+	icon = GFX_coi_alien_operation_extract_lead_scientist_phase_icon
+	picture = GFX_coi_alien_operation_extract_lead_scientist_phase_picture
+	outcome = coi_alien_phase_extract_lead_scientist_exfiltrate_outcome
+	risk_extra = coi_alien_phase_extract_lead_scientist_exfiltrate_risk
+}

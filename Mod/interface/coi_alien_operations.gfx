@@ -1,0 +1,220 @@
+spriteTypes = {
+	# Eight operation emblems, each supplied at the exact native list, map,
+	# phase-icon, and phase-picture dimensions used by La Resistance.
+	SpriteType = {
+		name = "GFX_coi_alien_operation_silent_systems_survey"
+		texturefile = "gfx/interface/operations/coi_alien_operation_silent_systems_survey.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_silent_systems_survey_map"
+		texturefile = "gfx/interface/mapicons/coi_alien_operation_silent_systems_survey_map.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_silent_systems_survey_phase_icon"
+		texturefile = "gfx/interface/operations/phases_small/coi_alien_operation_silent_systems_survey_phase_icon.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_silent_systems_survey_phase_picture"
+		texturefile = "gfx/interface/operations/images/coi_alien_operation_silent_systems_survey_phase_picture.dds"
+		legacy_lazy_load = no
+	}
+
+	SpriteType = {
+		name = "GFX_coi_alien_operation_seed_mimetic_access"
+		texturefile = "gfx/interface/operations/coi_alien_operation_seed_mimetic_access.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_seed_mimetic_access_map"
+		texturefile = "gfx/interface/mapicons/coi_alien_operation_seed_mimetic_access_map.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_seed_mimetic_access_phase_icon"
+		texturefile = "gfx/interface/operations/phases_small/coi_alien_operation_seed_mimetic_access_phase_icon.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_seed_mimetic_access_phase_picture"
+		texturefile = "gfx/interface/operations/images/coi_alien_operation_seed_mimetic_access_phase_picture.dds"
+		legacy_lazy_load = no
+	}
+
+	SpriteType = {
+		name = "GFX_coi_alien_operation_penetrate_research_networks"
+		texturefile = "gfx/interface/operations/coi_alien_operation_penetrate_research_networks.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_penetrate_research_networks_map"
+		texturefile = "gfx/interface/mapicons/coi_alien_operation_penetrate_research_networks_map.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_penetrate_research_networks_phase_icon"
+		texturefile = "gfx/interface/operations/phases_small/coi_alien_operation_penetrate_research_networks_phase_icon.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_penetrate_research_networks_phase_picture"
+		texturefile = "gfx/interface/operations/images/coi_alien_operation_penetrate_research_networks_phase_picture.dds"
+		legacy_lazy_load = no
+	}
+
+	SpriteType = {
+		name = "GFX_coi_alien_operation_spoil_the_evidence"
+		texturefile = "gfx/interface/operations/coi_alien_operation_spoil_the_evidence.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_spoil_the_evidence_map"
+		texturefile = "gfx/interface/mapicons/coi_alien_operation_spoil_the_evidence_map.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_spoil_the_evidence_phase_icon"
+		texturefile = "gfx/interface/operations/phases_small/coi_alien_operation_spoil_the_evidence_phase_icon.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_spoil_the_evidence_phase_picture"
+		texturefile = "gfx/interface/operations/images/coi_alien_operation_spoil_the_evidence_phase_picture.dds"
+		legacy_lazy_load = no
+	}
+
+	SpriteType = {
+		name = "GFX_coi_alien_operation_introduce_cascading_faults"
+		texturefile = "gfx/interface/operations/coi_alien_operation_introduce_cascading_faults.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_introduce_cascading_faults_map"
+		texturefile = "gfx/interface/mapicons/coi_alien_operation_introduce_cascading_faults_map.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_introduce_cascading_faults_phase_icon"
+		texturefile = "gfx/interface/operations/phases_small/coi_alien_operation_introduce_cascading_faults_phase_icon.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_introduce_cascading_faults_phase_picture"
+		texturefile = "gfx/interface/operations/images/coi_alien_operation_introduce_cascading_faults_phase_picture.dds"
+		legacy_lazy_load = no
+	}
+
+	SpriteType = {
+		name = "GFX_coi_alien_operation_harvest_project_archives"
+		texturefile = "gfx/interface/operations/coi_alien_operation_harvest_project_archives.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_harvest_project_archives_map"
+		texturefile = "gfx/interface/mapicons/coi_alien_operation_harvest_project_archives_map.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_harvest_project_archives_phase_icon"
+		texturefile = "gfx/interface/operations/phases_small/coi_alien_operation_harvest_project_archives_phase_icon.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_harvest_project_archives_phase_picture"
+		texturefile = "gfx/interface/operations/images/coi_alien_operation_harvest_project_archives_phase_picture.dds"
+		legacy_lazy_load = no
+	}
+
+	SpriteType = {
+		name = "GFX_coi_alien_operation_disrupt_research_complex"
+		texturefile = "gfx/interface/operations/coi_alien_operation_disrupt_research_complex.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_disrupt_research_complex_map"
+		texturefile = "gfx/interface/mapicons/coi_alien_operation_disrupt_research_complex_map.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_disrupt_research_complex_phase_icon"
+		texturefile = "gfx/interface/operations/phases_small/coi_alien_operation_disrupt_research_complex_phase_icon.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_disrupt_research_complex_phase_picture"
+		texturefile = "gfx/interface/operations/images/coi_alien_operation_disrupt_research_complex_phase_picture.dds"
+		legacy_lazy_load = no
+	}
+
+	SpriteType = {
+		name = "GFX_coi_alien_operation_extract_lead_scientist"
+		texturefile = "gfx/interface/operations/coi_alien_operation_extract_lead_scientist.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_extract_lead_scientist_map"
+		texturefile = "gfx/interface/mapicons/coi_alien_operation_extract_lead_scientist_map.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_extract_lead_scientist_phase_icon"
+		texturefile = "gfx/interface/operations/phases_small/coi_alien_operation_extract_lead_scientist_phase_icon.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_operation_extract_lead_scientist_phase_picture"
+		texturefile = "gfx/interface/operations/images/coi_alien_operation_extract_lead_scientist_phase_picture.dds"
+		legacy_lazy_load = no
+	}
+
+	# Durable access tokens: dossier icon and inline text icon.
+	SpriteType = {
+		name = "GFX_coi_alien_token_surface_profile"
+		texturefile = "gfx/interface/operations/coi_alien_token_surface_profile.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_token_surface_profile_text"
+		texturefile = "gfx/texticons/coi_alien_token_surface_profile_text.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_token_institutional_access"
+		texturefile = "gfx/interface/operations/coi_alien_token_institutional_access.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_token_institutional_access_text"
+		texturefile = "gfx/texticons/coi_alien_token_institutional_access_text.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_token_research_access"
+		texturefile = "gfx/interface/operations/coi_alien_token_research_access.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_token_research_access_text"
+		texturefile = "gfx/texticons/coi_alien_token_research_access_text.dds"
+		legacy_lazy_load = no
+	}
+
+	# Quiet Chorus agency-upgrade emblems.
+	SpriteType = {
+		name = "GFX_coi_alien_upgrade_mimetic_interface_lab"
+		texturefile = "gfx/interface/operatives/icons/coi_alien_upgrade_mimetic_interface_lab.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_upgrade_cognitive_translation_matrix"
+		texturefile = "gfx/interface/operatives/icons/coi_alien_upgrade_cognitive_translation_matrix.dds"
+		legacy_lazy_load = no
+	}
+	SpriteType = {
+		name = "GFX_coi_alien_upgrade_distributed_drone_cells"
+		texturefile = "gfx/interface/operatives/icons/coi_alien_upgrade_distributed_drone_cells.dds"
+		legacy_lazy_load = no
+	}
+}

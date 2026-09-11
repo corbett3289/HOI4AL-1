@@ -1,0 +1,296 @@
+# STATE scope. Call this in the selected Point Nemo anchorage state. The
+# province selector deliberately avoids a hard-coded map ID and chooses the
+# state's naval-base province; the prototype state currently contains one.
+coi_alien_place_mothership_anchorage = {
+	if = {
+		limit = {
+			NOT = { has_state_flag = coi_alien_mothership_anchorage_placed }
+			any_province_building_level = {
+				province = {
+					all_provinces = yes
+					limit_to_naval_base = yes
+				}
+				building = naval_base
+				level > 0
+			}
+			NOT = {
+				any_province_building_level = {
+					province = { all_provinces = yes }
+					building = coi_alien_mothership_anchorage
+					level > 0
+				}
+			}
+		}
+		add_building_construction = {
+			type = coi_alien_mothership_anchorage
+			level = 1
+			instant_build = yes
+			province = {
+				all_provinces = yes
+				limit_to_naval_base = yes
+			}
+		}
+		set_state_flag = coi_alien_mothership_anchorage_placed
+	}
+}
+
+# COUNTRY scope. This is the mechanical unlock hook for XAC. It is idempotent
+# and may be called after landfall, after a save reconciliation, or after an
+# anchorage repair without recreating the equipment designs.
+coi_alien_activate_mothership_anchorage = {
+	if = {
+		limit = {
+			original_tag = XAC
+			coi_alien_has_healthy_mothership_anchorage_trigger = yes
+			NOT = { has_idea = coi_alien_mothership_anchorage_online }
+		}
+		add_ideas = coi_alien_mothership_anchorage_online
+	}
+
+	if = {
+		limit = {
+			original_tag = XAC
+		}
+		set_technology = {
+			coi_alien_needle_interceptor_program = 1
+			coi_alien_gleam_strike_program = 1
+			popup = no
+		}
+	}
+
+	if = {
+		limit = {
+			has_dlc = "Man the Guns"
+			original_tag = XAC
+		}
+		set_technology = {
+			coi_alien_expeditionary_naval_architecture = 1
+			popup = no
+		}
+	}
+
+	if = {
+		limit = {
+			has_dlc = "Man the Guns"
+			original_tag = XAC
+			NOT = { has_country_flag = coi_alien_naval_designs_v050_registered }
+		}
+
+		# Preserve saves from the earlier registration contract. Exact custom
+		# design-name lookup is not exposed to script, so an old successful guard is
+		# the only safe non-destructive evidence that creation already ran.
+		if = {
+			limit = { has_country_flag = coi_alien_naval_designs_registered }
+			set_country_flag = coi_alien_naval_designs_v050_registered
+			log = "[COI NAVAL] XAC migrated the legacy alien ship-design registration guard."
+		}
+		else = {
+			create_equipment_variant = {
+				name = "Pale Horizon Pattern"
+				type = coi_alien_mothership_hull_1
+				allow_without_tech = yes
+				parent_version = 0
+				role_icon_index = 7
+				modules = {
+					fixed_coi_alien_hangar_slot_1 = coi_alien_phase_hangar_matrix
+					fixed_coi_alien_hangar_slot_2 = coi_alien_phase_hangar_matrix
+					fixed_coi_alien_drive_slot = coi_alien_gravitic_tide_drive
+					fixed_coi_alien_sensor_slot = coi_alien_spectral_sensor_web
+					fixed_coi_alien_lattice_slot = coi_alien_phase_lattice
+					fixed_coi_alien_point_defense_slot = coi_alien_point_defense_matrix
+					fixed_coi_alien_weapon_slot = coi_alien_lance_battery
+					coi_alien_auxiliary_slot_1 = coi_alien_phase_hangar_matrix
+					coi_alien_auxiliary_slot_2 = coi_alien_point_defense_matrix
+				}
+				model = "coi_alien_mothership_hull_entity"
+				icon = "GFX_coi_alien_mothership_hull_1_medium"
+			}
+
+			create_equipment_variant = {
+				name = "Silent Current Escort Pattern"
+				type = coi_alien_escort_hull_1
+				allow_without_tech = yes
+				parent_version = 0
+				role_icon_index = 2
+				modules = {
+					fixed_coi_alien_drive_slot = coi_alien_gravitic_tide_drive
+					fixed_coi_alien_sensor_slot = coi_alien_spectral_sensor_web
+					fixed_coi_alien_lattice_slot = coi_alien_phase_lattice
+					fixed_coi_alien_point_defense_slot = coi_alien_point_defense_matrix
+					fixed_coi_alien_weapon_slot = coi_alien_lance_battery
+					coi_alien_escort_auxiliary_slot = coi_alien_point_defense_matrix
+				}
+				model = "coi_alien_escort_hull_entity"
+				icon = "GFX_coi_alien_escort_hull_1_medium"
+			}
+
+			# create_equipment_variant has no success return and the engine exposes no
+			# exact-name design trigger. Commit immediately after issuing both effects;
+			# retrying would otherwise serialize another Mk copy on every daily pulse.
+			set_country_flag = coi_alien_naval_designs_v050_registered
+			log = "[COI NAVAL] XAC registered both alien runtime ship designs under the v0.5.0 guard."
+		}
+	}
+
+	# If a researched old save repairs or reactivates its anchorage, register the
+	# production pattern immediately rather than waiting for the daily fallback.
+	coi_alien_unlock_tic_tac_fabrication_effect = yes
+}
+
+# COUNTRY scope. Fresh starts use this reserve instead of set_convoys, while
+# the daily XAC reconciliation gives older saves the same 100 Tic Tacs once.
+# Existing vanilla convoys are intentionally retained during save migration.
+# The reserve design is obsolete at creation: it remains usable from stock but
+# is not offered for production. Marking older convoy variants obsolete is the
+# strongest country-local production lock the singleton convoy class exposes.
+coi_alien_initialize_tic_tac_reserve_effect = {
+	if = {
+		limit = {
+			original_tag = XAC
+		}
+		if = {
+			limit = {
+				NOT = { has_idea = coi_alien_tic_tac_transit_envelope }
+			}
+			add_ideas = coi_alien_tic_tac_transit_envelope
+		}
+
+		if = {
+			limit = {
+				NOT = { has_country_flag = coi_alien_tic_tac_reserve_stocked }
+			}
+			create_equipment_variant = {
+				name = "Tic Tac Expeditionary Reserve"
+				type = convoy_1
+				allow_without_tech = yes
+				parent_version = 0
+				show_position = no
+				obsolete = yes
+				mark_older_equipment_obsolete = yes
+				icon = "GFX_coi_alien_tic_tac_convoy_medium"
+			}
+			add_equipment_to_stockpile = {
+				type = convoy_1
+				amount = 100
+				producer = XAC
+				variant_name = "Tic Tac Expeditionary Reserve"
+			}
+			set_country_flag = coi_alien_tic_tac_reserve_stocked
+			log = "[COI NAVAL] XAC stocked its one-time reserve of 100 Tic Tac logistics craft."
+		}
+	}
+}
+
+# COUNTRY scope. HOI4 cannot enable or disable an individual convoy variant
+# after creation. Research plus an online anchorage therefore gate the one-time
+# registration of XAC's non-obsolete production pattern; once registered, an
+# anchorage shutdown cannot safely retract it without a global convoy override.
+coi_alien_unlock_tic_tac_fabrication_effect = {
+	if = {
+		limit = {
+			original_tag = XAC
+			has_tech = coi_alien_tic_tac_fabrication
+			has_idea = coi_alien_mothership_anchorage_online
+			coi_alien_has_healthy_mothership_anchorage_trigger = yes
+			NOT = { has_country_flag = coi_alien_tic_tac_fabrication_registered }
+		}
+		create_equipment_variant = {
+			name = "Tic Tac"
+			type = convoy_1
+			allow_without_tech = yes
+			parent_version = 0
+			show_position = no
+			obsolete = no
+			mark_older_equipment_obsolete = yes
+			icon = "GFX_coi_alien_tic_tac_convoy_medium"
+		}
+
+		# has_design_based_on only accepts a buildable, non-obsolete design. Do
+		# not commit the guard if the engine rejects the named convoy variant.
+		if = {
+			limit = {
+				has_design_based_on = convoy
+			}
+			set_country_flag = coi_alien_tic_tac_fabrication_registered
+			log = "[COI NAVAL] XAC registered the Tic Tac convoy production pattern."
+		}
+		else = {
+			log = "[COI NAVAL] XAC could not register the Tic Tac convoy production pattern."
+		}
+	}
+}
+
+# COUNTRY scope. XAC's five starting ships are loaded through the canonical
+# history naval OOB, which can explicitly base its fleet and task force at Point
+# Nemo. This compatibility-named hook verifies that one-time load and owns the
+# separately idempotent carrier-aircraft stockpile.
+coi_alien_create_point_nemo_reserve_fleet = {
+	if = {
+		limit = {
+			NOT = { has_country_flag = coi_alien_naval_designs_v050_registered }
+		}
+		coi_alien_activate_mothership_anchorage = yes
+	}
+
+	if = {
+		limit = {
+			has_dlc = "Man the Guns"
+			original_tag = XAC
+			has_country_flag = coi_alien_naval_designs_v050_registered
+		}
+
+		# Fleet completion is only committed after the history OOB reports the
+		# complete complement. Missing ships remain visible to reconciliation.
+		if = {
+			limit = {
+				NOT = { has_country_flag = coi_alien_point_nemo_fleet_created }
+				has_navy_size = {
+					size > 0
+					archetype = coi_alien_mothership_hull
+				}
+				has_navy_size = {
+					size > 3
+					archetype = coi_alien_escort_hull
+				}
+			}
+			log = "[COI NAVAL] XAC reports the complete 1+4 alien reserve fleet."
+			set_country_flag = coi_alien_point_nemo_fleet_created
+		}
+		else = {
+			log = "[COI NAVAL] XAC history naval OOB is missing or incomplete."
+		}
+
+		# Aircraft stockpiles use their own guard so retrying a partial ship
+		# complement can never duplicate the required 30 Needle / 20 Gleam craft.
+		if = {
+			limit = {
+				NOT = { has_country_flag = coi_alien_point_nemo_air_complement_stocked }
+			}
+			add_equipment_to_stockpile = {
+				type = coi_alien_needle_equipment_1
+				amount = 30
+				producer = XAC
+			}
+			add_equipment_to_stockpile = {
+				type = coi_alien_gleam_equipment_1
+				amount = 20
+				producer = XAC
+			}
+			log = "[COI NAVAL] XAC stocked 30 Needle and 20 Gleam carrier craft."
+			set_country_flag = coi_alien_point_nemo_air_complement_stocked
+		}
+	}
+}
+
+# COUNTRY scope. The crisis controller should call this when the anchorage is
+# destroyed, captured, or isolated. Equipment already built remains usable.
+# Custom alien hulls and aircraft remain hard-gated by this idea; the engine
+# cannot retract a previously registered convoy_1 variant country-locally.
+coi_alien_shutdown_mothership_anchorage = {
+	if = {
+		limit = {
+			has_idea = coi_alien_mothership_anchorage_online
+		}
+		remove_ideas = coi_alien_mothership_anchorage_online
+	}
+}

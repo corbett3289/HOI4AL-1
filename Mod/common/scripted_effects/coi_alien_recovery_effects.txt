@@ -1,0 +1,123 @@
+### Evidence outcomes for the craft-interception decision. Signals, fragments,
+### and physical craft are permanent evidence gates; ordinary attempts are
+### country-limited while major intact recoveries share a five-year world lock.
+
+coi_alien_recovery_lost_contact_effect = {
+	set_country_flag = coi_alien_evidence_signals
+	coi_alien_raise_knowledge_to_correlated_pattern_effect = yes
+	country_event = { id = coi_alien_recovery.1 hours = 1 }
+}
+
+coi_alien_recovery_fragments_effect = {
+	set_country_flag = coi_alien_evidence_signals
+	set_country_flag = coi_alien_evidence_fragments
+	coi_alien_raise_knowledge_to_material_proof_effect = yes
+	coi_alien_raise_preparedness_to_contingency_planning_effect = yes
+	country_event = { id = coi_alien_recovery.2 hours = 1 }
+}
+
+coi_alien_recovery_damaged_craft_effect = {
+	set_country_flag = coi_alien_evidence_signals
+	set_country_flag = coi_alien_evidence_fragments
+	set_country_flag = coi_alien_evidence_damaged_craft
+	set_country_flag = coi_alien_domestic_craft_recovery
+	set_global_flag = coi_alien_post_magenta_recovery_recorded
+	set_global_flag = {
+		flag = coi_alien_major_recovery_global_cooldown
+		days = 1825
+	}
+	coi_alien_raise_knowledge_to_material_proof_effect = yes
+	coi_alien_raise_preparedness_to_contingency_planning_effect = yes
+	country_event = { id = coi_alien_recovery.3 hours = 1 }
+}
+
+coi_alien_recovery_public_crash_effect = {
+	set_country_flag = coi_alien_evidence_signals
+	set_country_flag = coi_alien_evidence_fragments
+	set_country_flag = coi_alien_evidence_damaged_craft
+	set_country_flag = coi_alien_domestic_craft_recovery
+	set_country_flag = coi_alien_public_crash_origin
+	set_global_flag = coi_alien_post_magenta_recovery_recorded
+	set_global_flag = {
+		flag = coi_alien_major_recovery_global_cooldown
+		days = 1825
+	}
+	coi_alien_raise_knowledge_to_material_proof_effect = yes
+	coi_alien_raise_public_awareness_to_official_acknowledgment_effect = yes
+	country_event = { id = coi_alien_recovery.4 hours = 1 }
+	coi_alien_begin_catastrophic_disclosure_effect = yes
+}
+
+coi_alien_resolve_craft_interception_effect = {
+	clr_country_flag = coi_alien_interception_program_active
+	set_country_flag = {
+		flag = coi_alien_interception_program_cooldown
+		days = 365
+	}
+
+	random_list = {
+		50 = {
+			modifier = {
+				factor = 0.65
+				coi_alien_preparedness_at_least_contingency_trigger = yes
+			}
+			modifier = {
+				factor = 0.75
+				any_owned_state = { radar_station > 0 }
+			}
+			modifier = { factor = 0.75 date > 1950.1.1 }
+			coi_alien_recovery_lost_contact_effect = yes
+		}
+		30 = {
+			modifier = {
+				factor = 1.25
+				coi_alien_preparedness_at_least_quiet_monitoring_trigger = yes
+			}
+			modifier = {
+				factor = 1.5
+				any_owned_state = { radar_station > 0 }
+			}
+			coi_alien_recovery_fragments_effect = yes
+		}
+		15 = {
+			modifier = {
+				factor = 0
+				has_global_flag = coi_alien_major_recovery_global_cooldown
+			}
+			modifier = { factor = 1.5 date > 1945.1.1 }
+			modifier = { factor = 2 date > 1950.1.1 }
+			modifier = {
+				factor = 1.5
+				coi_alien_preparedness_at_least_contingency_trigger = yes
+			}
+			modifier = {
+				factor = 1.25
+				any_owned_state = { radar_station > 0 }
+			}
+			modifier = {
+				factor = 3
+				coi_alien_1947_recovery_echo_trigger = yes
+			}
+			coi_alien_recovery_damaged_craft_effect = yes
+		}
+		5 = {
+			modifier = {
+				factor = 0
+				has_global_flag = coi_alien_major_recovery_global_cooldown
+			}
+			modifier = {
+				factor = 0.5
+				coi_alien_preparedness_at_least_contingency_trigger = yes
+			}
+			modifier = {
+				factor = 1.5
+				coi_alien_public_awareness_at_least_credible_trigger = yes
+			}
+			modifier = {
+				factor = 2
+				coi_alien_1947_recovery_echo_trigger = yes
+			}
+			coi_alien_recovery_public_crash_effect = yes
+		}
+	}
+}

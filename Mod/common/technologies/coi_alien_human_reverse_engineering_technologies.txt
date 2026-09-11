@@ -1,0 +1,42 @@
+technologies = {
+	# Script-granted helper technologies. No folder entry is intentional: the
+	# projects are the only acquisition route and the technology tree receives
+	# no orphaned research nodes.
+	coi_alien_human_exotic_materials = {
+		allow_branch = {
+			NOT = { original_tag = XAC }
+		}
+		allow = { always = no }
+
+		# Completing the materials project accelerates this project family only.
+		coi_alien_sp_tag_reverse_engineering_speed_factor = 0.10
+
+		research_cost = 4
+		start_year = 2100
+		categories = {
+			coi_alien_human_reverse_engineering
+			coi_alien_human_exotic_materials_technology
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	coi_alien_human_field_dynamics = {
+		allow_branch = {
+			NOT = { original_tag = XAC }
+		}
+		allow = { always = no }
+
+		# An additional family bonus rewards the second foundational program.
+		coi_alien_sp_tag_reverse_engineering_speed_factor = 0.05
+
+		research_cost = 6
+		start_year = 2100
+		categories = {
+			coi_alien_human_reverse_engineering
+			coi_alien_human_field_propulsion_technology
+			coi_alien_human_sensor_technology
+			coi_alien_human_energy_technology
+		}
+		ai_will_do = { factor = 0 }
+	}
+}

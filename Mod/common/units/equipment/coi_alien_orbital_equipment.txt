@@ -1,0 +1,33 @@
+equipments = {
+	# Sentinels are an off-map strategic reserve. No unit or mission consumes
+	# this archetype directly; nuclear-raid outcome script handles attrition.
+	coi_alien_orbital_sentinel_equipment = {
+		year = 1936
+		is_archetype = yes
+		is_buildable = no
+		can_license = no
+		# Equipment `type` is an engine enum. Keep this strategic reserve in the
+		# supported missile family; its namespaced archetype prevents any unit,
+		# production, licensing, or lend-lease use.
+		type = missile
+		group_by = type
+		sprite = missile_default
+		air_map_icon_frame = 9
+		interface_category = interface_category_air
+		reliability = 0.99
+		build_cost_ic = 0
+		lend_lease_cost = 0
+		can_be_lend_leased = { always = no }
+		can_be_produced = { always = no }
+	}
+
+	coi_alien_orbital_sentinel_equipment_1 = {
+		year = 1936
+		archetype = coi_alien_orbital_sentinel_equipment
+		active = no
+		is_buildable = no
+		priority = 9000
+		reliability = 0.99
+		build_cost_ic = 0
+	}
+}

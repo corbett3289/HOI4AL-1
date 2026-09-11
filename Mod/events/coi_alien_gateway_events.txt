@@ -1,0 +1,141 @@
+add_namespace = coi_alien_gateway
+
+country_event = {
+	id = coi_alien_gateway.1
+	title = coi_alien_gateway.1.t
+	desc = coi_alien_gateway.1.desc
+	picture = GFX_report_event_generic_research_lab
+	is_triggered_only = yes
+
+	option = {
+		name = coi_alien_gateway.1.a
+		ai_chance = {
+			base = 70
+			modifier = { add = 20 is_subject_of = FROM }
+			modifier = { add = 10 has_opinion = { target = FROM value > 49 } }
+		}
+		clr_country_flag = coi_alien_orbital_accord_offer_pending
+		set_country_flag = coi_alien_orbital_protection_accord_member
+		FROM = { country_event = { id = coi_alien_gateway.2 } }
+	}
+
+	option = {
+		name = coi_alien_gateway.1.b
+		ai_chance = {
+			base = 30
+			modifier = { add = 30 has_opinion = { target = FROM value < 0 } }
+		}
+		clr_country_flag = coi_alien_orbital_accord_offer_pending
+		FROM = { country_event = { id = coi_alien_gateway.3 } }
+	}
+}
+
+country_event = {
+	id = coi_alien_gateway.2
+	title = coi_alien_gateway.2.t
+	desc = coi_alien_gateway.2.desc
+	picture = GFX_report_event_generic_research_lab
+	is_triggered_only = yes
+	option = { name = coi_alien_gateway.2.a }
+}
+
+country_event = {
+	id = coi_alien_gateway.3
+	title = coi_alien_gateway.3.t
+	desc = coi_alien_gateway.3.desc
+	picture = GFX_report_event_generic_research_lab
+	is_triggered_only = yes
+	option = { name = coi_alien_gateway.3.a }
+}
+
+country_event = {
+	id = coi_alien_gateway.4
+	title = coi_alien_gateway.4.t
+	desc = coi_alien_gateway.4.desc
+	picture = GFX_report_event_generic_research_lab
+	is_triggered_only = yes
+	option = { name = coi_alien_gateway.4.a }
+}
+
+# Orbital interception reports. Separate loss/survival events keep the reserve
+# consequence explicit without exposing a fictitious orbit map unit.
+country_event = {
+	id = coi_alien_gateway.10
+	title = coi_alien_gateway.10.t
+	desc = coi_alien_gateway.10.desc
+	picture = GFX_report_event_generic_research_lab
+	is_triggered_only = yes
+	option = { name = coi_alien_gateway.10.a }
+}
+
+country_event = {
+	id = coi_alien_gateway.11
+	title = coi_alien_gateway.11.t
+	desc = coi_alien_gateway.11.desc
+	picture = GFX_report_event_generic_research_lab
+	is_triggered_only = yes
+	option = { name = coi_alien_gateway.11.a }
+}
+
+country_event = {
+	id = coi_alien_gateway.12
+	title = coi_alien_gateway.12.t
+	desc = coi_alien_gateway.12.desc
+	picture = GFX_report_event_generic_research_lab
+	is_triggered_only = yes
+	option = { name = coi_alien_gateway.12.a }
+}
+
+country_event = {
+	id = coi_alien_gateway.13
+	title = coi_alien_gateway.13.t
+	desc = coi_alien_gateway.13.desc
+	picture = GFX_report_event_generic_research_lab
+	is_triggered_only = yes
+	option = { name = coi_alien_gateway.13.a }
+}
+
+country_event = {
+	id = coi_alien_gateway.14
+	title = coi_alien_gateway.14.t
+	desc = coi_alien_gateway.14.desc
+	picture = GFX_report_event_generic_research_lab
+	is_triggered_only = yes
+	option = { name = coi_alien_gateway.14.a }
+}
+
+country_event = {
+	id = coi_alien_gateway.20
+	title = coi_alien_gateway.20.t
+	desc = coi_alien_gateway.20.desc
+	picture = GFX_report_event_generic_research_lab
+	is_triggered_only = yes
+	option = { name = coi_alien_gateway.20.a }
+}
+
+country_event = {
+	id = coi_alien_gateway.21
+	title = coi_alien_gateway.21.t
+	desc = coi_alien_gateway.21.desc
+	picture = GFX_report_event_generic_research_lab
+	is_triggered_only = yes
+	option = { name = coi_alien_gateway.21.a }
+}
+
+country_event = {
+	id = coi_alien_gateway.22
+	title = coi_alien_gateway.22.t
+	desc = coi_alien_gateway.22.desc
+	picture = GFX_report_event_generic_research_lab
+	is_triggered_only = yes
+	option = { name = coi_alien_gateway.22.a }
+}
+
+country_event = {
+	id = coi_alien_gateway.23
+	title = coi_alien_gateway.23.t
+	desc = coi_alien_gateway.23.desc
+	picture = GFX_report_event_generic_research_lab
+	is_triggered_only = yes
+	option = { name = coi_alien_gateway.23.a }
+}

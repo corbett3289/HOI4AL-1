@@ -1,0 +1,230 @@
+coi_alien_catastrophic_disclosure_category = {
+	### XAC chooses when a prepared landfall becomes open, undeniable contact.
+	### This is separate from target preparation and still declares no war.
+	coi_alien_force_open_contact_at_landfall = {
+		icon = coi_alien_catastrophic_disclosure
+		allowed = { tag = XAC }
+		visible = {
+			is_ai = no
+			has_global_flag = coi_alien_landfall_prepared
+			has_event_target = coi_alien_landfall_target
+			NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+		}
+		available = {
+			has_global_flag = coi_alien_landfall_prepared
+			has_event_target = coi_alien_landfall_target
+		}
+		cost = 0
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_force_open_contact_at_landfall_tt
+			hidden_effect = {
+				event_target:coi_alien_landfall_target = {
+					coi_alien_begin_catastrophic_disclosure_effect = yes
+				}
+			}
+		}
+		ai_will_do = { base = 0 }
+	}
+
+	coi_alien_address_the_nation = {
+		icon = coi_alien_disclosure_managed
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			coi_alien_catastrophic_crisis_active_trigger = yes
+			NOT = { has_country_flag = coi_alien_crisis_addressed_nation }
+		}
+		cost = 25
+		days_remove = 7
+		cancel_if_not_visible = yes
+		complete_effect = { set_country_flag = coi_alien_crisis_addressed_nation }
+		remove_effect = {
+			custom_effect_tooltip = coi_alien_address_the_nation_tt
+			hidden_effect = {
+				coi_alien_reduce_crisis_score_ten_effect = yes
+				add_stability = 0.02
+			}
+		}
+		ai_will_do = {
+			base = 6
+			modifier = {
+				factor = 2
+				check_variable = { coi_alien_crisis_score > 40 }
+			}
+		}
+	}
+
+	coi_alien_open_emergency_shelters = {
+		icon = coi_alien_catastrophic_disclosure
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			coi_alien_catastrophic_crisis_active_trigger = yes
+			NOT = { has_country_flag = coi_alien_crisis_opened_shelters }
+		}
+		cost = 50
+		days_remove = 30
+		cancel_if_not_visible = yes
+		complete_effect = { set_country_flag = coi_alien_crisis_opened_shelters }
+		remove_effect = {
+			custom_effect_tooltip = coi_alien_open_emergency_shelters_tt
+			hidden_effect = {
+				coi_alien_reduce_crisis_score_fifteen_effect = yes
+				add_timed_idea = {
+					idea = coi_alien_emergency_shelter_network
+					days = 365
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4
+			modifier = {
+				factor = 2
+				check_variable = { coi_alien_crisis_score > 55 }
+			}
+		}
+	}
+
+	coi_alien_empower_scientific_authority = {
+		icon = coi_alien_discovery_anomaly
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			coi_alien_catastrophic_crisis_active_trigger = yes
+			NOT = { has_country_flag = coi_alien_crisis_empowered_science }
+		}
+		cost = 50
+		days_remove = 30
+		cancel_if_not_visible = yes
+		complete_effect = { set_country_flag = coi_alien_crisis_empowered_science }
+		remove_effect = {
+			custom_effect_tooltip = coi_alien_empower_scientific_authority_tt
+			hidden_effect = {
+				coi_alien_reduce_crisis_score_fifteen_effect = yes
+				add_timed_idea = {
+					idea = coi_alien_emergency_scientific_authority
+					days = 365
+				}
+			}
+		}
+		ai_will_do = {
+			base = 5
+			modifier = { factor = 2 is_major = yes }
+		}
+	}
+
+	coi_alien_activate_military_continuity = {
+		icon = coi_alien_catastrophic_disclosure
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			coi_alien_catastrophic_crisis_active_trigger = yes
+			NOT = { has_country_flag = coi_alien_crisis_military_continuity }
+		}
+		available = { command_power > 24.9 }
+		cost = 0
+		days_remove = 30
+		cancel_if_not_visible = yes
+		complete_effect = {
+			add_command_power = -25
+			set_country_flag = coi_alien_crisis_military_continuity
+		}
+		remove_effect = {
+			custom_effect_tooltip = coi_alien_activate_military_continuity_tt
+			hidden_effect = {
+				coi_alien_reduce_crisis_score_fifteen_effect = yes
+				add_timed_idea = {
+					idea = coi_alien_military_continuity_protocol
+					days = 365
+				}
+			}
+		}
+		ai_will_do = {
+			base = 5
+			modifier = { factor = 2 has_war = yes }
+		}
+	}
+
+	coi_alien_expose_the_cover_up = {
+		icon = coi_alien_disclosure_open_files
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			coi_alien_catastrophic_crisis_active_trigger = yes
+			has_country_flag = coi_alien_disclosure_stance_secrecy
+			NOT = { has_country_flag = coi_alien_coverup_exposed }
+		}
+		cost = 25
+		days_remove = 14
+		cancel_if_not_visible = yes
+		complete_effect = { set_country_flag = coi_alien_coverup_exposed }
+		remove_effect = {
+			custom_effect_tooltip = coi_alien_expose_the_cover_up_tt
+			hidden_effect = {
+				coi_alien_reduce_crisis_score_twenty_effect = yes
+				add_stability = -0.05
+				remove_ideas = coi_alien_disclosure_black_archive
+			}
+		}
+		ai_will_do = {
+			base = 2
+			modifier = {
+				factor = 4
+				check_variable = { coi_alien_crisis_score > 70 }
+			}
+		}
+	}
+
+	coi_alien_coordinate_international_aid = {
+		icon = coi_alien_disclosure_international
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			coi_alien_catastrophic_crisis_active_trigger = yes
+			NOT = { has_country_flag = coi_alien_crisis_international_aid }
+		}
+		available = {
+			OR = {
+				has_country_flag = coi_alien_international_council_member
+				has_country_flag = coi_alien_disclosure_stance_international
+				is_in_faction = yes
+			}
+		}
+		cost = 50
+		days_remove = 30
+		cancel_if_not_visible = yes
+		complete_effect = { set_country_flag = coi_alien_crisis_international_aid }
+		remove_effect = {
+			custom_effect_tooltip = coi_alien_coordinate_international_aid_tt
+			hidden_effect = {
+				coi_alien_reduce_crisis_score_twenty_effect = yes
+				add_stability = 0.02
+			}
+		}
+		ai_will_do = {
+			base = 5
+			modifier = {
+				factor = 2
+				has_country_flag = coi_alien_international_council_member
+			}
+		}
+	}
+}
+
+coi_alien_debug_category = {
+	coi_alien_debug_trigger_catastrophic_disclosure = {
+		icon = coi_alien_catastrophic_disclosure
+		allowed = { NOT = { tag = XAC } }
+		visible = {
+			is_debug = yes
+			is_ai = no
+			NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+		}
+		cost = 0
+		complete_effect = {
+			custom_effect_tooltip = coi_alien_debug_trigger_catastrophic_disclosure_tt
+			hidden_effect = {
+				if = {
+					limit = { NOT = { coi_alien_framework_active_trigger = yes } }
+					coi_alien_set_hidden_mode_effect = yes
+				}
+				coi_alien_begin_catastrophic_disclosure_effect = yes
+			}
+		}
+		ai_will_do = { base = 0 }
+	}
+}

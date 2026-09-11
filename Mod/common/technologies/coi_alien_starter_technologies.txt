@@ -1,0 +1,502 @@
+technologies = {
+	### ADAPTIVE MATTER ########################################################
+	coi_alien_adaptive_metamaterials = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_pale_horizon_phase_refit research_cost_coeff = 1 }
+		enable_building = {
+			building = coi_alien_consensus_research_nexus
+			level = 1
+		}
+		research_cost = 1.5
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 0 } }
+		categories = { coi_alien_science coi_alien_material_science }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 8 }
+	}
+
+	coi_alien_pale_horizon_phase_refit = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_terrestrial_composite_translation research_cost_coeff = 1 }
+		enable_equipments = { coi_alien_mothership_hull_2 }
+		research_cost = 1.75
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 2 } }
+		categories = { coi_alien_science coi_alien_material_science }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 8 }
+	}
+
+	coi_alien_terrestrial_composite_translation = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_personal_phase_sheaths research_cost_coeff = 1 }
+		production_lack_of_resource_penalty_factor = -0.05
+		research_cost = 1.75
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 4 } }
+		categories = { coi_alien_science coi_alien_material_science }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 8 }
+	}
+
+	coi_alien_personal_phase_sheaths = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_self_healing_phase_lattice research_cost_coeff = 1 }
+		army_defence_factor = 0.03
+		research_cost = 2
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 6 } }
+		categories = { coi_alien_science coi_alien_material_science }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 8 }
+	}
+
+	coi_alien_self_healing_phase_lattice = {
+		allow_branch = { original_tag = XAC }
+		allow = {
+			ROOT = {
+				OR = {
+					NOT = { has_dlc = "Gotterdammerung" }
+					is_special_project_completed = sp:coi_alien_sp_self_healing_lattice_demonstrator
+				}
+			}
+		}
+		path = { leads_to_tech = coi_alien_adaptive_warform_shells research_cost_coeff = 1 }
+		repair_speed_factor = 0.10
+		research_cost = 2
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 8 } }
+		categories = { coi_alien_science coi_alien_material_science }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 8 }
+	}
+
+	coi_alien_adaptive_warform_shells = {
+		allow_branch = { original_tag = XAC }
+		army_defence_factor = 0.05
+		army_org_factor = 0.05
+		research_cost = 2.25
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 10 } }
+		categories = { coi_alien_science coi_alien_material_science }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 8 }
+	}
+
+	### FIELD DYNAMICS AND GATEWAYS ###########################################
+	coi_alien_inertial_field_theory = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_silent_current_field_refit research_cost_coeff = 1 }
+		research_cost = 1.5
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 0 } }
+		categories = { coi_alien_science coi_alien_field_dynamics }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 8 }
+	}
+
+	coi_alien_silent_current_field_refit = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_tic_tac_fabrication research_cost_coeff = 1 }
+		enable_equipments = { coi_alien_escort_hull_2 }
+		research_cost = 1.75
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 2 } }
+		categories = { coi_alien_science coi_alien_field_dynamics }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 8 }
+	}
+
+	coi_alien_tic_tac_fabrication = {
+		allow_branch = { original_tag = XAC }
+		allow = { ROOT = { has_idea = coi_alien_mothership_anchorage_online } }
+		path = { leads_to_tech = coi_alien_spacetime_aperture_geometry research_cost_coeff = 1 }
+		on_research_complete = { coi_alien_unlock_tic_tac_fabrication_effect = yes }
+		research_cost = 2
+		start_year = 1938
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 4 } }
+		categories = { coi_alien_science coi_alien_field_dynamics }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 8 }
+	}
+
+	coi_alien_spacetime_aperture_geometry = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_energy_gateway_synchronization research_cost_coeff = 1 }
+		research_cost = 2
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 6 } }
+		categories = { coi_alien_science coi_alien_field_dynamics }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 8 }
+	}
+
+	coi_alien_energy_gateway_synchronization = {
+		allow_branch = { original_tag = XAC }
+		allow = {
+			ROOT = {
+				OR = {
+					NOT = { has_dlc = "Gotterdammerung" }
+					is_special_project_completed = sp:coi_alien_sp_aperture_stabilization_experiment
+				}
+			}
+		}
+		path = { leads_to_tech = coi_alien_stabilized_transit_network research_cost_coeff = 1 }
+		research_cost = 2.25
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 8 } }
+		categories = { coi_alien_science coi_alien_field_dynamics }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+
+	coi_alien_stabilized_transit_network = {
+		allow_branch = { original_tag = XAC }
+		production_factory_efficiency_gain_factor = 0.05
+		research_cost = 2.5
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 10 } }
+		categories = { coi_alien_science coi_alien_field_dynamics }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+
+	### COHERENT ENERGY AND ORBITAL DEFENSE ###################################
+	coi_alien_coherent_energy_control = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_gleam_resonance_package research_cost_coeff = 1 }
+		research_cost = 1.5
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 0 } }
+		categories = { coi_alien_science coi_alien_coherent_energy }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 8 }
+	}
+
+	coi_alien_gleam_resonance_package = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_atomic_resonance_cartography research_cost_coeff = 1 }
+		enable_equipments = { coi_alien_gleam_equipment_2 }
+		research_cost = 1.75
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 2 } }
+		categories = { coi_alien_science coi_alien_coherent_energy }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 8 }
+	}
+
+	coi_alien_atomic_resonance_cartography = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_predictive_intercept_lattice research_cost_coeff = 1 }
+		research_cost = 1.75
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 4 } }
+		categories = { coi_alien_science coi_alien_coherent_energy }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 8 }
+	}
+
+	coi_alien_predictive_intercept_lattice = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_sentinel_reserve_fabrication research_cost_coeff = 1 }
+		static_anti_air_hit_chance_factor = 0.10
+		research_cost = 2
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 6 } }
+		categories = { coi_alien_science coi_alien_coherent_energy }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+
+	coi_alien_sentinel_reserve_fabrication = {
+		allow_branch = { original_tag = XAC }
+		allow = {
+			ROOT = {
+				OR = {
+					NOT = { has_dlc = "Gotterdammerung" }
+					is_special_project_completed = sp:coi_alien_sp_interorbital_sentinel_prototype
+				}
+			}
+		}
+		path = { leads_to_tech = coi_alien_atomic_disruption_protocols research_cost_coeff = 1 }
+		research_cost = 2.25
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 8 } }
+		categories = { coi_alien_science coi_alien_coherent_energy }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+
+	coi_alien_atomic_disruption_protocols = {
+		allow_branch = { original_tag = XAC }
+		allow = {
+			ROOT = {
+				OR = {
+					NOT = { has_dlc = "Gotterdammerung" }
+					is_special_project_completed = sp:coi_alien_sp_controlled_atomic_decoherence
+				}
+			}
+		}
+		static_anti_air_hit_chance_factor = 0.10
+		research_cost = 2.5
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 10 } }
+		categories = { coi_alien_science coi_alien_coherent_energy }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+
+	### PREDICTIVE COGNITION AND INFILTRATION #################################
+	coi_alien_predictive_computation = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_needle_guidance_lattice research_cost_coeff = 1 }
+		decryption = 1
+		research_cost = 1.5
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 0 } }
+		categories = { coi_alien_science coi_alien_predictive_cognition }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 8 }
+	}
+
+	coi_alien_needle_guidance_lattice = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_multi_agent_infiltration_models research_cost_coeff = 1 }
+		enable_equipments = { coi_alien_needle_equipment_2 }
+		research_cost = 1.75
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 2 } }
+		categories = { coi_alien_science coi_alien_predictive_cognition }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 8 }
+	}
+
+	coi_alien_multi_agent_infiltration_models = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_institutional_behavior_prediction research_cost_coeff = 1 }
+		operation_cost = -0.10
+		research_cost = 1.75
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 4 } }
+		categories = { coi_alien_science coi_alien_predictive_cognition }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 8 }
+	}
+
+	coi_alien_institutional_behavior_prediction = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_cascading_failure_models research_cost_coeff = 1 }
+		operation_outcome = 0.10
+		research_cost = 2
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 6 } }
+		categories = { coi_alien_science coi_alien_predictive_cognition }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+
+	coi_alien_cascading_failure_models = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_deep_substitution_architecture research_cost_coeff = 1 }
+		operation_outcome = 0.10
+		research_cost = 2.25
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 8 } }
+		categories = { coi_alien_science coi_alien_predictive_cognition }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+
+	coi_alien_deep_substitution_architecture = {
+		allow_branch = { original_tag = XAC }
+		operation_infiltrate_outcome = 0.10
+		own_operative_detection_chance_factor = -0.15
+		research_cost = 2.5
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 10 } }
+		categories = { coi_alien_science coi_alien_predictive_cognition }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+
+	### HUMAN SCIENCES AND CLONING ############################################
+	coi_alien_comparative_human_ethology = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_mass_media_semiotics research_cost_coeff = 1 }
+		research_cost = 1.5
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 0 } }
+		categories = { coi_alien_science coi_alien_human_sciences }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+
+	coi_alien_mass_media_semiotics = {
+		allow_branch = { original_tag = XAC }
+		allow = {
+			ROOT = {
+				OR = {
+					NOT = { has_dlc = "Gotterdammerung" }
+					is_special_project_completed = sp:coi_alien_sp_full_spectrum_human_culture_model
+				}
+			}
+		}
+		path = { leads_to_tech = coi_alien_tissue_analysis research_cost_coeff = 1 }
+		research_cost = 1.75
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 2 } }
+		categories = { coi_alien_science coi_alien_human_sciences }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+
+	coi_alien_tissue_analysis = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_human_genome_atlas research_cost_coeff = 1 }
+		research_cost = 1.75
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 4 } }
+		categories = { coi_alien_science coi_alien_human_sciences }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+
+	coi_alien_human_genome_atlas = {
+		allow_branch = { original_tag = XAC }
+		allow = {
+			ROOT = {
+				OR = {
+					NOT = { has_dlc = "Gotterdammerung" }
+					is_special_project_completed = sp:coi_alien_sp_human_genome_atlas
+				}
+			}
+		}
+		path = { leads_to_tech = coi_alien_accelerated_human_cloning research_cost_coeff = 1 }
+		research_cost = 2
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 6 } }
+		categories = { coi_alien_science coi_alien_human_sciences }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+
+	coi_alien_accelerated_human_cloning = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_conditioned_identity_imprinting research_cost_coeff = 1 }
+		research_cost = 2.25
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 8 } }
+		categories = { coi_alien_science coi_alien_human_sciences }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+
+	coi_alien_conditioned_identity_imprinting = {
+		allow_branch = { original_tag = XAC }
+		allow = {
+			ROOT = {
+				OR = {
+					NOT = { has_dlc = "Gotterdammerung" }
+					is_special_project_completed = sp:coi_alien_sp_viable_adult_clone
+				}
+			}
+		}
+		own_operative_capture_chance_factor = -0.10
+		research_cost = 2.5
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 10 } }
+		categories = { coi_alien_science coi_alien_human_sciences }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+
+	### FABRICATION AND EXPEDITIONARY LOGISTICS ###############################
+	coi_alien_expeditionary_pattern_libraries = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_molecular_feedstock_recovery research_cost_coeff = 1 }
+		production_factory_efficiency_gain_factor = 0.05
+		research_cost = 1.5
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 0 } }
+		categories = { coi_alien_science coi_alien_fabrication }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+
+	coi_alien_molecular_feedstock_recovery = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_additive_airframe_printing research_cost_coeff = 1 }
+		production_lack_of_resource_penalty_factor = -0.10
+		research_cost = 1.75
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 2 } }
+		categories = { coi_alien_science coi_alien_fabrication }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+
+	coi_alien_additive_airframe_printing = {
+		allow_branch = { original_tag = XAC }
+		# Printed generations preserve the mature Needle/Gleam combat patterns;
+		# require those patterns so fabrication cannot bypass either combat branch.
+		allow = {
+			ROOT = {
+				has_tech = coi_alien_needle_guidance_lattice
+				has_tech = coi_alien_gleam_resonance_package
+			}
+		}
+		path = { leads_to_tech = coi_alien_continuous_airframe_lattice research_cost_coeff = 1 }
+		enable_equipments = { coi_alien_needle_equipment_3 coi_alien_gleam_equipment_3 }
+		research_cost = 1.75
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 4 } }
+		categories = { coi_alien_science coi_alien_fabrication }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+
+	coi_alien_continuous_airframe_lattice = {
+		allow_branch = { original_tag = XAC }
+		allow = {
+			ROOT = {
+				OR = {
+					NOT = { has_dlc = "Gotterdammerung" }
+					is_special_project_completed = sp:coi_alien_sp_molecular_airframe_printer
+				}
+			}
+		}
+		path = { leads_to_tech = coi_alien_distributed_fabrication_logic research_cost_coeff = 1 }
+		production_factory_max_efficiency_factor = 0.10
+		enable_equipments = { coi_alien_needle_equipment_4 coi_alien_gleam_equipment_4 }
+		research_cost = 2
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 6 } }
+		categories = { coi_alien_science coi_alien_fabrication }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+
+	coi_alien_distributed_fabrication_logic = {
+		allow_branch = { original_tag = XAC }
+		path = { leads_to_tech = coi_alien_autonomous_fabrication_ecology research_cost_coeff = 1 }
+		production_factory_efficiency_gain_factor = 0.05
+		research_cost = 2.25
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 8 } }
+		categories = { coi_alien_science coi_alien_fabrication }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+
+	coi_alien_autonomous_fabrication_ecology = {
+		allow_branch = { original_tag = XAC }
+		production_factory_efficiency_gain_factor = 0.10
+		production_factory_max_efficiency_factor = 0.10
+		research_cost = 2.25
+		start_year = 1936
+		folder = { name = coi_alien_technology_folder position = { x = 0 y = 10 } }
+		categories = { coi_alien_science coi_alien_fabrication }
+		special_project_specialization = { coi_alien_specialization_matter_fabrication }
+		ai_will_do = { factor = 10 }
+	}
+}

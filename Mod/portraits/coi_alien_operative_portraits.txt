@@ -1,0 +1,17 @@
+# Procedurally recruited XAC operatives use Grey portraits rather than the
+# human fallback pool. The three drone portraits remain exclusive to their
+# authored roster entries so a random Grey cannot receive a drone identity.
+XAC = {
+	operative = {
+		male = {
+			"GFX_portrait_coi_alien_neth_witness"
+			"GFX_portrait_coi_alien_ysil_lattice"
+			"GFX_portrait_coi_alien_cael_current"
+		}
+		female = {
+			"GFX_portrait_coi_alien_neth_witness"
+			"GFX_portrait_coi_alien_ysil_lattice"
+			"GFX_portrait_coi_alien_cael_current"
+		}
+	}
+}

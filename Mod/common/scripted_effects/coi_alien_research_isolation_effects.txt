@@ -1,0 +1,92 @@
+coi_alien_grant_human_facility_access_effect = {
+	if = {
+		limit = {
+			exists = yes
+			NOT = { original_tag = XAC }
+			NOT = { has_tech = coi_alien_human_experimental_facility_access }
+		}
+		set_technology = { coi_alien_human_experimental_facility_access = 1 }
+	}
+}
+
+# Country scope. State history handles fresh starts; this versioned migration
+# recognizes that Nexus or supplies one to pre-0.5.0 saves. The completion flag
+# is deliberately set only after a Nexus exists, so a save that temporarily
+# lacks control of Pale Anchorage keeps retrying without rebuilding a Nexus that
+# is destroyed after migration has completed.
+coi_alien_ensure_consensus_research_nexus_effect = {
+	if = {
+		limit = {
+			original_tag = XAC
+			has_dlc = "Gotterdammerung"
+			NOT = { has_country_flag = coi_alien_consensus_research_nexus_v050_migrated }
+			1082 = {
+				is_owned_by = ROOT
+				is_controlled_by = ROOT
+			}
+		}
+		if = {
+			limit = {
+				1082 = { coi_alien_consensus_research_nexus > 0 }
+			}
+			set_country_flag = coi_alien_consensus_research_nexus_v050_migrated
+		}
+		else_if = {
+			limit = {
+				1082 = { coi_alien_consensus_research_nexus < 1 }
+			}
+			1082 = {
+				add_building_construction = {
+					type = coi_alien_consensus_research_nexus
+					level = 1
+					instant_build = yes
+					province = 13414
+				}
+			}
+			set_country_flag = coi_alien_consensus_research_nexus_v050_migrated
+		}
+	}
+}
+
+# Country scope. Development saves created before the unified specialization
+# can deserialize Oru with no Consensus Sciences level at all. Complete the
+# whole 0/1/2-to-3 migration in one invocation, then permanently retire it.
+# The two checks must remain independent: a level-0 scientist first reaches 2,
+# then immediately qualifies for the final +1 in the same effect execution.
+coi_alien_ensure_oru_consensus_skill_effect = {
+	if = {
+		limit = {
+			original_tag = XAC
+			has_dlc = "Gotterdammerung"
+			has_character = coi_alien_oru
+			NOT = { has_country_flag = coi_alien_oru_consensus_skill_v050_migrated }
+		}
+		coi_alien_oru = {
+			if = {
+				limit = {
+					has_scientist_level = {
+						level < 2
+						specialization = coi_alien_specialization_matter_fabrication
+					}
+				}
+				add_scientist_level = {
+					level = 2
+					specialization = coi_alien_specialization_matter_fabrication
+				}
+			}
+			if = {
+				limit = {
+					has_scientist_level = {
+						level < 3
+						specialization = coi_alien_specialization_matter_fabrication
+					}
+				}
+				add_scientist_level = {
+					level = 1
+					specialization = coi_alien_specialization_matter_fabrication
+				}
+			}
+		}
+		set_country_flag = coi_alien_oru_consensus_skill_v050_migrated
+	}
+}

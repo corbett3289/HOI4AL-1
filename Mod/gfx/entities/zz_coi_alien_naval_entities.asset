@@ -1,0 +1,57 @@
+# Text-only stand-ins. Replace these clones when bespoke meshes are ready.
+# Ship sub-unit sprite tokens resolve to these two entity names for the
+# strategic map and naval-combat scene. They deliberately remain vanilla
+# mesh clones until the dedicated PDX meshes and textures are delivered.
+entity = {
+	clone = "ship_hull_super_carrier_entity"
+	name = "coi_alien_mothership_entity"
+}
+
+entity = {
+	clone = "destroyer_entity"
+	name = "coi_alien_escort_entity"
+}
+
+# Equipment sprite tokens can also be requested by equipment/design views.
+entity = {
+	clone = "ship_hull_super_carrier_entity"
+	name = "coi_alien_mothership_hull_entity"
+}
+
+entity = {
+	clone = "destroyer_entity"
+	name = "coi_alien_escort_hull_entity"
+}
+
+entity = {
+	clone = "jet_plane_entity"
+	name = "coi_alien_needle_entity"
+}
+
+entity = {
+	clone = "medium_plane_entity"
+	name = "coi_alien_gleam_entity"
+}
+
+entity = {
+	clone = "building_naval_facility"
+	name = "building_coi_alien_mothership_anchorage"
+}
+
+entity = {
+	clone = "building_naval_facility_destroyed"
+	name = "building_coi_alien_mothership_anchorage_destroyed"
+}
+
+# The Consensus Research Nexus is a functional multi-specialization facility.
+# Until it receives a bespoke mesh, reuse the nuclear facility's map entity so
+# a history-placed Nexus renders and remains selectable without an error.
+entity = {
+	clone = "building_nuclear_facility"
+	name = "building_coi_alien_consensus_research_nexus"
+}
+
+entity = {
+	clone = "building_nuclear_facility_destroyed"
+	name = "building_coi_alien_consensus_research_nexus_destroyed"
+}

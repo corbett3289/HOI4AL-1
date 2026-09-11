@@ -1,0 +1,35 @@
+# COUNTRY scope. Vanilla generates up to four human political/intelligence
+# advisors for every otherwise-uncovered static tag. Generated tokens are not
+# reliable save-game identifiers, but these four traits are the exact fallback
+# contract in vanilla history/general/generic_advisors.txt.
+#
+# This one-time, XAC-only pass does not match the five authored Consensus
+# characters: Eir, Vael, Thren and Oru are not advisors, while Saal uses
+# silent_workhorse. Future alien advisors remain valid when they use their own
+# namespaced traits rather than these reserved vanilla fallback traits.
+coi_alien_isolate_human_fallback_advisors_effect = {
+	if = {
+		limit = {
+			original_tag = XAC
+			NOT = {
+				has_country_flag = coi_alien_human_fallback_advisors_isolated
+			}
+		}
+
+		every_character = {
+			limit = {
+				is_advisor = yes
+				OR = {
+					has_trait = communist_revolutionary
+					has_trait = democratic_reformer
+					has_trait = fascist_demagogue
+					has_trait = head_of_intelligence
+				}
+			}
+			retire = yes
+		}
+
+		set_country_flag = coi_alien_human_fallback_advisors_isolated
+		log = "[COI ALIEN] XAC isolated vanilla human fallback advisors."
+	}
+}

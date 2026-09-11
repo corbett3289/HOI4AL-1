@@ -1,0 +1,269 @@
+# Country-scoped persistent ledgers. Human Insights belongs to XAC; each human
+# country stores its own dossier, allowing later national content to query it.
+coi_alien_initialize_human_sciences_effect = {
+	if = {
+		limit = { NOT = { has_variable = coi_alien_human_insights } }
+		set_variable = { coi_alien_human_insights = 0 }
+	}
+	if = {
+		limit = { NOT = { has_variable = coi_alien_tissue_samples } }
+		set_variable = { coi_alien_tissue_samples = 0 }
+	}
+	if = {
+		limit = { NOT = { has_variable = coi_alien_active_clone_operatives } }
+		set_variable = { coi_alien_active_clone_operatives = 0 }
+	}
+	clamp_variable = { var = coi_alien_human_insights min = 0 max = 100 }
+	clamp_variable = { var = coi_alien_tissue_samples min = 0 max = 10 }
+	clamp_variable = { var = coi_alien_active_clone_operatives min = 0 max = 2 }
+}
+
+coi_alien_initialize_cultural_dossier_effect = {
+	if = {
+		limit = { NOT = { has_variable = coi_alien_cultural_dossier } }
+		set_variable = { coi_alien_cultural_dossier = 0 }
+	}
+	clamp_variable = { var = coi_alien_cultural_dossier min = 0 max = 4 }
+}
+
+coi_alien_add_cultural_dossier_one_effect = {
+	coi_alien_initialize_cultural_dossier_effect = yes
+	add_to_variable = { coi_alien_cultural_dossier = 1 }
+	clamp_variable = { var = coi_alien_cultural_dossier min = 0 max = 4 }
+}
+
+coi_alien_add_human_insights_one_effect = {
+	coi_alien_initialize_human_sciences_effect = yes
+	add_to_variable = { coi_alien_human_insights = 1 }
+	clamp_variable = { var = coi_alien_human_insights min = 0 max = 100 }
+}
+
+coi_alien_add_human_insights_two_effect = {
+	coi_alien_initialize_human_sciences_effect = yes
+	add_to_variable = { coi_alien_human_insights = 2 }
+	clamp_variable = { var = coi_alien_human_insights min = 0 max = 100 }
+}
+
+coi_alien_add_human_insights_three_effect = {
+	coi_alien_initialize_human_sciences_effect = yes
+	add_to_variable = { coi_alien_human_insights = 3 }
+	clamp_variable = { var = coi_alien_human_insights min = 0 max = 100 }
+}
+
+coi_alien_add_human_insights_five_effect = {
+	coi_alien_initialize_human_sciences_effect = yes
+	add_to_variable = { coi_alien_human_insights = 5 }
+	clamp_variable = { var = coi_alien_human_insights min = 0 max = 100 }
+}
+
+coi_alien_add_human_insights_eight_effect = {
+	coi_alien_initialize_human_sciences_effect = yes
+	add_to_variable = { coi_alien_human_insights = 8 }
+	clamp_variable = { var = coi_alien_human_insights min = 0 max = 100 }
+}
+
+coi_alien_add_human_insights_ten_effect = {
+	coi_alien_initialize_human_sciences_effect = yes
+	add_to_variable = { coi_alien_human_insights = 10 }
+	clamp_variable = { var = coi_alien_human_insights min = 0 max = 100 }
+}
+
+coi_alien_add_tissue_sample_effect = {
+	coi_alien_initialize_human_sciences_effect = yes
+	add_to_variable = { coi_alien_tissue_samples = 1 }
+	clamp_variable = { var = coi_alien_tissue_samples min = 0 max = 10 }
+}
+
+coi_alien_clear_observation_policy_effect = {
+	clr_country_flag = coi_alien_observation_passive
+	clr_country_flag = coi_alien_observation_directed
+	clr_country_flag = coi_alien_observation_aggressive
+	remove_ideas = coi_alien_observation_passive
+	remove_ideas = coi_alien_observation_directed
+	remove_ideas = coi_alien_observation_aggressive
+}
+
+coi_alien_start_observation_policy_cooldown_effect = {
+	set_country_flag = { flag = coi_alien_observation_policy_cooldown days = 90 }
+}
+
+coi_alien_adopt_passive_observation_effect = {
+	coi_alien_clear_observation_policy_effect = yes
+	set_country_flag = coi_alien_observation_passive
+	add_ideas = coi_alien_observation_passive
+	coi_alien_start_observation_policy_cooldown_effect = yes
+}
+
+coi_alien_adopt_directed_infiltration_effect = {
+	coi_alien_clear_observation_policy_effect = yes
+	set_country_flag = coi_alien_observation_directed
+	add_ideas = coi_alien_observation_directed
+	coi_alien_start_observation_policy_cooldown_effect = yes
+}
+
+coi_alien_adopt_aggressive_sampling_effect = {
+	coi_alien_clear_observation_policy_effect = yes
+	set_country_flag = coi_alien_observation_aggressive
+	add_ideas = coi_alien_observation_aggressive
+	coi_alien_start_observation_policy_cooldown_effect = yes
+}
+
+coi_alien_clear_postcontact_observation_effect = {
+	remove_ideas = coi_alien_postcontact_cultural_exchange
+	remove_ideas = coi_alien_postcontact_target_catalogue
+	remove_ideas = coi_alien_postcontact_harmonization
+	remove_ideas = coi_alien_postcontact_imperial_census
+	remove_ideas = coi_alien_postcontact_direct_observation
+}
+
+coi_alien_reconcile_postcontact_observation_effect = {
+	if = {
+		limit = {
+			has_global_flag = coi_alien_catastrophic_disclosure_active
+			has_country_flag = coi_alien_doctrine_selected
+			NOT = { has_country_flag = coi_alien_postcontact_observation_locked }
+		}
+		coi_alien_clear_observation_policy_effect = yes
+		coi_alien_clear_postcontact_observation_effect = yes
+		if = {
+			limit = { has_country_flag = coi_alien_doctrine_galactic_federation }
+			add_ideas = coi_alien_postcontact_cultural_exchange
+		}
+		else_if = {
+			limit = { has_country_flag = coi_alien_doctrine_annihilation }
+			add_ideas = coi_alien_postcontact_target_catalogue
+		}
+		else_if = {
+			limit = { has_country_flag = coi_alien_doctrine_singular_sovereignty }
+			add_ideas = coi_alien_postcontact_harmonization
+		}
+		else_if = {
+			limit = { has_country_flag = coi_alien_doctrine_planetary_mandate }
+			add_ideas = coi_alien_postcontact_imperial_census
+		}
+		else = { add_ideas = coi_alien_postcontact_direct_observation }
+		set_country_flag = coi_alien_postcontact_observation_locked
+	}
+	else_if = {
+		limit = {
+			has_global_flag = coi_alien_catastrophic_disclosure_active
+			NOT = { has_country_flag = coi_alien_doctrine_selected }
+		}
+		coi_alien_clear_observation_policy_effect = yes
+		coi_alien_clear_postcontact_observation_effect = yes
+		add_ideas = coi_alien_postcontact_direct_observation
+	}
+}
+
+coi_alien_reconcile_human_insight_bonuses_effect = {
+	if = {
+		limit = { check_variable = { coi_alien_human_insights > 19 } NOT = { has_idea = coi_alien_insight_surface_models } }
+		add_ideas = coi_alien_insight_surface_models
+	}
+	if = {
+		limit = { check_variable = { coi_alien_human_insights > 49 } NOT = { has_idea = coi_alien_insight_institutional_models } }
+		add_ideas = coi_alien_insight_institutional_models
+	}
+	if = {
+		limit = { check_variable = { coi_alien_human_insights > 79 } NOT = { has_idea = coi_alien_insight_predictive_models } }
+		add_ideas = coi_alien_insight_predictive_models
+	}
+	if = {
+		limit = {
+			has_tech = coi_alien_conditioned_identity_imprinting
+			OR = {
+				NOT = { has_dlc = "Gotterdammerung" }
+				is_special_project_completed = sp:coi_alien_sp_viable_adult_clone
+			}
+			NOT = { has_idea = coi_alien_conditioned_facsimile_program }
+		}
+		add_ideas = coi_alien_conditioned_facsimile_program
+	}
+}
+
+coi_alien_monthly_observation_pulse_effect = {
+	coi_alien_initialize_human_sciences_effect = yes
+	if = {
+		limit = {
+			is_ai = yes
+			has_tech = coi_alien_comparative_human_ethology
+			NOT = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+			NOT = {
+				OR = {
+					has_country_flag = coi_alien_observation_passive
+					has_country_flag = coi_alien_observation_directed
+					has_country_flag = coi_alien_observation_aggressive
+				}
+			}
+		}
+		coi_alien_adopt_passive_observation_effect = yes
+	}
+
+	if = {
+		limit = { has_country_flag = coi_alien_observation_passive }
+		coi_alien_add_human_insights_one_effect = yes
+		if = {
+			limit = { is_ai = no NOT = { has_country_flag = coi_alien_observation_incident_cooldown } }
+			random_list = { 95 = { } 5 = { country_event = { id = coi_alien_human_sciences.1 } } }
+		}
+	}
+	else_if = {
+		limit = { has_country_flag = coi_alien_observation_directed }
+		coi_alien_add_human_insights_two_effect = yes
+		if = {
+			limit = { is_ai = no NOT = { has_country_flag = coi_alien_observation_incident_cooldown } }
+			random_list = { 92 = { } 4 = { country_event = { id = coi_alien_human_sciences.2 } } 4 = { country_event = { id = coi_alien_human_sciences.3 } } }
+		}
+	}
+	else_if = {
+		limit = { has_country_flag = coi_alien_observation_aggressive }
+		coi_alien_add_human_insights_three_effect = yes
+		random_list = { 85 = { } 15 = { coi_alien_add_tissue_sample_effect = yes } }
+		random_list = {
+			90 = { }
+			10 = {
+				if = {
+					limit = {
+						any_country = {
+							exists = yes
+							NOT = { original_tag = XAC }
+							has_variable = coi_alien_cultural_dossier
+						}
+					}
+					random_country = {
+						limit = { exists = yes NOT = { original_tag = XAC } has_variable = coi_alien_cultural_dossier }
+						coi_alien_raise_awareness_one_effect = yes
+						coi_alien_news_record_returned_witness_effect = yes
+					}
+				}
+				else = {
+					random_country = {
+						limit = { exists = yes NOT = { original_tag = XAC } }
+						coi_alien_raise_awareness_one_effect = yes
+						coi_alien_news_record_returned_witness_effect = yes
+					}
+				}
+			}
+		}
+		if = {
+			limit = { is_ai = no NOT = { has_country_flag = coi_alien_observation_incident_cooldown } }
+			random_list = { 88 = { } 6 = { country_event = { id = coi_alien_human_sciences.4 } } 6 = { country_event = { id = coi_alien_human_sciences.5 } } }
+		}
+	}
+
+	if = {
+		limit = { has_global_flag = coi_alien_catastrophic_disclosure_active }
+		coi_alien_reconcile_postcontact_observation_effect = yes
+	}
+	coi_alien_reconcile_human_insight_bonuses_effect = yes
+
+	if = {
+		limit = {
+			is_ai = no
+			check_variable = { coi_alien_active_clone_operatives > 0 }
+			NOT = { has_country_flag = coi_alien_clone_identity_resolved }
+			NOT = { has_country_flag = coi_alien_clone_identity_event_cooldown }
+		}
+		random_list = { 95 = { } 5 = { country_event = { id = coi_alien_human_sciences.6 } } }
+	}
+}

@@ -1,0 +1,101 @@
+on_actions = {
+	# Fresh starts receive the full roster after history initialization.
+	on_startup = {
+		effect = {
+			XAC = {
+				coi_alien_initialize_spy_roster_v1_effect = yes
+				coi_alien_reconcile_autonomous_drone_traits_effect = yes
+				set_country_flag = coi_alien_drone_traits_v1_reconciled
+				if = {
+					limit = { is_ai = yes }
+					coi_alien_update_operation_ai_effect = yes
+				}
+			}
+		}
+	}
+
+	# Old saves do not replay startup. This tag-scoped, versioned migration runs
+	# once after La Resistance is available, then becomes a flag-guarded no-op.
+	on_daily_XAC = {
+		effect = {
+			coi_alien_initialize_spy_roster_v1_effect = yes
+
+			# One-shot old-save migration. Recruited reserves are covered by their
+			# dedicated hook, and the monthly pass remains an idempotent fallback.
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = coi_alien_drone_traits_v1_reconciled
+					}
+				}
+				coi_alien_reconcile_autonomous_drone_traits_effect = yes
+				set_country_flag = coi_alien_drone_traits_v1_reconciled
+			}
+
+			if = {
+				limit = {
+					is_ai = yes
+					NOT = {
+						has_country_flag = coi_alien_operation_ai_v1_initialized
+					}
+				}
+				coi_alien_update_operation_ai_effect = yes
+			}
+		}
+	}
+
+	# Low-frequency reconciliation supports old saves and any future scripted
+	# drone creation without a global country scan. It also refreshes the AI plan
+	# after focus, agency-upgrade, diplomacy, or target-state changes.
+	on_monthly_XAC = {
+		effect = {
+			coi_alien_reconcile_autonomous_drone_traits_effect = yes
+			if = {
+				limit = { is_ai = yes }
+				coi_alien_update_operation_ai_effect = yes
+			}
+		}
+	}
+
+	# THIS is the completed operation; ROOT is XAC and FROM is its target.
+	# Replanning here makes consumed access tokens visible immediately instead of
+	# waiting for the next monthly country pulse.
+	on_operation_completed = {
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						original_tag = XAC
+						is_ai = yes
+					}
+					OR = {
+						is_operation_type = coi_alien_silent_systems_survey
+						is_operation_type = coi_alien_seed_mimetic_access
+						is_operation_type = coi_alien_penetrate_research_networks
+						is_operation_type = coi_alien_spoil_the_evidence
+						is_operation_type = coi_alien_introduce_cascading_faults
+						is_operation_type = coi_alien_harvest_project_archives
+						is_operation_type = coi_alien_disrupt_research_complex
+						is_operation_type = coi_alien_extract_lead_scientist
+					}
+				}
+				ROOT = { coi_alien_update_operation_ai_effect = yes }
+			}
+		}
+	}
+
+	# Operative scope; FROM is the recruiting country. This catches an authored
+	# reserve drone that was serialized before operative_tough joined its template.
+	on_operative_recruited = {
+		effect = {
+			if = {
+				limit = {
+					FROM = { original_tag = XAC }
+					has_trait = coi_alien_autonomous_infiltration_drone
+					NOT = { has_trait = operative_tough }
+				}
+				add_unit_leader_trait = operative_tough
+			}
+		}
+	}
+}

@@ -1,0 +1,20 @@
+on_actions = {
+	# New campaigns normally consume the guard in the late history/general
+	# pass. This startup call is a harmless second route if load order changes.
+	on_startup = {
+		effect = {
+			XAC = {
+				coi_alien_isolate_human_fallback_advisors_effect = yes
+			}
+		}
+	}
+
+	# Loading an older save does not replay history/general or new-game startup.
+	# The tag-scoped daily hook migrates it once, then the country flag makes all
+	# subsequent daily evaluations a no-op without scanning any human country.
+	on_daily_XAC = {
+		effect = {
+			coi_alien_isolate_human_fallback_advisors_effect = yes
+		}
+	}
+}

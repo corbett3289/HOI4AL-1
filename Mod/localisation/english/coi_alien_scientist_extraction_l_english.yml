@@ -1,0 +1,28 @@
+﻿l_english:
+ coi_alien_extracted_scientist_study_bonus: "Extracted Scientific Methodology"
+ coi_alien_scientific_leadership_disrupted: "Scientific Leadership Disrupted"
+ coi_alien_scientific_leadership_disrupted_desc: "The disappearance of a senior project scientist has disrupted research coordination, delayed experimental work, and shaken confidence across the national scientific establishment."
+ coi_alien_scientist_breakthrough_disrupted: "Disrupted Breakthrough Work"
+ coi_alien_scientist_breakthrough_disrupted_desc: "This scientist is working under the strain of a colleague's unexplained disappearance."
+
+ coi_alien_scientist_extraction.1.t: "A Mind Removed"
+ coi_alien_scientist_extraction.1.desc: "[?event_target:coi_alien_extracted_scientist.GetName] has been isolated from [?event_target:coi_alien_extraction_target.GetNameDef]'s research apparatus. The subject will not be integrated into the Consensus; their value lies in what their absence and expertise reveal."
+ coi_alien_scientist_extraction.1.a: "Retain the subject for study"
+ coi_alien_scientist_extraction.1.b: "Transplant the subject beyond Sol"
+ coi_alien_scientist_extraction.1.c: "Make the removal strategically permanent"
+
+ coi_alien_scientist_extraction.2.t: "The Window Closed"
+ coi_alien_scientist_extraction.2.desc: "The selected scientific post no longer presents a viable extraction window. The access lattice remains intact; the operation can be attempted again when a suitable subject returns."
+ coi_alien_scientist_extraction.2.a: "Withdraw without disturbance"
+
+ coi_alien_scientist_extraction.3.t: "A Scientist Has Vanished"
+ coi_alien_scientist_extraction.3.desc: "[?event_target:coi_alien_extracted_scientist.GetName], a scientist assigned to a sensitive project, has disappeared under circumstances that defy ordinary explanation. The facility's work has been suspended while officials search for a mundane cause."
+ coi_alien_scientist_extraction.3.a: "Find them"
+
+ coi_alien_scientist_extraction.4.t: "Another Extraction"
+ coi_alien_scientist_extraction.4.desc: "[?event_target:coi_alien_extracted_scientist.GetName] has vanished from a protected research post. With the extraterrestrial threat already confirmed, the evidence points to another deliberate alien extraction."
+ coi_alien_scientist_extraction.4.a: "The pattern continues"
+
+ coi_alien_scientist_extraction_study_tt: "Gain §Y2 Survey Data§! and one §Y100%§! research bonus for £tech_mod §YAlien Science§!. The scientist is permanently removed from [?event_target:coi_alien_extraction_target.GetNameDef]."
+ coi_alien_scientist_extraction_transplant_tt: "Gain §Y1 Survey Data§! and add the subject to the off-world specialist ledger. The scientist is permanently removed from [?event_target:coi_alien_extraction_target.GetNameDef]."
+ coi_alien_scientist_extraction_removal_tt: "For §Y180 days§!, [?event_target:coi_alien_extraction_target.GetNameDef] suffers §R-5%§! Research Speed, §R-15%§! Special Project Speed, and §R-15%§! Scientist Breakthrough Generation. The scientist is permanently removed."

@@ -1,0 +1,31 @@
+### Country-scope crisis gates.
+
+coi_alien_catastrophic_crisis_active_trigger = {
+	has_global_flag = coi_alien_catastrophic_disclosure_active
+	has_country_flag = coi_alien_disclosure_crisis_active
+}
+
+coi_alien_disclosure_civil_conflict_possible_trigger = {
+	NOT = { tag = XAC }
+	has_civil_war = no
+	has_capitulated = no
+	check_variable = { num_owned_states > 1 }
+	OR = {
+		AND = {
+			NOT = { has_government = fascism }
+			check_variable = { party_popularity@fascism > 0.15 }
+		}
+		AND = {
+			NOT = { has_government = democratic }
+			check_variable = { party_popularity@democratic > 0.15 }
+		}
+		AND = {
+			NOT = { has_government = communism }
+			check_variable = { party_popularity@communism > 0.15 }
+		}
+		AND = {
+			NOT = { has_government = neutrality }
+			check_variable = { party_popularity@neutrality > 0.15 }
+		}
+	}
+}

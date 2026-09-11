@@ -1,0 +1,48 @@
+# Pale Anchorage, the artificial atoll surrounding the Pale Horizon at Point Nemo.
+capital = 1082
+
+set_research_slots = 4
+set_fuel_ratio = 1.0
+
+# Expeditionary personnel are supplied independently of the uninhabited anchorage.
+add_manpower = 100000
+
+set_stability = 0.80
+set_war_support = 0.70
+
+set_politics = {
+	ruling_party = neutrality
+	last_election = "1936.1.1"
+	election_frequency = 48
+	elections_allowed = no
+}
+
+set_popularities = {
+	neutrality = 100
+}
+
+# Use stable vanilla law IDs until the alien polity receives its own law system.
+add_ideas = {
+	limited_exports
+	limited_conscription
+	partial_economic_mobilisation
+}
+
+# Ship designs must exist before the deferred history OOB loader constructs the
+# Point Nemo fleet. Runtime create_ship cannot instantiate these custom hulls,
+# while the canonical naval OOB path accepts versioned modular equipment.
+if = {
+	limit = {
+		has_dlc = "Man the Guns"
+	}
+	coi_alien_activate_mothership_anchorage = yes
+	set_naval_oob = "XAC_1936_naval"
+}
+
+recruit_character = coi_alien_eir
+recruit_character = coi_alien_vael
+recruit_character = coi_alien_thren
+recruit_character = coi_alien_oru
+recruit_character = coi_alien_saal
+
+promote_character = coi_alien_eir

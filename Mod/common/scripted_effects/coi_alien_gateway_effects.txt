@@ -1,0 +1,372 @@
+### COUNTRY scope. Make the strategic online idea a derived reflection of the
+### physical Anchorage rather than a permanent startup grant. The existing
+### activation effect retains its idempotent technology/design migrations.
+coi_alien_reconcile_mothership_anchorage_status_effect = {
+	if = {
+		limit = { original_tag = XAC }
+		if = {
+			limit = { coi_alien_has_healthy_mothership_anchorage_trigger = yes }
+			coi_alien_activate_mothership_anchorage = yes
+		}
+		else = { coi_alien_shutdown_mothership_anchorage = yes }
+	}
+}
+
+### COUNTRY scope. Predictive Intercept Lattice receives a one-time, finite
+### three-craft field reserve. Sentinel Reserve Fabrication is still required
+### to replace losses or expand the reserve toward its twelve-craft cap.
+coi_alien_initialize_basic_sentinel_reserve_effect = {
+	if = {
+		limit = {
+			original_tag = XAC
+			has_tech = coi_alien_predictive_intercept_lattice
+			has_idea = coi_alien_mothership_anchorage_online
+			NOT = { has_country_flag = coi_alien_basic_sentinel_reserve_stocked }
+		}
+		if = {
+			limit = { has_equipment = { coi_alien_orbital_sentinel_equipment < 1 } }
+			add_equipment_to_stockpile = {
+				type = coi_alien_orbital_sentinel_equipment_1
+				amount = 3
+				producer = XAC
+			}
+			country_event = { id = coi_alien_gateway.14 }
+		}
+		set_country_flag = coi_alien_basic_sentinel_reserve_stocked
+	}
+}
+
+### COUNTRY scope. Rebuild the construction cap from currently XAC-owned and
+### controlled gateway structures plus live construction commitments. Stale
+### established flags deliberately do not count, so capture, loss, or removal
+### of a gateway frees a replacement slot on the next country pulse.
+coi_alien_reconcile_gateway_committed_count_effect = {
+	if = {
+		limit = { original_tag = XAC }
+		set_variable = { coi_alien_gateway_committed_count = 0 }
+		every_owned_state = {
+			limit = {
+				is_controlled_by = ROOT
+				OR = {
+					coi_alien_energy_gateway > 0
+					has_state_flag = coi_alien_gateway_construction_in_progress
+				}
+			}
+			ROOT = { add_to_variable = { coi_alien_gateway_committed_count = 1 } }
+		}
+		clamp_variable = { var = coi_alien_gateway_committed_count min = 0 max = 3 }
+	}
+}
+
+### COUNTRY scope: initialize saved variables and migrate any gateway buildings
+### created by development saves before the version guard existed.
+coi_alien_initialize_gateway_network_effect = {
+	if = {
+		limit = {
+			original_tag = XAC
+			NOT = { has_country_flag = coi_alien_gateway_network_v1_initialized }
+		}
+		every_owned_state = {
+			limit = {
+				is_controlled_by = ROOT
+				coi_alien_energy_gateway > 0
+			}
+			set_state_flag = coi_alien_gateway_established
+		}
+		if = {
+			limit = { NOT = { has_variable = coi_alien_fabrication_capacity } }
+			set_variable = { coi_alien_fabrication_capacity = 0 }
+		}
+		clamp_variable = { var = coi_alien_fabrication_capacity min = 0 max = 100 }
+		set_country_flag = coi_alien_gateway_network_v1_initialized
+	}
+}
+
+### COUNTRY scope. Desired output is rebuilt from undamaged gateway levels and
+### compared with the amount this subsystem previously applied, making capture,
+### bombing, repair, and anchorage shutdown reversible and idempotent. The
+### engine's deterministic owned-state iteration activates only the first three
+### healthy structures. Excess recaptured Gateways remain intact but dormant
+### until an active structure is lost, captured, or damaged.
+coi_alien_recalculate_gateway_output_effect = {
+	set_variable = { coi_alien_gateway_desired_mil = 0 }
+	set_variable = { coi_alien_gateway_desired_civ = 0 }
+	set_variable = { coi_alien_gateway_desired_dock = 0 }
+	set_variable = { coi_alien_gateway_monthly_capacity = 0 }
+	set_variable = { coi_alien_gateway_online_levels = 0 }
+	set_variable = { coi_alien_gateway_productive_count = 0 }
+
+	# State flags are descriptive, rebuilt from current reality, and never used
+	# as a lifetime commitment. A recaptured structure is therefore reconsidered.
+	every_owned_state = {
+		clr_state_flag = coi_alien_gateway_productive
+		clr_state_flag = coi_alien_gateway_dormant_over_cap
+	}
+
+	if = {
+		limit = {
+			original_tag = XAC
+			has_idea = coi_alien_mothership_anchorage_online
+		}
+		every_owned_state = {
+			limit = {
+				is_controlled_by = ROOT
+				non_damaged_building_level = {
+					building = coi_alien_energy_gateway
+					level > 0
+				}
+			}
+			if = {
+				limit = {
+					ROOT = { check_variable = { coi_alien_gateway_productive_count < 3 } }
+				}
+				set_state_flag = coi_alien_gateway_productive
+				ROOT = {
+					add_to_variable = { coi_alien_gateway_productive_count = 1 }
+					add_to_variable = { coi_alien_gateway_desired_mil = 2 }
+					add_to_variable = { coi_alien_gateway_monthly_capacity = 2 }
+					add_to_variable = { coi_alien_gateway_online_levels = 1 }
+				}
+				if = {
+					limit = {
+						non_damaged_building_level = {
+							building = coi_alien_energy_gateway
+							level > 1
+						}
+					}
+					ROOT = {
+						add_to_variable = { coi_alien_gateway_desired_mil = 2 }
+						add_to_variable = { coi_alien_gateway_desired_civ = 1 }
+						add_to_variable = { coi_alien_gateway_monthly_capacity = 2 }
+						add_to_variable = { coi_alien_gateway_online_levels = 1 }
+					}
+				}
+				if = {
+					limit = {
+						non_damaged_building_level = {
+							building = coi_alien_energy_gateway
+							level > 2
+						}
+					}
+					ROOT = {
+						add_to_variable = { coi_alien_gateway_desired_mil = 2 }
+						add_to_variable = { coi_alien_gateway_desired_civ = 1 }
+						add_to_variable = { coi_alien_gateway_desired_dock = 1 }
+						add_to_variable = { coi_alien_gateway_monthly_capacity = 2 }
+						add_to_variable = { coi_alien_gateway_online_levels = 1 }
+					}
+				}
+			}
+			else = { set_state_flag = coi_alien_gateway_dormant_over_cap }
+		}
+	}
+
+	set_variable = { coi_alien_gateway_mil_delta = coi_alien_gateway_desired_mil }
+	subtract_from_variable = { var = coi_alien_gateway_mil_delta value = coi_alien_gateway_mil_applied }
+	if = {
+		limit = {
+			OR = {
+				check_variable = { coi_alien_gateway_mil_delta > 0 }
+				check_variable = { coi_alien_gateway_mil_delta < 0 }
+			}
+		}
+		add_offsite_building = { type = arms_factory level = coi_alien_gateway_mil_delta }
+	}
+	set_variable = { coi_alien_gateway_mil_applied = coi_alien_gateway_desired_mil }
+
+	set_variable = { coi_alien_gateway_civ_delta = coi_alien_gateway_desired_civ }
+	subtract_from_variable = { var = coi_alien_gateway_civ_delta value = coi_alien_gateway_civ_applied }
+	if = {
+		limit = {
+			OR = {
+				check_variable = { coi_alien_gateway_civ_delta > 0 }
+				check_variable = { coi_alien_gateway_civ_delta < 0 }
+			}
+		}
+		add_offsite_building = { type = industrial_complex level = coi_alien_gateway_civ_delta }
+	}
+	set_variable = { coi_alien_gateway_civ_applied = coi_alien_gateway_desired_civ }
+
+	set_variable = { coi_alien_gateway_dock_delta = coi_alien_gateway_desired_dock }
+	subtract_from_variable = { var = coi_alien_gateway_dock_delta value = coi_alien_gateway_dock_applied }
+	if = {
+		limit = {
+			OR = {
+				check_variable = { coi_alien_gateway_dock_delta > 0 }
+				check_variable = { coi_alien_gateway_dock_delta < 0 }
+			}
+		}
+		add_offsite_building = { type = dockyard level = coi_alien_gateway_dock_delta }
+	}
+	set_variable = { coi_alien_gateway_dock_applied = coi_alien_gateway_desired_dock }
+
+	clear_variable = coi_alien_gateway_desired_mil
+	clear_variable = coi_alien_gateway_desired_civ
+	clear_variable = coi_alien_gateway_desired_dock
+	clear_variable = coi_alien_gateway_mil_delta
+	clear_variable = coi_alien_gateway_civ_delta
+	clear_variable = coi_alien_gateway_dock_delta
+	clear_variable = coi_alien_gateway_productive_count
+}
+
+### COUNTRY scope. Called from the tag-specific monthly hook after the daily
+### output reconciliation has established this month's functional tier total.
+coi_alien_generate_gateway_fabrication_capacity_effect = {
+	if = {
+		limit = {
+			coi_alien_gateway_network_online_trigger = yes
+			check_variable = { coi_alien_gateway_monthly_capacity > 0 }
+		}
+		add_to_variable = {
+			var = coi_alien_fabrication_capacity
+			value = coi_alien_gateway_monthly_capacity
+		}
+		clamp_variable = { var = coi_alien_fabrication_capacity min = 0 max = 100 }
+	}
+}
+
+### STATE scope from a failed or limited-success atomic missile raid.
+coi_alien_resolve_orbital_atomic_interception_effect = {
+	if = {
+		limit = { coi_alien_orbital_target_has_basic_defense_trigger = yes }
+		XAC = {
+			add_to_variable = { coi_alien_orbital_interceptions = 1 }
+			random_list = {
+				25 = {
+					add_equipment_to_stockpile = {
+						type = coi_alien_orbital_sentinel_equipment_1
+						amount = -1
+						producer = XAC
+					}
+					country_event = { id = coi_alien_gateway.10 }
+				}
+				75 = { country_event = { id = coi_alien_gateway.11 } }
+			}
+		}
+	}
+}
+
+### STATE scope from a failed or limited-success thermonuclear missile raid.
+coi_alien_resolve_orbital_thermonuclear_interception_effect = {
+	if = {
+		limit = { coi_alien_orbital_target_has_basic_defense_trigger = yes }
+		XAC = {
+			add_to_variable = { coi_alien_orbital_interceptions = 1 }
+			random_list = {
+				50 = {
+					add_equipment_to_stockpile = {
+						type = coi_alien_orbital_sentinel_equipment_1
+						amount = -1
+						producer = XAC
+					}
+					country_event = { id = coi_alien_gateway.12 }
+				}
+				50 = { country_event = { id = coi_alien_gateway.13 } }
+			}
+		}
+	}
+}
+
+### Operation-scope cleanup shared by all Atomic Disruption results.
+coi_alien_atomic_disruption_consume_access_effect = {
+	ROOT = {
+		if = {
+			limit = {
+				has_operation_token = { tag = FROM token = coi_alien_token_institutional_access }
+			}
+			remove_operation_token = { tag = FROM token = coi_alien_token_institutional_access }
+		}
+		if = {
+			limit = {
+				has_operation_token = { tag = FROM token = coi_alien_token_research_access }
+			}
+			remove_operation_token = { tag = FROM token = coi_alien_token_research_access }
+		}
+	}
+}
+
+# COUNTRY scope. Remove up to the requested number without allowing negative
+# inventories. These helpers are intentionally expanded rather than variable-
+# driven because has_equipment comparisons are stable for archetype stockpiles.
+coi_alien_remove_one_nuclear_missile_effect = {
+	if = {
+		limit = { has_equipment = { nuclear_missile_equipment > 0 } }
+		add_equipment_to_stockpile = { type = nuclear_missile_equipment amount = -1 }
+	}
+}
+
+coi_alien_atomic_disruption_limited_effect = {
+	coi_alien_atomic_disruption_consume_access_effect = yes
+	FROM = {
+		coi_alien_remove_one_nuclear_missile_effect = yes
+		remove_dynamic_modifier = { modifier = coi_alien_atomic_disruption_critical }
+		add_dynamic_modifier = { modifier = coi_alien_atomic_disruption_degraded days = 180 }
+	}
+	# A 120-day operation can outlive a change of controller or the removal of
+	# its selected launch site. Preserve the country-level disruption result,
+	# but never damage a third party's newly captured state.
+	FROM.FROM = {
+		if = {
+			limit = { coi_alien_operation_state_has_nuclear_launch_site_trigger = yes }
+			damage_building = { type = rocket_site damage = 1 repair_speed_modifier = -0.25 }
+		}
+	}
+	ROOT = { country_event = { id = coi_alien_gateway.21 } }
+}
+
+coi_alien_atomic_disruption_success_effect = {
+	coi_alien_atomic_disruption_consume_access_effect = yes
+	FROM = {
+		coi_alien_remove_one_nuclear_missile_effect = yes
+		coi_alien_remove_one_nuclear_missile_effect = yes
+		if = { limit = { num_of_nukes > 0 } add_nuclear_bombs = -1 }
+		remove_dynamic_modifier = { modifier = coi_alien_atomic_disruption_critical }
+		add_dynamic_modifier = { modifier = coi_alien_atomic_disruption_degraded days = 180 }
+	}
+	FROM.FROM = {
+		if = {
+			limit = { coi_alien_operation_state_has_nuclear_launch_site_trigger = yes }
+			damage_building = { type = rocket_site damage = 1 repair_speed_modifier = -0.50 }
+		}
+	}
+	ROOT = { country_event = { id = coi_alien_gateway.22 } }
+}
+
+coi_alien_atomic_disruption_critical_effect = {
+	coi_alien_atomic_disruption_consume_access_effect = yes
+	FROM = {
+		coi_alien_remove_one_nuclear_missile_effect = yes
+		coi_alien_remove_one_nuclear_missile_effect = yes
+		coi_alien_remove_one_nuclear_missile_effect = yes
+		if = { limit = { num_of_nukes > 0 } add_nuclear_bombs = -1 }
+		remove_dynamic_modifier = { modifier = coi_alien_atomic_disruption_degraded }
+		add_dynamic_modifier = { modifier = coi_alien_atomic_disruption_critical days = 365 }
+	}
+	FROM.FROM = {
+		if = {
+			limit = { coi_alien_operation_state_has_nuclear_launch_site_trigger = yes }
+			damage_building = { type = rocket_site damage = 1 repair_speed_modifier = -0.75 }
+			damage_building = { type = rocket_site damage = 1 repair_speed_modifier = -0.75 }
+		}
+	}
+	ROOT = { country_event = { id = coi_alien_gateway.23 } }
+}
+
+coi_alien_atomic_disruption_failure_effect = {
+	coi_alien_atomic_disruption_consume_access_effect = yes
+	FROM = {
+		coi_alien_raise_awareness_one_effect = yes
+		coi_alien_raise_awareness_one_effect = yes
+	}
+	ROOT = { country_event = { id = coi_alien_gateway.20 } }
+}
+
+# Operation scope. Ordinary completion resolves into failure, limited success,
+# or success; the operation's extra outcome calls the critical helper directly.
+coi_alien_atomic_disruption_standard_effect = {
+	random_list = {
+		20 = { coi_alien_atomic_disruption_failure_effect = yes }
+		50 = { coi_alien_atomic_disruption_limited_effect = yes }
+		30 = { coi_alien_atomic_disruption_success_effect = yes }
+	}
+}

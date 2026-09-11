@@ -1,0 +1,11 @@
+coi_alien_atomic_disruption_degraded = {
+	enable = { always = yes }
+	nuclear_production_factor = -0.50
+	thermonuclear_production_factor = -0.50
+}
+
+coi_alien_atomic_disruption_critical = {
+	enable = { always = yes }
+	nuclear_production_factor = -0.75
+	thermonuclear_production_factor = -0.75
+}
