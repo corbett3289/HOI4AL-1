@@ -8,12 +8,14 @@ for later integration into **Century of Iron**: play the Grey Consensus from
 Pale Anchorage at Point Nemo, study humanity, infiltrate its institutions, and
 shape the route from classified anomalies to catastrophic first contact.
 
-This repository contains the mod's original source, authored game data, build
-tools, documentation, and generated art masters. It is a development project,
-not a balanced public release.
+This public repository contains the mod's original source, authored game data,
+build tools, documentation, and generated art masters. It is an unfinished
+development and playtesting release, not a balanced or production-ready mod.
 
 - Development version: **0.6.0**
 - Launcher name: **Alien Crisis: Grey Consensus [DEV]**
+- Public source repository: [GitHub](https://github.com/corbett3289/HOI4AL-1)
+- Public testing build: [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3792947099)
 - Supported game line: **HOI4 1.19.x**
 - Build scripts currently pinned to: **HOI4 1.19.2.0**
 - Stable namespace: `coi_alien_`
@@ -94,13 +96,13 @@ pwsh -NoProfile -File ./InstallLocal.ps1
 This writes a launcher descriptor beneath the current user's HOI4 documents
 folder and does not enable the mod in a playset. Use a dedicated playset and a
 new 1936 campaign. Steam Deck/Linux source automation is not yet supported;
-the private Workshop item remains the practical cross-device testing channel.
+the public Workshop item remains the practical cross-device testing channel.
 
 ## Validation and test status
 
 `Source/Validate-Mod.ps1` performs the full static contract check. Version
 0.6.0 has also passed fresh XAC and Germany one-day runtime smoke tests plus a
-copied recent-save migration/reload test. The private Workshop payload was
+copied recent-save migration/reload test. The public Workshop payload was
 authenticated and matched all 324 local `Mod` files byte-for-byte after upload.
 
 Validated areas include country setup, reserved map IDs, technology isolation,
@@ -133,7 +135,7 @@ warnings. They are accepted intentionally instead of replacing the global
 - `Source/` — reproducible builders, validators, art masters, and prompt records.
 - `Docs/` — design, engine-hook, map, espionage, disclosure, and integration notes.
 - `Launcher/` — portable launcher descriptor template.
-- `Workshop/` — sanitized private-publishing example; the active VDF is ignored.
+- `Workshop/` — sanitized public-publishing example; the active VDF is ignored.
 
 Useful starting documents:
 

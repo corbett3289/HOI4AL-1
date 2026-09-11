@@ -541,9 +541,9 @@ exceptional effects remain separate.
   `Source/Art/Masters/coi_alien_workshop_cover.png`; the derived 512×512 review
   cover is `Source/Art/Preview/workshop_cover.png`, and the derived 512×512
   launcher/Workshop asset is `Mod/thumbnail.png`.
-- At that milestone this was local packaging evidence only; the later private
-  Workshop testing channel is documented without account or manifest IDs in
-  the public repository.
+- At that milestone this was local packaging evidence only. The later Workshop
+  testing channel began privately and is now public; the public repository
+  continues to omit account and manifest IDs.
 
 Required validation includes:
 

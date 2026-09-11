@@ -4829,7 +4829,7 @@ else {
 		Add-Failure "Workshop staging appid is '$($workshopFields['appid'])'; expected 394360."
 	}
 	if ($workshopFields.ContainsKey('publishedfileid') -and $workshopFields['publishedfileid'] -notmatch '^\d+$') {
-		Add-Failure 'Workshop staging publishedfileid must be present and numeric; 0 is valid before the first private upload.'
+		Add-Failure 'Workshop staging publishedfileid must be present and numeric; 0 is valid before the first upload.'
 	}
 	elseif ($usingWorkshopExample -and $workshopFields.ContainsKey('publishedfileid') -and $workshopFields['publishedfileid'] -cne '0') {
 		Add-Failure "Public Workshop example publishedfileid is '$($workshopFields['publishedfileid'])'; expected 0."
@@ -4855,8 +4855,8 @@ else {
 			}
 		}
 	}
-	if ($workshopFields.ContainsKey('visibility') -and $workshopFields['visibility'] -cne '2') {
-		Add-Failure "Workshop staging visibility is '$($workshopFields['visibility'])'; expected 2 (private)."
+	if ($workshopFields.ContainsKey('visibility') -and $workshopFields['visibility'] -cne '0') {
+		Add-Failure "Workshop staging visibility is '$($workshopFields['visibility'])'; expected 0 (public)."
 	}
 
 	$descriptorNameMatch = [regex]::Match($descriptorText, '(?m)^\s*name\s*=\s*"([^"]+)"\s*$')
@@ -4871,24 +4871,15 @@ else {
 			Add-Failure "Workshop staging $textField must not be empty."
 		}
 	}
-	if (-not $usingWorkshopExample -and $workshopFields.ContainsKey('description') -and $workshopFields['description'] -notmatch '\b0\.6\.0\b') {
+	if ($workshopFields.ContainsKey('description') -and $workshopFields['description'] -notmatch '\b0\.6\.0\b') {
 		Add-Failure 'Workshop staging description must identify release 0.6.0.'
 	}
-	if (-not $usingWorkshopExample -and $workshopFields.ContainsKey('changenote') -and $workshopFields['changenote'] -notmatch '\b0\.6\.0\b') {
-		Add-Failure 'Workshop staging changenote must identify release 0.6.0.'
+	$publicRepositoryUrl = 'https://github.com/corbett3289/HOI4AL-1'
+	if ($workshopFields.ContainsKey('description') -and $workshopFields['description'] -notmatch [regex]::Escape($publicRepositoryUrl)) {
+		Add-Failure "Workshop staging description must link the public source repository at $publicRepositoryUrl."
 	}
-	if (-not $usingWorkshopExample -and $workshopFields.ContainsKey('changenote') -and $workshopFields['changenote'] -notmatch '(?i)Signals in the Noise') {
-		Add-Failure 'Workshop staging changenote must identify the Signals in the Noise expansion.'
-	}
-	if (-not $usingWorkshopExample -and $workshopFields.ContainsKey('changenote') -and $workshopFields['changenote'] -notmatch '(?i)Consensus Sciences') {
-		Add-Failure 'Workshop staging changenote must identify the Consensus Sciences expansion.'
-	}
-	if (-not $usingWorkshopExample -and $workshopFields.ContainsKey('changenote') -and $workshopFields['changenote'] -notmatch '(?i)\bTic Tac\b') {
-		Add-Failure 'Workshop staging changenote must identify the Tic Tac logistics expansion.'
-	}
-	if (-not $usingWorkshopExample -and $workshopFields.ContainsKey('changenote') -and
-		$workshopFields['changenote'] -notmatch '(?i)country-specific convoy_1 variant system') {
-		Add-Failure 'Workshop staging changenote must describe the supported country-specific convoy_1 variant architecture.'
+	if ($workshopFields.ContainsKey('description') -and $workshopFields['description'] -notmatch '(?i)\b(?:unfinished|development|testing|playtesting)\b') {
+		Add-Failure 'Workshop staging description must identify the item as an unfinished development/testing build.'
 	}
 	if (-not $usingWorkshopExample -and $workshopFields.ContainsKey('changenote') -and
 		$workshopFields['changenote'] -match '(?i)overwhelming but finite convoy performance') {
@@ -4908,9 +4899,9 @@ foreach ($readmeContract in @(
 	[pscustomobject]@{ Text = $projectReadmeText; Pattern = '(?i)supported\s+country-specific `convoy_1` variant system'; Label = 'project README supported variant architecture' },
 	[pscustomobject]@{ Text = $projectReadmeText; Pattern = '(?is)vanilla convoy resource costs, transfer/licensing\s+behavior'; Label = 'project README shared recipe and transfer limitation' },
 	[pscustomobject]@{ Text = $projectReadmeText; Pattern = '(?is)combat strip is staged for a future\s+engine-supported hook'; Label = 'project README staged combat-art limitation' },
-	[pscustomobject]@{ Text = $projectReadmeText; Pattern = '(?i)private Workshop payload was\s+authenticated and matched all 324 local `Mod` files'; Label = 'project README private-build verification' },
+	[pscustomobject]@{ Text = $projectReadmeText; Pattern = '(?i)public Workshop payload was\s+authenticated and matched all 324 local `Mod` files'; Label = 'project README public-build verification' },
 	[pscustomobject]@{ Text = $workshopReadmeText; Pattern = '(?i)workshop_item_394360\.example\.vdf'; Label = 'Workshop README portable example' },
-	[pscustomobject]@{ Text = $workshopReadmeText; Pattern = '(?i)Steam uses\s+`2`\s+for\s+Private'; Label = 'Workshop README private visibility warning' },
+	[pscustomobject]@{ Text = $workshopReadmeText; Pattern = '(?i)Steam uses\s+`0`\s+for\s+Public'; Label = 'Workshop README public visibility guidance' },
 	[pscustomobject]@{ Text = $workshopReadmeText; Pattern = '(?i)Steam Guard'; Label = 'Workshop README interactive authentication guidance' },
 	[pscustomobject]@{ Text = $workshopReadmeText; Pattern = '(?i)0\.6\.0'; Label = 'Workshop README current development version' }
 )) {
@@ -4918,7 +4909,7 @@ foreach ($readmeContract in @(
 		Add-Failure "Missing $($readmeContract.Label) contract."
 	}
 }
-Add-Pass "Validated portable/private (visibility 2) Steam Workshop 0.6.0 metadata and documentation without repository-bound account state"
+Add-Pass "Validated portable/public (visibility 0) Steam Workshop 0.6.0 metadata, source link, and documentation without repository-bound account state"
 
 $staleMatches = rg -n -i 'stillwater|set_awareness_alert|awareness_alert|confirm_extraterrestrial' $modRoot 2>$null
 if ($LASTEXITCODE -eq 0) {

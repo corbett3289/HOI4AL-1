@@ -42,8 +42,9 @@ source tree during prototype development.
 - Placeholder art is original or clearly reusable; third-party Workshop assets
   are never copied.
 - The standalone development package is version `0.6.0`, named
-  `Alien Crisis: Grey Consensus [DEV]`. The name is a development contract and
-  does not imply that a public Steam Workshop release exists.
+  `Alien Crisis: Grey Consensus [DEV]`. The name remains an explicit unfinished
+  development and playtesting warning even though a public Steam Workshop
+  release now exists.
 
 ## Public integration surface
 

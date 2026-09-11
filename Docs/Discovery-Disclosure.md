@@ -156,5 +156,5 @@ not advanced. The source save and both test copies remained byte-identical at
 SHA-256
 `B1760CE98A0FCCB40988EE5AD64EC0FD8EFAA9FD45E355D0A243CD6A595FCDAA`.
 
-Version 0.6.0 is live on the permanent private Workshop item with visibility
-`2` and has been verified by authenticated download.
+Version 0.6.0 is live on the permanent public Workshop item with visibility
+`0` and has been verified by authenticated download.
